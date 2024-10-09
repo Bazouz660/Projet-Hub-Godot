@@ -1,0 +1,1 @@
+[Hub project doc](https://epitechfr-my.sharepoint.com/:w:/g/personal/basile_trebus-hamann_epitech_eu/EcUFbp548ABPlNOlsfoUoS0B6eNeVVS0jc2PzB3htNl0Qw?email=cyprien1.piron%40epitech.eu&wdOrigin=TEAMS-MAGLEV.p2p_ns.rwc&wdExp=TEAMS-TREATMENT&wdhostclicktime=1728485921263&web=1)
