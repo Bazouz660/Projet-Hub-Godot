@@ -67,6 +67,5 @@ mesh = SubResource("CapsuleMesh_p2u5y")
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 3, 5)
 
 [node name="PostProcessing" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("QuadMesh_oqrce")
 skeleton = NodePath("../..")
