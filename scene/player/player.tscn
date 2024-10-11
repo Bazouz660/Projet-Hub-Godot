@@ -63,9 +63,17 @@ shape = SubResource("CapsuleShape3D_7ef3a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_p2u5y")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 3, 5)
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.32628, 0)
 
-[node name="PostProcessing" type="MeshInstance3D" parent="Camera3D"]
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 20)
+projection = 1
+size = 9.929
+near = 0.001
+far = 200.25
+
+[node name="PostProcessing" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(5.25951, 0, 0, 0, 3.14001, 5.96046e-08, 0, 1.19209e-07, 1.69206, 0, -0.00241518, -1.18389)
 mesh = SubResource("QuadMesh_oqrce")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
