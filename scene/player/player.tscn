@@ -1,40 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgsiv5sfqs2dv"]
+[gd_scene load_steps=9 format=3 uid="uid://bgsiv5sfqs2dv"]
 
 [ext_resource type="Shader" path="res://shader/outline.gdshader" id="1_1gtwv"]
-
-[sub_resource type="GDScript" id="GDScript_pvqg1"]
-script/source = "extends CharacterBody3D
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
-"
+[ext_resource type="Script" path="res://scene/player/player.gd" id="1_l426v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ef3a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p2u5y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uenn7"]
+diffuse_mode = 3
+specular_mode = 1
+subsurf_scatter_strength = 0.89
+proximity_fade_distance = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0xqb"]
 render_priority = 0
@@ -52,8 +29,16 @@ material = SubResource("ShaderMaterial_e0xqb")
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_snvtd"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Player" type="CharacterBody3D"]
-script = SubResource("GDScript_pvqg1")
+script = ExtResource("1_l426v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -62,6 +47,7 @@ shape = SubResource("CapsuleShape3D_7ef3a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_p2u5y")
+surface_material_override/0 = SubResource("StandardMaterial3D_uenn7")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.32628, 0)
@@ -77,3 +63,6 @@ far = 200.25
 transform = Transform3D(5.25951, 0, 0, 0, 3.14001, 5.96046e-08, 0, 1.19209e-07, 1.69206, 0, -0.00241518, -1.18389)
 mesh = SubResource("QuadMesh_oqrce")
 skeleton = NodePath("../../..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_snvtd")

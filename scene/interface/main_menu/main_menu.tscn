@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://yqdv0umgw6qi"]
+
+[ext_resource type="Script" path="res://scene/interface/main_menu/host.gd" id="1_16ot4"]
+[ext_resource type="Script" path="res://scene/interface/main_menu/join.gd" id="1_am7mx"]
+[ext_resource type="Script" path="res://scene/interface/main_menu/exit.gd" id="1_b2wvr"]
+[ext_resource type="Texture2D" uid="uid://dw06muakrpn1s" path="res://asset/texture/icon/youpi_logo.svg" id="2_3ebrq"]
+[ext_resource type="Script" path="res://scene/interface/main_menu/connect.gd" id="3_m8ux3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xme1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74nye"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Host" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+script = ExtResource("1_16ot4")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xme1n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Join" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+script = ExtResource("1_am7mx")
+
+[node name="IpInput" type="LineEdit" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+placeholder_text = "IP adress"
+
+[node name="PortInput" type="LineEdit" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+placeholder_text = "Port"
+
+[node name="Connect" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Connect !"
+script = ExtResource("3_m8ux3")
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit to desktop"
+script = ExtResource("1_b2wvr")
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_74nye")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3ebrq")
+expand_mode = 3
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Host" to="MarginContainer/VBoxContainer/Host" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" to="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Connect" to="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Connect" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="MarginContainer/VBoxContainer/Exit" method="_on_pressed"]
