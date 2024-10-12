@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgsiv5sfqs2dv"]
+[gd_scene load_steps=12 format=3 uid="uid://bgsiv5sfqs2dv"]
 
 [ext_resource type="Shader" path="res://shader/outline.gdshader" id="1_1gtwv"]
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_l426v"]
@@ -37,6 +37,18 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_du016"]
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_thq3d"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5jpk"]
+blend_mode = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.905882, 0, 1, 1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_l426v")
 
@@ -53,7 +65,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uenn7")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.32628, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 projection = 1
 size = 9.929
 near = 0.001
@@ -66,3 +78,13 @@ skeleton = NodePath("../../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_snvtd")
+
+[node name="StepCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
+enabled = false
+shape = SubResource("CylinderShape3D_du016")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StepCast"]
+visible = false
+mesh = SubResource("CylinderMesh_thq3d")
+surface_material_override/0 = SubResource("StandardMaterial3D_o5jpk")
