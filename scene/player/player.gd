@@ -8,7 +8,6 @@ const JUMP_VELOCITY = 4.5
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
-	MultiplayerManager.active_player = self
 	
 func _ready():
 	camera_3d.current = is_multiplayer_authority()
