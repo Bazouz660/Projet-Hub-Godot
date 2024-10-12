@@ -32,23 +32,31 @@ func forward_port():
 	upnp.delete_port_mapping(port, "UDP")
 	upnp.delete_port_mapping(port, "TCP")
 
-
 func host_game():
-	# set scene to world
 	get_tree().root.add_child(world_scene)
 	peer.create_server(port)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_add_player)
-	call_deferred("_add_player")
+	# Spawn the host's player immediately
+	call_deferred("_add_player", multiplayer.get_unique_id())
 
 func join_game(ip : String, host_port : int):
-	# set scene to world
 	get_tree().root.add_child(world_scene)
 	peer.create_client(ip, host_port)
 	multiplayer.multiplayer_peer = peer
+	# Don't spawn a player immediately when joining
 
-func _add_player(id = 1):
-	var player = player_scene.instantiate()
-	player.name = str(id)
-	world_scene.get_node("SubViewportContainer/SubViewport/World/SpawnPoint").add_child(player)
-	player_connected.emit(player)
+func _add_player(id):
+	if not active_player and id == multiplayer.get_unique_id():
+		# This is the local player
+		var player = player_scene.instantiate()
+		player.name = str(id)
+		world_scene.get_node("SubViewportContainer/SubViewport/World/SpawnPoint").add_child(player)
+		active_player = player
+		player_connected.emit(player)
+	elif id != multiplayer.get_unique_id():
+		# This is a remote player
+		var player = player_scene.instantiate()
+		player.name = str(id)
+		world_scene.get_node("SubViewportContainer/SubViewport/World/SpawnPoint").add_child(player)
+		player_connected.emit(player)
