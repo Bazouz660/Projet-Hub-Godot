@@ -1,23 +1,104 @@
-[gd_scene load_steps=8 format=3 uid="uid://yqdv0umgw6qi"]
+[gd_scene load_steps=19 format=3 uid="uid://yqdv0umgw6qi"]
 
 [ext_resource type="Script" path="res://scene/interface/main_menu/host.gd" id="1_16ot4"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/join.gd" id="1_am7mx"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/exit.gd" id="1_b2wvr"]
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/default_theme.tres" id="1_thu5l"]
 [ext_resource type="Texture2D" uid="uid://dw06muakrpn1s" path="res://asset/texture/icon/youpi_logo.svg" id="2_3ebrq"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/connect.gd" id="3_m8ux3"]
+[ext_resource type="Shader" path="res://shader/scroll_offset.gdshader" id="5_buxsm"]
+[ext_resource type="Script" path="res://scene/interface/main_menu/parallax.gd" id="7_ybn76"]
+[ext_resource type="Texture2D" uid="uid://b05uii20o36il" path="res://asset/texture/interface/background/sky.png" id="8_rtx7a"]
+[ext_resource type="Texture2D" uid="uid://jw7xv1w5ng6t" path="res://asset/texture/interface/background/clouds.png" id="9_u6jx7"]
+[ext_resource type="Texture2D" uid="uid://diypdgrumc4ow" path="res://asset/texture/interface/background/trees2.png" id="10_vueh5"]
+[ext_resource type="Texture2D" uid="uid://biubttru8wb3y" path="res://asset/texture/interface/background/trees1.png" id="11_7bmd6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
+shader = ExtResource("5_buxsm")
+shader_parameter/x_offset = 0.191919
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
+shader = ExtResource("5_buxsm")
+shader_parameter/x_offset = 0.268687
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
+shader = ExtResource("5_buxsm")
+shader_parameter/x_offset = 0.383839
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxyy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xme1n"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74nye"]
+[sub_resource type="LabelSettings" id="LabelSettings_6e7aj"]
+font_size = 75
+shadow_size = 0
+shadow_color = Color(0.299547, 0.299547, 0.299547, 1)
+shadow_offset = Vector2(5, 5)
 
 [node name="MainMenu" type="Control"]
+texture_filter = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+theme = ExtResource("1_thu5l")
+
+[node name="Parallax" type="Control" parent="."]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_ybn76")
+
+[node name="Sky" type="TextureRect" parent="Parallax"]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_rtx7a")
+
+[node name="Cloud" type="TextureRect" parent="Parallax"]
+material = SubResource("ShaderMaterial_035dj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_u6jx7")
+
+[node name="TreeFar" type="TextureRect" parent="Parallax"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_wqkv8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_vueh5")
+
+[node name="TreeClose" type="TextureRect" parent="Parallax"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_3p30s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7bmd6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -31,10 +112,30 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
+[node name="Logo" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ipxyy")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Logo"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3ebrq")
+expand_mode = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
+theme_override_constants/separation = 45
 
 [node name="Host" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -78,23 +179,12 @@ layout_mode = 2
 text = "Exit to desktop"
 script = ExtResource("1_b2wvr")
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
-custom_minimum_size = Vector2(75, 75)
+[node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxEmpty_74nye")
-metadata/_edit_group_ = true
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_3ebrq")
-expand_mode = 3
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Untitled Game"
+label_settings = SubResource("LabelSettings_6e7aj")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Host" to="MarginContainer/VBoxContainer/Host" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" to="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" method="_on_pressed"]
