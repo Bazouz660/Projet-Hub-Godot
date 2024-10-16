@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw4eko4whoniv"]
+
+[ext_resource type="Shader" path="res://shader/grass_blade.gdshader" id="1_8odvd"]
+[ext_resource type="Texture2D" uid="uid://fy3bafqgkhn3" path="res://asset/texture/fooliage/grass_blade.png" id="1_nnhlt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txn6h"]
+render_priority = 0
+shader = ExtResource("1_8odvd")
+shader_parameter/albedo = Color(0.341176, 0.478431, 0.184314, 1)
+shader_parameter/backlight = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/wind_strength = 0.3
+shader_parameter/wind_speed = 5.0
+shader_parameter/wind_scale = 1.0
+shader_parameter/texture_albedo = ExtResource("1_nnhlt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_l3cbl"]
+material = SubResource("ShaderMaterial_txn6h")
+center_offset = Vector3(0, 0.5, 0)
+
+[node name="GrassBlade" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_l3cbl")

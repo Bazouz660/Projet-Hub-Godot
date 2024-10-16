@@ -73,6 +73,7 @@ far = 200.25
 
 [node name="PostProcessing" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(5.25951, 0, 0, 0, 3.14001, 5.96046e-08, 0, 1.19209e-07, 1.69206, 0, -0.00241518, -1.18389)
+visible = false
 mesh = SubResource("QuadMesh_oqrce")
 skeleton = NodePath("../../..")
 
