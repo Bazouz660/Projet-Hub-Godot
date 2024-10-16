@@ -6,4 +6,6 @@ extends Button
 func _on_pressed():
 	var ip : String = ip_input.text
 	var port : int = port_input.text.to_int()
-	MultiplayerManager.join_game(ip, port)
+	Global.game_manager.join_game(ip, port)
+	Global.game_manager.change_gui_scene("res://scene/interface/hud/hud.tscn")
+	

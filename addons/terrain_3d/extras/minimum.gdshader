@@ -47,7 +47,7 @@ ivec3 get_region_uv(vec2 uv) {
 vec3 get_region_uv2(vec2 uv) {
 	// Vertex function added half a texel to UV2, to center the UV's.  vertex(), fragment() and get_height()
 	// call this with reclaimed versions of UV2, so to keep the last row/column within the correct
-	// window, take back the half pixel before the floor(). 
+	// window, take back the half pixel before the floor().
 	ivec2 pos = ivec2(floor(uv - vec2(_region_texel_size * 0.5))) + (_region_map_size / 2);
 	int bounds = int(pos.x>=0 && pos.x<_region_map_size && pos.y>=0 && pos.y<_region_map_size);
 	int layer_index = _region_map[ pos.y * _region_map_size + pos.x ] * bounds - 1;
@@ -68,7 +68,7 @@ float get_height(vec2 uv) {
 void vertex() {
 	// Get vertex of flat plane in world coordinates and set world UV
 	vec3 vertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	
+
 	// UV coordinates in world space. Values are 0 to _region_size within regions
 	UV = round(vertex.xz * _mesh_vertex_density);
 
@@ -77,7 +77,7 @@ void vertex() {
 	uint control = texelFetch(_control_maps, region, 0).r;
 	bool hole = bool(control >>2u & 0x1u);
 	// Show holes to all cameras except mouse camera (on exactly 1 layer)
-	if ( !(CAMERA_VISIBLE_LAYERS == _mouse_layer) && 
+	if ( !(CAMERA_VISIBLE_LAYERS == _mouse_layer) &&
 			(hole || (_background_mode == 0u && region.z < 0)) ) {
 		VERTEX.x = 0./0.;
 	} else {
@@ -104,10 +104,10 @@ vec3 get_normal(vec2 uv, out vec3 tangent, out vec3 binormal) {
 	// Get the height of the current vertex
 	float height = get_height(uv);
 
-	// Get the heights to the right and in front, but because of hardware 
+	// Get the heights to the right and in front, but because of hardware
 	// interpolation on the edges of the heightmaps, the values are off
 	// causing the normal map to look weird. So, near the edges of the map
-	// get the heights to the left or behind instead. Hacky solution that 
+	// get the heights to the left or behind instead. Hacky solution that
 	// reduces the artifact, but doesn't fix it entirely. See #185.
 	float u, v;
 	if(mod(uv.y*_region_size, _region_size) > _region_size-2.) {
@@ -116,7 +116,7 @@ vec3 get_normal(vec2 uv, out vec3 tangent, out vec3 binormal) {
 		v = height - get_height(uv + vec2(0, _region_texel_size));
 	}
 	if(mod(uv.x*_region_size, _region_size) > _region_size-2.) {
-		u = get_height(uv + vec2(-_region_texel_size, 0)) - height;		
+		u = get_height(uv + vec2(-_region_texel_size, 0)) - height;
 	} else {
 		u = height - get_height(uv + vec2(_region_texel_size, 0));
 	}
@@ -143,4 +143,3 @@ void fragment() {
 	// Apply PBR
 	ALBEDO=vec3(.2);
 }
-
