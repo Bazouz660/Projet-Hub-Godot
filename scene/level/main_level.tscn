@@ -65,7 +65,7 @@ size = Vector2(1, 1)
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_b2omm"]
 
-[sub_resource type="Resource" id="Resource_txc2q"]
+[sub_resource type="Resource" id="Resource_ugt2u"]
 script = ExtResource("6_kwuui")
 amount = 100000
 enabled = true
@@ -74,7 +74,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_b8hq2"]
+[sub_resource type="Resource" id="Resource_074c0"]
 script = ExtResource("8_gg8lh")
 iterations = 3
 offset_step = 0.2
@@ -86,7 +86,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_w0170"]
+[sub_resource type="Resource" id="Resource_hx1t4"]
 script = ExtResource("9_x7dot")
 ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
@@ -102,9 +102,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_khc68"]
+[sub_resource type="Resource" id="Resource_nreyv"]
 script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_txc2q"), SubResource("Resource_b8hq2"), SubResource("Resource_w0170")])
+stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_ugt2u"), SubResource("Resource_074c0"), SubResource("Resource_hx1t4")])
 
 [sub_resource type="Resource" id="Resource_21keg"]
 script = ExtResource("11_nng78")
@@ -117,7 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29612, 0)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="SpawnPoint"]
 _spawnable_scenes = PackedStringArray("res://scene/player/player.tscn")
-spawn_path = NodePath("../../../../..")
+spawn_path = NodePath("..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866026, 0, 6.18317, 0)
@@ -149,7 +149,7 @@ shape = SubResource("HeightMapShape3D_b2omm")
 
 [node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("3_67onc")
-modifier_stack = SubResource("Resource_khc68")
+modifier_stack = SubResource("Resource_nreyv")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

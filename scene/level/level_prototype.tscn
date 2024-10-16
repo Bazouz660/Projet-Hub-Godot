@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvqhhuwslf5hx"]
 
-[ext_resource type="Texture2D" uid="uid://b3qu54ohkxs35" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_sagnk"]
+[ext_resource type="Texture2D" uid="uid://b78kjob4ol0v1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_sagnk"]
 [ext_resource type="Shader" path="res://shader/outline.gdshader" id="2_53irq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfl0j"]
