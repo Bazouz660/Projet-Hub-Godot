@@ -52,7 +52,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 projection = 1
 size = 9.929
 near = 0.001
-far = 150.0
+far = 200.25
+
+[node name="PostProcessing" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(5.25951, 0, 0, 0, 3.14001, 5.96046e-08, 0, 1.19209e-07, 1.69206, 0, -0.00241518, -1.18389)
+mesh = SubResource("QuadMesh_oqrce")
+skeleton = NodePath("../../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_snvtd")
