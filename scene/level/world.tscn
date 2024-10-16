@@ -1,12 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcer3i8xdly24"]
-
-[ext_resource type="Shader" path="res://shader/color_quant.gdshader" id="2_yuw65"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jp7m3"]
-shader = ExtResource("2_yuw65")
-shader_parameter/num_channels = 10.0
-shader_parameter/dithering = true
-shader_parameter/dithering_amount = 0.075
+[gd_scene format=3 uid="uid://dcer3i8xdly24"]
 
 [node name="World" type="Node3D"]
 
@@ -24,14 +16,3 @@ stretch_shrink = 3
 handle_input_locally = false
 size = Vector2i(384, 216)
 render_target_update_mode = 4
-
-[node name="PostProcessingCanvas" type="CanvasLayer" parent="."]
-
-[node name="ColorQuant" type="ColorRect" parent="PostProcessingCanvas"]
-visible = false
-material = SubResource("ShaderMaterial_jp7m3")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

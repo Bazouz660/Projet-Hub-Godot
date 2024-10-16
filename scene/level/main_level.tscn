@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b8o7o3l18uvf1"]
+[gd_scene load_steps=30 format=3 uid="uid://b8o7o3l18uvf1"]
 
 [ext_resource type="Shader" path="res://shader/terrain.gdshader" id="2_8mmvj"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_67onc"]
@@ -11,6 +11,25 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="10_mmclv"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="11_nng78"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_oxv1t"]
+[ext_resource type="PackedScene" uid="uid://dvqhhuwslf5hx" path="res://scene/level/level_prototype.tscn" id="12_bjqot"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1rlwr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t8gqe"]
+seamless = true
+noise = SubResource("FastNoiseLite_1rlwr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
+render_priority = 0
+shader = ExtResource("6_1av30")
+shader_parameter/cloud_direction = Vector2(0, 1)
+shader_parameter/cloud_speed = 0.003
+shader_parameter/cut_threshold = 0.4
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_t8gqe")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fnk3o"]
+material = SubResource("ShaderMaterial_ywwrw")
+size = Vector2(100, 100)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hawmb"]
 sky_top_color = Color(0.340984, 0.441625, 0.671444, 1)
@@ -32,24 +51,6 @@ volumetric_fog_density = 0.01
 
 [sub_resource type="Compositor" id="Compositor_j5yey"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1rlwr"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t8gqe"]
-seamless = true
-noise = SubResource("FastNoiseLite_1rlwr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
-render_priority = 0
-shader = ExtResource("6_1av30")
-shader_parameter/cloud_direction = Vector2(0, 1)
-shader_parameter/cloud_speed = 0.003
-shader_parameter/cut_threshold = 0.4
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_t8gqe")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_fnk3o"]
-material = SubResource("ShaderMaterial_ywwrw")
-size = Vector2(100, 100)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o0h60"]
 render_priority = 0
 shader = ExtResource("2_8mmvj")
@@ -64,7 +65,7 @@ size = Vector2(1, 1)
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_b2omm"]
 
-[sub_resource type="Resource" id="Resource_rt27m"]
+[sub_resource type="Resource" id="Resource_txc2q"]
 script = ExtResource("6_kwuui")
 amount = 100000
 enabled = true
@@ -73,7 +74,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_5vgan"]
+[sub_resource type="Resource" id="Resource_b8hq2"]
 script = ExtResource("8_gg8lh")
 iterations = 3
 offset_step = 0.2
@@ -85,9 +86,9 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_0c6dg"]
+[sub_resource type="Resource" id="Resource_w0170"]
 script = ExtResource("9_x7dot")
-ray_direction = Vector3(0, -1, 0)
+ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
@@ -101,76 +102,63 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_d0eve"]
+[sub_resource type="Resource" id="Resource_khc68"]
 script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_rt27m"), SubResource("Resource_5vgan"), SubResource("Resource_0c6dg")])
+stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_txc2q"), SubResource("Resource_b8hq2"), SubResource("Resource_w0170")])
 
 [sub_resource type="Resource" id="Resource_21keg"]
 script = ExtResource("11_nng78")
 size = Vector3(100.571, 1, 99.5711)
 
-[node name="Root" type="Node"]
+[node name="MainLevel" type="Node3D"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-stretch_shrink = 3
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(384, 216)
-render_target_update_mode = 4
-
-[node name="World" type="Node3D" parent="SubViewportContainer/SubViewport"]
-
-[node name="SpawnPoint" type="Marker3D" parent="SubViewportContainer/SubViewport/World"]
+[node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29612, 0)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="SpawnPoint"]
 _spawnable_scenes = PackedStringArray("res://scene/player/player.tscn")
-spawn_path = NodePath("..")
+spawn_path = NodePath("../../../../..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866026, 0, 6.18317, 0)
 shadow_enabled = true
+directional_shadow_mode = 0
 directional_shadow_pancake_size = 0.0
+
+[node name="CouldShadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+cast_shadow = 3
+mesh = SubResource("PlaneMesh_fnk3o")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dgsiu")
 camera_attributes = SubResource("CameraAttributesPhysical_pg806")
 compositor = SubResource("Compositor_j5yey")
 
-[node name="CouldShadow" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-cast_shadow = 3
-mesh = SubResource("PlaneMesh_fnk3o")
+[node name="LevelPrototype" parent="." instance=ExtResource("12_bjqot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 
-[node name="Terrain" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World"]
+[node name="Terrain" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Terrain"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
 mesh = SubResource("PlaneMesh_3io8e")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Terrain"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain"]
 shape = SubResource("HeightMapShape3D_b2omm")
 
-[node name="ProtonScatter" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
+[node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("3_67onc")
-modifier_stack = SubResource("Resource_d0eve")
+modifier_stack = SubResource("Resource_khc68")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
-[node name="ScatterItem" type="Node3D" parent="SubViewportContainer/SubViewport/World/ProtonScatter"]
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
 script = ExtResource("10_mmclv")
 override_cast_shadow = 0
-path = "res://scene/fooliage/grass_blade.tscn"
+path = "res://scene/level/foliage/grass_blade.tscn"
 
-[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/World/ProtonScatter"]
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 script = ExtResource("11_oxv1t")
 shape = SubResource("Resource_21keg")

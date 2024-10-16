@@ -1,16 +1,40 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgsiv5sfqs2dv"]
+[gd_scene load_steps=13 format=3 uid="uid://bgsiv5sfqs2dv"]
 
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_l426v"]
+[ext_resource type="Shader" path="res://shader/cel_shading.gdshader" id="2_enba5"]
+[ext_resource type="Shader" path="res://shader/outline.gdshader" id="2_sjvjq"]
+[ext_resource type="Texture2D" uid="uid://bwv4xit8rf56n" path="res://shader/cel_shading_gradient.tres" id="3_limei"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ef3a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p2u5y"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uenn7"]
-diffuse_mode = 3
-specular_mode = 1
-subsurf_scatter_strength = 0.89
-proximity_fade_distance = 0.01
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_no37v"]
+render_priority = 0
+shader = ExtResource("2_sjvjq")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(0.573792, 0.573792, 0.573792, 1)
+shader_parameter/shadow_color = Color(0.261477, 0.261477, 0.261477, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6npc"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_no37v")
+shader = ExtResource("2_enba5")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/normal_scale = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/color_gradient = ExtResource("3_limei")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_snvtd"]
 properties/0/path = NodePath(".:position")
@@ -42,7 +66,7 @@ shape = SubResource("CapsuleShape3D_7ef3a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_p2u5y")
-surface_material_override/0 = SubResource("StandardMaterial3D_uenn7")
+surface_material_override/0 = SubResource("ShaderMaterial_m6npc")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.32628, 0)
@@ -52,12 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 projection = 1
 size = 9.929
 near = 0.001
-far = 200.25
-
-[node name="PostProcessing" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
-transform = Transform3D(5.25951, 0, 0, 0, 3.14001, 5.96046e-08, 0, 1.19209e-07, 1.69206, 0, -0.00241518, -1.18389)
-mesh = SubResource("QuadMesh_oqrce")
-skeleton = NodePath("../../..")
+far = 150.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_snvtd")
