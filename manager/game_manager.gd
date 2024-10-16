@@ -24,7 +24,7 @@ var port = 8080
 func _ready():
 	Global.game_manager = self
 	current_gui_scene = $GUI/MainMenu
-	
+
 func change_gui_scene(new_scene : String, delete: bool = true, keep_running: bool = false) -> void:
 	if current_gui_scene != null:
 		if delete:
@@ -54,64 +54,56 @@ func forward_port():
 	upnp.delete_port_mapping(port, "TCP")
 
 func host_game():
+	# Set scene to world
 	world.get_node("SubViewportContainer/SubViewport").add_child(main_level_scene.instantiate())
-	get_tree().root.print_tree_pretty()
-	peer.create_server(port)
+	peer.create_server(8080)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_connected.connect(_add_player)
-	multiplayer.peer_disconnected.connect(_remove_player)
-	# Spawn the host's player immediately
-	call_deferred("_add_player", multiplayer.get_unique_id())
-	print("Host unique ID: ", multiplayer.get_unique_id())  # Should print 1
+	# Connect signals
+	multiplayer.peer_connected.connect(_peer_connected)
+	multiplayer.peer_disconnected.connect(_peer_disconnected)
+	# Add the local player
+	var my_id = multiplayer.get_unique_id()
+	_add_player(my_id)
 
 func join_game(ip : String, host_port : int):
+	# Set scene to world
 	world.get_node("SubViewportContainer/SubViewport").add_child(main_level_scene.instantiate())
 	peer.create_client(ip, host_port)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_disconnected.connect(_remove_player)
-	# Don't spawn a player immediately when joining
+	# Connect signals
+	multiplayer.connected_to_server.connect(_connected_to_server)
+	multiplayer.connection_failed.connect(_connection_failed)
+	multiplayer.server_disconnected.connect(_server_disconnected)
+	multiplayer.peer_connected.connect(_peer_connected)
+	multiplayer.peer_disconnected.connect(_peer_disconnected)
 
-func _add_player_to_list(player):
-	player_list[player.name] = player
+func _connected_to_server():
+	print("Connected to server")
+	var my_id = multiplayer.get_unique_id()
+	_add_player(my_id)
+
+func _connection_failed():
+	print("Connection failed")
+
+func _server_disconnected():
+	print("Server disconnected")
+	# Handle disconnection if needed
+
+func _peer_connected(id):
+	if id == multiplayer.get_unique_id():
+		# Ignore ourselves; we've already added our player
+		return
+	print("Peer connected: ", id)
+	_add_player(id)
+
+func _peer_disconnected(id):
+	print("Peer disconnected: ", id)
+	# Remove the player node
+	var player = world.get_node("SubViewportContainer/SubViewport/MainLevel").get_node(str(id))
+	if player:
+		player.queue_free()
 
 func _add_player(id):
-	if not active_player and id == multiplayer.get_unique_id():
-		# This is the local player
-		var player = player_scene.instantiate()
-		player.name = str(id)
-		world.get_node("SubViewportContainer/SubViewport/MainLevel").add_child(player)
-		active_player = player
-		_add_player_to_list(player)
-		player_connected.emit(player)
-	elif id != multiplayer.get_unique_id():
-		# This is a remote player
-		var player = player_scene.instantiate()
-		player.name = str(id)
-		world.get_node("SubViewportContainer/SubViewport/MainLevel").add_child(player)
-		_add_player_to_list(player)
-		player_connected.emit(player)
-
-func _remove_player(id):
-	if str(id) in player_list:
-		var player = player_list[str(id)]
-		player_list.erase(str(id))
-		if player:
-			player.queue_free()
-		player_disconnected.emit(id)
-	print("Player " + str(id) + " disconnected")
-	
-	if id == 1:
-		# Host has disconnected
-		print("Host (ID: 1) has disconnected.")
-		emit_signal("host_disconnected")
-		_on_host_disconnetion()
-		# Handle host disconnection (e.g., notify players, shutdown, etc.)
-
-func _exit_tree():
-	if multiplayer.multiplayer_peer:
-		multiplayer.multiplayer_peer.close()
-
-@rpc("any_peer", "reliable")
-func _on_host_disconnetion():
-	# Handle what to do on the peers when the host disconnects
-	get_tree().quit()
+	var player = player_scene.instantiate()
+	player.name = str(id)
+	world.get_node("SubViewportContainer/SubViewport/MainLevel").add_child(player)

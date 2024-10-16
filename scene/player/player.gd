@@ -18,7 +18,7 @@ var grounded = false;
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
-	
+
 func _ready():
 	camera_3d.current = is_multiplayer_authority()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
@@ -29,7 +29,6 @@ func handle_input(_delta: float):
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, yaw)
 	if direction:
@@ -40,14 +39,14 @@ func handle_input(_delta: float):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add gravity.
 	if not is_grounded():
 		velocity += get_gravity() * delta
 		
 	if is_multiplayer_authority():
 		handle_input(delta)
 
-	move(delta);
+	move(delta)
 	
 func move(delta: float):
 	var query = PhysicsShapeQueryParameters3D.new()
@@ -58,7 +57,7 @@ func move(delta: float):
 	if !result:
 		step_cast.force_shapecast_update()
 	
-	if step_cast.is_colliding() && absf(velocity.y) <= 0.0001 && !result:
+	if step_cast.is_colliding() and absf(velocity.y) <= 0.0001 and !result:
 		var collision_point = step_cast.get_collision_point(0)
 		var step_height = collision_point.y - global_position.y
 		global_position.y = lerp(global_position.y, collision_point.y, delta * STEP_INTERPOLATION_SPEED)
@@ -72,10 +71,8 @@ func move(delta: float):
 func _input(event):
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * sensitivity
-		#pitch -= event.relative.y * sensitivity
-		#pitch = clamp(pitch, deg_to_rad(-60.0), deg_to_rad(-30.0))
 		yaw = wrap(yaw, 0.0, deg_to_rad(360))
 		camera_pivot.global_rotation = Vector3(deg_to_rad(-35), yaw, 0.0)
 		
 func is_grounded() -> bool:
-	return grounded || is_on_floor()
+	return grounded or is_on_floor()
