@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmf7wwcdj1shu"]
+
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/default_theme.tres" id="1_oexk0"]
+
+[node name="Hud" type="Control"]
+texture_filter = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_oexk0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.5
+offset_right = 44.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.10748, 0.10748, 0.10748, 1)
+text = "HUD de fou"

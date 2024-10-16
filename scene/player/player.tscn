@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgsiv5sfqs2dv"]
+[gd_scene load_steps=9 format=3 uid="uid://bgsiv5sfqs2dv"]
 
-[ext_resource type="Shader" path="res://shader/outline.gdshader" id="1_1gtwv"]
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_l426v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ef3a"]
@@ -12,22 +11,6 @@ diffuse_mode = 3
 specular_mode = 1
 subsurf_scatter_strength = 0.89
 proximity_fade_distance = 0.01
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0xqb"]
-render_priority = 0
-shader = ExtResource("1_1gtwv")
-shader_parameter/depth_threshold = 0.05
-shader_parameter/reverse_depth_threshold = 0.25
-shader_parameter/normal_threshold = 0.6
-shader_parameter/darken_amount = 0.3
-shader_parameter/lighten_amount = 1.5
-shader_parameter/normal_edge_bias = Vector3(1, 1, 1)
-shader_parameter/light_direction = Vector3(-0.96, -0.18, 0.2)
-
-[sub_resource type="QuadMesh" id="QuadMesh_oqrce"]
-material = SubResource("ShaderMaterial_e0xqb")
-flip_faces = true
-size = Vector2(2, 2)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_snvtd"]
 properties/0/path = NodePath(".:position")
@@ -69,12 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 projection = 1
 size = 9.929
 near = 0.001
-far = 200.25
-
-[node name="PostProcessing" type="MeshInstance3D" parent="CameraPivot/Camera3D"]
-transform = Transform3D(5.25951, 0, 0, 0, 3.14001, 5.96046e-08, 0, 1.19209e-07, 1.69206, 0, -0.00241518, -1.18389)
-mesh = SubResource("QuadMesh_oqrce")
-skeleton = NodePath("../../..")
+far = 150.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_snvtd")

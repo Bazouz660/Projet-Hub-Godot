@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Projet-Hub-Godot"
-run/main_scene="res://scene/interface/main_menu/main_menu.tscn"
+run/main_scene="res://scene/root.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-MultiplayerManager="*res://manager/multiplayer_manager.gd"
+Global="*res://manager/global.gd"
 
 [editor_plugins]
 
