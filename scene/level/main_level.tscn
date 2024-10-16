@@ -22,7 +22,7 @@ noise = SubResource("FastNoiseLite_1rlwr")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
 render_priority = 0
 shader = ExtResource("6_1av30")
-shader_parameter/cloud_direction = Vector2(0, 1)
+shader_parameter/cloud_direction = Vector2(1, 1)
 shader_parameter/cloud_speed = 0.003
 shader_parameter/cut_threshold = 0.4
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_t8gqe")
@@ -65,7 +65,7 @@ size = Vector2(1, 1)
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_b2omm"]
 
-[sub_resource type="Resource" id="Resource_7lpov"]
+[sub_resource type="Resource" id="Resource_utyn1"]
 script = ExtResource("6_kwuui")
 amount = 100000
 enabled = true
@@ -74,7 +74,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_x7tcb"]
+[sub_resource type="Resource" id="Resource_rdyh2"]
 script = ExtResource("8_gg8lh")
 iterations = 3
 offset_step = 0.2
@@ -86,7 +86,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_kbo0t"]
+[sub_resource type="Resource" id="Resource_2jkjr"]
 script = ExtResource("9_x7dot")
 ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
@@ -102,9 +102,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_b3x6r"]
+[sub_resource type="Resource" id="Resource_2j0rb"]
 script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_7lpov"), SubResource("Resource_x7tcb"), SubResource("Resource_kbo0t")])
+stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_utyn1"), SubResource("Resource_rdyh2"), SubResource("Resource_2jkjr")])
 
 [sub_resource type="Resource" id="Resource_21keg"]
 script = ExtResource("11_nng78")
@@ -123,7 +123,6 @@ spawn_path = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866026, 0, 6.18317, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
-directional_shadow_pancake_size = 0.0
 
 [node name="CouldShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -149,7 +148,7 @@ shape = SubResource("HeightMapShape3D_b2omm")
 
 [node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("3_67onc")
-modifier_stack = SubResource("Resource_b3x6r")
+modifier_stack = SubResource("Resource_2j0rb")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

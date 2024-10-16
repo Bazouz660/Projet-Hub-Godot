@@ -9,16 +9,23 @@ uniform vec3 uv1_offset;
 uniform float wind_strength : hint_range(0.0, 1.0) = 0.1;
 uniform float wind_speed : hint_range(0.0, 10.0) = 1.0;
 uniform float wind_scale : hint_range(0.1, 10.0) = 1.0;
+uniform sampler2D noise_texture : hint_default_white;
+uniform float noise_scale : hint_range(0.1, 10.0) = 1.0;
 
 void vertex() {
     UV = UV * uv1_scale.xy + uv1_offset.xy;
     
     vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float wind_time = TIME * wind_speed;
+    
+    vec2 noise_uv = world_pos.xz * noise_scale * 0.01;
+    float noise_value = texture(noise_texture, noise_uv + wind_time * 0.1).r * 2.0 - 1.0;
+    
     float wind_vertical_influence = smoothstep(0.0, 1.0, VERTEX.y);
     float position_variation = sin(world_pos.x * 0.1) * cos(world_pos.z * 0.1) * 2.0;
-    float wind_horizontal = sin(wind_time + world_pos.x * wind_scale + world_pos.z * wind_scale + position_variation) * wind_strength;
-    float wind_depth = cos(wind_time * 0.7 + world_pos.x * wind_scale * 1.2 + world_pos.z * wind_scale + position_variation) * wind_strength * 0.5;
+    
+    float wind_horizontal = sin(wind_time + world_pos.x * wind_scale + world_pos.z * wind_scale + position_variation + noise_value) * wind_strength;
+    float wind_depth = cos(wind_time * 0.7 + world_pos.x * wind_scale * 1.2 + world_pos.z * wind_scale + position_variation + noise_value) * wind_strength * 0.5;
     
     VERTEX.x += wind_horizontal * wind_vertical_influence;
     VERTEX.z += wind_depth * wind_vertical_influence;
@@ -36,6 +43,6 @@ void fragment() {
     vec4 albedo_tex = texture(texture_albedo, base_uv);
     ALBEDO = albedo.rgb * albedo_tex.rgb;
     ALPHA *= albedo.a * albedo_tex.a;
-	ALPHA_SCISSOR_THRESHOLD = 0.5;
+    ALPHA_SCISSOR_THRESHOLD = 0.5;
     BACKLIGHT = backlight.rgb;
 }
