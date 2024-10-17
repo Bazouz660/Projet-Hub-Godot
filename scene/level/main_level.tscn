@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b8o7o3l18uvf1"]
+[gd_scene load_steps=41 format=3 uid="uid://b8o7o3l18uvf1"]
 
 [ext_resource type="Shader" path="res://shader/terrain.gdshader" id="2_8mmvj"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_67onc"]
@@ -12,24 +12,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="11_nng78"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_oxv1t"]
 [ext_resource type="PackedScene" uid="uid://dvqhhuwslf5hx" path="res://scene/level/level_prototype.tscn" id="12_bjqot"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1rlwr"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t8gqe"]
-seamless = true
-noise = SubResource("FastNoiseLite_1rlwr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
-render_priority = 0
-shader = ExtResource("6_1av30")
-shader_parameter/cloud_direction = Vector2(1, 1)
-shader_parameter/cloud_speed = 0.003
-shader_parameter/cut_threshold = 0.4
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_t8gqe")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_fnk3o"]
-material = SubResource("ShaderMaterial_ywwrw")
-size = Vector2(100, 100)
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="14_aukdc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hawmb"]
 sky_top_color = Color(0.340984, 0.441625, 0.671444, 1)
@@ -45,11 +28,34 @@ ambient_light_source = 2
 ambient_light_color = Color(0.425956, 0.425956, 0.425956, 1)
 reflected_light_source = 2
 sdfgi_use_occlusion = true
-volumetric_fog_density = 0.01
+glow_enabled = true
+glow_normalized = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.015
+volumetric_fog_albedo = Color(1, 0.917647, 0.890196, 1)
+volumetric_fog_anisotropy = 0.0
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_pg806"]
 
 [sub_resource type="Compositor" id="Compositor_j5yey"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1rlwr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t8gqe"]
+seamless = true
+noise = SubResource("FastNoiseLite_1rlwr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
+render_priority = 0
+shader = ExtResource("6_1av30")
+shader_parameter/cloud_direction = Vector2(1, 1)
+shader_parameter/cloud_speed = 0.005
+shader_parameter/cut_threshold = 0.4
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_t8gqe")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fnk3o"]
+material = SubResource("ShaderMaterial_ywwrw")
+size = Vector2(100, 100)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o0h60"]
 render_priority = 0
@@ -65,7 +71,7 @@ size = Vector2(1, 1)
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_b2omm"]
 
-[sub_resource type="Resource" id="Resource_utyn1"]
+[sub_resource type="Resource" id="Resource_0404c"]
 script = ExtResource("6_kwuui")
 amount = 100000
 enabled = true
@@ -74,7 +80,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_rdyh2"]
+[sub_resource type="Resource" id="Resource_yot0p"]
 script = ExtResource("8_gg8lh")
 iterations = 3
 offset_step = 0.2
@@ -86,7 +92,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_2jkjr"]
+[sub_resource type="Resource" id="Resource_7kot8"]
 script = ExtResource("9_x7dot")
 ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
@@ -102,13 +108,103 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_2j0rb"]
+[sub_resource type="Resource" id="Resource_krlrm"]
 script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_utyn1"), SubResource("Resource_rdyh2"), SubResource("Resource_2jkjr")])
+stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_0404c"), SubResource("Resource_yot0p"), SubResource("Resource_7kot8")])
 
 [sub_resource type="Resource" id="Resource_21keg"]
 script = ExtResource("11_nng78")
 size = Vector3(100.571, 1, 99.5711)
+
+[sub_resource type="Resource" id="Resource_bn7ib"]
+script = ExtResource("6_kwuui")
+amount = 75
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_27o0e"]
+script = ExtResource("8_gg8lh")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_l0fac"]
+script = ExtResource("9_x7dot")
+ray_direction = Vector3(0, 0, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_n4wfx"]
+script = ExtResource("4_3dkex")
+stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_bn7ib"), SubResource("Resource_27o0e"), SubResource("Resource_l0fac")])
+
+[sub_resource type="Resource" id="Resource_g8bsm"]
+script = ExtResource("14_aukdc")
+radius = 2.84745
+
+[sub_resource type="Resource" id="Resource_y3qqx"]
+script = ExtResource("6_kwuui")
+amount = 25
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_q31me"]
+script = ExtResource("8_gg8lh")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_p1jvf"]
+script = ExtResource("9_x7dot")
+ray_direction = Vector3(0, 0, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_4u8s5"]
+script = ExtResource("4_3dkex")
+stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_y3qqx"), SubResource("Resource_q31me"), SubResource("Resource_p1jvf")])
+
+[sub_resource type="Resource" id="Resource_irqi4"]
+script = ExtResource("14_aukdc")
+radius = 2.0
 
 [node name="MainLevel" type="Node3D"]
 
@@ -120,14 +216,9 @@ _spawnable_scenes = PackedStringArray("res://scene/player/player.tscn")
 spawn_path = NodePath("..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866026, 0, 6.18317, 0)
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866026, 0, -0.866025, -0.5, 0, 6.18317, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
-
-[node name="CouldShadow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-cast_shadow = 3
-mesh = SubResource("PlaneMesh_fnk3o")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dgsiu")
@@ -136,6 +227,11 @@ compositor = SubResource("Compositor_j5yey")
 
 [node name="LevelPrototype" parent="." instance=ExtResource("12_bjqot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="CouldShadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+cast_shadow = 3
+mesh = SubResource("PlaneMesh_fnk3o")
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
@@ -146,18 +242,52 @@ mesh = SubResource("PlaneMesh_3io8e")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain"]
 shape = SubResource("HeightMapShape3D_b2omm")
 
-[node name="ProtonScatter" type="Node3D" parent="."]
+[node name="Grass" type="Node3D" parent="."]
 script = ExtResource("3_67onc")
-modifier_stack = SubResource("Resource_2j0rb")
+modifier_stack = SubResource("Resource_krlrm")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
-[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+[node name="ScatterItem" type="Node3D" parent="Grass"]
 script = ExtResource("10_mmclv")
 override_cast_shadow = 0
 path = "res://scene/level/foliage/grass_blade.tscn"
 
-[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+[node name="ScatterShape" type="Node3D" parent="Grass"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 script = ExtResource("11_oxv1t")
 shape = SubResource("Resource_21keg")
+
+[node name="Wheat" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.49981)
+script = ExtResource("3_67onc")
+modifier_stack = SubResource("Resource_n4wfx")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Wheat"]
+script = ExtResource("10_mmclv")
+override_cast_shadow = 0
+path = "res://scene/level/foliage/wheat.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="Wheat"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("11_oxv1t")
+shape = SubResource("Resource_g8bsm")
+
+[node name="Wheat2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6228, 0, 4.92706)
+script = ExtResource("3_67onc")
+modifier_stack = SubResource("Resource_4u8s5")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Wheat2"]
+script = ExtResource("10_mmclv")
+override_cast_shadow = 0
+path = "res://scene/level/foliage/wheat.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="Wheat2"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("11_oxv1t")
+shape = SubResource("Resource_irqi4")
