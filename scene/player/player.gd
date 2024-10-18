@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	if not is_grounded():
 		velocity += get_gravity() * delta
 		
-	if is_multiplayer_authority():
+	if is_multiplayer_authority() and not Global.game_manager.disable_player_input:
 		handle_input(delta)
 
 	move(delta)
@@ -68,6 +68,8 @@ func move(delta: float):
 	move_and_slide()
 
 func _input(event):
+	if Global.game_manager.disable_player_input:
+		return
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * sensitivity
 		yaw = wrap(yaw, 0.0, deg_to_rad(360))

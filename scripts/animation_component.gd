@@ -84,9 +84,8 @@ func apply_animation(state: String):
 		
 		if state == "enter":
 			target.set(property, target_value)
-			var temp = start_value
 			start_value = target_value
-			target_value = temp
+			target_value = initial_values[property]
 
 		current_tween.tween_property(target, property, target_value, resource.time) \
 			.from(start_value) \
@@ -131,9 +130,12 @@ func on_mouse_exited():
 		apply_animation("default")
 		
 func on_visibility_changed():
-	if restart_on_visibility_changed and target.is_visible_in_tree() and enter_animation:
-		is_entered = false
-		call_deferred("start_enter_animation")
+	if restart_on_visibility_changed and enter_animation and current_tween and !current_tween.is_running():
+		if target.is_visible_in_tree():
+			is_entered = false
+			call_deferred("start_enter_animation")
+		else:
+			apply_properties(initial_values)
 
 func on_button_down():
 	apply_animation("down")
@@ -149,8 +151,13 @@ func get_current_properties() -> Dictionary:
 	for property in properties:
 		properties_dict[property] = target.get(property)
 	return properties_dict
+	
+func apply_properties(properties : Dictionary):
+	for property in properties:
+		target.set(property, properties[property])
 
 func start_enter_animation():
+	initial_values = get_current_properties()
 	apply_animation("enter")
 
 func _on_enter_animation_finished():

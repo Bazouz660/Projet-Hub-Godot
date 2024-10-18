@@ -10,12 +10,12 @@ class_name GameManager
 signal player_connected(player_id)
 signal player_disconnected(player_id)
 
-var main_level_scene = preload("res://scene/level/main_level.tscn")
 var active_player : Player = null
 var player_list = {}
+var disable_player_input : bool = false
 
-var current_3d_scene = null
-var current_gui_scene = null
+var current_3d_scene : Node3D = null
+var current_gui_scene : Control = null
 
 var external_ip = ""
 var port = 8080
@@ -51,7 +51,7 @@ func change_3d_scene(new_scene : String, delete: bool = true, keep_running: bool
 		current_3d_scene = null
 		return
 	var new = load(new_scene).instantiate()
-	gui.add_child(new)
+	world.get_node("SubViewportContainer/SubViewport").add_child(new)
 	current_3d_scene = new
 
 func forward_port():
@@ -72,7 +72,7 @@ func forward_port():
 
 func host_game():
 	# Set scene to world
-	world.get_node("SubViewportContainer/SubViewport").add_child(main_level_scene.instantiate())
+	change_3d_scene("res://scene/level/main_level.tscn")
 	peer.create_server(8080)
 	multiplayer.multiplayer_peer = peer
 	# Connect signals
@@ -84,7 +84,7 @@ func host_game():
 
 func join_game(ip : String, host_port : int):
 	# Set scene to world
-	world.get_node("SubViewportContainer/SubViewport").add_child(main_level_scene.instantiate())
+	change_3d_scene("res://scene/level/main_level.tscn")
 	peer.create_client(ip, host_port)
 	multiplayer.multiplayer_peer = peer
 	# Connect signals
@@ -126,3 +126,6 @@ func _add_player(id):
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	world.get_node("SubViewportContainer/SubViewport/MainLevel").add_child(player)
+	
+func quit_game():
+	get_tree().quit()
