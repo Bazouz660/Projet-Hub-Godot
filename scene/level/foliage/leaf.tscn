@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://chadkn2cp4tjn"]
+
+[ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_2vppp"]
+[ext_resource type="Texture2D" uid="uid://2ya63icubt2y" path="res://asset/texture/foliage/leaf.png" id="2_oglkf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d5aw3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uvk1w"]
+noise = SubResource("FastNoiseLite_d5aw3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pxu1"]
+render_priority = 0
+shader = ExtResource("1_2vppp")
+shader_parameter/albedo = Color(0.367537, 0.570938, 5.77569e-07, 1)
+shader_parameter/backlight = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/wind_strength = 0.5
+shader_parameter/wind_speed = 2.0
+shader_parameter/wind_scale = 10.0
+shader_parameter/noise_scale = 10.0
+shader_parameter/player_influence_radius = 0.0
+shader_parameter/player_influence_strength = 0.0
+shader_parameter/texture_albedo = ExtResource("2_oglkf")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
+
+[sub_resource type="QuadMesh" id="QuadMesh_l3cbl"]
+material = SubResource("ShaderMaterial_3pxu1")
+size = Vector2(0.5, 0.5)
+center_offset = Vector3(0, 0.25, 0)
+
+[node name="Leaf" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_l3cbl")

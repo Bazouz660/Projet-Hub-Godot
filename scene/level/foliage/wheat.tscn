@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://jnf0yn8ues57"]
 
-[ext_resource type="Shader" path="res://shader/grass_blade.gdshader" id="1_s7m5n"]
+[ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_s7m5n"]
 [ext_resource type="Texture2D" uid="uid://3dyh8f0patqm" path="res://asset/texture/foliage/wheat.png" id="2_mca2c"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
@@ -19,6 +19,8 @@ shader_parameter/wind_strength = 0.2
 shader_parameter/wind_speed = 2.0
 shader_parameter/wind_scale = 10.0
 shader_parameter/noise_scale = 10.0
+shader_parameter/player_influence_radius = 1.5
+shader_parameter/player_influence_strength = 0.7
 shader_parameter/texture_albedo = ExtResource("2_mca2c")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 

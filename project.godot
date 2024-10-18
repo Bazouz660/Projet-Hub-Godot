@@ -8,6 +8,10 @@
 
 config_version=5
 
+[addons]
+
+proton_scatter/always_show_gizmos=false
+
 [application]
 
 config/name="Projet-Hub-Godot"
@@ -58,3 +62,10 @@ jump={
 [rendering]
 
 environment/volumetric_fog/use_filter=0
+
+[shader_globals]
+
+player_position={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}

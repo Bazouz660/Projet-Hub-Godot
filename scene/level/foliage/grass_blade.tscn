@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bw4eko4whoniv"]
 
-[ext_resource type="Shader" path="res://shader/grass_blade.gdshader" id="1_8odvd"]
+[ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_8odvd"]
 [ext_resource type="Texture2D" uid="uid://c2fqujuastn6o" path="res://asset/texture/foliage/grass_blade.png" id="2_8ohgf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]

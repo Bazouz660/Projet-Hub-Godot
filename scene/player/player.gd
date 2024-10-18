@@ -65,7 +65,8 @@ func move(delta: float):
 		grounded = true
 	else:
 		grounded = false
-		
+	
+	RenderingServer.global_shader_parameter_set("player_position", global_position)
 	move_and_slide()
 
 func _input(event):
