@@ -59,7 +59,6 @@ func move(delta: float):
 	
 	if step_cast.is_colliding() and absf(velocity.y) <= 0.0001 and !result:
 		var collision_point = step_cast.get_collision_point(0)
-		var step_height = collision_point.y - global_position.y
 		global_position.y = lerp(global_position.y, collision_point.y, delta * STEP_INTERPOLATION_SPEED)
 		velocity.y = 0.0
 		grounded = true

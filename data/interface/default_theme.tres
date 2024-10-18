@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://b5o03o1xpcgx2"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://b5o03o1xpcgx2"]
 
 [ext_resource type="FontFile" uid="uid://b3ibjetxkblh2" path="res://asset/font/Alkhemikal.ttf" id="1_7deo5"]
 
@@ -92,6 +92,23 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gup1s"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.866667, 0.65098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.669375, 0.543757, 0.337389, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wokg"]
 content_margin_left = 2.0
 content_margin_top = 2.0
@@ -155,6 +172,7 @@ MarginContainer/constants/margin_left = 0
 MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 0
 Panel/styles/panel = SubResource("StyleBoxFlat_4810q")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_gup1s")
 ProgressBar/colors/font_color = Color(0.266667, 0.266667, 0.266667, 1)
 ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
 ProgressBar/constants/outline_size = 0

@@ -7,9 +7,8 @@ class_name GameManager
 @onready var world = $World
 @onready var gui = $GUI
 
-signal player_connected(player)
+signal player_connected(player_id)
 signal player_disconnected(player_id)
-signal host_disconnected
 
 var main_level_scene = preload("res://scene/level/main_level.tscn")
 var active_player : Player = null
@@ -33,9 +32,27 @@ func change_gui_scene(new_scene : String, delete: bool = true, keep_running: boo
 			current_gui_scene.visible = false # Keep in memory and running
 		else:
 			gui.remove_child(current_gui_scene) # Keep in memory, doesn't run
+	if new_scene == "":
+		current_gui_scene = null
+		return
 	var new = load(new_scene).instantiate()
 	gui.add_child(new)
 	current_gui_scene = new
+	
+func change_3d_scene(new_scene : String, delete: bool = true, keep_running: bool = false) -> void:
+	if current_3d_scene != null:
+		if delete:
+			current_3d_scene.queue_free() # Removes node entirely
+		elif keep_running:
+			current_3d_scene.visible = false # Keep in memory and running
+		else:
+			gui.remove_child(current_3d_scene) # Keep in memory, doesn't run
+	if new_scene == "":
+		current_3d_scene = null
+		return
+	var new = load(new_scene).instantiate()
+	gui.add_child(new)
+	current_3d_scene = new
 
 func forward_port():
 	var upnp = UPNP.new()
@@ -95,6 +112,7 @@ func _peer_connected(id):
 		return
 	print("Peer connected: ", id)
 	_add_player(id)
+	player_connected.emit(id)
 
 func _peer_disconnected(id):
 	print("Peer disconnected: ", id)
@@ -102,6 +120,7 @@ func _peer_disconnected(id):
 	var player = world.get_node("SubViewportContainer/SubViewport/MainLevel").get_node(str(id))
 	if player:
 		player.queue_free()
+	player_disconnected.emit(id)
 
 func _add_player(id):
 	var player = player_scene.instantiate()
