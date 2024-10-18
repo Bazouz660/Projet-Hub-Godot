@@ -42,6 +42,9 @@ func _process(delta):
 	var center = get_viewport().size / 2.0
 	var target_offset = (mouse_pos - center) * sensitivity
 
+	if abs(current_cloud_offset.x - target_offset.x * cloud_speed) < 0.003:
+		return
+
 	current_cloud_offset.x = lerp(current_cloud_offset.x, target_offset.x * cloud_speed, delta * damping)
 	current_tree_far_offset.x = lerp(current_tree_far_offset.x, target_offset.x * tree_far_speed, delta * damping)
 	current_tree_close_offset.x = lerp(current_tree_close_offset.x, target_offset.x * tree_close_speed, delta * damping)

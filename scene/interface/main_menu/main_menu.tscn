@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://yqdv0umgw6qi"]
+[gd_scene load_steps=25 format=3 uid="uid://yqdv0umgw6qi"]
 
 [ext_resource type="Script" path="res://scene/interface/main_menu/host.gd" id="1_16ot4"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/join.gd" id="1_am7mx"]
@@ -10,22 +10,27 @@
 [ext_resource type="Script" path="res://scene/interface/main_menu/parallax.gd" id="7_ybn76"]
 [ext_resource type="Texture2D" uid="uid://b05uii20o36il" path="res://asset/texture/interface/background/sky.png" id="8_rtx7a"]
 [ext_resource type="Texture2D" uid="uid://jw7xv1w5ng6t" path="res://asset/texture/interface/background/clouds.png" id="9_u6jx7"]
+[ext_resource type="Script" path="res://scripts/animation_component.gd" id="10_g8fj8"]
 [ext_resource type="Texture2D" uid="uid://diypdgrumc4ow" path="res://asset/texture/interface/background/trees2.png" id="10_vueh5"]
+[ext_resource type="Resource" uid="uid://cq0hdycpl4v3p" path="res://data/interface/animations/main_button_hover.tres" id="11_6i8ql"]
 [ext_resource type="Texture2D" uid="uid://biubttru8wb3y" path="res://asset/texture/interface/background/trees1.png" id="11_7bmd6"]
+[ext_resource type="Resource" uid="uid://dq88nfgaijl3f" path="res://data/interface/animations/main_button_enter.tres" id="12_5kf78"]
+[ext_resource type="Resource" uid="uid://dwugeyfl5vkly" path="res://data/interface/animations/main_button_down.tres" id="12_71f8a"]
+[ext_resource type="Script" path="res://scripts/animation_settings.gd" id="12_fuv2l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.0075
+shader_parameter/x_offset = 0.0470238
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.0105
+shader_parameter/x_offset = 0.0658333
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.015
+shader_parameter/x_offset = 0.0940475
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxyy"]
@@ -37,6 +42,18 @@ font_size = 75
 shadow_size = 0
 shadow_color = Color(0.299547, 0.299547, 0.299547, 1)
 shadow_offset = Vector2(5, 5)
+
+[sub_resource type="Resource" id="Resource_utlbv"]
+script = ExtResource("12_fuv2l")
+time = 1.0
+delay = 1.0
+transition = 1
+easing = 2
+position = Vector2(0, 0)
+scale = Vector2(0, 0)
+rotation = 0.0
+size = Vector2(0, 0)
+modulate = Color(1, 1, 1, 0.00392157)
 
 [node name="MainMenu" type="Control"]
 texture_filter = 5
@@ -142,6 +159,12 @@ layout_mode = 2
 text = "Host"
 script = ExtResource("1_16ot4")
 
+[node name="AnimationComponent" type="Node" parent="MarginContainer/VBoxContainer/Host"]
+script = ExtResource("10_g8fj8")
+hover_resource = ExtResource("11_6i8ql")
+down_resource = ExtResource("12_71f8a")
+enter_resource = ExtResource("12_5kf78")
+
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xme1n")
@@ -153,6 +176,13 @@ layout_mode = 2
 layout_mode = 2
 text = "Join"
 script = ExtResource("1_am7mx")
+
+[node name="AnimationComponent" type="Node" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" node_paths=PackedStringArray("wait_for")]
+script = ExtResource("10_g8fj8")
+hover_resource = ExtResource("11_6i8ql")
+down_resource = ExtResource("12_71f8a")
+enter_resource = ExtResource("12_5kf78")
+wait_for = NodePath("../../../../Host/AnimationComponent")
 
 [node name="IpInput" type="LineEdit" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 visible = false
@@ -170,21 +200,43 @@ layout_mode = 2
 text = "Connect !"
 script = ExtResource("3_m8ux3")
 
+[node name="AnimationComponent" type="Node" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Connect"]
+script = ExtResource("10_g8fj8")
+hover_resource = ExtResource("11_6i8ql")
+
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
+
+[node name="AnimationComponent" type="Node" parent="MarginContainer/VBoxContainer/Settings" node_paths=PackedStringArray("wait_for")]
+script = ExtResource("10_g8fj8")
+hover_resource = ExtResource("11_6i8ql")
+down_resource = ExtResource("12_71f8a")
+enter_resource = ExtResource("12_5kf78")
+wait_for = NodePath("../../PanelContainer/VBoxContainer/Join/AnimationComponent")
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit to desktop"
 script = ExtResource("1_b2wvr")
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="AnimationComponent" type="Node" parent="MarginContainer/VBoxContainer/Exit" node_paths=PackedStringArray("wait_for")]
+script = ExtResource("10_g8fj8")
+hover_resource = ExtResource("11_6i8ql")
+down_resource = ExtResource("12_71f8a")
+enter_resource = ExtResource("12_5kf78")
+wait_for = NodePath("../../Settings/AnimationComponent")
+
+[node name="GameTitle" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Untitled Game"
 label_settings = SubResource("LabelSettings_6e7aj")
+
+[node name="AnimationComponent" type="Node" parent="MarginContainer/GameTitle"]
+script = ExtResource("10_g8fj8")
+enter_resource = SubResource("Resource_utlbv")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Host" to="MarginContainer/VBoxContainer/Host" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" to="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" method="_on_pressed"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AnimationSettings" load_steps=2 format=3 uid="uid://cq0hdycpl4v3p"]
+
+[ext_resource type="Script" path="res://scripts/animation_settings.gd" id="1_aoex8"]
+
+[resource]
+script = ExtResource("1_aoex8")
+time = 0.2
+delay = 0.0
+transition = 7
+easing = 2
+position = Vector2(0, 0)
+scale = Vector2(1.05, 1.05)
+rotation = 0.0
+size = Vector2(0, 0)
+modulate = Color(1, 1, 1, 1)
