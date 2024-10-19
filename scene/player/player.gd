@@ -20,6 +20,7 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
+	Global.game_manager.disable_player_input = false
 	camera_3d.current = is_multiplayer_authority()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 

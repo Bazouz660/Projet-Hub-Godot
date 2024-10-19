@@ -32,6 +32,7 @@ var target: Control
 var current_state: String = "default"
 var current_tween: Tween
 var initial_values: Dictionary
+var default_values : Dictionary
 var is_entered : bool = !enter_animation
 
 func _ready():
@@ -50,6 +51,7 @@ func connect_signals():
 func setup():
 	update_pivot()
 	connect_signals()
+	default_values = get_current_properties()
 	if enter_animation:
 		call_deferred("start_enter_animation")
 
@@ -61,6 +63,8 @@ func update_pivot():
 
 func apply_animation(state: String):
 	if current_tween and current_tween.is_valid():
+		if current_state == "enter":
+			await current_tween.finished
 		current_tween.kill()  # Stop any ongoing animation
 
 	var resource: AnimationSettings
@@ -83,9 +87,10 @@ func apply_animation(state: String):
 		var target_value = get_target_value(property, resource)
 		
 		if state == "enter":
-			target.set(property, target_value)
+			var temp = start_value
 			start_value = target_value
-			target_value = initial_values[property]
+			target_value = temp
+			target.set(property, start_value)
 
 		current_tween.tween_property(target, property, target_value, resource.time) \
 			.from(start_value) \
@@ -134,8 +139,6 @@ func on_visibility_changed():
 		if target.is_visible_in_tree():
 			is_entered = false
 			call_deferred("start_enter_animation")
-		else:
-			apply_properties(initial_values)
 
 func on_button_down():
 	apply_animation("down")
@@ -152,12 +155,11 @@ func get_current_properties() -> Dictionary:
 		properties_dict[property] = target.get(property)
 	return properties_dict
 	
-func apply_properties(properties : Dictionary):
-	for property in properties:
-		target.set(property, properties[property])
+func apply_properties(properties_hahhahah : Dictionary):
+	for property in properties_hahhahah:
+		target.set(property, properties_hahhahah[property])
 
 func start_enter_animation():
-	initial_values = get_current_properties()
 	apply_animation("enter")
 
 func _on_enter_animation_finished():

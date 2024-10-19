@@ -19,6 +19,10 @@ run/main_scene="res://scene/root.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+driver/enable_input=true
+
 [autoload]
 
 Global="*res://manager/global.gd"
