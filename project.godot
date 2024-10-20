@@ -25,7 +25,9 @@ driver/enable_input=true
 
 [autoload]
 
-Global="*res://manager/global.gd"
+SoundManager="*res://manager/sound_manager.gd"
+MultiplayerManager="*res://manager/multiplayer_manager.gd"
+GameManager="*res://manager/game_manager.gd"
 
 [editor_plugins]
 

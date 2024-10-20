@@ -8,11 +8,11 @@ func toggle_visibility():
 	if is_visible_in_tree():
 		hide()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-		#Global.game_manager.disable_player_input = false
+		GameManager.disable_player_input = false
 	else:
 		show()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
-		#Global.game_manager.disable_player_input = true
+		GameManager.disable_player_input = true
 
 func _input(_event):
 	if Input.is_action_just_pressed("pause"):
@@ -28,9 +28,14 @@ func _on_settings_pressed():
 
 
 func _on_main_menu_pressed():
-	Global.game_manager.change_3d_scene("")
-	Global.game_manager.change_gui_scene("res://scene/interface/main_menu/main_menu.tscn")
-	toggle_visibility()
+	call_deferred("back_to_main_menu")
+
+func back_to_main_menu():
+	GameManager.change_3d_scene("")
+	GameManager.change_gui_scene("res://scene/interface/main_menu/main_menu.tscn")
+	MultiplayerManager.close_connection()
+	hide()
+	GameManager.disable_player_input = false
 
 func _on_quit_pressed():
-	Global.game_manager.quit_game()
+	GameManager.quit_game()

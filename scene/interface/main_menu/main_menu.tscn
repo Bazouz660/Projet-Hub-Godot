@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://yqdv0umgw6qi"]
+[gd_scene load_steps=29 format=3 uid="uid://yqdv0umgw6qi"]
 
 [ext_resource type="Script" path="res://scene/interface/main_menu/host.gd" id="1_16ot4"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/join.gd" id="1_am7mx"]
@@ -10,27 +10,31 @@
 [ext_resource type="Script" path="res://scene/interface/main_menu/parallax.gd" id="7_ybn76"]
 [ext_resource type="Texture2D" uid="uid://b05uii20o36il" path="res://asset/texture/interface/background/sky.png" id="8_rtx7a"]
 [ext_resource type="Texture2D" uid="uid://jw7xv1w5ng6t" path="res://asset/texture/interface/background/clouds.png" id="9_u6jx7"]
-[ext_resource type="Script" path="res://scripts/animation_component.gd" id="10_g8fj8"]
+[ext_resource type="Script" path="res://scripts/animation/animation_component.gd" id="10_g8fj8"]
 [ext_resource type="Texture2D" uid="uid://diypdgrumc4ow" path="res://asset/texture/interface/background/trees2.png" id="10_vueh5"]
 [ext_resource type="Resource" uid="uid://cq0hdycpl4v3p" path="res://data/interface/animations/main_button_hover.tres" id="11_6i8ql"]
 [ext_resource type="Texture2D" uid="uid://biubttru8wb3y" path="res://asset/texture/interface/background/trees1.png" id="11_7bmd6"]
 [ext_resource type="Resource" uid="uid://dq88nfgaijl3f" path="res://data/interface/animations/main_button_enter.tres" id="12_5kf78"]
 [ext_resource type="Resource" uid="uid://dwugeyfl5vkly" path="res://data/interface/animations/main_button_down.tres" id="12_71f8a"]
-[ext_resource type="Script" path="res://scripts/animation_settings.gd" id="12_fuv2l"]
+[ext_resource type="Script" path="res://scripts/animation/animation_settings.gd" id="12_fuv2l"]
+[ext_resource type="Script" path="res://scene/interface/main_menu/settings.gd" id="16_psnfw"]
+[ext_resource type="Script" path="res://scripts/audio/sound_queue.gd" id="16_sw6sw"]
+[ext_resource type="AudioStream" uid="uid://cixooq8f5tpcp" path="res://asset/audio/sound/blipSelect.wav" id="17_7fes8"]
+[ext_resource type="Script" path="res://scripts/audio/sound_pool.gd" id="17_f453c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.03966
+shader_parameter/x_offset = 0.126508
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.0555239
+shader_parameter/x_offset = 0.177111
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.0793199
+shader_parameter/x_offset = 0.253015
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxyy"]
@@ -207,6 +211,7 @@ hover_resource = ExtResource("11_6i8ql")
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
+script = ExtResource("16_psnfw")
 
 [node name="AnimationComponent" type="Node" parent="MarginContainer/VBoxContainer/Settings" node_paths=PackedStringArray("wait_for")]
 script = ExtResource("10_g8fj8")
@@ -214,6 +219,22 @@ hover_resource = ExtResource("11_6i8ql")
 down_resource = ExtResource("12_71f8a")
 enter_resource = ExtResource("12_5kf78")
 wait_for = NodePath("../../PanelContainer/VBoxContainer/Join/AnimationComponent")
+
+[node name="SoundPool" type="Node" parent="MarginContainer/VBoxContainer/Settings"]
+script = ExtResource("17_f453c")
+
+[node name="SoundQueue" type="Node" parent="MarginContainer/VBoxContainer/Settings/SoundPool"]
+script = ExtResource("16_sw6sw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/Settings/SoundPool/SoundQueue"]
+stream = ExtResource("17_7fes8")
+pitch_scale = 2.0
+
+[node name="SoundQueue2" type="Node" parent="MarginContainer/VBoxContainer/Settings/SoundPool"]
+script = ExtResource("16_sw6sw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/Settings/SoundPool/SoundQueue2"]
+stream = ExtResource("17_7fes8")
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -241,4 +262,5 @@ enter_resource = SubResource("Resource_utlbv")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Host" to="MarginContainer/VBoxContainer/Host" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" to="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Join" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Connect" to="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/Connect" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="MarginContainer/VBoxContainer/Settings" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="MarginContainer/VBoxContainer/Exit" method="_on_pressed"]

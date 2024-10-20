@@ -20,7 +20,7 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	Global.game_manager.disable_player_input = false
+	GameManager.disable_player_input = false
 	camera_3d.current = is_multiplayer_authority()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	if not is_grounded():
 		velocity += get_gravity() * delta
 		
-	if is_multiplayer_authority() and not Global.game_manager.disable_player_input:
+	if is_multiplayer_authority() and not GameManager.disable_player_input:
 		handle_input(delta)
 
 	move(delta)
@@ -65,12 +65,13 @@ func move(delta: float):
 		grounded = true
 	else:
 		grounded = false
-	
-	RenderingServer.global_shader_parameter_set("player_position", global_position)
+
+	if is_multiplayer_authority():
+		RenderingServer.global_shader_parameter_set("player_position", global_position)
 	move_and_slide()
 
 func _input(event):
-	if Global.game_manager.disable_player_input:
+	if GameManager.disable_player_input:
 		return
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * sensitivity
