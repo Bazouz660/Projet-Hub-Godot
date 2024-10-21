@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://gkai57dhq3qb"]
+
+[ext_resource type="Script" path="res://scene/player/player.gd" id="1_k72xi"]
+[ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="2_kmqwi"]
+[ext_resource type="Script" path="res://scene/player/input/input.gd" id="2_q7odf"]
+[ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3p45q"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_k72xi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3p45q")
+
+[node name="Presentation" parent="." instance=ExtResource("2_kmqwi")]
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_q7odf")
+
+[node name="Model" parent="." instance=ExtResource("3_xohdc")]

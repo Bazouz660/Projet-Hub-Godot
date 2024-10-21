@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode unshaded;
 
 // MIT License. Made by Leo Peltola
 // Inspired by https://threejs.org/examples/webgl_postprocessing_pixel.html

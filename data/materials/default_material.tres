@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d2rq00r7kk0ga"]
+
+[ext_resource type="Material" uid="uid://cugshe8fon5yk" path="res://data/materials/outline.tres" id="1_rf45a"]
+
+[resource]
+next_pass = ExtResource("1_rf45a")
+diffuse_mode = 3
+specular_mode = 1
+anisotropy = -0.4

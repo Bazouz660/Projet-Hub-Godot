@@ -9,6 +9,7 @@ signal player_disconnected(player_id)
 
 var peer: ENetMultiplayerPeer = null
 var active_player : Player = null
+var self_id = 0
 var players : Array
 
 var external_ip = ""
@@ -46,8 +47,10 @@ func host_game():
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
 	# Add the local player
-	var my_id = multiplayer.get_unique_id()
-	_add_player(my_id)
+	self_id = multiplayer.get_unique_id()
+	_add_player(self_id)
+	
+	print("My id: ", self_id)
 
 func join_game(ip : String, host_port : int):
 	# Ensure any existing connection is closed before joining a new game
@@ -70,8 +73,11 @@ func join_game(ip : String, host_port : int):
 
 func _connected_to_server():
 	print("Connected to server")
-	var my_id = multiplayer.get_unique_id()
-	_add_player(my_id)
+	self_id = multiplayer.get_unique_id()
+	print("My id: ", self_id)
+	_add_player(self_id)
+	active_player.rpc_set_position(Vector3(0, 20, 0))
+	print("Active player position: ", active_player.global_position)
 
 func _connection_failed():
 	print("Connection failed")
@@ -100,11 +106,12 @@ func _peer_disconnected(id):
 	player_disconnected.emit(id)
 
 func _add_player(id):
-	var player = player_scene.instantiate()
+	var player = player_scene.instantiate() as Player
 	player.name = str(id)
 	players.append(player.name)
 	if id == multiplayer.get_unique_id():
 		active_player = player
+	# Set the player's position here
 	root.world.get_node("SubViewportContainer/SubViewport/MainLevel").add_child(player)
 	
 func close_connection():

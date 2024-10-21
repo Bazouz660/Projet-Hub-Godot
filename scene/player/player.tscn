@@ -1,92 +1,48 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgsiv5sfqs2dv"]
+[gd_scene load_steps=9 format=3 uid="uid://gkai57dhq3qb"]
 
-[ext_resource type="Script" path="res://scene/player/player.gd" id="1_l426v"]
-[ext_resource type="Shader" path="res://shader/cel_shading.gdshader" id="2_enba5"]
-[ext_resource type="Shader" path="res://shader/outline.gdshader" id="2_sjvjq"]
-[ext_resource type="Texture2D" uid="uid://bwv4xit8rf56n" path="res://shader/cel_shading_gradient.tres" id="3_limei"]
+[ext_resource type="Script" path="res://scene/player/player.gd" id="1_k72xi"]
+[ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="2_15wi1"]
+[ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="2_kmqwi"]
+[ext_resource type="Script" path="res://scene/player/input/input.gd" id="2_q7odf"]
+[ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ef3a"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_p2u5y"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j4sn8"]
+height = 0.1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_no37v"]
-render_priority = 0
-shader = ExtResource("2_sjvjq")
-shader_parameter/shadows_enabled = true
-shader_parameter/highlights_enabled = true
-shader_parameter/shadow_strength = 0.4
-shader_parameter/highlight_strength = 0.1
-shader_parameter/highlight_color = Color(0.573792, 0.573792, 0.573792, 1)
-shader_parameter/shadow_color = Color(0.261477, 0.261477, 0.261477, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6npc"]
-render_priority = 0
-next_pass = SubResource("ShaderMaterial_no37v")
-shader = ExtResource("2_enba5")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = null
-shader_parameter/roughness = null
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = null
-shader_parameter/metallic = null
-shader_parameter/normal_scale = null
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
-shader_parameter/uv2_scale = null
-shader_parameter/uv2_offset = null
-shader_parameter/color_gradient = ExtResource("3_limei")
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_snvtd"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iviky"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_du016"]
-height = 0.1
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_thq3d"]
-height = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5jpk"]
-blend_mode = 1
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0.905882, 0, 1, 1)
+properties/2/path = NodePath("Model:sync_state")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_l426v")
+script = ExtResource("1_k72xi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_7ef3a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_p2u5y")
-surface_material_override/0 = SubResource("ShaderMaterial_m6npc")
-
-[node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.32628, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
-projection = 1
-size = 15.0
-near = 0.001
-far = 150.0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_snvtd")
+shape = SubResource("CapsuleShape3D_02uxe")
 
 [node name="StepCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
 enabled = false
-shape = SubResource("CylinderShape3D_du016")
+shape = SubResource("CylinderShape3D_j4sn8")
+debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StepCast"]
-visible = false
-mesh = SubResource("CylinderMesh_thq3d")
-surface_material_override/0 = SubResource("StandardMaterial3D_o5jpk")
+[node name="Camera" parent="." instance=ExtResource("2_15wi1")]
+
+[node name="Presentation" parent="." instance=ExtResource("2_kmqwi")]
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_q7odf")
+
+[node name="Model" parent="." instance=ExtResource("3_xohdc")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_iviky")
