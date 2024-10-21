@@ -6,7 +6,7 @@
 [node name="Camera" type="Node3D"]
 script = ExtResource("1_lnyyb")
 
-[node name="RemoteCameraTransform3D" type="RemoteTransform3D" parent="."]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
 remote_path = NodePath("../PreventRotationCopy/CameraPivot")
 update_rotation = false
 update_scale = false
@@ -14,13 +14,12 @@ update_scale = false
 [node name="PreventRotationCopy" type="Node" parent="."]
 
 [node name="CameraPivot" type="Marker3D" parent="PreventRotationCopy"]
-transform = Transform3D(-1, -5.01437e-08, 7.16126e-08, 0, 0.819152, 0.573577, -8.74228e-08, 0.573577, -0.819152, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
 script = ExtResource("1_iejq2")
 
 [node name="Camera3D" type="Camera3D" parent="PreventRotationCopy/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 70)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 projection = 1
-current = true
 size = 15.0
 near = 0.001
-far = 100.0
+far = 150.0

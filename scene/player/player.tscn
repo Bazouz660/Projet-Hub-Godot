@@ -35,8 +35,6 @@ enabled = false
 shape = SubResource("CylinderShape3D_j4sn8")
 debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 
-[node name="Camera" parent="." instance=ExtResource("2_15wi1")]
-
 [node name="Presentation" parent="." instance=ExtResource("2_kmqwi")]
 
 [node name="Input" type="Node" parent="."]
@@ -46,3 +44,5 @@ script = ExtResource("2_q7odf")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_iviky")
+
+[node name="Camera" parent="." instance=ExtResource("2_15wi1")]

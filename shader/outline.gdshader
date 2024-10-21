@@ -22,8 +22,8 @@ float getDepth(vec2 screen_uv, sampler2D depth_texture, mat4 inv_projection_matr
 //	Credit: https://godotshaders.com/shader/depth-modulated-pixel-outline-in-screen-space/
 	float raw_depth = texture(depth_texture, screen_uv)[0];
 	vec3 normalized_device_coordinates = vec3(screen_uv * 2.0 - 1.0, raw_depth);
-    vec4 view_space = inv_projection_matrix * vec4(normalized_device_coordinates, 1.0);	
-	view_space.xyz /= view_space.w;	
+    vec4 view_space = inv_projection_matrix * vec4(normalized_device_coordinates, 1.0);
+	view_space.xyz /= view_space.w;
 	return -view_space.z;
 }
 
@@ -47,7 +47,7 @@ void vertex(){
 
 void fragment() {
 	vec2 e = vec2(1./VIEWPORT_SIZE.xy);
-	
+
 //	Shadows
 	float depth_diff = 0.0;
 	float neg_depth_diff = .5;
@@ -70,7 +70,7 @@ void fragment() {
 		depth_diff = smoothstep(0.2, 0.3, depth_diff);
 //		ALBEDO = vec3(neg_depth_diff);
 	}
-	
+
 //	Highlights
 	float normal_diff = 0.;
 	if (highlights_enabled) {
@@ -88,7 +88,7 @@ void fragment() {
 		normal_diff = clamp(normal_diff-neg_depth_diff, 0., 1.);
 //		ALBEDO = vec3(normal_diff);
 	}
-	
+
 
 	vec3 original_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	vec3 final_highlight_color = mix(original_color, highlight_color, highlight_strength);
