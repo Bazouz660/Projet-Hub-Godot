@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmf7wwcdj1shu"]
 
-[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/default_theme.tres" id="1_oexk0"]
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_oexk0"]
 
 [node name="Hud" type="Control"]
 texture_filter = 5

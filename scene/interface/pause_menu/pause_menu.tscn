@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://lhp0pmmfdk2h"]
 
-[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/default_theme.tres" id="1_inv0s"]
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_inv0s"]
 [ext_resource type="Script" path="res://scene/interface/pause_menu/pause_menu.gd" id="2_2asoc"]
-[ext_resource type="Script" path="res://scripts/animation_component.gd" id="2_rbeer"]
+[ext_resource type="Script" path="res://scripts/animation/animation_component.gd" id="2_rbeer"]
 [ext_resource type="Texture2D" uid="uid://bbxhrqeuqx0wn" path="res://asset/texture/placeholder/white.png" id="3_jj2sy"]
 [ext_resource type="Shader" path="res://shader/darkened_blur.gdshader" id="3_m5hu4"]
-[ext_resource type="Script" path="res://scripts/animation_settings.gd" id="3_wxioj"]
+[ext_resource type="Script" path="res://scripts/animation/animation_settings.gd" id="3_wxioj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54e4n"]
 shader = ExtResource("3_m5hu4")
@@ -31,6 +31,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_inv0s")
 script = ExtResource("2_2asoc")
 
@@ -53,10 +55,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -107.5
+offset_top = -127.0
+offset_right = 107.5
+offset_bottom = 127.0
 grow_horizontal = 2
 grow_vertical = 2
 

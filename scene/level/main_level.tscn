@@ -1,6 +1,7 @@
 [gd_scene load_steps=38 format=3 uid="uid://b8o7o3l18uvf1"]
 
 [ext_resource type="Shader" path="res://shader/terrain.gdshader" id="2_8mmvj"]
+[ext_resource type="Script" path="res://scripts/follow_active_player.gd" id="3_8yc3m"]
 [ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="2_gpsvx"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_67onc"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_3dkex"]
@@ -28,6 +29,8 @@ shader = ExtResource("6_1av30")
 shader_parameter/cloud_direction = Vector2(1, 1)
 shader_parameter/cloud_speed = 0.002
 shader_parameter/cut_threshold = 0.4
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_t8gqe")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fnk3o"]
@@ -198,9 +201,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 [node name="SkyLight" parent="." instance=ExtResource("2_gpsvx")]
 
 [node name="CouldShadow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -2.27266)
 cast_shadow = 3
 mesh = SubResource("PlaneMesh_fnk3o")
+script = ExtResource("3_8yc3m")
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
