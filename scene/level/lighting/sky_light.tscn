@@ -11,7 +11,7 @@ sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.07
+volumetric_fog_density = 0.033339
 volumetric_fog_albedo = Color(1, 0.917647, 0.890196, 1)
 volumetric_fog_anisotropy = 0.0
 
@@ -72,21 +72,6 @@ tracks/3/keys = {
 "values": [0.05, 0.015, 0.015, 0.05]
 }
 
-[sub_resource type="Animation" id="Animation_8h30x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:light_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_ewywv"]
 resource_name = "Night"
 length = 20.0
@@ -140,6 +125,21 @@ tracks/3/keys = {
 "values": [0.07]
 }
 
+[sub_resource type="Animation" id="Animation_8h30x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u631y"]
 _data = {
 "Day": SubResource("Animation_v6fxl"),
@@ -151,9 +151,8 @@ _data = {
 script = ExtResource("1_52au0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.939693, 0.34202, 0, -0.34202, -0.939693, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.802182, 0.59708, 0, -0.59708, 0.802182, 0, 0, 0)
 light_color = Color(0, 0, 0, 1)
-light_energy = 0.0
 shadow_enabled = true
 directional_shadow_mode = 0
 sky_mode = 1

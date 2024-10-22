@@ -17,17 +17,17 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.000141938
+shader_parameter/x_offset = 0.1005
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.000198708
+shader_parameter/x_offset = 0.1407
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.000283876
+shader_parameter/x_offset = 0.201
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxyy"]
