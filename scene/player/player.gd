@@ -18,9 +18,9 @@ func _ready():
 	GameManager.disable_player_input = false
 	presentation.accept_skeleton(model.skeleton)
 	model.animator.play("ready_idle")
+	camera.current = is_multiplayer_authority()
 
 func _physics_process(delta):
-	camera.current = is_multiplayer_authority()
 	if not is_multiplayer_authority():
 		return
 	var input = input_gatherer.gather_input()

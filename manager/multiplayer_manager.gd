@@ -37,6 +37,8 @@ func host_game():
 	
 	# Set scene to world
 	GameManager.change_3d_scene("res://scene/level/main_level.tscn")
+	await GameManager.scene_loaded
+	
 	peer = ENetMultiplayerPeer.new()  # Create a new peer instance
 	var error = peer.create_server(port)
 	if error:
@@ -58,6 +60,8 @@ func join_game(ip : String, host_port : int):
 	
 	# Set scene to world
 	GameManager.change_3d_scene("res://scene/level/main_level.tscn")
+	await GameManager.scene_loaded
+	
 	peer = ENetMultiplayerPeer.new()  # Create a new peer instance
 	var error = peer.create_client(ip, host_port)
 	if error:
@@ -76,7 +80,7 @@ func _connected_to_server():
 	self_id = multiplayer.get_unique_id()
 	print("My id: ", self_id)
 	_add_player(self_id)
-	active_player.rpc_set_position(Vector3(0, 20, 0))
+	active_player.rpc_set_position(Vector3(0, 5, 0))
 	print("Active player position: ", active_player.global_position)
 
 func _connection_failed():
@@ -85,6 +89,8 @@ func _connection_failed():
 func _server_disconnected():
 	print("Server disconnected")
 	close_connection()
+	GameManager.change_3d_scene("")
+	GameManager.change_gui_scene("res://scene/interface/main_menu/main_menu.tscn")
 
 func _peer_connected(id):
 	if id == multiplayer.get_unique_id():
@@ -118,30 +124,6 @@ func close_connection():
 	if multiplayer.multiplayer_peer == null:
 		print("No active connection to close")
 		return
-
-	if multiplayer.is_server():
-		# Host cleanup
-		print("Closing host connection")
-		# Notify all clients that the server is shutting down
-		rpc("server_shutdown")
-		
-		# Stop accepting new connections
-		if peer:
-			peer.close()
-		
-		# Disconnect host-specific signals
-		_safe_disconnect(multiplayer.peer_connected, _peer_connected)
-		_safe_disconnect(multiplayer.peer_disconnected, _peer_disconnected)
-	else:
-		# Client cleanup
-		print("Closing client connection")
-		# Notify the server that we're disconnecting
-		rpc_id(1, "client_disconnecting", multiplayer.get_unique_id())
-		
-		# Disconnect client-specific signals
-		_safe_disconnect(multiplayer.connected_to_server, _connected_to_server)
-		_safe_disconnect(multiplayer.connection_failed, _connection_failed)
-		_safe_disconnect(multiplayer.server_disconnected, _server_disconnected)
 
 	# Common cleanup for both host and client
 	_safe_disconnect(multiplayer.peer_connected, _peer_connected)
