@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8o7o3l18uvf1"]
+[gd_scene load_steps=5 format=3 uid="uid://b8o7o3l18uvf1"]
 
 [ext_resource type="Script" path="res://manager/root.gd" id="1_rbkd4"]
 [ext_resource type="PackedScene" uid="uid://dcer3i8xdly24" path="res://scene/level/world.tscn" id="2_w87u3"]
 [ext_resource type="PackedScene" uid="uid://yqdv0umgw6qi" path="res://scene/interface/main_menu/main_menu.tscn" id="3_yoxn6"]
-[ext_resource type="PackedScene" uid="uid://lhp0pmmfdk2h" path="res://scene/interface/pause_menu/pause_menu.tscn" id="4_f6k7m"]
 [ext_resource type="PackedScene" uid="uid://bhq34tne853bn" path="res://scene/interface/loading_scene/LoadingScene.tscn" id="4_uub5c"]
 
 [node name="root" type="Node"]
@@ -22,19 +21,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("3_yoxn6")]
-layout_mode = 1
-
-[node name="Overlays" type="Control" parent="GUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PauseMenu" parent="GUI/Overlays" instance=ExtResource("4_f6k7m")]
-visible = false
 layout_mode = 1
 
 [node name="LoadingScene" parent="." instance=ExtResource("4_uub5c")]

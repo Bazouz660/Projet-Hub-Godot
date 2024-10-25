@@ -6,6 +6,6 @@ class_name Root
 @onready var loading_scene = $LoadingScene as LoadingScene
 
 func _ready():
-	GameManager.root = self
-	GameManager.current_gui_scene = $GUI/MainMenu
+	SceneManager.root = self
+	SceneManager.current_gui_scene = $GUI/MainMenu
 	MultiplayerManager.root = self

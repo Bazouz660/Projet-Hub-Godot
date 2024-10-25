@@ -11,7 +11,7 @@ sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.033339
+volumetric_fog_density = 0.07
 volumetric_fog_albedo = Color(1, 0.917647, 0.890196, 1)
 volumetric_fog_anisotropy = 0.0
 

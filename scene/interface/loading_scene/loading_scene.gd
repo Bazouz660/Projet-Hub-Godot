@@ -1,7 +1,6 @@
 extends Control
 class_name LoadingScene
 
-var progress = []
 var scene_name
 var scene_load_status = 0
 @onready var percentage = %Percentage as Label

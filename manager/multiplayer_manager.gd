@@ -36,8 +36,8 @@ func host_game():
 	close_connection()
 	
 	# Set scene to world
-	GameManager.change_3d_scene("res://scene/level/main_level.tscn")
-	await GameManager.scene_loaded
+	SceneManager.change_3d_scene("res://scene/level/main_level.tscn")
+	await SceneManager.scene_loaded
 	
 	peer = ENetMultiplayerPeer.new()  # Create a new peer instance
 	var error = peer.create_server(port)
@@ -59,8 +59,8 @@ func join_game(ip : String, host_port : int):
 	close_connection()
 	
 	# Set scene to world
-	GameManager.change_3d_scene("res://scene/level/main_level.tscn")
-	await GameManager.scene_loaded
+	SceneManager.change_3d_scene("res://scene/level/main_level.tscn")
+	await SceneManager.scene_loaded
 	
 	peer = ENetMultiplayerPeer.new()  # Create a new peer instance
 	var error = peer.create_client(ip, host_port)
@@ -89,8 +89,8 @@ func _connection_failed():
 func _server_disconnected():
 	print("Server disconnected")
 	close_connection()
-	GameManager.change_3d_scene("")
-	GameManager.change_gui_scene("res://scene/interface/main_menu/main_menu.tscn")
+	SceneManager.change_3d_scene("")
+	SceneManager.change_gui_scene("res://scene/interface/main_menu/main_menu.tscn")
 
 func _peer_connected(id):
 	if id == multiplayer.get_unique_id():

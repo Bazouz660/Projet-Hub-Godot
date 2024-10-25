@@ -1,15 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://clte1kr3xnnoi"]
+[gd_scene load_steps=9 format=3 uid="uid://clte1kr3xnnoi"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_jg3wg"]
 [ext_resource type="Script" path="res://scene/interface/settings_menu/settings_menu.gd" id="2_8my8n"]
-[ext_resource type="Texture2D" uid="uid://crmwkceoph4fd" path="res://asset/texture/placeholder/steamuserimages-a.akamaihd.jpg" id="3_e03no"]
+[ext_resource type="Shader" path="res://shader/darkened_blur.gdshader" id="3_pwrdd"]
+[ext_resource type="Texture2D" uid="uid://bbxhrqeuqx0wn" path="res://asset/texture/placeholder/white.png" id="4_e5v7j"]
+[ext_resource type="Script" path="res://scene/interface/settings_menu/key_mapping_settings.gd" id="5_bupgj"]
+[ext_resource type="PackedScene" uid="uid://daya2s2oqjtdr" path="res://scene/interface/settings_menu/input_button.tscn" id="5_xjh53"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w7ub"]
+shader = ExtResource("3_pwrdd")
+shader_parameter/lod = 3.0
+shader_parameter/mix_percentage = 0.3
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_q3ye7"]
 color = Color(0.498039, 0.498039, 0.498039, 1)
 thickness = 3
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opa1k"]
-texture = ExtResource("3_e03no")
 
 [node name="SettingsMenu" type="Control"]
 texture_filter = 3
@@ -19,9 +24,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme = ExtResource("1_jg3wg")
 script = ExtResource("2_8my8n")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0w7ub")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_e5v7j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -46,11 +62,16 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
 dragger_visibility = 1
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -58,55 +79,61 @@ theme_override_font_sizes/font_size = 35
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 dragger_visibility = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxLine_q3ye7")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+scroll_vertical = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="DisplaySettingsContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Display"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 150
 theme_override_constants/margin_bottom = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 dragger_visibility = 1
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 text = "Vsync mode"
 
-[node name="VsyncMode" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="VsyncMode" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 1
@@ -120,34 +147,34 @@ popup/item_2/id = 2
 popup/item_3/text = "Mailbox"
 popup/item_3/id = 3
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSplitContainer2" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer2" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 dragger_visibility = 1
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 text = "Framerate limit"
 
-[node name="FramerateLimit" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer2"]
+[node name="FramerateLimit" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSplitContainer3" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer3" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 dragger_visibility = 1
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 text = "Window mode"
 
-[node name="WindowMode" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer3"]
+[node name="WindowMode" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 8
 selected = 2
@@ -158,11 +185,59 @@ popup/item_1/id = 3
 popup/item_2/text = "Fullscreen"
 popup/item_2/id = 4
 
-[node name="Panel" type="Panel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 500)
+[node name="KeyMappingSettings" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_opa1k")
+script = ExtResource("5_bupgj")
 
-[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer/VsyncMode" to="." method="_on_vsync_mode_item_selected"]
-[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer2/FramerateLimit" to="." method="_on_framerate_limit_value_changed"]
-[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer3/WindowMode" to="." method="_on_window_mode_item_selected"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Key Mapping"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer"]
+layout_mode = 2
+
+[node name="ActionList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer/ActionList" instance=ExtResource("5_xjh53")]
+layout_mode = 2
+
+[node name="Button2" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer/ActionList" instance=ExtResource("5_xjh53")]
+layout_mode = 2
+
+[node name="Button3" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer/ActionList" instance=ExtResource("5_xjh53")]
+layout_mode = 2
+
+[node name="Button4" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer/ActionList" instance=ExtResource("5_xjh53")]
+layout_mode = 2
+
+[node name="Button5" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer/ActionList" instance=ExtResource("5_xjh53")]
+layout_mode = 2
+
+[node name="ResetMappings" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Reset mappings"
+
+[node name="BackButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer/VsyncMode" to="." method="_on_vsync_mode_item_selected"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer2/FramerateLimit" to="." method="_on_framerate_limit_value_changed"]
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer3/WindowMode" to="." method="_on_window_mode_item_selected"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings/MarginContainer/VBoxContainer/ResetMappings" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/KeyMappingSettings" method="_on_reset_mappings_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
