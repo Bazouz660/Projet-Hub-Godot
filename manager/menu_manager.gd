@@ -43,6 +43,18 @@ func go_to_menu(menu_name: String, save_in_history : bool = true):
 	current_menu = menus_map[menu_name].packed_scene.instantiate()
 	current_menu_name = menu_name
 	SceneManager.current_gui_scene.add_child.call_deferred(current_menu)
+	_set_focus_on_first_button.call_deferred(current_menu)
+	
+func _set_focus_on_first_button(parent : Control) -> bool:
+	for child in parent.get_children():
+		if child is BaseButton:
+			child.grab_focus()
+			return true
+	# If no button is found in the child, try again on the children childs
+	for child in parent.get_children():
+		if _set_focus_on_first_button(child):
+			return true
+	return false
 	
 func go_to_last_menu() -> bool:
 	print(navigation_history)
