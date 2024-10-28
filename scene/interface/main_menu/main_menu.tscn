@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yqdv0umgw6qi"]
+[gd_scene load_steps=15 format=3 uid="uid://yqdv0umgw6qi"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_thu5l"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/main_menu.gd" id="2_u78d5"]
@@ -6,22 +6,25 @@
 [ext_resource type="Script" path="res://scene/interface/main_menu/parallax.gd" id="7_ybn76"]
 [ext_resource type="Texture2D" uid="uid://b05uii20o36il" path="res://asset/texture/interface/background/sky.png" id="8_rtx7a"]
 [ext_resource type="Texture2D" uid="uid://jw7xv1w5ng6t" path="res://asset/texture/interface/background/clouds.png" id="9_u6jx7"]
+[ext_resource type="PackedScene" uid="uid://667t20wotwa1" path="res://scene/interface/main_menu/main_menu_content.tscn" id="9_vfncy"]
+[ext_resource type="PackedScene" uid="uid://clte1kr3xnnoi" path="res://scene/interface/settings_menu/settings_menu.tscn" id="10_vixci"]
 [ext_resource type="Texture2D" uid="uid://diypdgrumc4ow" path="res://asset/texture/interface/background/trees2.png" id="10_vueh5"]
 [ext_resource type="Texture2D" uid="uid://biubttru8wb3y" path="res://asset/texture/interface/background/trees1.png" id="11_7bmd6"]
+[ext_resource type="Script" path="res://manager/menu_manager.gd" id="11_48cs4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.20125
+shader_parameter/x_offset = -0.034015
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.28175
+shader_parameter/x_offset = -0.0476211
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.4025
+shader_parameter/x_offset = -0.0680301
 shader_parameter/y_offset = 0.0
 
 [node name="MainMenuScene" type="Control"]
@@ -86,3 +89,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_7bmd6")
+
+[node name="MenuManager" type="Control" parent="." node_paths=PackedStringArray("default_menu")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_48cs4")
+default_menu = NodePath("Main")
+
+[node name="Main" parent="MenuManager" instance=ExtResource("9_vfncy")]
+layout_mode = 1
+
+[node name="Settings" parent="MenuManager" instance=ExtResource("10_vixci")]
+visible = false
+layout_mode = 1

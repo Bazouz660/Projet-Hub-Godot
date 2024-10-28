@@ -3,6 +3,7 @@ extends MarginContainer
 @onready var ip_input = %IpInput
 @onready var port_input = %PortInput
 @onready var connect_bt = %Connect
+@onready var menu_manager = $".."
 
 func _on_host_pressed():
 	MultiplayerManager.host_game()
@@ -10,7 +11,7 @@ func _on_host_pressed():
 
 
 func _on_settings_pressed():
-	MenuManager.go_to_menu("Settings")
+	menu_manager.go_to_menu("Settings")
 
 
 func _on_exit_pressed():

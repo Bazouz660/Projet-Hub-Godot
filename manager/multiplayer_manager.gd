@@ -6,9 +6,15 @@ var root : Root
 
 signal player_connected(player_id)
 signal player_disconnected(player_id)
+signal active_player_loaded
 
 var peer: ENetMultiplayerPeer = null
-var active_player : Player = null
+var active_player : Player = null :
+	set(value):
+		active_player = value
+		if is_instance_valid(active_player):
+			active_player_loaded.emit()
+	
 var self_id = 0
 var players : Array
 

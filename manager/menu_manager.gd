@@ -1,6 +1,9 @@
-extends Node
+extends Control
+class_name MenuManager
 
-var menus : Array[Menu]
+@export var toggle_menus : Array[ToggleMenu]
+@export var default_menu : Control
+@export var toggle_mouse : bool = false
 
 var menus_map : Dictionary
 var current_menu : Control = null
@@ -8,24 +11,17 @@ var current_menu_name = ""
 var navigation_history : Array
 
 func _ready():
+	set_anchors_preset(PRESET_FULL_RECT)
+	mouse_filter = MOUSE_FILTER_IGNORE
+	find_menus()
 	
-	_create_menu("Main", "res://scene/interface/main_menu/main_menu_content.tscn")
-	_create_menu("Settings", "res://scene/interface/settings_menu/settings_menu.tscn")
-	_create_menu("Pause", "res://scene/interface/pause_menu/pause_menu.tscn")
-
-	_load_menus()
+	if is_instance_valid(default_menu):
+		go_to_menu(default_menu.name)
 	
-func _create_menu(menu_name, path):
-	var menu : Menu = Menu.new()
-	menu.name = menu_name
-	menu.path = path
-	menus.append(menu)
-
-func _load_menus():
-	for menu in menus:
-		var packed_menu = load(menu.path)
-		menu.packed_scene = packed_menu
-		menus_map.get_or_add(menu.name, menu)
+func find_menus():
+	for child in get_children():
+		if child is Control:
+			menus_map.get_or_add(child.name, child) 
 		
 func clear_history():
 	navigation_history.clear()
@@ -36,13 +32,13 @@ func go_to_menu(menu_name: String, save_in_history : bool = true):
 	if is_instance_valid(current_menu):
 		if save_in_history:
 			navigation_history.append(current_menu_name)
-		current_menu.queue_free()
+		current_menu.hide()
 		current_menu_name = ""
 	if menu_name == "":
 		return
-	current_menu = menus_map[menu_name].packed_scene.instantiate()
+	current_menu = menus_map[menu_name]
+	current_menu.show()
 	current_menu_name = menu_name
-	SceneManager.current_gui_scene.add_child.call_deferred(current_menu)
 	_set_focus_on_first_button.call_deferred(current_menu)
 	
 func _set_focus_on_first_button(parent : Control) -> bool:
@@ -52,8 +48,9 @@ func _set_focus_on_first_button(parent : Control) -> bool:
 			return true
 	# If no button is found in the child, try again on the children childs
 	for child in parent.get_children():
-		if _set_focus_on_first_button(child):
-			return true
+		if child is Control:
+			if _set_focus_on_first_button(child):
+				return true
 	return false
 	
 func go_to_last_menu() -> bool:
@@ -68,11 +65,24 @@ func get_history() -> Array:
 	
 func close_menu():
 	go_to_menu("", false)
+	if toggle_mouse:
+		print("Captured")
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+func _toggle_menu(menu_name : String) -> void:
+	if !go_to_last_menu():
+		if current_menu_name != menu_name:
+			go_to_menu(menu_name)
+			if toggle_mouse:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		elif current_menu_name == menu_name:
+			close_menu()
 
-func _input(event):
-	if Input.is_action_just_pressed("pause"):
-		if !go_to_last_menu():
-			if MenuStateManager.can_open_menu("Pause") and current_menu_name != "Pause":
-				go_to_menu("Pause")
-			elif current_menu_name == "Pause":
-				close_menu()
+func _input(_event):
+	if Input.is_action_just_pressed("ui_cancel") and !navigation_history.is_empty():
+		go_to_last_menu()
+		return
+	
+	for menu in toggle_menus:
+		if Input.is_action_just_pressed(menu.action):
+			_toggle_menu(menu.menu_name)

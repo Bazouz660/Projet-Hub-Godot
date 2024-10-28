@@ -162,6 +162,10 @@ text = "Framerate limit"
 [node name="FramerateLimit" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
+min_value = 15.0
+max_value = 1000.0
+value = 15.0
+allow_greater = true
 alignment = 1
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/DisplaySettingsContainer/MarginContainer/VBoxContainer"]

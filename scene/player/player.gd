@@ -6,6 +6,7 @@ class_name Player
 @onready var presentation = $Presentation
 @onready var camera = $Camera/PreventRotationCopy/CameraPivot/Camera3D
 @onready var step_cast = $StepCast as ShapeCast3D
+@onready var inventory = $Inventory as Inventory
 
 var sensitivity = 0.003;
 var yaw = 0.0;

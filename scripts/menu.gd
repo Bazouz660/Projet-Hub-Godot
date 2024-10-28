@@ -1,6 +1,5 @@
 extends Resource
-class_name Menu
+class_name ToggleMenu
 
-@export var path : String = ""
-@export var name : String = ""
-var packed_scene : PackedScene = null
+@export var action : String = ""
+@export var menu_name : String = ""

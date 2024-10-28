@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmf7wwcdj1shu"]
+[gd_scene load_steps=9 format=3 uid="uid://dmf7wwcdj1shu"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_oexk0"]
+[ext_resource type="Script" path="res://manager/menu_manager.gd" id="2_cvskm"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="3_e2hu5"]
+[ext_resource type="PackedScene" uid="uid://lhp0pmmfdk2h" path="res://scene/interface/pause_menu/pause_menu.tscn" id="4_cby67"]
+[ext_resource type="PackedScene" uid="uid://clte1kr3xnnoi" path="res://scene/interface/settings_menu/settings_menu.tscn" id="5_m4bv2"]
+[ext_resource type="PackedScene" uid="uid://dx2mbhjhlfk7f" path="res://scene/inventory/inventory_hud.tscn" id="6_up3qw"]
+
+[sub_resource type="Resource" id="Resource_5jgix"]
+script = ExtResource("3_e2hu5")
+action = "pause"
+menu_name = "Pause"
+
+[sub_resource type="Resource" id="Resource_tnypr"]
+script = ExtResource("3_e2hu5")
+action = "inventory"
+menu_name = "Inventory"
 
 [node name="Hud" type="Control"]
 texture_filter = 5
@@ -27,3 +42,28 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.10748, 0.10748, 0.10748, 1)
 text = "HUD de fou"
+
+[node name="MenuManager" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_cvskm")
+toggle_menus = Array[ExtResource("3_e2hu5")]([SubResource("Resource_5jgix"), SubResource("Resource_tnypr")])
+toggle_mouse = true
+
+[node name="Pause" parent="MenuManager" instance=ExtResource("4_cby67")]
+visible = false
+layout_mode = 1
+
+[node name="Settings" parent="MenuManager" instance=ExtResource("5_m4bv2")]
+visible = false
+layout_mode = 1
+
+[node name="Inventory" parent="MenuManager" instance=ExtResource("6_up3qw")]
+visible = false
+layout_mode = 1

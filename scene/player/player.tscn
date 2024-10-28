@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://gkai57dhq3qb"]
+[gd_scene load_steps=10 format=3 uid="uid://gkai57dhq3qb"]
 
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_k72xi"]
 [ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="2_15wi1"]
 [ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="2_kmqwi"]
 [ext_resource type="Script" path="res://scene/player/input/input.gd" id="2_q7odf"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
+[ext_resource type="Script" path="res://scene/inventory/inventory.gd" id="4_v3u0j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
 
@@ -39,6 +40,10 @@ debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_q7odf")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("4_v3u0j")
+grid_size = Vector2i(16, 10)
 
 [node name="Model" parent="." instance=ExtResource("3_xohdc")]
 

@@ -24,9 +24,7 @@ var _loading_gui = {
 	"use_threads": false
 }
 
-func change_gui_scene(new_scene_path: String) -> void:
-	MenuManager.clear_history()
-	
+func change_gui_scene(new_scene_path: String) -> void:	
 	if _loading_gui.is_loading:
 		push_warning("GUI scene loading already in progress")
 		return
@@ -141,5 +139,5 @@ func _finish_loading_3d(new_scene) -> void:
 
 
 func quit_game() -> void:
-	MultiplayerManager.close_connection()
 	get_tree().quit()
+	MultiplayerManager.close_connection()

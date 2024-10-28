@@ -1,19 +1,21 @@
 extends Control
 
+@onready var menu_manager = %MenuManager as MenuManager
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	SceneManager.disable_player_input = true
 
 
 func _on_resume_pressed():
-	if MenuManager.get_history().is_empty():
-		MenuManager.close_menu()
+	if menu_manager.get_history().is_empty():
+		menu_manager.close_menu()
 	else:
-		MenuManager.go_to_last_menu()
+		menu_manager.go_to_last_menu()
 
 
 func _on_settings_pressed():
-	MenuManager.go_to_menu("Settings")
+	menu_manager.go_to_menu("Settings")
 
 
 func _on_main_menu_pressed():

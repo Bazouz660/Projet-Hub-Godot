@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx2mbhjhlfk7f"]
+
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_t3u4y"]
+[ext_resource type="Script" path="res://scene/inventory/inventory_hud_grid.gd" id="3_l5udi"]
+[ext_resource type="Script" path="res://scene/inventory/inventory_hud.gd" id="3_m0vj1"]
+
+[node name="Control" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_t3u4y")
+script = ExtResource("3_m0vj1")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -29.0
+offset_right = 81.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HFlowContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel/MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/MarginContainer/HFlowContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/HFlowContainer/BoxContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Grid" type="GridContainer" parent="Panel/MarginContainer/HFlowContainer/BoxContainer/AspectRatioContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+script = ExtResource("3_l5udi")
+
+[node name="SortButton" type="Button" parent="Panel/MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Sort inventory"
+
+[connection signal="pressed" from="Panel/MarginContainer/HFlowContainer/SortButton" to="Panel/MarginContainer/HFlowContainer/BoxContainer/AspectRatioContainer/CenterContainer/Grid" method="_on_sort_button_pressed"]

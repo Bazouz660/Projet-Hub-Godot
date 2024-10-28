@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://667t20wotwa1"]
+[gd_scene load_steps=13 format=3 uid="uid://667t20wotwa1"]
 
 [ext_resource type="Texture2D" uid="uid://dw06muakrpn1s" path="res://asset/texture/icon/youpi_logo.svg" id="1_6no6w"]
 [ext_resource type="Script" path="res://scene/interface/main_menu/main_menu_content.gd" id="1_fk552"]
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_yptth"]
 [ext_resource type="Script" path="res://scripts/animation/animation_component.gd" id="2_vxwmh"]
 [ext_resource type="Resource" uid="uid://cq0hdycpl4v3p" path="res://data/interface/animations/main_button_hover.tres" id="3_jdfmi"]
 [ext_resource type="Resource" uid="uid://dwugeyfl5vkly" path="res://data/interface/animations/main_button_down.tres" id="4_escsm"]
@@ -36,6 +37,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_yptth")
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
