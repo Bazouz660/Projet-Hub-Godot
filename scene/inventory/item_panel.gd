@@ -20,7 +20,7 @@ func _get_drag_data(at_position):
 
 	var drag_quantity = quantity
 	if Input.is_key_pressed(KEY_SHIFT) and quantity > 1:
-		drag_quantity = int(quantity / 2)
+		drag_quantity = int(quantity) / 2
 
 		split_drag = true
 	else:

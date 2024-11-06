@@ -6,9 +6,12 @@ var level_node_path : String = "SubViewportContainer/SubViewport/WorldManager"
 
 var root : Root
 
-signal player_connected(player_id)
+signal player_connected(id)
 signal player_disconnected(player_id)
 signal active_player_loaded
+signal session_active
+
+var is_host : bool
 
 var peer: ENetMultiplayerPeer = null
 var active_player : Player = null :
@@ -43,6 +46,8 @@ func host_game():
 	# Ensure any existing connection is closed before hosting a new game
 	close_connection()
 	
+	is_host = true
+	
 	# Set scene to world
 	SceneManager.change_3d_scene(level_scene_path)
 	await SceneManager.scene_loaded
@@ -53,6 +58,7 @@ func host_game():
 		print("Error creating server: ", error)
 		return
 	multiplayer.multiplayer_peer = peer
+	session_active.emit()
 	# Connect signals
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
@@ -65,6 +71,8 @@ func host_game():
 func join_game(ip : String, host_port : int):
 	# Ensure any existing connection is closed before joining a new game
 	close_connection()
+	
+	is_host = false
 	
 	# Set scene to world
 	SceneManager.change_3d_scene(level_scene_path)

@@ -12,6 +12,7 @@ glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.3
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.018188
 volumetric_fog_albedo = Color(1, 0.917647, 0.890196, 1)
 volumetric_fog_anisotropy = 0.0
 
@@ -145,11 +146,13 @@ _data = {
 
 [node name="SkyLight" type="Node3D"]
 script = ExtResource("1_52au0")
+day_duration = 300.0
+night_duration = 300.0
+time = 8.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.939694, 0.342017, 0, -0.342017, -0.939694, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.721255, 0.69267, 0, -0.69267, -0.721255, 0, 0, 0)
 light_color = Color(0, 0, 0, 1)
-light_energy = 0.0
 shadow_enabled = true
 sky_mode = 1
 
@@ -160,4 +163,14 @@ environment = SubResource("Environment_q1pkj")
 libraries = {
 "": SubResource("AnimationLibrary_u631y")
 }
-speed_scale = 0.1
+speed_scale = 0.0666667
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -99.0
+offset_bottom = 23.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+text = "Time of day: 08:02"
