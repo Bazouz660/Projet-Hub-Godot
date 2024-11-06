@@ -1,12 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpt8j544wythm"]
+[gd_scene load_steps=10 format=3 uid="uid://dpt8j544wythm"]
 
 [ext_resource type="Script" path="res://test/world_manager.gd" id="1_oufg5"]
-[ext_resource type="Script" path="res://test/terrain/terrain_system.gd" id="2_hu7br"]
-[ext_resource type="Resource" uid="uid://cokasmcn0l1oi" path="res://test/terrain_config.tres" id="3_3f4io"]
+[ext_resource type="PackedScene" uid="uid://b4d7ssxun4clf" path="res://test/terrain_system.tscn" id="2_t1ltl"]
 [ext_resource type="Shader" path="res://shader/cloud_shadows.gdshader" id="3_d50ol"]
 [ext_resource type="Script" path="res://test/cacadow.gd" id="4_gnfak"]
 [ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="5_7hkfx"]
-[ext_resource type="PackedScene" uid="uid://gkai57dhq3qb" path="res://scene/player/player.tscn" id="6_2kqen"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j8er0"]
 noise_type = 3
@@ -30,40 +28,16 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_r38en")
 material = SubResource("ShaderMaterial_ywwrw")
 size = Vector2(150, 150)
 
-[node name="worldgen_test" type="Node3D"]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-stretch_shrink = 3
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-use_debanding = true
-size = Vector2i(384, 216)
-render_target_update_mode = 4
-
-[node name="WorldManager" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="WorldManager" type="Node3D"]
 script = ExtResource("1_oufg5")
 
-[node name="TerrainSystem" type="Node3D" parent="SubViewportContainer/SubViewport"]
-script = ExtResource("2_hu7br")
-config = ExtResource("3_3f4io")
+[node name="TerrainSystem" parent="." instance=ExtResource("2_t1ltl")]
 
-[node name="CouldShadow" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("player")]
+[node name="CouldShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2.273)
 cast_shadow = 3
 mesh = SubResource("PlaneMesh_stvr8")
 skeleton = NodePath("")
 script = ExtResource("4_gnfak")
-player = NodePath("../1")
 
-[node name="SkyLight" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_7hkfx")]
-
-[node name="1" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_2kqen")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.1198, 3.69368)
+[node name="SkyLight" parent="." instance=ExtResource("5_7hkfx")]

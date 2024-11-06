@@ -4,7 +4,6 @@ class_name FeatureManager
 var feature_definitions: Dictionary = {}
 var rng = RandomNumberGenerator.new()
 var _config : TerrainConfig
-static var _instance = FeatureManager.new()
 
 # Cache for commonly accessed values
 var _chunk_world_size: float
@@ -14,12 +13,22 @@ var _height_noise: FastNoiseLite
 var _height_scale: float
 var _height_offset: float
 
+# Static instance with proper initialization
+static var _instance: FeatureManager = null
+
+static func get_instance() -> FeatureManager:
+	if _instance == null:
+		_instance = FeatureManager.new()
+	return _instance
+
 static func set_config(p_config : TerrainConfig):
-	_instance._config = p_config
-	_instance._init_cache()
-	setup_features()
+	print("Features in set_config: ", p_config.features)
+	get_instance()._config = p_config
+	get_instance()._init_cache()
 
 func _init_cache():
+	if not _config:
+		return
 	_chunk_world_size = _config.chunk_size * _config.grid_size
 	_grid_size = _config.grid_size
 	_biome_noise = _config.biome_noise.noise
@@ -27,21 +36,27 @@ func _init_cache():
 	_height_scale = _config.height_scale
 	_height_offset = _config.height_offset
 
+
 static func register_feature(definition: FeatureDefinition):
-	_instance.feature_definitions[definition.name] = definition
+	get_instance().feature_definitions.get_or_add(definition.name, definition)
 	
 static func get_definitions() -> Dictionary:
-	return _instance.feature_definitions
+	return get_instance().feature_definitions
 
-static func setup_features():
-	var config = _instance._config
-	for feature in config.features:
-		register_feature(feature)
+#static func setup_features(features : Array[FeatureDefinition]):
+	#print("Features in setup_features: ", features)
+	#for feature in features:
+		#print("Non casted feature: ", feature)
+		#if feature == null:
+			#print("CACACACCACACACCCACACAC")
+			#continue
+		#print("Registering feature: ", feature)
+		#register_feature(feature)
+
 
 static func apply_features(chunk: TerrainChunk, feature_data: Array):
 	for feature in feature_data:
-		var definition = _instance.feature_definitions[feature.name]
-		# Use a match statement only once, before the loop
+		var definition = get_instance().feature_definitions[feature.name]
 		if definition.type == FeatureDefinition.Type.MULTIMESH:
 			_create_multimesh_feature(chunk, definition, feature.positions)
 		else:  # INSTANCE type
@@ -60,16 +75,16 @@ static func _generate_feature_positions_threaded(
 	var occupied_count = 0
 	
 	var chunk_rng = RandomNumberGenerator.new()
-	chunk_rng.seed = hash(str(chunk_pos) + str(_instance._config.seed))
+	chunk_rng.seed = hash(str(chunk_pos) + str(get_instance()._config.seed))
 	
 	# Cache frequently accessed values
-	var chunk_world_x = chunk_pos.x * _instance._chunk_world_size
-	var chunk_world_z = chunk_pos.y * _instance._chunk_world_size
-	var grid_size = _instance._grid_size
-	var biome_noise = _instance._biome_noise
-	var height_noise = _instance._height_noise
-	var height_scale = _instance._height_scale
-	var height_offset = _instance._height_offset
+	var chunk_world_x = chunk_pos.x * get_instance()._chunk_world_size
+	var chunk_world_z = chunk_pos.y * get_instance()._chunk_world_size
+	var grid_size = get_instance()._grid_size
+	var biome_noise = get_instance()._biome_noise
+	var height_noise = get_instance()._height_noise
+	var height_scale = get_instance()._height_scale
+	var height_offset = get_instance()._height_offset
 	
 	# Pre-calculate range checks
 	var min_elevation = definition.elevation_range.x
@@ -81,8 +96,8 @@ static func _generate_feature_positions_threaded(
 		if position_count >= definition.density:
 			break
 			
-		var local_x = chunk_rng.randf() * _instance._chunk_world_size
-		var local_z = chunk_rng.randf() * _instance._chunk_world_size
+		var local_x = chunk_rng.randf() * get_instance()._chunk_world_size
+		var local_z = chunk_rng.randf() * get_instance()._chunk_world_size
 		var world_x = chunk_world_x + local_x
 		var world_z = chunk_world_z + local_z
 		
@@ -142,10 +157,10 @@ static func _generate_feature_positions_threaded(
 
 static func _calculate_terrain_normal(world_x: float, world_z: float) -> Vector3:
 	# Sample heights at nearby points to calculate normal
-	var sample_distance = _instance._grid_size * 0.5
-	var h_scale = _instance._height_scale
-	var h_offset = _instance._height_offset
-	var noise = _instance._height_noise
+	var sample_distance = get_instance()._grid_size * 0.5
+	var h_scale = get_instance()._height_scale
+	var h_offset = get_instance()._height_offset
+	var noise = get_instance()._height_noise
 	
 	# Get raw noise values (-1 to 1) and apply scale/offset
 	var h_center = (noise.get_noise_2d(world_x, world_z) * h_scale) + h_offset
@@ -174,7 +189,7 @@ static func _create_multimesh_feature(chunk: TerrainChunk, definition: FeatureDe
 	for i in range(position_count):
 		var pos_data = positions[i]
 		var _transform = Transform3D()
-		var _scale = _instance.rng.randf_range(definition.scale_range.x, definition.scale_range.y)
+		var _scale = get_instance().rng.randf_range(definition.scale_range.x, definition.scale_range.y)
 		
 		if definition.follow_normal:
 			var normal = pos_data.normal
@@ -189,12 +204,12 @@ static func _create_multimesh_feature(chunk: TerrainChunk, definition: FeatureDe
 			var basis = Basis(right, up, forward)
 			
 			# Apply random rotation around normal
-			var angle = _instance.rng.randf() * TAU
+			var angle = get_instance().rng.randf() * TAU
 			basis = basis.rotated(normal, angle)
 			
 			_transform.basis = basis
 		else:
-			_transform = _transform.rotated(Vector3.UP, _instance.rng.randf() * TAU)
+			_transform = _transform.rotated(Vector3.UP, get_instance().rng.randf() * TAU)
 		
 		_transform = _transform.scaled(Vector3(_scale, _scale, _scale))
 		_transform.origin = pos_data.position
@@ -224,8 +239,8 @@ static func _create_instanced_feature(chunk: TerrainChunk, definition: FeatureDe
 	random_scales.resize(positions.size())
 	
 	for i in range(positions.size()):
-		random_indices[i] = _instance.rng.randi_range(0, scenes_count - 1)
-		random_scales[i] = _instance.rng.randf_range(definition.scale_range.x, definition.scale_range.y)
+		random_indices[i] = get_instance().rng.randi_range(0, scenes_count - 1)
+		random_scales[i] = get_instance().rng.randf_range(definition.scale_range.x, definition.scale_range.y)
 	
 	# Batch instantiate and transform
 	for i in range(positions.size()):
@@ -245,12 +260,12 @@ static func _create_instanced_feature(chunk: TerrainChunk, definition: FeatureDe
 			var basis = Basis(right, up, forward)
 			
 			# Apply random rotation around normal
-			var angle = _instance.rng.randf() * TAU
+			var angle = get_instance().rng.randf() * TAU
 			basis = basis.rotated(normal, angle)
 			
 			instance.transform.basis = basis
 		else:
-			instance.rotation.y = _instance.rng.randf() * TAU
+			instance.rotation.y = get_instance().rng.randf() * TAU
 			
 		instance.scale = Vector3(random_scales[i], random_scales[i], random_scales[i])
 		instance.position = pos_data.position

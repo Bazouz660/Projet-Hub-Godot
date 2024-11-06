@@ -3,7 +3,8 @@
 extends Node3D
 class_name TerrainSystem
 
-@export var config : TerrainConfig
+@export var player : CharacterBody3D = null
+var config = preload("res://test/terrain_config.tres") as TerrainConfig
 
 var thread_pool : TerrainThreadPool
 var terrain_generator : TerrainGenerator
@@ -11,8 +12,8 @@ var terrain_generator : TerrainGenerator
 # Internal variables
 var chunks = {}
 var current_chunk = Vector2.ZERO
-var player: Node3D
 var rng = RandomNumberGenerator.new()
+var loaded = false
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -23,19 +24,26 @@ func _ready():
 	
 	FeatureManager.set_config(config)
 	
+	for feature in config.features:
+		FeatureManager.register_feature(feature)
+	
 	terrain_generator = TerrainGenerator.new(config)
 			
 	if config.use_threading:
 		thread_pool = TerrainThreadPool.new(config, self, terrain_generator)
 	
-	player = get_node(config.player_path)
 	rng.seed = config.seed
 	_update_chunks()
+
+	MultiplayerManager.active_player_loaded.connect(_set_player)
 		
 	config.terrain_material.set_shader_parameter("mountain_threshold", config.mountain_threshold)
 	config.terrain_material.set_shader_parameter("forest_threshold", config.forest_threshold)
 	config.terrain_material.set_shader_parameter("beach_threshold", config.beach_threshold)
 
+
+func _set_player():
+	player = MultiplayerManager.active_player
 
 func _update_chunks():
 	if Engine.is_editor_hint():
@@ -76,7 +84,7 @@ func _process(_delta):
 	if Engine.is_editor_hint():
 		return
 		
-	if player:
+	if is_instance_valid(player):
 		var player_chunk = get_chunk_pos(player.global_position)
 		if player_chunk != current_chunk:
 			current_chunk = player_chunk

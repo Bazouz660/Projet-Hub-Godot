@@ -8,7 +8,6 @@ class_name TerrainConfig
 # Chunk settings
 @export var chunk_size: int = 16
 @export var view_distance: int = 2
-@export var player_path: NodePath
 @export var grid_size: float = 1.0
 
 # Terrain generation
@@ -29,7 +28,7 @@ class_name TerrainConfig
 # Feature settings
 @export_group("Feature Settings")
 @export var enable_features: bool = true
-@export var features: Array[FeatureDefinition]
+@export var features : Array[FeatureDefinition]
 
 # Threading settings
 @export_group("Threading Settings")
@@ -46,6 +45,4 @@ func validate() -> PackedStringArray:
 		warnings.append("Terrain Material is not set!")
 	if not water_material:
 		warnings.append("Water Material is not set!")
-	if player_path.is_empty():
-		warnings.append("Player path is not set!")
 	return warnings

@@ -12,7 +12,6 @@ glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.3
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.015
 volumetric_fog_albedo = Color(1, 0.917647, 0.890196, 1)
 volumetric_fog_anisotropy = 0.0
 

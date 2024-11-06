@@ -14,10 +14,10 @@ extends Node3D
 		#update_timer = 0.0
 
 func _input(event):
-	if Input.is_key_pressed(KEY_CTRL):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#if Input.is_key_pressed(KEY_CTRL):
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#else:
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 	if Input.is_key_pressed(KEY_0):
 		get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME
