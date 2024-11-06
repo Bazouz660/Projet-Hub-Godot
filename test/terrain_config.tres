@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=11 format=3 uid="uid://cokasmcn0l1oi"]
+
+[ext_resource type="Texture2D" uid="uid://2ywa2csvy6ou" path="res://test/biome_noise.tres" id="1_2upir"]
+[ext_resource type="Script" path="res://test/terrain/terrain_config.gd" id="2_21cop"]
+[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_34bvf"]
+[ext_resource type="Resource" uid="uid://cahg0md754q0o" path="res://test/terrain/features/forest_grass.tres" id="3_bqi6h"]
+[ext_resource type="Material" uid="uid://cpsqba08sf7if" path="res://test/terrain_material.tres" id="3_snsk4"]
+[ext_resource type="Material" uid="uid://ctixvytfgub33" path="res://test/Stylized_Water.material" id="4_6f4v6"]
+[ext_resource type="Resource" uid="uid://da7vicm272ypb" path="res://test/terrain/features/rocks.tres" id="4_l1au3"]
+[ext_resource type="Resource" uid="uid://bnkwbrn67m5mt" path="res://test/terrain/features/forest_wheat.tres" id="5_yerqh"]
+[ext_resource type="Resource" uid="uid://dajrd508a0aid" path="res://test/terrain/features/forest_trees.tres" id="6_0f5bs"]
+[ext_resource type="Resource" uid="uid://g1mn583itdta" path="res://test/terrain/features/plains_grass.tres" id="7_s21ai"]
+
+[resource]
+script = ExtResource("2_21cop")
+seed = 1
+chunk_size = 16
+view_distance = 2
+player_path = NodePath("../1")
+grid_size = 1.0
+height_noise = ExtResource("1_2upir")
+biome_noise = ExtResource("1_2upir")
+height_scale = 12.0
+height_offset = 0.0
+water_level = 0.0
+mountain_threshold = 0.3
+forest_threshold = 0.05
+beach_threshold = 0.01
+terrain_material = ExtResource("3_snsk4")
+water_material = ExtResource("4_6f4v6")
+enable_features = true
+features = Array[ExtResource("2_34bvf")]([ExtResource("3_bqi6h"), ExtResource("4_l1au3"), ExtResource("5_yerqh"), ExtResource("7_s21ai"), ExtResource("6_0f5bs")])
+use_threading = true
+max_concurrent_jobs = 4

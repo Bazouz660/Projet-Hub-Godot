@@ -14,6 +14,9 @@ func gather_input() -> InputPackage:
 			new_input.actions.append("sprint")
 		else:
 			new_input.actions.append("run")
+			
+	if Input.is_action_just_pressed("rest"):
+		new_input.actions.append("idle_to_rest")
 	
 	if new_input.actions.is_empty():
 		new_input.actions.append("idle")

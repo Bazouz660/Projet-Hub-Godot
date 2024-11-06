@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cr4g71mimy1nh"]
 
-[ext_resource type="ArrayMesh" uid="uid://g6pkabjn63cy" path="res://asset/model/tree_trunk.res" id="1_0aswv"]
-[ext_resource type="ArrayMesh" uid="uid://bwp3540as14pi" path="res://asset/model/tree_foliage.res" id="2_kt0a0"]
+[ext_resource type="ArrayMesh" uid="uid://g6pkabjn63cy" path="res://asset/mesh/tree_trunk.res" id="1_0aswv"]
+[ext_resource type="ArrayMesh" uid="uid://bwp3540as14pi" path="res://asset/mesh/tree_foliage.res" id="2_kt0a0"]
 [ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="2_qxyk0"]
 [ext_resource type="PackedScene" uid="uid://chadkn2cp4tjn" path="res://scene/level/foliage/leaf.tscn" id="4_ucq26"]
 [ext_resource type="Texture2D" uid="uid://2ya63icubt2y" path="res://asset/texture/foliage/leaf.png" id="4_uddrs"]
@@ -50,27 +50,29 @@ gravity = Vector3(0.1, -0.5, 0.1)
 [node name="Tree" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142212, 2.85516, -0.196075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142212, 2.27511, -0.196075)
 shape = SubResource("BoxShape3D_xws0l")
 
 [node name="Trunk" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.58005, 0)
 mesh = ExtResource("1_0aswv")
 
 [node name="Foliage" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.76344, 5.06874, -0.769714)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.76344, 4.48869, -0.769714)
 cast_shadow = 3
 mesh = ExtResource("2_kt0a0")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.58005, 0)
 multimesh = SubResource("MultiMesh_ju3b8")
 
 [node name="Leaf" parent="." instance=ExtResource("4_ucq26")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.58005, 0)
 visible = false
 skeleton = NodePath("")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.41995, 0)
 amount = 3
 lifetime = 8.0
 randomness = 1.0

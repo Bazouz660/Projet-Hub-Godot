@@ -7,6 +7,7 @@ var player : CharacterBody3D
 
 # unique fields to redefine
 var animation : String
+var reverse_animation : bool = false
 var move_name : String
 var has_queued_move : bool = false
 var queued_move : String = "none, drop error please"
@@ -15,9 +16,11 @@ var affected_by_gravity : bool = true
 # general fields for internal usage
 var enter_state_time : float
 
-
 static var moves_priority : Dictionary = {
-	"idle" : 1,
+	"idle" : 0,
+	"rest" : 1,
+	"rest_to_idle" : 1,
+	"idle_to_rest" : 1,
 	"run" : 2,
 	"sprint" : 3,
 	"roll" : 10,

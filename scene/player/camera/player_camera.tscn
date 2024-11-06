@@ -18,7 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 script = ExtResource("1_iejq2")
 
 [node name="Camera3D" type="Camera3D" parent="PreventRotationCopy/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
 projection = 1
 size = 15.0
 near = 0.001

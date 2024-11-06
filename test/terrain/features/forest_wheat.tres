@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FeatureDefinition" load_steps=4 format=3 uid="uid://bnkwbrn67m5mt"]
+
+[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/wheat.tres" id="1_bt5oj"]
+[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_wirye"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nyje0"]
+noise_type = 3
+frequency = 0.0798
+
+[resource]
+script = ExtResource("2_wirye")
+name = "forest_wheat"
+type = 0
+mesh = ExtResource("1_bt5oj")
+packed_scenes = Array[PackedScene]([])
+cast_shadow = false
+biome_ranges = Array[Vector2]([Vector2(0.05, 0.3)])
+elevation_range = Vector2(-10, 100)
+density = 500
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 0.2
+noise = SubResource("FastNoiseLite_nyje0")
+noise_threshold = 0.35
+custom_data = {}

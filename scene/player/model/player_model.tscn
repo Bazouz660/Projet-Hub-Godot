@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6i3ktwxchyr8"]
+[gd_scene load_steps=18 format=3 uid="uid://b6i3ktwxchyr8"]
 
 [ext_resource type="Script" path="res://scene/player/model/model.gd" id="1_dfp2c"]
 [ext_resource type="Animation" uid="uid://c30rfefyk5ykf" path="res://asset/animation/humanoid/ready_idle.res" id="2_b6r85"]
@@ -7,16 +7,23 @@
 [ext_resource type="Animation" uid="uid://c4lc46lkxocn6" path="res://asset/animation/humanoid/sprint.res" id="5_hq78x"]
 [ext_resource type="Animation" uid="uid://b0xqh4p0a5mxu" path="res://asset/animation/humanoid/walk.res" id="6_oqwur"]
 [ext_resource type="Script" path="res://scene/player/model/animation_player.gd" id="7_1ussp"]
+[ext_resource type="Animation" uid="uid://cide813ya7whq" path="res://asset/animation/humanoid/resting.res" id="7_d8rpn"]
 [ext_resource type="Script" path="res://scene/player/move/idle.gd" id="8_ly13d"]
+[ext_resource type="Animation" uid="uid://cbnoqocs0p8wo" path="res://asset/animation/humanoid/sitting_ground_to_standing.res" id="9_4ay6k"]
 [ext_resource type="Script" path="res://scene/player/move/run.gd" id="9_w7hc7"]
 [ext_resource type="Script" path="res://scene/player/move/roll.gd" id="10_u5sls"]
 [ext_resource type="Script" path="res://scene/player/move/sprint.gd" id="11_4su47"]
+[ext_resource type="Script" path="res://scene/player/move/rest.gd" id="13_yducd"]
+[ext_resource type="Script" path="res://scene/player/move/rest_to_idle.gd" id="16_f8u1j"]
+[ext_resource type="Script" path="res://scene/player/move/idle_to_rest.gd" id="17_voj4g"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58s4b"]
 _data = {
 "ready_idle": ExtResource("2_b6r85"),
+"resting": ExtResource("7_d8rpn"),
 "roll": ExtResource("3_3r6fq"),
 "run": ExtResource("4_f7g05"),
+"sitting_ground_to_standing": ExtResource("9_4ay6k"),
 "sprint": ExtResource("5_hq78x"),
 "walk": ExtResource("6_oqwur")
 }
@@ -230,6 +237,7 @@ libraries = {
 }
 playback_default_blend_time = 0.3
 script = ExtResource("7_1ussp")
+set_anims_interpolation_nearest = true
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("8_ly13d")
@@ -242,3 +250,12 @@ script = ExtResource("10_u5sls")
 
 [node name="Sprint" type="Node" parent="."]
 script = ExtResource("11_4su47")
+
+[node name="RestToIdle" type="Node" parent="."]
+script = ExtResource("16_f8u1j")
+
+[node name="IdleToRest" type="Node" parent="."]
+script = ExtResource("17_voj4g")
+
+[node name="Rest" type="Node" parent="."]
+script = ExtResource("13_yducd")

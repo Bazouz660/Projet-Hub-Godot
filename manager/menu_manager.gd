@@ -66,7 +66,6 @@ func get_history() -> Array:
 func close_menu():
 	go_to_menu("", false)
 	if toggle_mouse:
-		print("Captured")
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _toggle_menu(menu_name : String) -> void:

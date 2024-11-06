@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FeatureDefinition" load_steps=3 format=3 uid="uid://cahg0md754q0o"]
+
+[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="1_7nbxn"]
+[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/grass.tres" id="1_l7gv1"]
+
+[resource]
+script = ExtResource("1_7nbxn")
+name = "forest_grass"
+type = 0
+mesh = ExtResource("1_l7gv1")
+packed_scenes = Array[PackedScene]([])
+cast_shadow = false
+biome_ranges = Array[Vector2]([Vector2(0.05, 0.3)])
+elevation_range = Vector2(-10, 100)
+density = 1000
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 0.1
+noise_threshold = 0.0
+custom_data = {}

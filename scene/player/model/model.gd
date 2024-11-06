@@ -32,6 +32,9 @@ func _ready():
 		"run" : $Run,
 		"sprint" : $Sprint,
 		"roll" : $Roll,
+		"rest" : $Rest,
+		"rest_to_idle" : $RestToIdle,
+		"idle_to_rest" : $IdleToRest,
 	}
 
 	current_move = moves["idle"]
@@ -54,7 +57,11 @@ func switch_to(state : String):
 	current_move = moves[state]
 	current_move.on_enter_state()
 	current_move.mark_enter_state()
-	animator.play(current_move.animation)
+	
+	if current_move.reverse_animation:
+		animator.play_backwards(current_move.animation)
+	else:
+		animator.play(current_move.animation)
 	
 func apply_gravity(delta : float, gravity : float = DEFAULT_GRAVITY):
 	if not player.is_grounded():

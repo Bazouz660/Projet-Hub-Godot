@@ -1,0 +1,19 @@
+extends Move
+class_name RestToIdle
+
+var DURATION : float = 2.2917
+
+func _ready():
+	animation = "sitting_ground_to_standing"
+
+func check_relevance(input) -> String:
+	input.actions.sort_custom(moves_priority_sort)
+	if works_longer_than(DURATION):
+		return "idle"
+	if moves_priority.get(input.actions[0]) > moves_priority.get("rest_to_idle"):
+		return input.actions[0]
+	return "ok"
+
+func on_enter_state():
+	player.velocity.x = 0
+	player.velocity.z = 0

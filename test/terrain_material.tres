@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cpsqba08sf7if"]
+
+[ext_resource type="Shader" path="res://test/terrain_shader.gdshader" id="1_1j36p"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1j36p")
+shader_parameter/mountain_threshold = 0.7
+shader_parameter/forest_threshold = 0.4
+shader_parameter/beach_threshold = 0.2
+shader_parameter/mountain_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/forest_color = Color(0.341176, 0.478431, 0.184314, 1)
+shader_parameter/plains_color = Color(0.494118, 0.682353, 0.282353, 1)
+shader_parameter/beach_color = Color(0.9, 0.9, 0.6, 1)
+shader_parameter/backlight_color = Color(1, 1, 1, 1)
