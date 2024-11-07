@@ -42,7 +42,7 @@ func _ready():
 	config.terrain_material.set_shader_parameter("beach_threshold", config.beach_threshold)
 
 
-func _set_player():
+func _set_player(_id):
 	player = MultiplayerManager.active_player
 
 func _update_chunks():

@@ -2,7 +2,6 @@
 extends Node3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var label = $Label
 
 signal time_changed(time)
 
@@ -46,6 +45,9 @@ const NIGHT_START = 18
 func _ready() -> void:
 	animation_player.play("Day")
 	animation_player.animation_finished.connect(_on_animation_finished)
+
+	if Engine.is_editor_hint():
+		return
 
 	if MultiplayerManager.is_host:
 		
@@ -111,7 +113,7 @@ func _loop_value(value : float, mod : int) -> float:
 	value = int(value) % mod
 	return value + decimals
 	
-func _process(_delta):
+func get_time_of_day_str() -> String:
 	var time_of_day = get_time_of_day()
 	var decimals = fposmod(time_of_day, 1)
 	decimals *= 60
@@ -122,7 +124,7 @@ func _process(_delta):
 	var decimals_str = str(int(decimals))
 	if decimals < 10:
 		decimals_str = "0" + decimals_str
-	label.text = "Time of day: " + integer_str + ":" + decimals_str
+	return integer_str + ":" + decimals_str
 
 @rpc("any_peer", "call_remote", "unreliable")
 func _peers_sync_time(p_time : float):

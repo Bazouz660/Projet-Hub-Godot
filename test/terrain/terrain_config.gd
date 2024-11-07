@@ -35,7 +35,7 @@ class_name TerrainConfig
 @export var use_threading: bool = true
 @export var max_concurrent_jobs: int = 4
 
-func validate() -> PackedStringArray:
+func validate() -> PackedStringArray:	
 	var warnings: PackedStringArray = []
 	if not height_noise:
 		warnings.append("Height NoiseTexture2D is not set!")

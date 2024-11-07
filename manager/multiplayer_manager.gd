@@ -7,18 +7,20 @@ var level_node_path : String = "SubViewportContainer/SubViewport/WorldManager"
 var root : Root
 
 signal player_connected(id)
-signal player_disconnected(player_id)
-signal active_player_loaded
+signal player_disconnected(id)
+signal active_player_loaded(id)
 signal session_active
 
 var is_host : bool
 
 var peer: ENetMultiplayerPeer = null
+
+var active_player_id = 0
 var active_player : Player = null :
 	set(value):
 		active_player = value
 		if is_instance_valid(active_player):
-			active_player.ready.connect(func(): active_player_loaded.emit())
+			active_player.ready.connect(func(): active_player_loaded.emit(active_player_id))
 	
 var self_id = 0
 var players : Array
@@ -133,6 +135,7 @@ func _add_player(id):
 	players.append(player.name)
 	if id == multiplayer.get_unique_id():
 		active_player = player
+		active_player_id = id
 	# Set the player's position here
 	root.world.get_node(level_node_path).add_child(player)
 	

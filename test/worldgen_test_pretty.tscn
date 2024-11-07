@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://test/world_manager.gd" id="1_oufg5"]
 [ext_resource type="PackedScene" uid="uid://b4d7ssxun4clf" path="res://test/terrain_system.tscn" id="2_t1ltl"]
 [ext_resource type="Shader" path="res://shader/cloud_shadows.gdshader" id="3_d50ol"]
-[ext_resource type="Script" path="res://test/cacadow.gd" id="4_gnfak"]
+[ext_resource type="Script" path="res://scripts/follow_active_player.gd" id="4_w8qx5"]
 [ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="5_7hkfx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j8er0"]
@@ -38,6 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2.273)
 cast_shadow = 3
 mesh = SubResource("PlaneMesh_stvr8")
 skeleton = NodePath("")
-script = ExtResource("4_gnfak")
+script = ExtResource("4_w8qx5")
 
 [node name="SkyLight" parent="." instance=ExtResource("5_7hkfx")]

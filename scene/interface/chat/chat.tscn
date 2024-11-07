@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://8koyscic4v2s"]
+
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_go5d3"]
+[ext_resource type="Script" path="res://scene/interface/chat/chat.gd" id="2_vt8u4"]
+
+[node name="Chat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_go5d3")
+script = ExtResource("2_vt8u4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 400.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Messages" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_smooth = true
+scroll_v_scroll_speed = 20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Send" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Send"
+
+[node name="Message" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+placeholder_text = "Message"
+max_length = 255
+expand_to_text_length = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Send" to="." method="_on_send_pressed"]
