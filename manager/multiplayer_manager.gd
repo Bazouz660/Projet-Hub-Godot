@@ -9,9 +9,13 @@ var root : Root
 signal player_connected(id)
 signal player_disconnected(id)
 signal active_player_loaded(id)
+signal is_host_changed(host)
 signal session_active
 
-var is_host : bool
+var is_host : bool:
+	set(value):
+		is_host = value
+		is_host_changed.emit(is_host)
 
 var peer: ENetMultiplayerPeer = null
 

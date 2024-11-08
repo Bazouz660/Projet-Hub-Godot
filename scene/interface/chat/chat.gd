@@ -2,23 +2,27 @@ extends Control
 
 @onready var messages = $MarginContainer/VBoxContainer/Messages as TextEdit
 @onready var message = $MarginContainer/VBoxContainer/HBoxContainer/Message as LineEdit
-@onready var send = $MarginContainer/VBoxContainer/HBoxContainer/Send
+@onready var menu_manager = %MenuManager as MenuManager
 
-var msg : String
 var username : String = "Test"
 
 func _ready():
 	MultiplayerManager.active_player_loaded.connect(func(id): username = str(id))
+	set_meta("first_focus", message)
 
 @rpc("any_peer", "call_local", "reliable")
-func _msg_rpc(usrnm : String, message : String):
-	messages.text += usrnm + ": " + message + "\n"
+func _msg_rpc(usrnm : String, msg : String):
+	messages.text += usrnm + ": " + msg + "\n"
 
-func _on_send_pressed():
-	if message.text == "":
+func _on_message_text_submitted(new_text):
+	if new_text == "":
 		return
 
-	_msg_rpc.rpc(username, message.text)
+	_msg_rpc.rpc(username, new_text)
 	message.text = ""
 	
 	messages.scroll_vertical = messages.get_line_count()
+
+
+func _on_message_focus_exited():
+	menu_manager.close_menu()

@@ -43,11 +43,16 @@ func go_to_menu(menu_name: String, save_in_history : bool = true):
 		return
 	current_menu = menus_map[menu_name]
 	current_menu.show()
-	SceneManager.disable_player_input = true
+	if disable_player_input:
+		SceneManager.disable_player_input = true
 	current_menu_name = menu_name
 	_set_focus_on_first_button.call_deferred(current_menu)
 	
 func _set_focus_on_first_button(parent : Control) -> bool:
+	if current_menu.has_meta("first_focus"):
+		(current_menu.get_meta("first_focus") as Control).grab_focus()
+		return true
+	
 	for child in parent.get_children():
 		if child is BaseButton:
 			child.grab_focus()
@@ -70,6 +75,7 @@ func get_history() -> Array:
 	
 func close_menu():
 	go_to_menu("", false)
+	clear_history()
 	
 func _toggle_menu(menu_name : String) -> void:
 	if !go_to_last_menu():
@@ -81,7 +87,7 @@ func _toggle_menu(menu_name : String) -> void:
 			close_menu()
 
 
-func _input(_event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_cancel") and !navigation_history.is_empty():
 		go_to_last_menu()
 		return

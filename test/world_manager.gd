@@ -12,8 +12,11 @@ extends Node3D
 	#if update_timer >= UPDATE_INTERVAL:
 		#world_generator.update_chunks(player.global_position)
 		#update_timer = 0.0
+		
+func _ready():
+	TimeManager.start()
 
-func _input(event):
+func _input(_event):
 	#if Input.is_key_pressed(KEY_CTRL):
 		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#else:

@@ -47,11 +47,6 @@ scroll_v_scroll_speed = 20.0
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Send" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Send"
-
 [node name="Message" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -60,4 +55,5 @@ placeholder_text = "Message"
 max_length = 255
 expand_to_text_length = true
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Send" to="." method="_on_send_pressed"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/HBoxContainer/Message" to="." method="_on_message_focus_exited"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/HBoxContainer/Message" to="." method="_on_message_text_submitted"]

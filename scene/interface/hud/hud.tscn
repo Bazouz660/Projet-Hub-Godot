@@ -1,28 +1,45 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmf7wwcdj1shu"]
+[gd_scene load_steps=14 format=3 uid="uid://dmf7wwcdj1shu"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_oexk0"]
 [ext_resource type="Script" path="res://manager/menu_manager.gd" id="2_cvskm"]
 [ext_resource type="Script" path="res://scene/interface/hud/hud.gd" id="2_mtfo4"]
-[ext_resource type="Script" path="res://scripts/menu.gd" id="3_e2hu5"]
+[ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_e2hu5"]
 [ext_resource type="PackedScene" uid="uid://lhp0pmmfdk2h" path="res://scene/interface/pause_menu/pause_menu.tscn" id="4_cby67"]
 [ext_resource type="PackedScene" uid="uid://clte1kr3xnnoi" path="res://scene/interface/settings_menu/settings_menu.tscn" id="5_m4bv2"]
 [ext_resource type="PackedScene" uid="uid://dx2mbhjhlfk7f" path="res://scene/inventory/inventory_hud.tscn" id="6_up3qw"]
 [ext_resource type="PackedScene" uid="uid://8koyscic4v2s" path="res://scene/interface/chat/chat.tscn" id="8_whdr0"]
 
+[sub_resource type="GDScript" id="GDScript_tcpc1"]
+script/source = "extends Label
+
+func _on_time_scale_value_changed(value):
+	text = \"Time scale: \" + str(value)
+"
+
+[sub_resource type="GDScript" id="GDScript_sqxgt"]
+script/source = "extends HSlider
+
+func _on_value_changed(p_value):
+	TimeManager.time_scale = p_value
+"
+
 [sub_resource type="Resource" id="Resource_5jgix"]
 script = ExtResource("3_e2hu5")
 action = "pause"
 menu_name = "Pause"
+close_after = -1.0
 
 [sub_resource type="Resource" id="Resource_tnypr"]
 script = ExtResource("3_e2hu5")
 action = "inventory"
 menu_name = "Inventory"
+close_after = -1.0
 
 [sub_resource type="Resource" id="Resource_22wki"]
 script = ExtResource("3_e2hu5")
 action = "ui_text_completion_accept"
 menu_name = "Chat"
+close_after = -1.0
 
 [node name="Hud" type="Control"]
 texture_filter = 5
@@ -59,13 +76,38 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.10748, 0.10748, 0.10748, 1)
 text = "HUD de fou"
 
-[node name="Time" type="Label" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TimeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Time of day: ça arrive la team"
+
+[node name="TimeScaleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Time scale: 1.0"
+script = SubResource("GDScript_tcpc1")
+
+[node name="TimeScale" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+min_value = 1.0
+max_value = 1000.0
+step = 0.5
+value = 1.0
+allow_greater = true
+ticks_on_borders = true
+script = SubResource("GDScript_sqxgt")
 
 [node name="MenuManager" type="Control" parent="."]
 unique_name_in_owner = true
@@ -79,6 +121,7 @@ mouse_filter = 2
 script = ExtResource("2_cvskm")
 toggle_menus = Array[ExtResource("3_e2hu5")]([SubResource("Resource_5jgix"), SubResource("Resource_tnypr"), SubResource("Resource_22wki")])
 toggle_mouse = true
+disable_player_input = true
 
 [node name="Pause" parent="MenuManager" instance=ExtResource("4_cby67")]
 visible = false
@@ -96,3 +139,6 @@ enable = false
 [node name="Chat" parent="MenuManager" instance=ExtResource("8_whdr0")]
 visible = false
 layout_mode = 1
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TimeScale" to="MarginContainer/VBoxContainer/TimeScaleLabel" method="_on_time_scale_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TimeScale" to="MarginContainer/VBoxContainer/TimeScale" method="_on_value_changed"]
