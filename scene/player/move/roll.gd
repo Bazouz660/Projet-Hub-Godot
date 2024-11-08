@@ -7,9 +7,11 @@ var roll_direction : Vector3 = Vector3(0.0, 0.0, 0.0)
 var roll_direction_defined : bool = false
 
 func _ready():
+	stamina_required = 10.0
 	animation = "roll"
 
 func on_enter_state():
+	player.stamina.use_stamina(stamina_required)
 	roll_direction_defined = false
 
 func check_relevance(input) -> String:

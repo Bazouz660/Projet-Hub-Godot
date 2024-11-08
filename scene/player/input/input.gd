@@ -19,4 +19,3 @@ func gather_input() -> InputPackage:
 		new_input.actions.append("idle")
 	
 	return new_input
-	

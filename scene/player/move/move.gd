@@ -1,9 +1,8 @@
 extends Node
 class_name Move
 
-
 # all-move variables here
-var player : CharacterBody3D
+var player : Player
 
 # unique fields to redefine
 var animation : String
@@ -11,6 +10,7 @@ var move_name : String
 var has_queued_move : bool = false
 var queued_move : String = "none, drop error please"
 var affected_by_gravity : bool = true
+var stamina_required: float = 0.0
 
 # general fields for internal usage
 var enter_state_time : float
@@ -39,7 +39,6 @@ func check_relevance(_input : InputPackage) -> String:
 
 func update(_input : InputPackage, _delta : float):
 	pass
-
 
 func on_enter_state():
 	pass

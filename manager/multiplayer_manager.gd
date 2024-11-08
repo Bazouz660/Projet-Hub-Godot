@@ -13,7 +13,10 @@ var active_player : Player = null :
 	set(value):
 		active_player = value
 		if is_instance_valid(active_player):
-			active_player_loaded.emit()
+			active_player.ready.connect(_active_player_ready)
+			
+func _active_player_ready() -> void:
+	active_player_loaded.emit()
 	
 var self_id = 0
 var players : Array

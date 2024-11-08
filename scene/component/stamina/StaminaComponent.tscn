@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oehatx7e4fwf"]
+
+[ext_resource type="Script" path="res://scene/component/stamina/stamina_component.gd" id="1_8a634"]
+
+[node name="StaminaComponent" type="Node"]
+script = ExtResource("1_8a634")

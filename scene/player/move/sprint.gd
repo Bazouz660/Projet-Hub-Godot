@@ -4,16 +4,19 @@ class_name Sprint
 const SPEED = 10.0
 
 func _ready():
+	stamina_required = 5.0
 	animation = "sprint"
 
 func check_relevance(input : InputPackage):
 	input.actions.sort_custom(moves_priority_sort)
+	if !player.stamina.has_stamina(stamina_required):
+		return "run"
 	if input.actions[0] == "sprint":
 		return "ok"
 	return input.actions[0]
 
-
 func update(input : InputPackage, delta : float):
+	player.stamina.use_stamina(stamina_required * delta)
 	player.velocity = velocity_by_input(input, delta)
 	player.rotation.y = rotation_by_input(input)
 

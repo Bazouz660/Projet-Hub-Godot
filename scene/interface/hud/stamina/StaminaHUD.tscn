@@ -1,0 +1,168 @@
+[gd_scene load_steps=9 format=3 uid="uid://42pq4xvouyp2"]
+
+[ext_resource type="Script" path="res://scene/interface/hud/stamina/stamina_hud.gd" id="1_u3t0w"]
+[ext_resource type="Texture2D" uid="uid://dttrwhytdkr25" path="res://asset/texture/interface/hud/stamina_background.png" id="1_xkllb"]
+[ext_resource type="Texture2D" uid="uid://nml3mttexthi" path="res://asset/texture/interface/hud/stamina.png" id="2_vdcif"]
+
+[sub_resource type="Animation" id="Animation_jxfxo"]
+resource_name = "stamina_full"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaminaBar:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0.611765, 1), Color(1, 1, 1, 1), Color(0, 1, 0.611765, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hauku"]
+resource_name = "stamina_hide"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GhostBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaminaBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8iv55"]
+resource_name = "stamina_low"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaminaBar:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.976471, 0.329412, 0.329412, 1), Color(0, 1, 0.611765, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yc2rx"]
+resource_name = "stamina_show"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GhostBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaminaBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vfrgb"]
+_data = {
+"stamina_full": SubResource("Animation_jxfxo"),
+"stamina_hide": SubResource("Animation_hauku"),
+"stamina_low": SubResource("Animation_8iv55"),
+"stamina_show": SubResource("Animation_yc2rx")
+}
+
+[node name="StaminaHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_u3t0w")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("1_xkllb")
+
+[node name="GhostBar" type="TextureProgressBar" parent="."]
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.01
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_vdcif")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="."]
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.01
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_vdcif")
+tint_progress = Color(0, 1, 0.611765, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vfrgb")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

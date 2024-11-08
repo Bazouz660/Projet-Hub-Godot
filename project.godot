@@ -32,7 +32,7 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 
@@ -132,6 +132,7 @@ inventory={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/volumetric_fog/use_filter=0
 
 [shader_globals]

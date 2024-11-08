@@ -40,7 +40,7 @@ func _ready():
 
 func update(input : InputPackage, delta : float):
 	var relevance = current_move.check_relevance(input)
-	if relevance != "ok":
+	if relevance != "ok" and player.stamina.has_stamina(moves[relevance].stamina_required):
 		switch_to(relevance)
 	if current_move.affected_by_gravity:
 		apply_gravity(delta)
