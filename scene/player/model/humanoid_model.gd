@@ -1,11 +1,14 @@
 extends Node3D
-class_name PlayerModel
+class_name HumanoidModel
+
+@onready var active_weapon : Weapon = $GeneralSkeleton/RightHandAttachment/WeaponSocket/Sword
 
 @onready var DEFAULT_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var player = $".." as Player
 @onready var skeleton = %GeneralSkeleton
 @onready var animator = $AnimationPlayer
+@onready var combat = $Combat as HumanoidCombat
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -32,6 +35,12 @@ func _ready():
 		"run" : $Run,
 		"sprint" : $Sprint,
 		"roll" : $Roll,
+		"rest" : $Rest,
+		"rest_to_idle" : $RestToIdle,
+		"idle_to_rest" : $IdleToRest,
+		"slash_1" : $Slash1,
+		"slash_2" : $Slash2,
+		"slash_3" : $Slash3,
 	}
 
 	current_move = moves["idle"]
@@ -39,6 +48,7 @@ func _ready():
 		move.player = player
 
 func update(input : InputPackage, delta : float):
+	input = combat.translate_combat_actions(input)
 	var relevance = current_move.check_relevance(input)
 	if relevance != "ok" and player.stamina.has_stamina(moves[relevance].stamina_required):
 		switch_to(relevance)
@@ -54,7 +64,11 @@ func switch_to(state : String):
 	current_move = moves[state]
 	current_move.on_enter_state()
 	current_move.mark_enter_state()
-	animator.play(current_move.animation)
+	
+	if current_move.reverse_animation:
+		animator.play_backwards(current_move.animation)
+	else:
+		animator.play(current_move.animation)
 	
 func apply_gravity(delta : float, gravity : float = DEFAULT_GRAVITY):
 	if not player.is_grounded():

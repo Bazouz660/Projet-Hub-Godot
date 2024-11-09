@@ -1,0 +1,136 @@
+[gd_scene load_steps=24 format=3 uid="uid://cxuf41ghfbt0j"]
+
+[ext_resource type="Script" path="res://test/world_manager.gd" id="1_iya6k"]
+[ext_resource type="Script" path="res://test/terrain/terrain_system.gd" id="2_vex0n"]
+[ext_resource type="Material" uid="uid://ctixvytfgub33" path="res://test/Stylized_Water.material" id="3_7ctj5"]
+[ext_resource type="Resource" uid="uid://cokasmcn0l1oi" path="res://test/terrain_config.tres" id="3_n0i17"]
+[ext_resource type="Script" path="res://test/character_body_3d.gd" id="7_coxd0"]
+[ext_resource type="Script" path="res://test/marker_3d.gd" id="8_3bw8u"]
+[ext_resource type="Script" path="res://test/camera_3d_2.gd" id="8_avtkt"]
+[ext_resource type="Texture2D" uid="uid://crmwkceoph4fd" path="res://asset/texture/placeholder/steamuserimages-a.akamaihd.jpg" id="10_is28x"]
+[ext_resource type="Shader" path="res://shader/cloud_shadows.gdshader" id="11_xwgmm"]
+[ext_resource type="Script" path="res://test/cacadow.gd" id="12_v0am0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j8er0"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r38en"]
+seamless = true
+noise = SubResource("FastNoiseLite_j8er0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
+render_priority = 0
+shader = ExtResource("11_xwgmm")
+shader_parameter/cloud_direction = Vector2(1, 1)
+shader_parameter/cloud_speed = 0.002
+shader_parameter/cut_threshold = 0.4
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_r38en")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_stvr8"]
+material = SubResource("ShaderMaterial_ywwrw")
+size = Vector2(150, 150)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eekd4"]
+size = Vector2(100, 100)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="SphereMesh" id="SphereMesh_jvdst"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_va041"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yri6q"]
+seamless = true
+as_normal_map = true
+bump_strength = 32.0
+noise = SubResource("FastNoiseLite_va041")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnnhd"]
+albedo_color = Color(0.445231, 0.0229574, 0.0908007, 1)
+normal_texture = SubResource("NoiseTexture2D_yri6q")
+rim_tint = 1.0
+anisotropy = 0.63
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfelo"]
+albedo_texture = ExtResource("10_is28x")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5oohr"]
+size = Vector2(20, 20)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hgkfe"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_srynr"]
+
+[node name="worldgen_test" type="Node3D"]
+
+[node name="WorldManager" type="Node3D" parent="."]
+script = ExtResource("1_iya6k")
+
+[node name="TerrainSystem" type="Node3D" parent="."]
+script = ExtResource("2_vex0n")
+config = ExtResource("3_n0i17")
+
+[node name="CouldShadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2.273)
+visible = false
+cast_shadow = 3
+mesh = SubResource("PlaneMesh_stvr8")
+skeleton = NodePath("")
+script = ExtResource("12_v0am0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75247, 1.78742, -6.54639)
+visible = false
+mesh = SubResource("PlaneMesh_eekd4")
+surface_material_override/0 = ExtResource("3_7ctj5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.780476, 2.79324)
+visible = false
+mesh = SubResource("SphereMesh_jvdst")
+surface_material_override/0 = SubResource("StandardMaterial3D_fnnhd")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.605127, 0, -0.796129, 0, 1, 0, 0.796129, 0, -0.605127, -13.3716, 0.729678, -21.0934)
+visible = false
+material_override = SubResource("StandardMaterial3D_hfelo")
+mesh = SubResource("PlaneMesh_5oohr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0762248, -0.808594, -0.583408, 0.475572, -0.484785, 0.73404, -0.876368, -0.333405, 0.347592, 0, 6.65776, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.6426, 30.5562, 36.3677)
+script = ExtResource("7_coxd0")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_hgkfe")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_srynr")
+
+[node name="Camera3D2" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+visible = false
+far = 300.0
+script = ExtResource("8_avtkt")
+
+[node name="Marker3D" type="Marker3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.871736, 0.489976, 0, -0.489976, 0.871736, 0, 0, 0)
+script = ExtResource("8_3bw8u")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+projection = 1
+current = true
+size = 15.0
+far = 300.0

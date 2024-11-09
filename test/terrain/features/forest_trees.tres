@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FeatureDefinition" load_steps=3 format=3 uid="uid://dajrd508a0aid"]
+
+[ext_resource type="PackedScene" uid="uid://cr4g71mimy1nh" path="res://scene/level/foliage/tree.tscn" id="1_mc5kg"]
+[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_dww5l"]
+
+[resource]
+script = ExtResource("2_dww5l")
+name = "forest_trees"
+type = 1
+packed_scenes = Array[PackedScene]([ExtResource("1_mc5kg")])
+cast_shadow = true
+biome_ranges = Array[Vector2]([Vector2(0.05, 0.3)])
+elevation_range = Vector2(-10, 100)
+density = 5
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 2.0
+noise_threshold = 0.0
+custom_data = {}

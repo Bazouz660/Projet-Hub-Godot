@@ -6,11 +6,17 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):
+	if SceneManager.disable_player_input:
+		return
+	
 	if Input.is_action_pressed("cam_left"):
 		rotation.y += horizontal_sensitivity * 100 * delta
 	if Input.is_action_pressed("cam_right"):
 		rotation.y -= horizontal_sensitivity * 100 * delta
 
 func _unhandled_input(event):
+	if SceneManager.disable_player_input:
+		return
+	
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x * horizontal_sensitivity

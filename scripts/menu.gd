@@ -1,5 +1,5 @@
 extends Resource
-class_name ToggleMenu
+class_name Menu
 
-@export var action : String = ""
 @export var menu_name : String = ""
+@export var close_after_inactive : float = -1

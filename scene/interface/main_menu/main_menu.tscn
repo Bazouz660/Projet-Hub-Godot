@@ -14,17 +14,17 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.034015
+shader_parameter/x_offset = 0.06675
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.0476211
+shader_parameter/x_offset = 0.09345
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = -0.0680301
+shader_parameter/x_offset = 0.1335
 shader_parameter/y_offset = 0.0
 
 [node name="MainMenuScene" type="Control"]

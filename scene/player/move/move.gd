@@ -6,6 +6,7 @@ var player : Player
 
 # unique fields to redefine
 var animation : String
+var reverse_animation : bool = false
 var move_name : String
 var has_queued_move : bool = false
 var queued_move : String = "none, drop error please"
@@ -15,12 +16,17 @@ var stamina_required: float = 0.0
 # general fields for internal usage
 var enter_state_time : float
 
-
 static var moves_priority : Dictionary = {
-	"idle" : 1,
+	"idle" : 0,
+	"rest" : 1,
+	"rest_to_idle" : 1,
+	"idle_to_rest" : 1,
 	"run" : 2,
 	"sprint" : 3,
 	"roll" : 10,
+	"slash_1" : 100,
+	"slash_2" : 101,
+	"slash_3" : 102
 }
 
 
@@ -68,3 +74,11 @@ func works_between(start : float, finish : float) -> bool:
 	if progress >= start and progress <= finish:
 		return true
 	return false
+	
+func check_combos(input : InputPackage):
+	# works if only children we have are combos, use defined on ready array if you want to have a different order
+	var available_combos = get_children()
+	for combo : Combo in available_combos:
+		if combo.is_triggered(input):
+			has_queued_move = true
+			queued_move = combo.triggered_move

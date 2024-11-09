@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bxljxkcr5j8fj"]
+
+[ext_resource type="Material" uid="uid://d2rq00r7kk0ga" path="res://data/materials/default_material.tres" id="1_qum3b"]
+
+[resource]
+render_priority = -1
+next_pass = ExtResource("1_qum3b")
+transparency = 4
+depth_draw_mode = 1
+no_depth_test = true
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1

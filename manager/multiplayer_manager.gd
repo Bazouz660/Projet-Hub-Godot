@@ -1,22 +1,30 @@
 extends Node
 
 @export var player_scene: PackedScene = preload("res://scene/player/player.tscn")
+var level_scene_path : String = "res://test/worldgen_test_pretty.tscn"
+var level_node_path : String = "SubViewportContainer/SubViewport/WorldManager" 
 
 var root : Root
 
-signal player_connected(player_id)
-signal player_disconnected(player_id)
-signal active_player_loaded
+signal player_connected(id)
+signal player_disconnected(id)
+signal active_player_loaded(id)
+signal is_host_changed(host)
+signal session_active
+
+var is_host : bool:
+	set(value):
+		is_host = value
+		is_host_changed.emit(is_host)
 
 var peer: ENetMultiplayerPeer = null
+
+var active_player_id = 0
 var active_player : Player = null :
 	set(value):
 		active_player = value
 		if is_instance_valid(active_player):
-			active_player.ready.connect(_active_player_ready)
-			
-func _active_player_ready() -> void:
-	active_player_loaded.emit()
+			active_player.ready.connect(func(): active_player_loaded.emit(active_player_id))
 	
 var self_id = 0
 var players : Array
@@ -44,8 +52,10 @@ func host_game():
 	# Ensure any existing connection is closed before hosting a new game
 	close_connection()
 	
+	is_host = true
+	
 	# Set scene to world
-	SceneManager.change_3d_scene("res://scene/level/main_level.tscn")
+	SceneManager.change_3d_scene(level_scene_path)
 	await SceneManager.scene_loaded
 	
 	peer = ENetMultiplayerPeer.new()  # Create a new peer instance
@@ -54,6 +64,7 @@ func host_game():
 		print("Error creating server: ", error)
 		return
 	multiplayer.multiplayer_peer = peer
+	session_active.emit()
 	# Connect signals
 	multiplayer.peer_connected.connect(_peer_connected)
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
@@ -67,8 +78,10 @@ func join_game(ip : String, host_port : int):
 	# Ensure any existing connection is closed before joining a new game
 	close_connection()
 	
+	is_host = false
+	
 	# Set scene to world
-	SceneManager.change_3d_scene("res://scene/level/main_level.tscn")
+	SceneManager.change_3d_scene(level_scene_path)
 	await SceneManager.scene_loaded
 	
 	peer = ENetMultiplayerPeer.new()  # Create a new peer instance
@@ -113,7 +126,7 @@ func _peer_connected(id):
 func _peer_disconnected(id):
 	print("Peer disconnected: ", id)
 	# Remove the player node
-	var player = root.world.get_node("SubViewportContainer/SubViewport/MainLevel").get_node_or_null(str(id))
+	var player = root.world.get_node(level_node_path).get_node_or_null(str(id))
 	if player:
 		players.erase(player.name)
 		player.queue_free()
@@ -126,8 +139,9 @@ func _add_player(id):
 	players.append(player.name)
 	if id == multiplayer.get_unique_id():
 		active_player = player
+		active_player_id = id
 	# Set the player's position here
-	root.world.get_node("SubViewportContainer/SubViewport/MainLevel").add_child(player)
+	root.world.get_node(level_node_path).add_child(player)
 	
 func close_connection():
 	if multiplayer.multiplayer_peer == null:
@@ -144,7 +158,7 @@ func close_connection():
 	
 	# Clear players
 	for player in players:
-		var player_node = root.world.get_node("SubViewportContainer/SubViewport/MainLevel").get_node_or_null(str(player))
+		var player_node = root.world.get_node(level_node_path).get_node_or_null(str(player))
 		if player_node:
 			player_node.queue_free()
 	players.clear()

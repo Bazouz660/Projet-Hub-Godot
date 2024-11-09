@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FeatureDefinition" load_steps=7 format=3 uid="uid://jvu0k40ighim"]
+
+[ext_resource type="PackedScene" uid="uid://dynpad00mn05q" path="res://test/rock_1.tscn" id="1_orpko"]
+[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="1_uhqy8"]
+[ext_resource type="PackedScene" uid="uid://bqrmje6bgidxj" path="res://test/rock_2.tscn" id="2_tuyrw"]
+[ext_resource type="PackedScene" uid="uid://bp5peb788j1tj" path="res://test/rock_3.tscn" id="3_tmqgq"]
+[ext_resource type="PackedScene" uid="uid://d0n7y1ii0vs0j" path="res://test/rock_4.tscn" id="4_0o7rt"]
+[ext_resource type="PackedScene" uid="uid://cq4h71va8685u" path="res://test/rock_5.tscn" id="5_nncmi"]
+
+[resource]
+script = ExtResource("1_uhqy8")
+name = "rocks"
+type = 1
+packed_scenes = Array[PackedScene]([ExtResource("1_orpko"), ExtResource("2_tuyrw"), ExtResource("3_tmqgq"), ExtResource("4_0o7rt"), ExtResource("5_nncmi")])
+cast_shadow = true
+biome_ranges = Array[Vector2]([Vector2(0.3, 1), Vector2(-1, 0.05)])
+elevation_range = Vector2(-100, 100)
+density = 2
+follow_normal = true
+scale_range = Vector2(1, 1)
+spacing = 1.0
+noise_threshold = 0.0
+custom_data = {}

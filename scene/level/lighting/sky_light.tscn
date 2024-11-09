@@ -1,27 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://u57tqs5c6205"]
+[gd_scene load_steps=7 format=3 uid="uid://u57tqs5c6205"]
 
 [ext_resource type="Script" path="res://scene/level/lighting/sky_light.gd" id="1_52au0"]
 
 [sub_resource type="Environment" id="Environment_q1pkj"]
 background_mode = 2
 ambient_light_source = 2
-ambient_light_color = Color(0.40146, 0.40146, 0.40146, 1)
+ambient_light_color = Color(0.501407, 0.501406, 0.501406, 1)
 tonemap_mode = 3
 sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
+glow_bloom = 0.3
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.07
+volumetric_fog_density = 0.025
 volumetric_fog_albedo = Color(1, 0.917647, 0.890196, 1)
 volumetric_fog_anisotropy = 0.0
 
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_eil8g"]
-
-[sub_resource type="Compositor" id="Compositor_j1jsc"]
-
-[sub_resource type="Animation" id="Animation_v6fxl"]
+[sub_resource type="Animation" id="Animation_f6xd3"]
 resource_name = "Day"
-length = 20.0
+length = 12.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,10 +27,10 @@ tracks/0/path = NodePath("DirectionalLight3D:light_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10, 20),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.8, 6, 10.2, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.988235, 0.588235, 0.00392157, 1), Color(1, 1, 1, 1), Color(0.988235, 0.588235, 0.00392157, 1)]
+"values": [Color(0.988235, 0.588235, 0.00392157, 1), Color(0.999978, 0.834885, 0.685391, 1), Color(1, 1, 1, 1), Color(0.999985, 0.891164, 0.794259, 1), Color(0.988235, 0.588235, 0.00392157, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -42,7 +39,7 @@ tracks/1/path = NodePath("DirectionalLight3D:light_energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 18, 20),
+"times": PackedFloat32Array(0, 1.2, 10.8, 12),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0]
@@ -54,7 +51,7 @@ tracks/2/path = NodePath("DirectionalLight3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 10, 20),
+"times": PackedFloat32Array(0, 6, 12),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-2.79253, 0, 0), Vector3(-1.5708, 0, 0), Vector3(-0.349066, 0, 0)]
@@ -66,15 +63,15 @@ tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 5, 15, 20),
+"times": PackedFloat32Array(0, 3, 9, 12),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.05, 0.015, 0.015, 0.05]
+"values": [0.025, 0.015, 0.015, 0.025]
 }
 
-[sub_resource type="Animation" id="Animation_ewywv"]
+[sub_resource type="Animation" id="Animation_2qq0i"]
 resource_name = "Night"
-length = 20.0
+length = 12.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -95,7 +92,7 @@ tracks/1/path = NodePath("DirectionalLight3D:light_energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 18, 20),
+"times": PackedFloat32Array(0, 1.2, 10.8, 12),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.15, 0.15, 0.0]
@@ -107,7 +104,7 @@ tracks/2/path = NodePath("DirectionalLight3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 10, 20),
+"times": PackedFloat32Array(0, 6, 12),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-2.79253, 0, 0), Vector3(-1.5708, 0, 0), Vector3(-0.349066, 0, 0)]
@@ -122,10 +119,10 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.07]
+"values": [0.05]
 }
 
-[sub_resource type="Animation" id="Animation_8h30x"]
+[sub_resource type="Animation" id="Animation_oulni"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -142,25 +139,23 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u631y"]
 _data = {
-"Day": SubResource("Animation_v6fxl"),
-"Night": SubResource("Animation_ewywv"),
-"RESET": SubResource("Animation_8h30x")
+"Day": SubResource("Animation_f6xd3"),
+"Night": SubResource("Animation_2qq0i"),
+"RESET": SubResource("Animation_oulni")
 }
 
 [node name="SkyLight" type="Node3D"]
 script = ExtResource("1_52au0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.802182, 0.59708, 0, -0.59708, 0.802182, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939692, 0.34202, 0, -0.34202, 0.939692, 0, 0, 0)
 light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
 shadow_enabled = true
-directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_q1pkj")
-camera_attributes = SubResource("CameraAttributesPhysical_eil8g")
-compositor = SubResource("Compositor_j1jsc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

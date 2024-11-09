@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bkqepq68vpui"
+path.s3tc="res://.godot/imported/low_poly_rock_set_8.png-0de92c2dee172d82754b34c23a2b1643.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e54dca208acec62f578d7027a2137cee"
+}
+
+[deps]
+
+source_file="res://asset/model/rock/low_poly_rock_set_8.png"
+dest_files=["res://.godot/imported/low_poly_rock_set_8.png-0de92c2dee172d82754b34c23a2b1643.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://asset/model/rock/low_poly_rock_set_8.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

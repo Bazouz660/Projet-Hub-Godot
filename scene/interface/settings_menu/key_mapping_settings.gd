@@ -14,6 +14,8 @@ var input_actions = {
 	"backward": "Backward",
 	"sprint": "Sprint",
 	"roll": "Roll",
+	"inventory": "Inventory",
+	"rest": "Rest"
 }
 
 

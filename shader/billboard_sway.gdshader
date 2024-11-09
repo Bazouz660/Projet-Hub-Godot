@@ -11,40 +11,59 @@ uniform float wind_speed : hint_range(0.0, 10.0) = 1.0;
 uniform float wind_scale : hint_range(0.1, 10.0) = 1.0;
 uniform sampler2D noise_texture : hint_default_white;
 uniform float noise_scale : hint_range(0.1, 10.0) = 1.0;
-
 global uniform vec3 player_position;
 uniform float player_influence_radius : hint_range(0.0, 10.0) = 2.0;
 uniform float player_influence_strength : hint_range(0.0, 1.0) = 0.5;
 
 void vertex() {
     UV = UV * uv1_scale.xy + uv1_offset.xy;
-
     vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    float wind_time = TIME * wind_speed;
 
-    vec2 noise_uv = world_pos.xz * noise_scale * 0.01;
+    // Find the base position (bottom of the grass blade)
+    float grass_height = length(VERTEX);
+    vec3 base_pos = world_pos - VERTEX;
+
+    // Calculate wind and noise
+    float wind_time = TIME * wind_speed;
+    vec2 noise_uv = base_pos.xz * noise_scale * 0.01;
     float noise_value = texture(noise_texture, noise_uv + wind_time * 0.1).r * 2.0 - 1.0;
 
-    float wind_vertical_influence = smoothstep(0.0, 1.0, VERTEX.y);
-    float position_variation = sin(world_pos.x * 0.1) * cos(world_pos.z * 0.1) * 2.0;
+    float position_variation = sin(base_pos.x * 0.1) * cos(base_pos.z * 0.1) * 2.0;
+    float wind_horizontal = sin(wind_time + base_pos.x * wind_scale + base_pos.z * wind_scale + position_variation + noise_value) * wind_strength;
+    float wind_depth = cos(wind_time * 0.7 + base_pos.x * wind_scale * 1.2 + base_pos.z * wind_scale + position_variation + noise_value) * wind_strength * 0.5;
 
-    float wind_horizontal = sin(wind_time + world_pos.x * wind_scale + world_pos.z * wind_scale + position_variation + noise_value) * wind_strength;
-    float wind_depth = cos(wind_time * 0.7 + world_pos.x * wind_scale * 1.2 + world_pos.z * wind_scale + position_variation + noise_value) * wind_strength * 0.5;
-
-    vec3 to_player = player_position - world_pos;
+    // Calculate player influence
+    vec3 to_player = player_position - base_pos;
     float distance_to_player = length(to_player);
     float player_influence = 1.0 - smoothstep(0.0, player_influence_radius, distance_to_player);
     vec3 player_deformation = normalize(to_player) * player_influence * player_influence_strength;
 
-    VERTEX.x += wind_horizontal * wind_vertical_influence - player_deformation.x;
-    VERTEX.z += wind_depth * wind_vertical_influence - player_deformation.z;
-    VERTEX.y -= player_deformation.y * wind_vertical_influence;
+    // Calculate the bend influence based on height
+    float vertex_height = VERTEX.y;
+    float max_height = grass_height;
+    float height_fraction = vertex_height / max_height;
 
+    // The deformation increases as we go up the blade
+    float bend_influence = height_fraction * height_fraction; // Square it for more natural bending
+
+    // Calculate the total displacement
+    vec3 wind_displacement = vec3(wind_horizontal, 0.0, wind_depth);
+    vec3 total_displacement = (wind_displacement - player_deformation) * bend_influence;
+
+    // Apply the displacement
+    vec3 new_pos = VERTEX;
+    new_pos += total_displacement * max_height;
+
+    // Update vertex position
+    VERTEX = new_pos;
+
+    // Billboard matrix setup
     MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
-            MAIN_CAM_INV_VIEW_MATRIX[0],
-            MAIN_CAM_INV_VIEW_MATRIX[1],
-            MAIN_CAM_INV_VIEW_MATRIX[2],
-            MODEL_MATRIX[3]);
+        MAIN_CAM_INV_VIEW_MATRIX[0],
+        MAIN_CAM_INV_VIEW_MATRIX[1],
+        MAIN_CAM_INV_VIEW_MATRIX[2],
+        MODEL_MATRIX[3]
+    );
     MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 }
 
