@@ -7,7 +7,11 @@ const COMBO_TIMING = 1.1 # Time at which we can chain the attack
 func _ready():
 	animation = "slash_1"
 	move_name = "slash_1"
+	stamina_required = 5.0
 
+func on_enter_state():
+	player.velocity = Vector3.ZERO
+	player.stamina.use_stamina(stamina_required)
 
 func check_relevance(input : InputPackage):
 	check_combos(input)
@@ -19,7 +23,3 @@ func check_relevance(input : InputPackage):
 		return input.actions[0]
 	else:
 		return "ok"
-
-
-func on_enter_state():
-	player.velocity = Vector3.ZERO

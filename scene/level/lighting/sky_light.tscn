@@ -148,7 +148,7 @@ _data = {
 script = ExtResource("1_52au0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939692, 0.34202, 0, -0.34202, 0.939692, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.939693, 0.342017, 0, -0.342017, -0.939693, 0, 0, 0)
 light_color = Color(0, 0, 0, 1)
 light_energy = 0.0
 shadow_enabled = true

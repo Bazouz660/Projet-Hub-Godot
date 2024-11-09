@@ -6,9 +6,9 @@ var mouse_mode = null
 func _ready() -> void:
 	MultiplayerManager.active_player_loaded.connect(_set_stamina_hud)
 
-func _set_stamina_hud():
-	$StaminaHUD.stamina = MultiplayerManager.active_player.stamina
-	$StaminaHUD._setup()
+func _set_stamina_hud(_id):
+	%StaminaHUD.stamina = MultiplayerManager.active_player.stamina
+	%StaminaHUD._setup()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -20,5 +20,3 @@ func _unhandled_input(_event):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-extends Control
-

@@ -1,22 +1,22 @@
 [gd_scene load_steps=40 format=3 uid="uid://b8o7o3l18uvf1"]
 
-[ext_resource type="Shader" path="res://shader/terrain.gdshader" id="2_8mmvj"]
-[ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="2_gpsvx"]
-[ext_resource type="Script" path="res://scripts/follow_active_player.gd" id="3_8yc3m"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_67onc"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_3dkex"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="5_rgrky"]
-[ext_resource type="Shader" path="res://shader/cloud_shadows.gdshader" id="6_1av30"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="6_kwuui"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="8_gg8lh"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="9_x7dot"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="10_mmclv"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="11_nng78"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_oxv1t"]
-[ext_resource type="PackedScene" uid="uid://dvqhhuwslf5hx" path="res://scene/level/level_prototype.tscn" id="12_bjqot"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="14_aukdc"]
-[ext_resource type="PackedScene" uid="uid://cr4g71mimy1nh" path="res://scene/level/foliage/tree.tscn" id="14_kmf8g"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="17_stnks"]
+[ext_resource type="PackedScene" uid="uid://dvqhhuwslf5hx" path="res://scene/level/level_prototype.tscn" id="1_n80bm"]
+[ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="2_gjwu2"]
+[ext_resource type="Shader" path="res://shader/cloud_shadows.gdshader" id="3_ueu5w"]
+[ext_resource type="Script" path="res://scripts/follow_active_player.gd" id="4_b0was"]
+[ext_resource type="Shader" path="res://shader/terrain.gdshader" id="5_2u6wy"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="6_1wdfq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="7_k2rak"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="8_e8xo1"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="9_2acjj"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="10_eugq7"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="11_pfj7a"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_0fpum"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_ew3xt"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="14_lscni"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="15_8rs8r"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="16_dl242"]
+[ext_resource type="PackedScene" uid="uid://cr4g71mimy1nh" path="res://scene/level/foliage/tree.tscn" id="17_15tqp"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_06hnu"]
 
@@ -26,7 +26,7 @@ noise = SubResource("FastNoiseLite_06hnu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxopk"]
 render_priority = 0
-shader = ExtResource("6_1av30")
+shader = ExtResource("3_ueu5w")
 shader_parameter/cloud_direction = Vector2(1, 1)
 shader_parameter/cloud_speed = 0.002
 shader_parameter/cut_threshold = 0.4
@@ -40,7 +40,7 @@ size = Vector2(100, 100)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o0h60"]
 render_priority = 0
-shader = ExtResource("2_8mmvj")
+shader = ExtResource("5_2u6wy")
 shader_parameter/albedo = Color(0.341176, 0.478431, 0.184314, 1)
 shader_parameter/backlight = Color(1, 1, 1, 1)
 shader_parameter/uv1_scale = null
@@ -52,8 +52,8 @@ size = Vector2(1, 1)
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_b2omm"]
 
-[sub_resource type="Resource" id="Resource_ef7r7"]
-script = ExtResource("6_kwuui")
+[sub_resource type="Resource" id="Resource_dchbn"]
+script = ExtResource("9_2acjj")
 amount = 100000
 enabled = true
 override_global_seed = false
@@ -61,8 +61,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_0psm0"]
-script = ExtResource("8_gg8lh")
+[sub_resource type="Resource" id="Resource_3ay0j"]
+script = ExtResource("10_eugq7")
 iterations = 3
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
@@ -73,8 +73,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_xawap"]
-script = ExtResource("9_x7dot")
+[sub_resource type="Resource" id="Resource_ktc3g"]
+script = ExtResource("11_pfj7a")
 ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
 ray_offset = 5.0
@@ -89,16 +89,16 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_wcckw"]
-script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_ef7r7"), SubResource("Resource_0psm0"), SubResource("Resource_xawap")])
+[sub_resource type="Resource" id="Resource_3gimh"]
+script = ExtResource("7_k2rak")
+stack = Array[ExtResource("8_e8xo1")]([SubResource("Resource_dchbn"), SubResource("Resource_3ay0j"), SubResource("Resource_ktc3g")])
 
 [sub_resource type="Resource" id="Resource_21keg"]
-script = ExtResource("11_nng78")
+script = ExtResource("14_lscni")
 size = Vector3(100.571, 1, 99.5711)
 
-[sub_resource type="Resource" id="Resource_lfb4w"]
-script = ExtResource("6_kwuui")
+[sub_resource type="Resource" id="Resource_1g35h"]
+script = ExtResource("9_2acjj")
 amount = 75
 enabled = true
 override_global_seed = false
@@ -106,8 +106,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_itql8"]
-script = ExtResource("8_gg8lh")
+[sub_resource type="Resource" id="Resource_f1t3g"]
+script = ExtResource("10_eugq7")
 iterations = 3
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
@@ -118,8 +118,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_qae73"]
-script = ExtResource("9_x7dot")
+[sub_resource type="Resource" id="Resource_xkdnt"]
+script = ExtResource("11_pfj7a")
 ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
 ray_offset = 5.0
@@ -134,16 +134,16 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_7p37a"]
-script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_lfb4w"), SubResource("Resource_itql8"), SubResource("Resource_qae73")])
+[sub_resource type="Resource" id="Resource_vxh1q"]
+script = ExtResource("7_k2rak")
+stack = Array[ExtResource("8_e8xo1")]([SubResource("Resource_1g35h"), SubResource("Resource_f1t3g"), SubResource("Resource_xkdnt")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
-script = ExtResource("14_aukdc")
+script = ExtResource("15_8rs8r")
 radius = 2.84745
 
-[sub_resource type="Resource" id="Resource_8hbf2"]
-script = ExtResource("6_kwuui")
+[sub_resource type="Resource" id="Resource_30ood"]
+script = ExtResource("9_2acjj")
 amount = 25
 enabled = true
 override_global_seed = false
@@ -151,8 +151,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_c64cf"]
-script = ExtResource("8_gg8lh")
+[sub_resource type="Resource" id="Resource_ao7ja"]
+script = ExtResource("10_eugq7")
 iterations = 3
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
@@ -163,8 +163,8 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_7xtgl"]
-script = ExtResource("9_x7dot")
+[sub_resource type="Resource" id="Resource_ctth7"]
+script = ExtResource("11_pfj7a")
 ray_direction = Vector3(0, 0, 0)
 ray_length = 5.0
 ray_offset = 5.0
@@ -179,12 +179,12 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ltkdd"]
-script = ExtResource("4_3dkex")
-stack = Array[ExtResource("5_rgrky")]([SubResource("Resource_8hbf2"), SubResource("Resource_c64cf"), SubResource("Resource_7xtgl")])
+[sub_resource type="Resource" id="Resource_6xe45"]
+script = ExtResource("7_k2rak")
+stack = Array[ExtResource("8_e8xo1")]([SubResource("Resource_30ood"), SubResource("Resource_ao7ja"), SubResource("Resource_ctth7")])
 
 [sub_resource type="Resource" id="Resource_irqi4"]
-script = ExtResource("14_aukdc")
+script = ExtResource("15_8rs8r")
 radius = 2.0
 
 [node name="MainLevel" type="Node3D"]
@@ -196,16 +196,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29612, 0)
 _spawnable_scenes = PackedStringArray("res://scene/player/player.tscn")
 spawn_path = NodePath("..")
 
-[node name="LevelPrototype" parent="." instance=ExtResource("12_bjqot")]
+[node name="LevelPrototype" parent="." instance=ExtResource("1_n80bm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 
-[node name="SkyLight" parent="." instance=ExtResource("2_gpsvx")]
+[node name="SkyLight" parent="." instance=ExtResource("2_gjwu2")]
 
 [node name="CouldShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -2.27266)
 cast_shadow = 3
 mesh = SubResource("PlaneMesh_fnk3o")
-script = ExtResource("3_8yc3m")
+script = ExtResource("4_b0was")
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
@@ -217,61 +217,61 @@ mesh = SubResource("PlaneMesh_3io8e")
 shape = SubResource("HeightMapShape3D_b2omm")
 
 [node name="Grass" type="Node3D" parent="."]
-script = ExtResource("3_67onc")
+script = ExtResource("6_1wdfq")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_wcckw")
+modifier_stack = SubResource("Resource_3gimh")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
 [node name="ScatterItem" type="Node3D" parent="Grass"]
-script = ExtResource("10_mmclv")
+script = ExtResource("12_0fpum")
 override_cast_shadow = 0
 path = "res://scene/level/foliage/grass_blade.tscn"
 
 [node name="ScatterShape" type="Node3D" parent="Grass"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
-script = ExtResource("11_oxv1t")
+script = ExtResource("13_ew3xt")
 shape = SubResource("Resource_21keg")
 
 [node name="Wheat" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.49981)
-script = ExtResource("3_67onc")
+script = ExtResource("6_1wdfq")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_7p37a")
+modifier_stack = SubResource("Resource_vxh1q")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
 [node name="ScatterItem" type="Node3D" parent="Wheat"]
-script = ExtResource("10_mmclv")
+script = ExtResource("12_0fpum")
 override_cast_shadow = 0
 path = "res://scene/level/foliage/wheat.tscn"
 
 [node name="ScatterShape" type="Node3D" parent="Wheat"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
-script = ExtResource("11_oxv1t")
+script = ExtResource("13_ew3xt")
 shape = SubResource("Resource_g8bsm")
 
 [node name="Wheat2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6228, 0, 4.92706)
-script = ExtResource("3_67onc")
+script = ExtResource("6_1wdfq")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_ltkdd")
+modifier_stack = SubResource("Resource_6xe45")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
 [node name="ScatterItem" type="Node3D" parent="Wheat2"]
-script = ExtResource("10_mmclv")
+script = ExtResource("12_0fpum")
 override_cast_shadow = 0
 path = "res://scene/level/foliage/wheat.tscn"
 
 [node name="ScatterShape" type="Node3D" parent="Wheat2"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
-script = ExtResource("11_oxv1t")
+script = ExtResource("13_ew3xt")
 shape = SubResource("Resource_irqi4")
 
 [node name="ScatterCache" type="Node3D" parent="."]
-script = ExtResource("17_stnks")
+script = ExtResource("16_dl242")
 cache_file = "res://addons/proton_scatter/cache/main_level_4193780781_scatter_cache.res"
 
-[node name="Tree" parent="." instance=ExtResource("14_kmf8g")]
+[node name="Tree" parent="." instance=ExtResource("17_15tqp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.78309, -0.419434, 10.6794)

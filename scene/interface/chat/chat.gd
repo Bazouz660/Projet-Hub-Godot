@@ -24,12 +24,6 @@ func _on_messages_changed():
 		messages.remove_line_at(0)
 	messages.scroll_vertical = messages.get_line_count()
 
-func _process(delta):
-	count += delta
-	if count >= 1.0:
-		count = 0.0
-		_on_message_text_submitted("caca cacaca cacacacacac caccacacca cacaccac")
-
 func _on_timer_timeout():
 	tween = create_tween()
 	tween.finished.connect(func(): self.hide())

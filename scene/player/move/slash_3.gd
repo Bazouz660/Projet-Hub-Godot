@@ -9,7 +9,10 @@ const COMBO_TIMING = 0.6
 func _ready():
 	animation = "slash_3"
 	move_name = "slash_3"
+	stamina_required = 5.0
 
+func on_enter_state():
+	player.stamina.use_stamina(stamina_required)
 
 func check_relevance(input : InputPackage):
 	check_combos(input)

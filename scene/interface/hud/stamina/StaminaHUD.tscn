@@ -130,18 +130,26 @@ _data = {
 [node name="StaminaHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 49.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
 mouse_filter = 2
 script = ExtResource("1_u3t0w")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 96.0
-offset_bottom = 96.0
+layout_mode = 2
+offset_top = 0.5
+offset_right = 48.0
+offset_bottom = 48.5
 mouse_filter = 2
 texture = ExtResource("1_xkllb")
 
 [node name="GhostBar" type="TextureProgressBar" parent="."]
-offset_right = 96.0
-offset_bottom = 96.0
+layout_mode = 2
+offset_top = 0.5
+offset_right = 48.0
+offset_bottom = 48.5
 mouse_filter = 2
 max_value = 1.0
 step = 0.01
@@ -150,8 +158,10 @@ nine_patch_stretch = true
 texture_progress = ExtResource("2_vdcif")
 
 [node name="StaminaBar" type="TextureProgressBar" parent="."]
-offset_right = 96.0
-offset_bottom = 96.0
+layout_mode = 2
+offset_top = 0.5
+offset_right = 48.0
+offset_bottom = 48.5
 mouse_filter = 2
 max_value = 1.0
 step = 0.01
