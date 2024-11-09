@@ -24,6 +24,9 @@ static var moves_priority : Dictionary = {
 	"run" : 2,
 	"sprint" : 3,
 	"roll" : 10,
+	"slash_1" : 100,
+	"slash_2" : 101,
+	"slash_3" : 102
 }
 
 
@@ -72,3 +75,11 @@ func works_between(start : float, finish : float) -> bool:
 	if progress >= start and progress <= finish:
 		return true
 	return false
+	
+func check_combos(input : InputPackage):
+	# works if only children we have are combos, use defined on ready array if you want to have a different order
+	var available_combos = get_children()
+	for combo : Combo in available_combos:
+		if combo.is_triggered(input):
+			has_queued_move = true
+			queued_move = combo.triggered_move

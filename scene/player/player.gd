@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 @onready var input_gatherer = $Input as InputGatherer
-@onready var model = $Model as PlayerModel
+@onready var model = $Model as HumanoidModel
 @onready var presentation = $Presentation
 @onready var camera = $Camera/PreventRotationCopy/CameraPivot/Camera3D
 @onready var step_cast = $StepCast as ShapeCast3D

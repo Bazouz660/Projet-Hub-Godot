@@ -20,11 +20,16 @@ func gather_input() -> InputPackage:
 		if Input.is_action_just_pressed("rest"):
 			new_input.actions.append("idle_to_rest")
 		
-		
-		
+		if Input.is_action_just_pressed("light_attack"):
+			new_input.combat_actions.append("light_attack_pressed")
 
 	if new_input.actions.is_empty():
 		new_input.actions.append("idle")
 	
 	return new_input
 	
+func create_empty_input() -> InputPackage:
+	var new_input = InputPackage.new()
+	new_input.direction = Vector2.ZERO
+	new_input.actions.append("idle")
+	return new_input
