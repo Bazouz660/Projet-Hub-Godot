@@ -49,7 +49,7 @@ func go_to_menu(menu_name: String, save_in_history : bool = true):
 	_set_focus_on_first_button.call_deferred(current_menu)
 	
 func _set_focus_on_first_button(parent : Control) -> bool:
-	if current_menu.has_meta("first_focus"):
+	if is_instance_valid(current_menu) and current_menu.has_meta("first_focus"):
 		(current_menu.get_meta("first_focus") as Control).grab_focus()
 		return true
 	

@@ -10,5 +10,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fgj6g")
-time_scale = 0.1
-time = 23.143

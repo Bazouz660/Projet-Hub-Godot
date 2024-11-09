@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmf7wwcdj1shu"]
+[gd_scene load_steps=13 format=3 uid="uid://dmf7wwcdj1shu"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_oexk0"]
 [ext_resource type="Script" path="res://manager/menu_manager.gd" id="2_cvskm"]
@@ -33,12 +33,6 @@ close_after = -1.0
 script = ExtResource("3_e2hu5")
 action = "inventory"
 menu_name = "Inventory"
-close_after = -1.0
-
-[sub_resource type="Resource" id="Resource_22wki"]
-script = ExtResource("3_e2hu5")
-action = "ui_text_completion_accept"
-menu_name = "Chat"
 close_after = -1.0
 
 [node name="Hud" type="Control"]
@@ -109,6 +103,9 @@ allow_greater = true
 ticks_on_borders = true
 script = SubResource("GDScript_sqxgt")
 
+[node name="Chat" parent="MarginContainer" instance=ExtResource("8_whdr0")]
+layout_mode = 2
+
 [node name="MenuManager" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -119,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_cvskm")
-toggle_menus = Array[ExtResource("3_e2hu5")]([SubResource("Resource_5jgix"), SubResource("Resource_tnypr"), SubResource("Resource_22wki")])
+toggle_menus = Array[ExtResource("3_e2hu5")]([SubResource("Resource_5jgix"), SubResource("Resource_tnypr")])
 toggle_mouse = true
 disable_player_input = true
 
@@ -135,10 +132,6 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 enable = false
-
-[node name="Chat" parent="MenuManager" instance=ExtResource("8_whdr0")]
-visible = false
-layout_mode = 1
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/TimeScale" to="MarginContainer/VBoxContainer/TimeScaleLabel" method="_on_time_scale_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/TimeScale" to="MarginContainer/VBoxContainer/TimeScale" method="_on_value_changed"]
