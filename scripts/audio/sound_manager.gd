@@ -1,4 +1,5 @@
 extends Node
+class_name SoundManager
 
 var _sound_queues_by_name : Dictionary
 var _sound_pools_by_name : Dictionary

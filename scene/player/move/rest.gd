@@ -1,9 +1,6 @@
 extends Move
 class_name Rest
 
-func _ready():
-	animation = "resting"
-
 func check_relevance(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)
 	if input.actions[0] == "idle_to_rest":

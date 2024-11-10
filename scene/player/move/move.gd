@@ -5,13 +5,21 @@ class_name Move
 var player : Player
 
 # unique fields to redefine
-var animation : String
-var reverse_animation : bool = false
-var move_name : String
+@export var move_name : String
+@export_group("Parameters")
+@export var affected_by_gravity : bool = true
+@export var stamina_required: float = 0.0
+@export_group("Animation")
+@export var animation : String
+@export var reverse_animation : bool = false
+@export_group("Audio")
+@export var sound_name : String = ""
+## Interval between each sound triggering. If play once is true, it is used as a delay
+@export var delay : float = 0.0
+@export var play_once : bool = true
+
 var has_queued_move : bool = false
 var queued_move : String = "none, drop error please"
-var affected_by_gravity : bool = true
-var stamina_required: float = 0.0
 
 # general fields for internal usage
 var enter_state_time : float

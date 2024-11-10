@@ -3,7 +3,7 @@ class_name Player
 
 @onready var input_gatherer = $Input as InputGatherer
 @onready var model = $Model as HumanoidModel
-@onready var presentation = $Presentation
+@onready var presentation = $Presentation as PlayerPresentation
 @onready var camera = $Camera/PreventRotationCopy/CameraPivot/Camera3D
 @onready var step_cast = $StepCast as ShapeCast3D
 @onready var inventory = $InventoryComponent as InventoryComponent

@@ -1,4 +1,5 @@
 extends Node3D
+class_name PlayerPresentation
 
 @onready var body = %body
 @onready var head = %head

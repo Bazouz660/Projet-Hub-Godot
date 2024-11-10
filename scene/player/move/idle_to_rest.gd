@@ -1,11 +1,7 @@
 extends Move
 class_name IdleToRest
 
-var DURATION : float = 2.2917
-
-func _ready():
-	animation = "sitting_ground_to_standing"
-	reverse_animation = true
+@export var DURATION : float = 2.2917
 
 func check_relevance(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)

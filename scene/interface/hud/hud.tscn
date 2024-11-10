@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmf7wwcdj1shu"]
+[gd_scene load_steps=10 format=3 uid="uid://dmf7wwcdj1shu"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_oexk0"]
 [ext_resource type="Script" path="res://scene/interface/hud/hud.gd" id="2_as46u"]
@@ -13,12 +13,6 @@
 script = ExtResource("3_e2hu5")
 action = "pause"
 menu_name = "Pause"
-close_after = -1.0
-
-[sub_resource type="Resource" id="Resource_tnypr"]
-script = ExtResource("3_e2hu5")
-action = "inventory"
-menu_name = "Inventory"
 close_after = -1.0
 
 [node name="Hud" type="Control"]
@@ -78,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_cvskm")
-toggle_menus = Array[ExtResource("3_e2hu5")]([SubResource("Resource_5jgix"), SubResource("Resource_tnypr")])
+toggle_menus = Array[ExtResource("3_e2hu5")]([SubResource("Resource_5jgix")])
 toggle_mouse = true
 disable_player_input = true
 

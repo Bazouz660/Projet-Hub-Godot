@@ -22,7 +22,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 properties/2/path = NodePath("Model:sync_state")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_k72xi")

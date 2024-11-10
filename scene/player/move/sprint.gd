@@ -1,11 +1,7 @@
 extends Move
 class_name Sprint
 
-const SPEED = 10.0
-
-func _ready():
-	stamina_required = 5.0
-	animation = "sprint"
+@export var speed = 10.0
 
 func check_relevance(input : InputPackage):
 	input.actions.sort_custom(moves_priority_sort)
@@ -23,7 +19,7 @@ func update(input : InputPackage, delta : float):
 func velocity_by_input(input : InputPackage, _delta : float) -> Vector3:
 	var y = player.velocity.y
 	var direction = Vector3(input.direction.x, 0, input.direction.y).rotated(Vector3.UP, input.camera_rotation.y)
-	var velocity = lerp(player.velocity, direction * SPEED, 0.1)
+	var velocity = lerp(player.velocity, direction * speed, 0.1)
 	velocity.y = y
 	return velocity
 

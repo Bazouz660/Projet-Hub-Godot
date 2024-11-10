@@ -1,14 +1,8 @@
 extends Move
 class_name Slash2
 
-const TRANSITION_TIMING = 0.8333
-const COMBO_TIMING = 0.5
-
-
-func _ready():
-	animation = "slash_2"
-	move_name = "slash_2"
-	stamina_required = 5.0
+@export var TRANSITION_TIMING = 0.8333
+@export var COMBO_TIMING = 0.5
 	
 func on_enter_state():
 	player.stamina.use_stamina(stamina_required)

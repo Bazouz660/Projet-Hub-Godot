@@ -9,6 +9,7 @@ class_name HumanoidModel
 @onready var skeleton = %GeneralSkeleton
 @onready var animator = $AnimationPlayer
 @onready var combat = $Combat as HumanoidCombat
+@onready var sound_manager = $"../Presentation/SoundManager" as SoundManager3D
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -58,6 +59,10 @@ func update(input : InputPackage, delta : float):
 	raycast(delta)
 	player.move_and_slide()
 
+	# Sound
+	if current_move.sound_name != "" and !current_move.play_once:
+		sound_manager.play_sound_with_interval(current_move.sound_name, current_move.delay, delta)
+
 func switch_to(state : String):
 	current_state = state
 	current_move.on_exit_state()
@@ -69,6 +74,9 @@ func switch_to(state : String):
 		animator.play_backwards(current_move.animation)
 	else:
 		animator.play(current_move.animation)
+		
+	if current_move.sound_name != "" and current_move.play_once:
+		sound_manager.play_sound(current_move.sound_name, current_move.delay)
 	
 func apply_gravity(delta : float, gravity : float = DEFAULT_GRAVITY):
 	if not player.is_grounded():

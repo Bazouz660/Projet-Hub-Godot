@@ -1,13 +1,8 @@
 extends Move
 class_name Slash1
 
-const TRANSITION_TIMING = 1.6 # Full animation duration
-const COMBO_TIMING = 1.1 # Time at which we can chain the attack
-
-func _ready():
-	animation = "slash_1"
-	move_name = "slash_1"
-	stamina_required = 5.0
+@export var TRANSITION_TIMING = 1.6 # Full animation duration
+@export var COMBO_TIMING = 1.1 # Time at which we can chain the attack
 
 func on_enter_state():
 	player.velocity = Vector3.ZERO

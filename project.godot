@@ -25,7 +25,6 @@ driver/enable_input=true
 
 [autoload]
 
-SoundManager="*res://manager/sound_manager.gd"
 MultiplayerManager="*res://manager/multiplayer_manager.gd"
 SceneManager="*res://manager/scene_manager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
