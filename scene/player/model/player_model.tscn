@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6i3ktwxchyr8"]
+[gd_scene load_steps=35 format=3 uid="uid://b6i3ktwxchyr8"]
 
 [ext_resource type="Script" path="res://scene/player/model/humanoid_model.gd" id="1_dfp2c"]
 [ext_resource type="Animation" uid="uid://c30rfefyk5ykf" path="res://asset/animation/humanoid/ready_idle.res" id="2_b6r85"]
 [ext_resource type="PackedScene" uid="uid://caj4uw43llohe" path="res://scene/weapon/sword.tscn" id="2_gqoei"]
+[ext_resource type="Script" path="res://scene/player/model/humanoid_sound_manager.gd" id="2_hhekq"]
 [ext_resource type="Animation" uid="uid://c3vd7xb4dsl31" path="res://asset/animation/humanoid/roll.res" id="3_3r6fq"]
 [ext_resource type="Animation" uid="uid://gk61tvs7ylqh" path="res://asset/animation/humanoid/run.res" id="4_f7g05"]
 [ext_resource type="Animation" uid="uid://c4lc46lkxocn6" path="res://asset/animation/humanoid/sprint.res" id="5_hq78x"]
@@ -21,6 +22,7 @@
 [ext_resource type="Script" path="res://scene/player/move/rest.gd" id="13_yducd"]
 [ext_resource type="Script" path="res://scene/player/move/rest_to_idle.gd" id="16_f8u1j"]
 [ext_resource type="Script" path="res://scene/player/move/idle_to_rest.gd" id="17_voj4g"]
+[ext_resource type="Script" path="res://scene/player/move/move_sound.gd" id="18_15yph"]
 [ext_resource type="Script" path="res://scene/player/move/slash_1.gd" id="18_shhe5"]
 [ext_resource type="Script" path="res://scene/player/move/slash_2.gd" id="19_s86su"]
 [ext_resource type="Script" path="res://scene/player/model/consecutive_attack.gd" id="19_sgwv5"]
@@ -40,8 +42,53 @@ _data = {
 "walk": ExtResource("6_oqwur")
 }
 
+[sub_resource type="Resource" id="Resource_dtec1"]
+script = ExtResource("18_15yph")
+sound_name = "step"
+delay = 0.39
+play_once = false
+material_based = true
+
+[sub_resource type="Resource" id="Resource_nvww7"]
+script = ExtResource("18_15yph")
+sound_name = "roll"
+delay = 0.3
+play_once = true
+material_based = false
+
+[sub_resource type="Resource" id="Resource_qo5fi"]
+script = ExtResource("18_15yph")
+sound_name = "step"
+delay = 0.31
+play_once = false
+material_based = true
+
+[sub_resource type="Resource" id="Resource_coc8v"]
+script = ExtResource("18_15yph")
+sound_name = "swipe_1"
+delay = 0.5
+play_once = true
+material_based = false
+
+[sub_resource type="Resource" id="Resource_4m4xb"]
+script = ExtResource("18_15yph")
+sound_name = "swipe_2"
+delay = 0.2
+play_once = true
+material_based = false
+
+[sub_resource type="Resource" id="Resource_8ea48"]
+script = ExtResource("18_15yph")
+sound_name = "swipe_3"
+delay = 0.4
+play_once = true
+material_based = false
+
 [node name="Model" type="Node3D"]
 script = ExtResource("1_dfp2c")
+
+[node name="HumanoidSoundManager" type="Node" parent="."]
+script = ExtResource("2_hhekq")
 
 [node name="GeneralSkeleton" type="Skeleton3D" parent="."]
 unique_name_in_owner = true
@@ -285,26 +332,21 @@ animation = "ready_idle"
 script = ExtResource("9_w7hc7")
 move_name = "run"
 animation = "run"
-sound_name = "step"
-delay = 0.39
-play_once = false
+sound = SubResource("Resource_dtec1")
 
 [node name="Roll" type="Node" parent="."]
 script = ExtResource("10_u5sls")
 move_name = "roll"
 stamina_required = 10.0
 animation = "roll"
-sound_name = "roll"
-delay = 0.25
+sound = SubResource("Resource_nvww7")
 
 [node name="Sprint" type="Node" parent="."]
 script = ExtResource("11_4su47")
 move_name = "sprint"
 stamina_required = 5.0
 animation = "sprint"
-sound_name = "step"
-delay = 0.33
-play_once = false
+sound = SubResource("Resource_qo5fi")
 
 [node name="RestToIdle" type="Node" parent="."]
 script = ExtResource("16_f8u1j")
@@ -327,8 +369,7 @@ script = ExtResource("18_shhe5")
 move_name = "slash_1"
 stamina_required = 5.0
 animation = "slash_1"
-sound_name = "swipe_1"
-delay = 0.5
+sound = SubResource("Resource_coc8v")
 
 [node name="ConsecutiveAttack" type="Node" parent="Slash1" node_paths=PackedStringArray("root_move")]
 script = ExtResource("19_sgwv5")
@@ -341,7 +382,7 @@ script = ExtResource("19_s86su")
 move_name = "slash_2"
 stamina_required = 5.0
 animation = "slash_2"
-sound_name = "swipe_2"
+sound = SubResource("Resource_4m4xb")
 
 [node name="ConsecutiveAttack" type="Node" parent="Slash2" node_paths=PackedStringArray("root_move")]
 script = ExtResource("19_sgwv5")
@@ -354,5 +395,4 @@ script = ExtResource("20_ps46c")
 move_name = "slash_3"
 stamina_required = 5.0
 animation = "slash_3"
-sound_name = "swipe_3"
-delay = 0.4
+sound = SubResource("Resource_8ea48")

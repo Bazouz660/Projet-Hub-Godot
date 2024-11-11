@@ -6,10 +6,10 @@ class_name HumanoidModel
 @onready var DEFAULT_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var player = $".." as Player
-@onready var skeleton = %GeneralSkeleton
-@onready var animator = $AnimationPlayer
+@onready var sound_manager = $HumanoidSoundManager as HumanoidSoundManager
+@onready var skeleton = %GeneralSkeleton as Skeleton3D
+@onready var animator = $AnimationPlayer as AnimationPlayer
 @onready var combat = $Combat as HumanoidCombat
-@onready var sound_manager = $"../Presentation/SoundManager" as SoundManager3D
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -60,8 +60,7 @@ func update(input : InputPackage, delta : float):
 	player.move_and_slide()
 
 	# Sound
-	if current_move.sound_name != "" and !current_move.play_once:
-		sound_manager.play_sound_with_interval(current_move.sound_name, current_move.delay, delta)
+	sound_manager.update(current_move.sound, delta)
 
 func switch_to(state : String):
 	current_state = state
@@ -74,9 +73,8 @@ func switch_to(state : String):
 		animator.play_backwards(current_move.animation)
 	else:
 		animator.play(current_move.animation)
-		
-	if current_move.sound_name != "" and current_move.play_once:
-		sound_manager.play_sound(current_move.sound_name, current_move.delay)
+	
+	sound_manager.update_once(current_move.sound)
 	
 func apply_gravity(delta : float, gravity : float = DEFAULT_GRAVITY):
 	if not player.is_grounded():

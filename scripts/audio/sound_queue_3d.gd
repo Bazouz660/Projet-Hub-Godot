@@ -29,7 +29,7 @@ func _get_configuration_warnings():
 	if get_child(0) is not AudioStreamPlayer3D:
 		return "Expected first child to be an AudioStreamPlayer3D."
 
-func play_sound():
+func play():
 	if !audio_stream_players[next].playing:
 		audio_stream_players[next].play()
 		next += 1

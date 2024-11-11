@@ -45,6 +45,7 @@ func _setup_water_mesh():
 func apply_mesh_data(mesh_data: ArrayMesh):
 	mesh_instance.mesh = mesh_data
 	mesh_instance.material_override = config.terrain_material
+	mesh_instance.material_override.set_meta("type", "terrain")
 	
 	var shape = ConcavePolygonShape3D.new()
 	shape.set_faces(mesh_data.get_faces())

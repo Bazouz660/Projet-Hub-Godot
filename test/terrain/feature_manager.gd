@@ -170,7 +170,8 @@ static func _calculate_terrain_normal(world_x: float, world_z: float) -> Vector3
 static func _create_multimesh_feature(chunk: TerrainChunk, definition: FeatureDefinition, positions: Array):
 	var feature_rng = RandomNumberGenerator.new()
 	var feature_seed = get_instance()._config.seed
-	feature_seed = hash(str(feature_seed) + str(chunk.global_position.x) + str(chunk.global_position.y) + definition.name)
+	feature_seed = hash(str(feature_seed) + str(positions) \
+	+ str(chunk.global_position.x) + str(chunk.global_position.y) + definition.name)
 	feature_rng.seed = feature_seed
 	
 	var multi_mesh = MultiMesh.new()
@@ -228,7 +229,8 @@ static func _create_instanced_feature(chunk: TerrainChunk, definition: FeatureDe
 	# Create a deterministic RNG for this specific feature in this chunk
 	var feature_rng = RandomNumberGenerator.new()
 	var feature_seed = get_instance()._config.seed
-	feature_seed = hash(str(feature_seed) + str(chunk.global_position.x) + str(chunk.global_position.y) + definition.name)
+	feature_seed = hash(str(feature_seed) + str(positions) \
+	+ str(chunk.global_position.x) + str(chunk.global_position.y) + definition.name)
 	feature_rng.seed = feature_seed
 	
 	var instances: Array[Node3D] = []

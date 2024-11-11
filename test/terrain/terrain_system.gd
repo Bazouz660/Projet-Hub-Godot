@@ -15,9 +15,13 @@ var current_chunk = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 var loaded = false
 
+static var instance : TerrainSystem
+
 func _ready():
 	if Engine.is_editor_hint():
 		return
+		
+	instance = self
 		
 	config.biome_noise.noise.seed = config.seed
 	config.height_noise.noise.seed = config.seed
@@ -103,6 +107,26 @@ func get_current_biome() -> String:
 		return "Plains"
 	else:
 		return "Beach"
+		
+func is_in_water() -> bool:
+	return player.global_position.y <= config.water_level
+
+static func get_biome_material() -> String:
+	
+	if instance.is_in_water():
+		return "water"
+	
+	var biome = instance.get_current_biome()
+	match biome:
+		"Mountain":
+			return "rock"
+		"Forest":
+			return "grass"
+		"Plains":
+			return "grass"
+		"Beach":
+			return "sand"
+	return "Unknown"
 
 func get_chunk_pos(world_pos: Vector3) -> Vector2:
 	return Vector2(

@@ -1,18 +1,36 @@
-[gd_scene load_steps=18 format=4 uid="uid://co4txsbny7boe"]
+[gd_scene load_steps=36 format=4 uid="uid://co4txsbny7boe"]
 
 [ext_resource type="Script" path="res://scene/player/presentation/player_presentation.gd" id="1_b84pu"]
 [ext_resource type="Material" uid="uid://d2rq00r7kk0ga" path="res://data/materials/default_material.tres" id="2_gsq85"]
-[ext_resource type="Script" path="res://scripts/audio/sound_manager_3d.gd" id="3_g6gqe"]
+[ext_resource type="Script" path="res://scripts/audio/sound_player_3d.gd" id="3_g6gqe"]
 [ext_resource type="Script" path="res://scripts/audio/sound_pool_3d.gd" id="4_jj7mt"]
-[ext_resource type="AudioStream" uid="uid://d1jxwncjjewgm" path="res://asset/audio/sound/humanoid/step/step_grass_barefoot_1.wav" id="5_3nh5v"]
+[ext_resource type="AudioStream" uid="uid://d1jxwncjjewgm" path="res://asset/audio/sound/humanoid/step/step_grass_1.wav" id="5_3nh5v"]
+[ext_resource type="AudioStream" uid="uid://be2weedvae6ve" path="res://asset/audio/sound/humanoid/step/step_sand_1.wav" id="5_ackd8"]
 [ext_resource type="Script" path="res://scripts/audio/sound_queue_3d.gd" id="5_yq0dp"]
-[ext_resource type="AudioStream" uid="uid://cmah6pct1jxh5" path="res://asset/audio/sound/humanoid/step/step_grass_barefoot_2.wav" id="6_y45fn"]
-[ext_resource type="AudioStream" uid="uid://botmfwlb8bc8n" path="res://asset/audio/sound/humanoid/step/step_grass_barefoot_3.wav" id="7_sfd3f"]
-[ext_resource type="AudioStream" uid="uid://dgl33j4l4gqd5" path="res://asset/audio/sound/humanoid/step/step_grass_barefoot_4.wav" id="8_sfcem"]
+[ext_resource type="AudioStream" uid="uid://bofplwri6nydg" path="res://asset/audio/sound/humanoid/step/step_sand_2.wav" id="6_rk8nh"]
+[ext_resource type="AudioStream" uid="uid://cmah6pct1jxh5" path="res://asset/audio/sound/humanoid/step/step_grass_2.wav" id="6_y45fn"]
+[ext_resource type="AudioStream" uid="uid://bj3eo3bpb0pyf" path="res://asset/audio/sound/humanoid/step/step_sand_3.wav" id="7_gng2d"]
+[ext_resource type="AudioStream" uid="uid://botmfwlb8bc8n" path="res://asset/audio/sound/humanoid/step/step_grass_3.wav" id="7_sfd3f"]
+[ext_resource type="AudioStream" uid="uid://bvm2ytcf2d3c" path="res://asset/audio/sound/humanoid/step/step_sand_4.wav" id="8_o3ppd"]
+[ext_resource type="AudioStream" uid="uid://dgl33j4l4gqd5" path="res://asset/audio/sound/humanoid/step/step_grass_4.wav" id="8_sfcem"]
+[ext_resource type="AudioStream" uid="uid://w0hc8bm5rb5b" path="res://asset/audio/sound/humanoid/step/step_sand_5.wav" id="9_jvvhs"]
+[ext_resource type="AudioStream" uid="uid://bn1wsb1fnii4c" path="res://asset/audio/sound/humanoid/step/step_rock_1.wav" id="10_6rigb"]
 [ext_resource type="AudioStream" uid="uid://p5pysayrayeg" path="res://asset/audio/sound/humanoid/roll/roll_1.mp3" id="10_j1lg5"]
+[ext_resource type="AudioStream" uid="uid://durh761sfld1k" path="res://asset/audio/sound/humanoid/step/step_sand_6.wav" id="10_qiiqy"]
+[ext_resource type="AudioStream" uid="uid://bu1jjbf3tx24x" path="res://asset/audio/sound/humanoid/step/step_sand_7.wav" id="11_gfyes"]
 [ext_resource type="AudioStream" uid="uid://bpjbsdrrstd6m" path="res://asset/audio/sound/weapon/swipe_1.wav" id="11_ic0cc"]
+[ext_resource type="AudioStream" uid="uid://cinfykuidvksj" path="res://asset/audio/sound/humanoid/step/step_rock_2.wav" id="11_kiqvg"]
 [ext_resource type="AudioStream" uid="uid://fed2fktpas60" path="res://asset/audio/sound/weapon/swipe_3.wav" id="12_fwau1"]
+[ext_resource type="AudioStream" uid="uid://cygyuaj5bxr0i" path="res://asset/audio/sound/humanoid/step/step_rock_3.wav" id="12_lwroe"]
+[ext_resource type="AudioStream" uid="uid://btp6m46fqs2bc" path="res://asset/audio/sound/humanoid/step/step_rock_4.wav" id="13_3xcpf"]
 [ext_resource type="AudioStream" uid="uid://bmoh4kkbrq6nt" path="res://asset/audio/sound/weapon/swipe_2.wav" id="13_fcn6c"]
+[ext_resource type="AudioStream" uid="uid://ctq86p5xoucyi" path="res://asset/audio/sound/humanoid/step/step_rock_5.wav" id="14_ndgl1"]
+[ext_resource type="AudioStream" uid="uid://dimorkk8fxo2x" path="res://asset/audio/sound/humanoid/step/step_rock_6.wav" id="15_f7qmc"]
+[ext_resource type="AudioStream" uid="uid://bpvnhgn8j7bbb" path="res://asset/audio/sound/humanoid/step/step_water_1.wav" id="22_dma5t"]
+[ext_resource type="AudioStream" uid="uid://bvh6vsf3hty0o" path="res://asset/audio/sound/humanoid/step/step_water_2.wav" id="23_ekktu"]
+[ext_resource type="AudioStream" uid="uid://dmdf5w6j05p5d" path="res://asset/audio/sound/humanoid/step/step_water_3.wav" id="24_sx8l2"]
+[ext_resource type="AudioStream" uid="uid://6rek1w0hrr0i" path="res://asset/audio/sound/humanoid/step/step_water_4.wav" id="25_5xxdh"]
+[ext_resource type="AudioStream" uid="uid://b57bhrq4sddu2" path="res://asset/audio/sound/humanoid/step/step_water_5.wav" id="26_lwq65"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wm5ms"]
 resource_name = "AuxScene_mesh"
@@ -150,67 +168,53 @@ mesh = SubResource("ArrayMesh_jun5y")
 skin = SubResource("Skin_g4h7x")
 surface_material_override/0 = ExtResource("2_gsq85")
 
-[node name="SoundManager" type="Node3D" parent="."]
+[node name="SoundPlayer3D" type="Node3D" parent="."]
 script = ExtResource("3_g6gqe")
 
-[node name="StepSoundPool" type="Node3D" parent="SoundManager"]
+[node name="StepGrassSoundPool" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("4_jj7mt")
+audio_streams = Array[AudioStream]([ExtResource("5_3nh5v"), ExtResource("6_y45fn"), ExtResource("7_sfd3f"), ExtResource("8_sfcem")])
 
-[node name="SoundQueue3D" type="Node3D" parent="SoundManager/StepSoundPool"]
-script = ExtResource("5_yq0dp")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/StepSoundPool/SoundQueue3D"]
-stream = ExtResource("5_3nh5v")
-max_distance = 20.0
-
-[node name="SoundQueue3D2" type="Node3D" parent="SoundManager/StepSoundPool"]
-script = ExtResource("5_yq0dp")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/StepSoundPool/SoundQueue3D2"]
-stream = ExtResource("6_y45fn")
-max_distance = 20.0
-
-[node name="SoundQueue3D3" type="Node3D" parent="SoundManager/StepSoundPool"]
-script = ExtResource("5_yq0dp")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/StepSoundPool/SoundQueue3D3"]
-stream = ExtResource("7_sfd3f")
-max_distance = 20.0
-
-[node name="SoundQueue3D4" type="Node3D" parent="SoundManager/StepSoundPool"]
-script = ExtResource("5_yq0dp")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/StepSoundPool/SoundQueue3D4"]
-stream = ExtResource("8_sfcem")
-max_distance = 20.0
-
-[node name="RollSoundPool" type="Node3D" parent="SoundManager"]
+[node name="StepRockSoundPool" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("4_jj7mt")
+audio_streams = Array[AudioStream]([ExtResource("10_6rigb"), ExtResource("11_kiqvg"), ExtResource("12_lwroe"), ExtResource("13_3xcpf"), ExtResource("14_ndgl1"), ExtResource("15_f7qmc")])
+volume_db = -6.0
 
-[node name="SoundQueue3D" type="Node3D" parent="SoundManager/RollSoundPool"]
+[node name="StepSandSoundPool" type="Node3D" parent="SoundPlayer3D"]
+script = ExtResource("4_jj7mt")
+audio_streams = Array[AudioStream]([ExtResource("5_ackd8"), ExtResource("6_rk8nh"), ExtResource("7_gng2d"), ExtResource("8_o3ppd"), ExtResource("9_jvvhs"), ExtResource("10_qiiqy"), ExtResource("11_gfyes")])
+
+[node name="StepWaterSoundPool" type="Node3D" parent="SoundPlayer3D"]
+script = ExtResource("4_jj7mt")
+audio_streams = Array[AudioStream]([ExtResource("22_dma5t"), ExtResource("23_ekktu"), ExtResource("24_sx8l2"), ExtResource("25_5xxdh"), ExtResource("26_lwq65")])
+
+[node name="RollSoundPool" type="Node3D" parent="SoundPlayer3D"]
+script = ExtResource("4_jj7mt")
+audio_streams = Array[AudioStream]([ExtResource("10_j1lg5")])
+attenuation_mode = null
+volume_db = null
+unit_size = null
+max_db = null
+pitch_scale = null
+max_distance = null
+
+[node name="SwipeQueue" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("5_yq0dp")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/RollSoundPool/SoundQueue3D"]
-stream = ExtResource("10_j1lg5")
-max_distance = 20.0
-
-[node name="SwipeQueue" type="Node3D" parent="SoundManager"]
-script = ExtResource("5_yq0dp")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/SwipeQueue"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/SwipeQueue"]
 stream = ExtResource("11_ic0cc")
 max_distance = 20.0
 
-[node name="SwipeQueue2" type="Node3D" parent="SoundManager"]
+[node name="SwipeQueue2" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("5_yq0dp")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/SwipeQueue2"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/SwipeQueue2"]
 stream = ExtResource("12_fwau1")
 max_distance = 20.0
 
-[node name="SwipeQueue3" type="Node3D" parent="SoundManager"]
+[node name="SwipeQueue3" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("5_yq0dp")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager/SwipeQueue3"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/SwipeQueue3"]
 stream = ExtResource("13_fcn6c")
 max_distance = 20.0

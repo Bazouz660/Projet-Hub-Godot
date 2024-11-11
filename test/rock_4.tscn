@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://d0n7y1ii0vs0j"]
+[gd_scene load_steps=9 format=4 uid="uid://d0n7y1ii0vs0j"]
 
 [ext_resource type="Texture2D" uid="uid://diy1y5aquyiqd" path="res://asset/model/rock/low_poly_rock_set_9.png" id="1_xb12a"]
 [ext_resource type="Texture2D" uid="uid://mf00knb5qnlf" path="res://asset/model/rock/low_poly_rock_set_10.png" id="2_djsdv"]
 [ext_resource type="Texture2D" uid="uid://dt20bxrva626u" path="res://asset/model/rock/low_poly_rock_set_11.png" id="3_cvnu5"]
+[ext_resource type="Material" uid="uid://drdk27ngtdeoh" path="res://test/caillou.tres" id="4_ql5jo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5syn1"]
 resource_name = "initialShadingGroup_2"
@@ -56,6 +57,7 @@ data = PackedVector3Array(-73.5217, 231.041, 0, 10.2795, 242.271, 68.8481, 10.27
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, -0.000793755, 3.04117)
 mesh = SubResource("ArrayMesh_l2qd5")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("4_ql5jo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, -0.000793755, 3.04117)

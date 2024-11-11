@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cmah6pct1jxh5"
-path="res://.godot/imported/step_grass_barefoot_2.wav-02ac3f5c2be39c16fca6a2b61578baa9.sample"
+path="res://.godot/imported/step_grass_2.wav-cdd0a322168f20ad0f7a086ff4e7ab39.sample"
 
 [deps]
 
-source_file="res://asset/audio/sound/humanoid/step/step_grass_barefoot_2.wav"
-dest_files=["res://.godot/imported/step_grass_barefoot_2.wav-02ac3f5c2be39c16fca6a2b61578baa9.sample"]
+source_file="res://asset/audio/sound/humanoid/step/step_grass_2.wav"
+dest_files=["res://.godot/imported/step_grass_2.wav-cdd0a322168f20ad0f7a086ff4e7ab39.sample"]
 
 [params]
 

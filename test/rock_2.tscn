@@ -1,19 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://bqrmje6bgidxj"]
+[gd_scene load_steps=5 format=4 uid="uid://bqrmje6bgidxj"]
 
-[ext_resource type="Texture2D" uid="uid://cw4gychlmrry6" path="res://asset/model/rock/low_poly_rock_set_3.png" id="1_qkno7"]
-[ext_resource type="Texture2D" uid="uid://cxakfovat16cm" path="res://asset/model/rock/low_poly_rock_set_4.png" id="2_5t27a"]
-[ext_resource type="Texture2D" uid="uid://cynwb55hs8i3l" path="res://asset/model/rock/low_poly_rock_set_5.png" id="3_q2woy"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3w24h"]
-resource_name = "initialShadingGroup_0"
-cull_mode = 2
-albedo_texture = ExtResource("1_qkno7")
-metallic_texture = ExtResource("2_5t27a")
-metallic_texture_channel = 2
-roughness_texture = ExtResource("2_5t27a")
-roughness_texture_channel = 1
-normal_enabled = true
-normal_texture = ExtResource("3_q2woy")
+[ext_resource type="Material" uid="uid://drdk27ngtdeoh" path="res://test/caillou.tres" id="1_sxisj"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aavei"]
 _surfaces = [{
@@ -37,7 +24,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYACAAKAAkACAALAAoADAAOAA0ADAAPAA4AEAASABEAEAATABIAFAAWABUAFAAXABYAGAAaABkAGAAbABoAHAAeAB0AHAAfAB4AIAAiACEAIAAjACIAJAAmACUAJAAnACYAKAAqACkAKAArACoALAAuAC0ALAAvAC4ADQAwAAwADQAxADAAMgA0ADMAMgA1ADQANgA4ADcANgA5ADgAOgA8ADsAOgA9ADwAPgBAAD8APgBBAEAAQgBEAEMAQgBFAEQARgBIAEcARgBJAEgASgBMAEsASgBNAEwA"),
-"material": SubResource("StandardMaterial3D_3w24h"),
+"material": ExtResource("1_sxisj"),
 "name": "initialShadingGroup_0",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

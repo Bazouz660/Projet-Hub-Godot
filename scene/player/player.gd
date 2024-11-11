@@ -1,13 +1,16 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var input_gatherer = $Input as InputGatherer
-@onready var model = $Model as HumanoidModel
-@onready var presentation = $Presentation as PlayerPresentation
-@onready var camera = $Camera/PreventRotationCopy/CameraPivot/Camera3D
-@onready var step_cast = $StepCast as ShapeCast3D
-@onready var inventory = $InventoryComponent as InventoryComponent
-@onready var stamina = $StaminaComponent as StaminaComponent
+@onready var input_gatherer := $Input as InputGatherer
+@onready var model := $Model as HumanoidModel
+@onready var presentation := $Presentation as PlayerPresentation
+@onready var camera := $Camera/PreventRotationCopy/CameraPivot/Camera3D
+@onready var step_cast := $StepCast as ShapeCast3D
+@onready var inventory := $InventoryComponent as InventoryComponent
+@onready var stamina := $StaminaComponent as StaminaComponent
+@onready var collision_shape := $CollisionShape3D as CollisionShape3D
+@onready var material_detector := $MaterialDetector as MaterialDetector
+
 
 var sensitivity = 0.003;
 var yaw = 0.0;
@@ -19,6 +22,7 @@ func _enter_tree():
 func _ready():
 	SceneManager.disable_player_input = false
 	presentation.accept_skeleton(model.skeleton)
+	presentation.register_sounds(model.sound_manager)
 	model.animator.play("ready_idle")
 	camera.current = is_multiplayer_authority()
 

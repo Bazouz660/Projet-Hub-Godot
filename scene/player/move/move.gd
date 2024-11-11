@@ -13,10 +13,7 @@ var player : Player
 @export var animation : String
 @export var reverse_animation : bool = false
 @export_group("Audio")
-@export var sound_name : String = ""
-## Interval between each sound triggering. If play once is true, it is used as a delay
-@export var delay : float = 0.0
-@export var play_once : bool = true
+@export var sound : MoveSound
 
 var has_queued_move : bool = false
 var queued_move : String = "none, drop error please"
