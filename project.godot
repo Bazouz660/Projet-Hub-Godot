@@ -15,6 +15,7 @@ proton_scatter/always_show_gizmos=false
 [application]
 
 config/name="Projet-Hub-Godot"
+config/version="0.0.3"
 run/main_scene="res://scene/root.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -29,6 +30,10 @@ MultiplayerManager="*res://manager/multiplayer_manager.gd"
 SceneManager="*res://manager/scene_manager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TimeManager="*res://manager/time_manager.gd"
+
+[debug]
+
+gdscript/warnings/integer_division=0
 
 [editor_plugins]
 
