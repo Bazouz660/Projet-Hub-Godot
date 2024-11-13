@@ -313,7 +313,7 @@ bones/27/rotation = Quaternion(7.44847e-17, 2.26971e-17, -8.67362e-19, 1)
 bones/27/scale = Vector3(1, 1, 1)
 
 [node name="RightHandAttachment" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.872939, 0.220594, 0.435105, 0.375545, 0.265388, -0.887995, -0.311358, 0.938567, 0.148825, -47.3467, 101.863, 80.2928)
+transform = Transform3D(0.872938, 0.220594, 0.435106, 0.375546, 0.265389, -0.887994, -0.311359, 0.938566, 0.148825, -47.3467, 101.863, 80.2928)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -324,14 +324,14 @@ transform = Transform3D(0.955677, -0.0468568, 0.290664, -0.00936727, 0.981915, 0
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 
 [node name="LeftHandAttachment" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.876244, 0.186809, -0.444183, 0.481839, 0.329561, -0.811924, -0.0052895, -0.925468, -0.378788, 4.67654, 126.303, -17.7375)
+transform = Transform3D(-0.876244, 0.186809, -0.444183, 0.481838, 0.329561, -0.811925, -0.00528977, -0.925469, -0.378787, 4.67651, 126.303, -17.7375)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHandAttachment"]
 
 [node name="HeadAttachment" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.522699, 0.143243, 0.840397, 0.768312, 0.348034, -0.537186, -0.369435, 0.926474, 0.0718614, -18.811, 113.985, 55.7163)
+transform = Transform3D(0.522699, 0.143243, 0.840397, 0.768312, 0.348035, -0.537186, -0.369436, 0.926473, 0.0718628, -18.811, 113.985, 55.7162)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 
