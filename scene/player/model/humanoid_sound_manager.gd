@@ -11,10 +11,6 @@ var sound_player : SoundPlayer3D
 func _rpc_play_sound_local(sound_name : String):	
 	sound_player.play(sound_name)
 	
-@rpc("any_peer", "call_remote")
-func _rpc_play_sound_remote(sound_name : String):	
-	sound_player.play(sound_name)
-	
 func _get_material_sound(sound_name : String) -> String:
 	var material := model.player.material_detector.check_material() as Dictionary
 
@@ -34,7 +30,7 @@ func _play_sound_internal(sound_name : String, material_based : bool, local : bo
 	if local:
 		rpc.call("_rpc_play_sound_local", sound_name)
 	else:
-		rpc.call("_rpc_play_sound_remote", sound_name)
+		sound_player.play(sound_name)
 
 func update(sound : MoveSound, delta : float):
 	if !is_instance_valid(sound):
