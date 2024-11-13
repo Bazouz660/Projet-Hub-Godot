@@ -31,7 +31,9 @@ static var moves_priority : Dictionary = {
 	"roll" : 10,
 	"slash_1" : 100,
 	"slash_2" : 101,
-	"slash_3" : 102
+	"slash_3" : 102,
+	"idle_swim" : 1000,
+	"swim" : 1001,
 }
 
 

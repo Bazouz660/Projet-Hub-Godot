@@ -1,20 +1,21 @@
 extends Move
-class_name Idle
+class_name IdleSwim
 
 func check_relevance(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)
-	if player.is_in_water():
-		return "idle_swim"
 	return input.actions[0]
-
+	
+func on_enter_state():
+	player.position.y = player.WATER_LEVEL - player.height * 1.2
+	player.velocity.y = 0.0
+	
 func update(input : InputPackage, delta : float):
 	player.velocity = velocity_by_input(input, delta)
 	player.rotation.y = rotation_by_input(input)
 
 func velocity_by_input(_input : InputPackage, _delta : float) -> Vector3:
-	var y = player.velocity.y
 	var velocity = lerp(player.velocity, Vector3(0, 0, 0), 0.1)
-	velocity.y = y
+	velocity.y = 0.0
 	return velocity
 
 func rotation_by_input(_input : InputPackage) -> float:

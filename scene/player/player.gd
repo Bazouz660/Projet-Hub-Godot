@@ -15,6 +15,10 @@ class_name Player
 var sensitivity = 0.003;
 var yaw = 0.0;
 var grounded = false;
+@export var height = 1.0
+
+## TO DO: MAKE THIS A GLOBAL VARIABLE
+const WATER_LEVEL = 0;
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -36,6 +40,9 @@ func _physics_process(delta):
 
 func is_grounded() -> bool:
 	return grounded or is_on_floor()
+	
+func is_in_water() -> bool:
+	return global_position.y + height <= WATER_LEVEL
 	
 @rpc("any_peer", "call_remote", "reliable")
 func rpc_set_position(pos):

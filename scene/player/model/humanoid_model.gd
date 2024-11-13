@@ -10,6 +10,7 @@ class_name HumanoidModel
 @onready var skeleton = %GeneralSkeleton as Skeleton3D
 @onready var animator = $AnimationPlayer as AnimationPlayer
 @onready var combat = $Combat as HumanoidCombat
+@onready var moves_node = $Moves
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -27,22 +28,13 @@ var current_state : String = ""
 			switch_to(value)
 
 # Add moves to the model
-var moves
+var moves : Dictionary
 
 func _ready():
-
-	moves = {
-		"idle" : $Idle,
-		"run" : $Run,
-		"sprint" : $Sprint,
-		"roll" : $Roll,
-		"rest" : $Rest,
-		"rest_to_idle" : $RestToIdle,
-		"idle_to_rest" : $IdleToRest,
-		"slash_1" : $Slash1,
-		"slash_2" : $Slash2,
-		"slash_3" : $Slash3,
-	}
+	
+	for child in moves_node.get_children():
+		if child is Move:
+			moves.get_or_add(child.name.to_snake_case(), child)
 
 	current_move = moves["idle"]
 	for move in moves.values():

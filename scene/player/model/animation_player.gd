@@ -11,6 +11,7 @@ func _process(_delta):
 			for i in anim.get_track_count():
 				anim.track_set_interpolation_type(i, Animation.INTERPOLATION_NEAREST)
 				var path : String = anim.track_get_path(i)
+				path = path.replace("_", "")
 				path = path.rsplit(":", 1)[1]
 				path = "GeneralSkeleton:" + path
 				anim.track_set_path(i, path)
