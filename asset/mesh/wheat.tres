@@ -1,6 +1,7 @@
-[gd_resource type="QuadMesh" load_steps=5 format=3 uid="uid://dqsfghpuwto8"]
+[gd_resource type="QuadMesh" load_steps=6 format=3 uid="uid://dqsfghpuwto8"]
 
 [ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_xerpp"]
+[ext_resource type="Texture2D" uid="uid://3dyh8f0patqm" path="res://asset/texture/foliage/wheat.png" id="2_h8hs1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
 
@@ -20,6 +21,7 @@ shader_parameter/wind_scale = 10.0
 shader_parameter/noise_scale = 10.0
 shader_parameter/player_influence_radius = 1.5
 shader_parameter/player_influence_strength = 0.7
+shader_parameter/texture_albedo = ExtResource("2_h8hs1")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 
 [resource]

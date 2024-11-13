@@ -1,6 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dxip5wf6orgai"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dxip5wf6orgai"]
 
 [ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_sx1oy"]
+[ext_resource type="Texture2D" uid="uid://c2fqujuastn6o" path="res://asset/texture/foliage/grass_blade.png" id="2_36huk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
 
@@ -20,4 +21,5 @@ shader_parameter/wind_scale = 10.0
 shader_parameter/noise_scale = 10.0
 shader_parameter/player_influence_radius = 2.0
 shader_parameter/player_influence_strength = 0.5
+shader_parameter/texture_albedo = ExtResource("2_36huk")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
