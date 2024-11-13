@@ -37,7 +37,7 @@ gdscript/warnings/integer_division=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
 
 [filesystem]
 

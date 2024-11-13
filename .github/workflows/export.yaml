@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-      - "v*"
+      - "v-test*"
 
 jobs:
   # job id, can be anything
