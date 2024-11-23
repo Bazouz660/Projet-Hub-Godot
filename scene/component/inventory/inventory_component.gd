@@ -3,6 +3,8 @@ class_name InventoryComponent extends Node
 @export var size: int = 20
 var slots: Array[InventorySlot]
 
+signal inventory_updated
+
 func _ready() -> void:
     slots = []
     for i in range(size):
@@ -25,6 +27,7 @@ func add_item(item: Item, amount: int = 1) -> int:
             if slot.is_empty():
                 remaining = slot.add_item(item, remaining)
 
+    inventory_updated.emit()
     return remaining
 
 func remove_item(item_id: String, amount: int = 1) -> int:
@@ -36,6 +39,7 @@ func remove_item(item_id: String, amount: int = 1) -> int:
         if not slot.is_empty() and slot.item.id == item_id:
             remaining -= slot.remove_item(remaining)
 
+    inventory_updated.emit()
     return amount - remaining
 
 func has_item(item_id: String, amount: int = 1) -> bool:

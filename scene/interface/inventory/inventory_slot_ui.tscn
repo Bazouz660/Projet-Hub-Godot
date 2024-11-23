@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://ibl3bn1fue5n"]
+
+[ext_resource type="Script" path="res://scene/interface/inventory/inventory_slot_ui.gd" id="1_u3mii"]
+
+[node name="InventorySlotUI" type="Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u3mii")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

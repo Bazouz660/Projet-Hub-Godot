@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="2_kmqwi"]
 [ext_resource type="Script" path="res://scene/player/input/input.gd" id="2_q7odf"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
-[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/InventoryComponent.tscn" id="5_gwy6j"]
+[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/inventory_component.tscn" id="5_gwy6j"]
 [ext_resource type="Script" path="res://scene/component/stamina/stamina_component.gd" id="7_4jg4x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
