@@ -31,8 +31,6 @@ script = ExtResource("1_k72xi")
 [node name="MaterialDetector" type="Node3D" parent="."]
 script = ExtResource("2_nvjhd")
 target_path = NodePath("..")
-detection_distance = 2.0
-check_interval = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -56,7 +54,7 @@ script = ExtResource("7_4jg4x")
 
 [node name="Model" parent="." instance=ExtResource("3_xohdc")]
 
+[node name="Camera" parent="." instance=ExtResource("2_15wi1")]
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_iviky")
-
-[node name="Camera" parent="." instance=ExtResource("2_15wi1")]

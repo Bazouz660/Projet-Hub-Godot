@@ -78,7 +78,7 @@ static func _generate_feature_positions_threaded(
 	var height_noise = get_instance()._height_noise
 	var height_scale = get_instance()._height_scale
 	var height_offset = get_instance()._height_offset
-	
+
 	# Pre-calculate range checks
 	var min_elevation = definition.elevation_range.x
 	var max_elevation = definition.elevation_range.y

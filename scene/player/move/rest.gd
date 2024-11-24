@@ -1,7 +1,7 @@
 extends Move
 class_name Rest
 
-func check_relevance(input) -> String:
+func default_lifecycle(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)
 	if input.actions[0] == "idle_to_rest":
 		return "rest_to_idle"

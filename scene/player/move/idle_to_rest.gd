@@ -3,7 +3,7 @@ class_name IdleToRest
 
 @export var DURATION : float = 2.2917
 
-func check_relevance(input) -> String:
+func default_lifecycle(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)
 	if works_longer_than(DURATION):
 		return "rest"

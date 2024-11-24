@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs2gn2wodbkxy"]
+
+[ext_resource type="Script" path="res://scene/dummy/dummy.gd" id="1_7ptr2"]
+[ext_resource type="Script" path="res://manager/material_sampler.gd" id="2_o3ct4"]
+[ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="3_upf5j"]
+[ext_resource type="Script" path="res://scene/player/input/input.gd" id="4_aie4b"]
+[ext_resource type="Script" path="res://scene/component/stamina/stamina_component.gd" id="5_g1lb4"]
+[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/InventoryComponent.tscn" id="6_yep7n"]
+[ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="7_dywsd"]
+[ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="8_6wxvi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ga3ab"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hqvnx"]
+height = 0.1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s2ki5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Model:sync_state")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="Dummy" type="CharacterBody3D"]
+script = ExtResource("1_7ptr2")
+
+[node name="MaterialDetector" type="Node3D" parent="."]
+script = ExtResource("2_o3ct4")
+target_path = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ga3ab")
+
+[node name="StepCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
+enabled = false
+shape = SubResource("CylinderShape3D_hqvnx")
+debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
+
+[node name="Presentation" parent="." instance=ExtResource("3_upf5j")]
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("4_aie4b")
+
+[node name="StaminaComponent" type="Node" parent="."]
+script = ExtResource("5_g1lb4")
+
+[node name="InventoryComponent" parent="." instance=ExtResource("6_yep7n")]
+
+[node name="Model" parent="." instance=ExtResource("7_dywsd")]
+
+[node name="Camera" parent="." instance=ExtResource("8_6wxvi")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_s2ki5")

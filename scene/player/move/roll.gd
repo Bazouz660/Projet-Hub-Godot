@@ -11,7 +11,7 @@ func on_enter_state():
 	player.stamina.use_stamina(stamina_required)
 	_roll_direction_defined = false
 
-func check_relevance(input) -> String:
+func default_lifecycle(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)
 	if works_less_than(roll_duration):
 		return "ok"

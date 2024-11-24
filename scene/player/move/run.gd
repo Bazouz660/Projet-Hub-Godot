@@ -3,7 +3,7 @@ class_name Run
 
 @export var speed = 7.0
 
-func check_relevance(input : InputPackage):
+func default_lifecycle(input : InputPackage):
 	input.actions.sort_custom(moves_priority_sort)
 	if input.actions[0] == "run":
 		return "ok"

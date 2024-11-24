@@ -3,7 +3,7 @@ class_name Sprint
 
 @export var speed = 10.0
 
-func check_relevance(input : InputPackage):
+func default_lifecycle(input : InputPackage):
 	input.actions.sort_custom(moves_priority_sort)
 	if !player.stamina.has_stamina(stamina_required):
 		return "run"

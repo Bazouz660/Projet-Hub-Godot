@@ -1,16 +1,17 @@
 extends Node3D
 class_name HumanoidModel
 
-@onready var active_weapon : Weapon = $GeneralSkeleton/RightHandAttachment/WeaponSocket/Sword
+@onready var active_weapon : Weapon = $GeneralSkeleton/RightHand/WeaponSocket/Sword as Sword
 
 @onready var DEFAULT_GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var player = $".." as Player
-@onready var sound_manager = $HumanoidSoundManager as HumanoidSoundManager
-@onready var skeleton = %GeneralSkeleton as Skeleton3D
-@onready var animator = $AnimationPlayer as AnimationPlayer
-@onready var combat = $Combat as HumanoidCombat
+@onready var player := $".."
+@onready var sound_manager := $HumanoidSoundManager as HumanoidSoundManager
+@onready var skeleton := %GeneralSkeleton as Skeleton3D
+@onready var animator := $AnimationPlayer as AnimationPlayer
+@onready var combat := $Combat as HumanoidCombat
 @onready var moves_node = $Moves
+@onready var moves_data_repository := $MovesDataRepository as MovesDataRepository
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -21,7 +22,6 @@ var current_state : String = ""
 	get:
 		return current_state
 	set(value):
-		current_state = value
 		if moves == null:
 			return
 		if moves.has(value):
@@ -37,11 +37,13 @@ func _ready():
 			moves.get_or_add(child.name.to_snake_case(), child)
 
 	current_move = moves["idle"]
-	for move in moves.values():
+	for move : Move in moves.values():
 		move.player = player
+		move.moves_data_repo = $MovesDataRepository
+		move.assign_combos()
 
 func update(input : InputPackage, delta : float):
-	input = combat.translate_combat_actions(input)
+	input = combat.contextualize(input)
 	var relevance = current_move.check_relevance(input)
 	if relevance != "ok" and player.stamina.has_stamina(moves[relevance].stamina_required):
 		switch_to(relevance)
@@ -55,6 +57,10 @@ func update(input : InputPackage, delta : float):
 	sound_manager.update(current_move.sound, delta)
 
 func switch_to(state : String):
+	if state == current_state:
+		return
+	
+	print(current_state, " -> ", state)
 	current_state = state
 	current_move.on_exit_state()
 	current_move = moves[state]

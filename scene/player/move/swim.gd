@@ -3,7 +3,7 @@ class_name Swim
 
 @export var speed = 5.0
 
-func check_relevance(input : InputPackage):
+func default_lifecycle(input : InputPackage):
 	input.actions.sort_custom(moves_priority_sort)
 	if input.actions[0] == "swim":
 		return "ok"

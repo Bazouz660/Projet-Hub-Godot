@@ -64,6 +64,7 @@ func host_game():
 		print("Error creating server: ", error)
 		return
 	multiplayer.multiplayer_peer = peer
+	multiplayer.allow_object_decoding = true
 	session_active.emit()
 	# Connect signals
 	multiplayer.peer_connected.connect(_peer_connected)
@@ -90,6 +91,7 @@ func join_game(ip : String, host_port : int):
 		print("Error creating client: ", error)
 		return
 	multiplayer.multiplayer_peer = peer
+	multiplayer.allow_object_decoding = true
 	# Connect signals
 	multiplayer.connected_to_server.connect(_connected_to_server)
 	multiplayer.connection_failed.connect(_connection_failed)

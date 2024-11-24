@@ -6,10 +6,6 @@ class_name MaterialDetector
 
 ## The maximum distance to check for materials
 @export var detection_distance: float = 1.0
-## How often to check for material changes (in seconds)
-@export var check_interval: float = 0.1
-## Whether to check on every physics frame instead of using interval
-@export var check_every_frame: bool = false
 
 # Internal variables
 var _target: Node3D

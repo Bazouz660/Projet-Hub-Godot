@@ -1,7 +1,7 @@
 extends Node
 class_name InputGatherer
 
-@onready var player = $".." as Player
+@onready var player = $".."
 
 func gather_input() -> InputPackage:
 	var new_input = InputPackage.new()

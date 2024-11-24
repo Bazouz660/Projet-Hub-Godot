@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://caj4uw43llohe"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_baus4"]
+radius = 0.04
+
+[node name="Sword" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656352, 0)
+mesh = SubResource("CapsuleMesh_baus4")

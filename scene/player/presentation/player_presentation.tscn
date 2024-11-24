@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=4 uid="uid://co4txsbny7boe"]
+[gd_scene load_steps=53 format=4 uid="uid://co4txsbny7boe"]
 
 [ext_resource type="Script" path="res://scene/player/presentation/player_presentation.gd" id="1_b84pu"]
 [ext_resource type="Material" uid="uid://d2rq00r7kk0ga" path="res://data/materials/default_material.tres" id="2_gsq85"]
 [ext_resource type="Script" path="res://scripts/audio/sound_player_3d.gd" id="3_g6gqe"]
+[ext_resource type="PackedScene" uid="uid://caj4uw43llohe" path="res://scene/weapon/sword_visuals.tscn" id="3_hri5c"]
 [ext_resource type="Script" path="res://scripts/audio/sound_pool_3d.gd" id="4_jj7mt"]
 [ext_resource type="AudioStream" uid="uid://d1jxwncjjewgm" path="res://asset/audio/sound/humanoid/step/step_grass_1.wav" id="5_3nh5v"]
 [ext_resource type="AudioStream" uid="uid://be2weedvae6ve" path="res://asset/audio/sound/humanoid/step/step_sand_1.wav" id="5_ackd8"]
@@ -183,6 +184,9 @@ transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0)
 mesh = SubResource("ArrayMesh_jun5y")
 skin = SubResource("Skin_g4h7x")
 surface_material_override/0 = ExtResource("2_gsq85")
+
+[node name="Sword" parent="." instance=ExtResource("3_hri5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.308479, 1.473)
 
 [node name="SoundPlayer3D" type="Node3D" parent="."]
 script = ExtResource("3_g6gqe")

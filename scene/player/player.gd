@@ -25,7 +25,7 @@ func _enter_tree():
 
 func _ready():
 	SceneManager.disable_player_input = false
-	presentation.accept_skeleton(model.skeleton)
+	presentation.accept_model(model)
 	presentation.register_sounds(model.sound_manager)
 	model.animator.play("ready_idle")
 	camera.current = is_multiplayer_authority()
