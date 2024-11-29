@@ -38,6 +38,7 @@ static var moves_priority : Dictionary = {
 	"run" : 2,
 	"sprint" : 3,
 	"roll" : 10,
+	"emote": 99,
 	"slash_1" : 100,
 	"slash_2" : 101,
 	"slash_3" : 102,

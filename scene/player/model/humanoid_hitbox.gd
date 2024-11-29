@@ -7,6 +7,7 @@ func _ready():
 
 func on_contact(area : Node3D):
 	if is_eligible_attacking_weapon(area):
+		print("Hit")
 		area.hitbox_ignore_list.append(self)
 		model.current_move.react_on_hit.rpc(area.get_hit_data())
 

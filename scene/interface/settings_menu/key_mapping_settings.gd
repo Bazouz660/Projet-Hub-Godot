@@ -13,9 +13,12 @@ var input_actions = {
 	"forward": "Forward",
 	"backward": "Backward",
 	"sprint": "Sprint",
+	"walk": "Walk",
 	"roll": "Roll",
 	"inventory": "Inventory",
-	"rest": "Rest"
+	"rest": "Rest",
+	"emote": "Emote",
+	"cycle_debug_menu": "Debug menu",
 }
 
 

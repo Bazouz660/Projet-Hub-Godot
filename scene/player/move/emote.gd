@@ -1,11 +1,14 @@
-extends Node
+extends Move
+class_name Emote
 
+@export var emote_duration : float = 0.833
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func on_enter_state():
+	player.velocity.x = 0
+	player.velocity.y = 0
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func default_lifecycle(input) -> String:
+	input.actions.sort_custom(moves_priority_sort)
+	if works_less_than(emote_duration):
+		return "ok"
+	return input.actions[0]
