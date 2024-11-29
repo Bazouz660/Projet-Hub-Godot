@@ -31,6 +31,7 @@ func _get_configuration_warnings():
 
 func play_sound():
 	if !audio_stream_players[next].playing:
+		audio_stream_players[next].pitch_scale = randf_range(0.95, 1.1)
 		audio_stream_players[next].play()
 		next += 1
 		next %= audio_stream_players.size()
