@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://bs2gn2wodbkxy"]
 
-[ext_resource type="Script" path="res://scene/dummy/dummy.gd" id="1_7ptr2"]
-[ext_resource type="Script" path="res://manager/material_sampler.gd" id="2_o3ct4"]
+[ext_resource type="Script" uid="uid://cy7jiemgmmgjn" path="res://scene/dummy/dummy.gd" id="1_7ptr2"]
+[ext_resource type="Script" uid="uid://b6plbv6c14msu" path="res://manager/material_sampler.gd" id="2_o3ct4"]
 [ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="3_upf5j"]
-[ext_resource type="Script" path="res://scene/player/input/input.gd" id="4_aie4b"]
+[ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="4_aie4b"]
 [ext_resource type="Script" path="res://scene/component/stamina/stamina_component.gd" id="5_g1lb4"]
 [ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/InventoryComponent.tscn" id="6_yep7n"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="7_dywsd"]

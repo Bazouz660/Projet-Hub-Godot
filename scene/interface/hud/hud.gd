@@ -7,7 +7,7 @@ func _ready() -> void:
 	MultiplayerManager.active_player_loaded.connect(_set_stamina_hud)
 
 func _set_stamina_hud(_id):
-	%StaminaHUD.stamina = MultiplayerManager.active_player.stamina
+	%StaminaHUD.resources = MultiplayerManager.active_player.resources
 	%StaminaHUD._setup()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

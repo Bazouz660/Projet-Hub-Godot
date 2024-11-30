@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dpt8j544wythm"]
 
-[ext_resource type="Script" path="res://test/world_manager.gd" id="1_oufg5"]
+[ext_resource type="Script" uid="uid://c5od6saer5dg2" path="res://test/world_manager.gd" id="1_oufg5"]
 [ext_resource type="PackedScene" uid="uid://b4d7ssxun4clf" path="res://test/terrain_system.tscn" id="2_t1ltl"]
-[ext_resource type="Shader" path="res://shader/cloud_shadows.gdshader" id="3_d50ol"]
-[ext_resource type="Script" path="res://scripts/follow_active_player.gd" id="4_w8qx5"]
+[ext_resource type="Shader" uid="uid://dsb07av81lkcp" path="res://shader/cloud_shadows.gdshader" id="3_d50ol"]
+[ext_resource type="Script" uid="uid://btawd0vcqvrnt" path="res://scripts/follow_active_player.gd" id="4_w8qx5"]
 [ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="5_7hkfx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j8er0"]
@@ -17,12 +17,12 @@ noise = SubResource("FastNoiseLite_j8er0")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywwrw"]
 render_priority = 0
 shader = ExtResource("3_d50ol")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_r38en")
 shader_parameter/cloud_direction = Vector2(1, 1)
 shader_parameter/cloud_speed = 0.002
 shader_parameter/cut_threshold = 0.5
 shader_parameter/uv1_blend_sharpness = 1.0
 shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_r38en")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_stvr8"]
 material = SubResource("ShaderMaterial_ywwrw")

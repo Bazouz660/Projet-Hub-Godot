@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FeatureDefinition" load_steps=4 format=3 uid="uid://c6jcs60rvmuex"]
 
 [ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/wheat.tres" id="1_bt5oj"]
-[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_wirye"]
+[ext_resource type="Script" uid="uid://fc3alctgfi38" path="res://test/terrain/feature_definition.gd" id="2_wirye"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xomn7"]
 frequency = 0.0424

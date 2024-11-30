@@ -1,14 +1,14 @@
 extends Area3D
 class_name Weapon
 
-var hitbox_ignore_list : Array[Area3D]
-var is_attacking : bool = false
+var hitbox_ignore_list: Array[Area3D]
+var is_attacking: bool = false
 
-@export var holder : HumanoidModel
+@export var holder: HumanoidModel
 
-@export var base_damage : float = 10
+@export var base_damage: float = 10
 
-var basic_attacks : Dictionary
+var basic_attacks: Dictionary
 
 
 func get_hit_data() -> HitData:

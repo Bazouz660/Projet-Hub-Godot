@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FeatureDefinition" load_steps=8 format=3 uid="uid://g1mn583itdta"]
 
-[ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_tlivr"]
-[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_e3kkr"]
+[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="1_tlivr"]
+[ext_resource type="Script" uid="uid://fc3alctgfi38" path="res://test/terrain/feature_definition.gd" id="2_e3kkr"]
 [ext_resource type="Texture2D" uid="uid://c2fqujuastn6o" path="res://asset/texture/foliage/grass_blade.png" id="2_rpkl5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
@@ -13,17 +13,17 @@ noise = SubResource("FastNoiseLite_gte14")
 render_priority = 0
 shader = ExtResource("1_tlivr")
 shader_parameter/albedo = Color(0.494451, 0.681392, 0.282821, 1)
+shader_parameter/texture_albedo = ExtResource("2_rpkl5")
 shader_parameter/backlight = Color(1, 1, 1, 1)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = null
 shader_parameter/wind_strength = 0.3
 shader_parameter/wind_speed = 2.0
 shader_parameter/wind_scale = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 shader_parameter/noise_scale = 10.0
 shader_parameter/player_influence_radius = 2.0
 shader_parameter/player_influence_strength = 0.5
-shader_parameter/texture_albedo = ExtResource("2_rpkl5")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 
 [sub_resource type="QuadMesh" id="QuadMesh_mc16r"]
 material = SubResource("ShaderMaterial_lgvl8")

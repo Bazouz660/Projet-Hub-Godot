@@ -7,10 +7,9 @@ class_name Player
 @onready var camera := $Camera/PreventRotationCopy/CameraPivot/Camera3D
 @onready var step_cast := $StepCast as ShapeCast3D
 @onready var inventory := $InventoryComponent as InventoryComponent
-@onready var stamina := $StaminaComponent as StaminaComponent
 @onready var collision_shape := $CollisionShape3D as CollisionShape3D
 @onready var material_detector := $MaterialDetector as MaterialDetector
-
+@onready var resources := $Model/Resources as HumanoidResources
 
 var sensitivity = 0.003;
 var yaw = 0.0;

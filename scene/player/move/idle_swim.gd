@@ -1,6 +1,6 @@
 extends Move
 class_name IdleSwim
-	
+
 func default_lifecycle(input) -> String:
 	input.actions.sort_custom(moves_priority_sort)
 	return input.actions[0]

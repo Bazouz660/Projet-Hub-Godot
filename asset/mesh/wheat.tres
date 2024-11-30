@@ -1,6 +1,6 @@
 [gd_resource type="QuadMesh" load_steps=6 format=3 uid="uid://dqsfghpuwto8"]
 
-[ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="1_xerpp"]
+[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="1_xerpp"]
 [ext_resource type="Texture2D" uid="uid://3dyh8f0patqm" path="res://asset/texture/foliage/wheat.png" id="2_h8hs1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
@@ -12,17 +12,17 @@ noise = SubResource("FastNoiseLite_gte14")
 render_priority = 0
 shader = ExtResource("1_xerpp")
 shader_parameter/albedo = Color(0.995416, 0.935356, 0.585679, 1)
+shader_parameter/texture_albedo = ExtResource("2_h8hs1")
 shader_parameter/backlight = Color(1, 1, 1, 1)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = null
 shader_parameter/wind_strength = 0.2
 shader_parameter/wind_speed = 2.0
 shader_parameter/wind_scale = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 shader_parameter/noise_scale = 10.0
 shader_parameter/player_influence_radius = 1.5
 shader_parameter/player_influence_strength = 0.7
-shader_parameter/texture_albedo = ExtResource("2_h8hs1")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 
 [resource]
 material = SubResource("ShaderMaterial_txn6h")

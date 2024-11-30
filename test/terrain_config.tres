@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="TerrainConfig" load_steps=11 format=3 uid="uid://cokasmcn0l1oi"]
 
 [ext_resource type="Texture2D" uid="uid://2ywa2csvy6ou" path="res://test/biome_noise.tres" id="1_2upir"]
-[ext_resource type="Script" path="res://test/terrain/terrain_config.gd" id="2_21cop"]
-[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_34bvf"]
+[ext_resource type="Script" uid="uid://dtg48ni4dxwdv" path="res://test/terrain/terrain_config.gd" id="2_21cop"]
+[ext_resource type="Script" uid="uid://fc3alctgfi38" path="res://test/terrain/feature_definition.gd" id="2_34bvf"]
 [ext_resource type="Resource" uid="uid://cahg0md754q0o" path="res://test/terrain/features/forest_grass.tres" id="3_bqi6h"]
 [ext_resource type="Material" uid="uid://cpsqba08sf7if" path="res://test/terrain_material.tres" id="3_snsk4"]
 [ext_resource type="Material" uid="uid://ctixvytfgub33" path="res://test/Stylized_Water.material" id="4_6f4v6"]

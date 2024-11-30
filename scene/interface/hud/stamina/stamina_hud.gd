@@ -3,7 +3,7 @@ extends Control
 @onready var stamina_bar: TextureProgressBar = $StaminaBar
 @onready var ghost_bar: TextureProgressBar = $GhostBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@export var stamina: StaminaComponent
+@export var resources: HumanoidResources
 var _is_hide: bool = false
 
 var stamina_value: float = 0.0
@@ -17,11 +17,11 @@ func _ready() -> void:
 	_is_hide = true
 
 func _setup():
-	stamina.stamina_changed.connect(_on_stamina_stamina_changed)
-	stamina.stamina_low.connect(_on_stamina_stamina_low)
-	stamina.stamina_full.connect(_on_stamina_stamina_full)
+	resources.stamina_changed.connect(_on_stamina_stamina_changed)
+	resources.stamina_low.connect(_on_stamina_stamina_low)
+	resources.stamina_full.connect(_on_stamina_stamina_full)
 
-	stamina_value = stamina.current_stamina / stamina.max_stamina
+	stamina_value = resources.get_current_stamina() / resources.get_max_stamina()
 	ghost_value = stamina_value
 	stamina_bar.value = stamina_value
 	ghost_bar.value = ghost_value
@@ -31,19 +31,19 @@ func _on_stamina_stamina_changed(current_stamina: float) -> void:
 		animation_player.play("stamina_show")
 		_is_hide = false
 
-	target_value = current_stamina / stamina.max_stamina
-	
+	target_value = current_stamina / resources.get_max_stamina()
+
 	if main_tween and main_tween.is_valid():
 		main_tween.kill()
 	if ghost_tween and ghost_tween.is_valid():
 		ghost_tween.kill()
-	
+
 	main_tween = create_tween()
 	main_tween.set_trans(Tween.TRANS_CUBIC)
 	main_tween.set_ease(Tween.EASE_OUT)
 	main_tween.tween_property(stamina_bar, "value", target_value, 0.3)
 	main_tween.tween_property(self, "stamina_value", target_value, 0.3)
-	
+
 	if target_value < ghost_bar.value:
 		ghost_tween = create_tween()
 		ghost_tween.set_trans(Tween.TRANS_CUBIC)

@@ -63,7 +63,6 @@ func check_material() -> Dictionary:
 		return {}
 
 	var material = get_material_from_mesh(mesh_instance)
-	var string : String
 	var type: String
 	#print("Material found: ", material.resource_path.get_file())
 	if material.has_meta("type"):
