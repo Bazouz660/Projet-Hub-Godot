@@ -105,8 +105,11 @@ func react_on_hit(hit: HitData):
 
 @rpc("any_peer", "call_remote", "reliable")
 func try_force_move(move: String):
-	has_forced_move = true
-	forced_move = move
+	if not has_forced_move:
+		has_forced_move = true
+		forced_move = move
+	elif moves_priority[move] >= moves_priority[forced_move]:
+		forced_move = move
 
 func react_on_parry(_hit: HitData):
 	try_force_move("parry")
