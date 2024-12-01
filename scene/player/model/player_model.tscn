@@ -1952,7 +1952,7 @@ bones/27/rotation = Quaternion(7.44847e-17, 2.26971e-17, -8.67362e-19, 1)
 bones/27/scale = Vector3(1, 1, 1)
 
 [node name="Root" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.962214, 0.145539, 0.230138, 0.0240011, 0.796555, -0.60409, -0.271236, 0.586787, 0.762963, 2.61071, 63.8548, 41.3204)
+transform = Transform3D(0.962213, 0.145539, 0.230138, 0.0240015, 0.796555, -0.60409, -0.271236, 0.586787, 0.762962, 2.61071, 63.8548, 41.3204)
 bone_name = "mixamorigHips"
 bone_idx = 0
 
@@ -1964,7 +1964,7 @@ script = ExtResource("3_jhxj8")
 shape = SubResource("CapsuleShape3D_4ier8")
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.333779, 0.340581, -0.878975, 0.662962, -0.578063, -0.475736, -0.670129, -0.741517, -0.0328469, 35.0681, 43.7996, 72.525)
+transform = Transform3D(-0.333779, 0.340583, -0.878974, 0.66296, -0.578063, -0.475737, -0.67013, -0.741516, -0.0328473, 35.0681, 43.7996, 72.525)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -1976,14 +1976,14 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.726954, 0.0445184, -0.685241, 0.211097, -0.935086, -0.284698, -0.653433, -0.351615, 0.670367, 19.6575, 51.3228, 18.6111)
+transform = Transform3D(-0.726954, 0.044518, -0.685241, 0.211097, -0.935086, -0.284697, -0.653433, -0.351614, 0.670367, 19.6575, 51.3228, 18.611)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.843078, 0.461114, 0.276754, -0.376919, 0.873708, -0.307519, -0.383603, 0.154948, 0.910406, 38.8491, 110.901, 70.6145)
+transform = Transform3D(0.843078, 0.461115, 0.276754, -0.376919, 0.873707, -0.307519, -0.383604, 0.154948, 0.910406, 38.8491, 110.901, 70.6144)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 
