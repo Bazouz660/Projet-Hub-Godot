@@ -1,30 +1,30 @@
 [gd_scene load_steps=15 format=3 uid="uid://yqdv0umgw6qi"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_thu5l"]
-[ext_resource type="Script" path="res://scene/interface/main_menu/main_menu.gd" id="2_u78d5"]
-[ext_resource type="Shader" path="res://shader/scroll_offset.gdshader" id="5_buxsm"]
-[ext_resource type="Script" path="res://scene/interface/main_menu/parallax.gd" id="7_ybn76"]
+[ext_resource type="Script" uid="uid://bbyd6rghho83g" path="res://scene/interface/main_menu/main_menu.gd" id="2_u78d5"]
+[ext_resource type="Shader" uid="uid://fvmkvaacicf0" path="res://shader/scroll_offset.gdshader" id="5_buxsm"]
+[ext_resource type="Script" uid="uid://dmmiu6vreoofm" path="res://scene/interface/main_menu/parallax.gd" id="7_ybn76"]
 [ext_resource type="Texture2D" uid="uid://b05uii20o36il" path="res://asset/texture/interface/background/sky.png" id="8_rtx7a"]
 [ext_resource type="Texture2D" uid="uid://jw7xv1w5ng6t" path="res://asset/texture/interface/background/clouds.png" id="9_u6jx7"]
 [ext_resource type="PackedScene" uid="uid://667t20wotwa1" path="res://scene/interface/main_menu/main_menu_content.tscn" id="9_vfncy"]
 [ext_resource type="PackedScene" uid="uid://clte1kr3xnnoi" path="res://scene/interface/settings_menu/settings_menu.tscn" id="10_vixci"]
 [ext_resource type="Texture2D" uid="uid://diypdgrumc4ow" path="res://asset/texture/interface/background/trees2.png" id="10_vueh5"]
 [ext_resource type="Texture2D" uid="uid://biubttru8wb3y" path="res://asset/texture/interface/background/trees1.png" id="11_7bmd6"]
-[ext_resource type="Script" path="res://manager/menu_manager.gd" id="11_48cs4"]
+[ext_resource type="Script" uid="uid://bwu651tpq7s4b" path="res://manager/menu_manager.gd" id="11_48cs4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_035dj"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.06675
+shader_parameter/x_offset = -0.0185175
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wqkv8"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.09345
+shader_parameter/x_offset = -0.0259245
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p30s"]
 shader = ExtResource("5_buxsm")
-shader_parameter/x_offset = 0.1335
+shader_parameter/x_offset = -0.0370349
 shader_parameter/y_offset = 0.0
 
 [node name="MainMenuScene" type="Control"]

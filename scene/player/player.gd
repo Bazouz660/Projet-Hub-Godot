@@ -26,6 +26,7 @@ func _ready():
 	SceneManager.disable_player_input = false
 	presentation.accept_model(model)
 	presentation.register_sounds(model.sound_manager)
+	model.humanoid = self
 	model.animator.play("ready_idle")
 	camera.current = is_multiplayer_authority()
 
@@ -39,10 +40,10 @@ func _physics_process(delta):
 
 func is_grounded() -> bool:
 	return grounded or is_on_floor()
-	
+
 func is_in_water() -> bool:
 	return global_position.y + height <= WATER_LEVEL
-	
+
 @rpc("any_peer", "call_remote", "reliable")
 func rpc_set_position(pos):
 	position = pos

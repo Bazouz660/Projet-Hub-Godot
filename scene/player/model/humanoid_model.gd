@@ -5,14 +5,15 @@ class_name HumanoidModel
 
 @onready var DEFAULT_GRAVITY: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var player := $".."
+@onready var humanoid := $".." as CharacterBody3D
 @onready var sound_manager := $SoundManager as HumanoidSoundManager
 @onready var skeleton := %GeneralSkeleton as Skeleton3D
 @onready var animator := $AnimationPlayer as AnimationPlayer
 @onready var combat := $Combat as HumanoidCombat
-@onready var moves_node = $Moves
+@onready var moves_node = $States
 @onready var moves_data_repository := $MovesDataRepository as MovesDataRepository
 @onready var resources := $Resources as HumanoidResources
+@onready var moves_container := $States as HumanoidStates
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -32,16 +33,12 @@ var _current_state: String = ""
 var moves: Dictionary
 
 func _ready():
-	for child in moves_node.get_children():
-		if child is Move:
-			moves.get_or_add(child.name.to_snake_case(), child)
-
-	current_move = moves["idle"]
-	for move: Move in moves.values():
-		move.player = player
-		move.resources = resources
-		move.moves_data_repo = $MovesDataRepository
-		move.assign_combos()
+	moves_container.humanoid = humanoid
+	moves_container.accept_moves()
+	moves = moves_container.moves
+	current_move = moves_container.moves["idle"]
+	current_move.on_enter_state()
+	current_move.mark_enter_state()
 
 func update(input: InputPackage, delta: float):
 	input = combat.contextualize(input)
@@ -57,7 +54,7 @@ func update(input: InputPackage, delta: float):
 	current_move.update(input, delta)
 
 	raycast(delta)
-	player.move_and_slide()
+	humanoid.move_and_slide()
 
 	# Sound
 	sound_manager.update(current_move.sound, delta)
@@ -69,6 +66,7 @@ func switch_to(state: String):
 	current_move = moves[state]
 	current_move.on_enter_state()
 	current_move.mark_enter_state()
+	resources.pay_resource_cost(current_move)
 
 	if current_move.reverse_animation:
 		animator.play_backwards(current_move.animation)
@@ -78,25 +76,25 @@ func switch_to(state: String):
 	sound_manager.update_once(current_move.sound)
 
 func apply_gravity(delta: float, gravity: float = DEFAULT_GRAVITY):
-	if not player.is_grounded():
-		player.velocity.y -= gravity * delta
+	if not humanoid.is_grounded():
+		humanoid.velocity.y -= gravity * delta
 
 func raycast(delta: float):
-	player.step_cast.global_position.x = player.global_position.x + player.velocity.x * delta
-	player.step_cast.global_position.z = player.global_position.z + player.velocity.z * delta
+	humanoid.step_cast.global_position.x = humanoid.global_position.x + humanoid.velocity.x * delta
+	humanoid.step_cast.global_position.z = humanoid.global_position.z + humanoid.velocity.z * delta
 
 	var query = PhysicsShapeQueryParameters3D.new()
-	query.exclude = [player]
-	query.shape = player.step_cast.shape
-	query.transform = player.step_cast.global_transform
+	query.exclude = [humanoid]
+	query.shape = humanoid.step_cast.shape
+	query.transform = humanoid.step_cast.global_transform
 	var result = get_world_3d().direct_space_state.intersect_shape(query, 1)
 	if !result:
-		player.step_cast.force_shapecast_update()
+		humanoid.step_cast.force_shapecast_update()
 
-	if player.step_cast.is_colliding() and absf(player.velocity.y) <= 0.0001 and !result:
-		var collision_point = player.step_cast.get_collision_point(0)
-		player.global_position.y = lerp(player.global_position.y, collision_point.y, delta * STEP_INTERPOLATION_SPEED)
-		player.velocity.y = 0.0
-		player.grounded = true
+	if humanoid.step_cast.is_colliding() and absf(humanoid.velocity.y) <= 0.0001 and !result:
+		var collision_point = humanoid.step_cast.get_collision_point(0)
+		humanoid.global_position.y = lerp(humanoid.global_position.y, collision_point.y, delta * STEP_INTERPOLATION_SPEED)
+		humanoid.velocity.y = 0.0
+		humanoid.grounded = true
 	else:
-		player.grounded = false
+		humanoid.grounded = false

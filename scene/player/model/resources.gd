@@ -53,6 +53,8 @@ func gain_health(amount: float):
 		health = max_health
 
 func lose_stamina(amount: float):
+	if amount <= 0:
+		return
 	stamina -= amount
 	if stamina < 0:
 		stamina = 0
@@ -99,10 +101,10 @@ func set_regeneration_enabled(enabled: bool) -> void:
 		stop_regeneration()
 
 func pay_resource_cost(move: Move):
-	lose_stamina(move.stamina_cost)
+	lose_stamina(move.enter_stamina_cost)
 
 func can_be_paid(move: Move) -> bool:
-	if stamina >= move.stamina_cost:
+	if stamina >= move.enter_stamina_cost:
 		return true
 	stamina_low.emit()
 	return false

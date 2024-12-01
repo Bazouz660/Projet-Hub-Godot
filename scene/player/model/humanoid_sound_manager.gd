@@ -11,7 +11,7 @@ func _rpc_play_sound_local(sound_name: String):
 	sound_player.play(sound_name)
 
 func _get_material_sound(sound_name: String) -> String:
-	var material := model.player.material_detector.check_material() as Dictionary
+	var material := model.humanoid.material_detector.check_material() as Dictionary
 
 	# If no material is found, add a default material type
 	if material.is_empty():
