@@ -2,8 +2,7 @@ extends Move
 class_name Idle
 
 func default_lifecycle(input) -> String:
-	input.actions.sort_custom(container.moves_priority_sort)
-	return input.actions[0]
+	return best_input_that_can_be_paid(input)
 
 func on_enter_state():
 	humanoid.velocity = Vector3.ZERO

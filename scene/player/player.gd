@@ -5,6 +5,7 @@ class_name Player
 @onready var model := $Model as HumanoidModel
 @onready var presentation := $Presentation as PlayerPresentation
 @onready var camera := $Camera/PreventRotationCopy/CameraPivot/Camera3D
+@onready var camera_mount := $Camera/PreventRotationCopy/CameraPivot
 @onready var step_cast := $StepCast as ShapeCast3D
 @onready var inventory := $InventoryComponent as InventoryComponent
 @onready var collision_shape := $CollisionShape3D as CollisionShape3D

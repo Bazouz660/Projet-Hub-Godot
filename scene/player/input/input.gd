@@ -16,7 +16,10 @@ func gather_input() -> InputPackage:
 					new_input.actions.append("roll")
 
 				new_input.actions.append("run")
-				if Input.is_action_pressed("sprint"):
+
+				if Input.is_action_pressed("walk"):
+					new_input.actions.append("walk")
+				elif Input.is_action_pressed("sprint"):
 					new_input.actions.append("sprint")
 
 			if Input.is_action_just_pressed("rest"):
@@ -30,9 +33,10 @@ func gather_input() -> InputPackage:
 
 		new_input.actions.append("idle")
 
-	elif !SceneManager.disable_player_input:
-		if new_input.direction != Vector2.ZERO:
-			new_input.actions.append("swim")
+	else:
+		if !SceneManager.disable_player_input:
+			if new_input.direction != Vector2.ZERO:
+				new_input.actions.append("swim")
 
 		new_input.actions.append("idle_swim")
 

@@ -2,9 +2,8 @@ extends Move
 class_name IdleSwim
 
 func default_lifecycle(input) -> String:
-	input.actions.sort_custom(container.moves_priority_sort)
-	return input.actions[0]
+	return best_input_that_can_be_paid(input)
 
-func on_enter_state():
+func update(_input: InputPackage, _delta: float):
+	humanoid.position.y = humanoid.WATER_LEVEL - humanoid.height
 	humanoid.velocity = Vector3.ZERO
-	humanoid.position.y = humanoid.WATER_LEVEL - humanoid.height * 1.2

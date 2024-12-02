@@ -6,7 +6,9 @@ class_name Sprint
 func default_lifecycle(input: InputPackage):
 	return best_input_that_can_be_paid(input)
 
-func update(_input: InputPackage, delta: float):
+func update(input: InputPackage, delta: float):
 	resources.lose_stamina(continuous_stamina_cost * delta)
 	if resources.stamina < continuous_stamina_cost * delta:
 		try_force_move("run")
+
+	process_default_movement(input, delta)

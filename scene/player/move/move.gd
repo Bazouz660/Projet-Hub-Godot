@@ -18,6 +18,7 @@ var moves_data_repo: MovesDataRepository:
 @export var affected_by_gravity: bool = true
 @export var enter_stamina_cost: float = 0.0
 @export var speed: float = 0.0
+@export var angular_velocity: float = 0.1
 @export_group("Animation")
 @export var animation: String
 @export var backend_animation: String
@@ -146,19 +147,21 @@ func default_lifecycle(input: InputPackage):
 	return "ok"
 
 func process_input_vector(input: InputPackage, _delta: float):
+	var direction = Vector3(input.direction.x, 0, input.direction.y).rotated(Vector3.UP, input.camera_rotation.y)
+	var rotation
+	if direction.length() < 0.1:
+		rotation = humanoid.rotation.y
+	else:
+		rotation = lerp_angle(humanoid.rotation.y, atan2(direction.x, direction.z), angular_velocity)
+
+	humanoid.rotation.y = rotation
+
+func process_default_movement(input: InputPackage, _delta: float):
 	var y = humanoid.velocity.y
 	var direction = Vector3(input.direction.x, 0, input.direction.y).rotated(Vector3.UP, input.camera_rotation.y)
 	var velocity = lerp(humanoid.velocity, direction * speed, 0.1)
 	velocity.y = y
 	humanoid.velocity = velocity
-
-	var rotation
-	if humanoid.velocity.length() < 0.1:
-		rotation = humanoid.rotation.y
-	else:
-		rotation = lerp_angle(humanoid.rotation.y, atan2(humanoid.velocity.x, humanoid.velocity.z), 0.1)
-
-	humanoid.rotation.y = rotation
 
 func update(_input: InputPackage, _delta: float):
 	pass

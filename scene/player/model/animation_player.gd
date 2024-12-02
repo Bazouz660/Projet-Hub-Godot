@@ -37,7 +37,6 @@ func _is_uppercase(p_char: String) -> bool:
 func _configure_blend_times():
 	_set_default_blend_times(0.2)
 	set_blend_time("slash_1", "slash_2", 0)
-	set_blend_time("slash_3", "run", 0)
 
 func _set_default_blend_times(blend_time: float):
 	for anim_name in get_animation_list():
