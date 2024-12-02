@@ -16,8 +16,12 @@ func update(input: InputPackage, delta: float):
 func transition_legs_state(_input: InputPackage, _delta: float):
 	pass
 
-func change_state(next_state: String):
+@rpc("any_peer", "call_local", "reliable")
+func _change_state(next_state: String):
 	print("Changing state to: ", next_state)
 	current_legs_move = moves_container.get_move_by_name(next_state)
 	legs_manager.current_legs_move = current_legs_move
 	model.animator.update_legs_animation()
+
+func change_state(next_state: String):
+	_change_state.rpc(next_state)

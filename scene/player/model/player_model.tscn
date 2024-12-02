@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://boo7nrqgcemsv" path="res://scene/player/model/skeleton.gd" id="4_jwgxg"]
 [ext_resource type="Animation" uid="uid://cvnaj5shnd4s3" path="res://asset/animation/humanoid/sprint.res" id="5_hq78x"]
 [ext_resource type="Animation" uid="uid://df051fkln1dnl" path="res://asset/animation/humanoid/walk.res" id="6_oqwur"]
-[ext_resource type="Script" path="res://scene/player/model/split_animator.gd" id="6_vny0r"]
+[ext_resource type="Script" uid="uid://kavqt3i38r0u" path="res://scene/player/model/split_animator.gd" id="6_vny0r"]
 [ext_resource type="Script" uid="uid://bedev4smphtwt" path="res://scene/player/model/animation_player.gd" id="7_1ussp"]
 [ext_resource type="Animation" uid="uid://d1utthvyyxcgk" path="res://asset/animation/humanoid/resting.res" id="7_d8rpn"]
 [ext_resource type="Animation" uid="uid://dl5uabo8v7hqc" path="res://asset/animation/humanoid/death.res" id="7_eg8aa"]
@@ -2334,7 +2334,7 @@ bones/27/scale = Vector3(1, 1, 1)
 script = ExtResource("4_jwgxg")
 
 [node name="Root" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.393239, -0.173152, -0.902985, -0.0212432, 0.980134, -0.197197, 0.919191, 0.0967278, 0.381749, 0.264073, 60.1875, -0.580053)
+transform = Transform3D(0.393239, -0.173152, -0.902985, -0.0212433, 0.980134, -0.197197, 0.919191, 0.0967277, 0.381748, 0.264073, 60.1875, -0.580053)
 bone_name = "mixamorigHips"
 bone_idx = 0
 
@@ -2346,7 +2346,7 @@ script = ExtResource("3_jhxj8")
 shape = SubResource("CapsuleShape3D_4ier8")
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.790666, -0.200337, 0.578543, -0.263983, -0.741048, -0.617382, 0.552413, -0.640869, 0.533036, -23.0084, 64.2292, -39.6057)
+transform = Transform3D(-0.790665, -0.200338, 0.578544, -0.263985, -0.741047, -0.617383, 0.552413, -0.64087, 0.533034, -23.0084, 64.2293, -39.6058)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -2358,14 +2358,14 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.00181466, -0.99997, -0.00755498, -0.99825, 0.00225803, -0.0590984, 0.0591138, 0.00743461, -0.998224, -28.6413, 94.2076, 57.7168)
+transform = Transform3D(-0.00181451, -0.99997, -0.00755595, -0.99825, 0.00225793, -0.0590994, 0.0591148, 0.00743547, -0.998223, -28.6412, 94.2077, 57.7168)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.992059, -0.0276907, -0.122686, 0.0125034, 0.992344, -0.122872, 0.125149, 0.120362, 0.98481, -13.4437, 124.954, 15.8267)
+transform = Transform3D(0.992059, -0.02769, -0.122685, 0.0125029, 0.992344, -0.122871, 0.125148, 0.120361, 0.98481, -13.4437, 124.954, 15.8267)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 

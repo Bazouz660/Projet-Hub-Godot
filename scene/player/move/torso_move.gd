@@ -11,8 +11,9 @@ func _update(input: InputPackage, delta: float):
 	super._update(input, delta)
 
 func on_enter_state():
+	print("Entering torso move")
 	legs_behaviour.on_enter()
 
 func on_exit_state():
+	print("Exiting torso move")
 	animator.clear_torso_animation()
-	super.on_exit_state()

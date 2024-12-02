@@ -30,19 +30,28 @@ func toggle_tracks(animation_name: String, enable: bool, torso_or_legs: String):
 		for bone in bones:
 			var path = skeleton.name + ":" + bone
 			#print("Toggling track for: ", path)
-			var track = animation.find_track(path, Animation.TYPE_ROTATION_3D)
-			if track == -1:
-				print("ERROR: Track not found: ", path)
-				return
-			if enable:
-				animation.track_set_enabled(track, true)
-			else:
-				animation.track_set_enabled(track, false)
+			_toggle_track(animation, enable, path, Animation.TYPE_POSITION_3D)
+			_toggle_track(animation, enable, path, Animation.TYPE_ROTATION_3D)
+			_toggle_track(animation, enable, path, Animation.TYPE_SCALE_3D)
 
 	else:
 		print("ERROR: Animation not found: ", animation_name)
 
+func _toggle_track(animation: Animation, enable: bool, path: String, type: Animation.TrackType):
+	var track = animation.find_track(path, type)
+	if track == -1:
+		#print("ERROR: Track not found: ", path)
+		return
+	if enable:
+		animation.track_set_enabled(track, true)
+	else:
+		animation.track_set_enabled(track, false)
+
+
 func play(move: Move):
+	if move is not TorsoPartialMove and full_body_mode:
+		clear_torso_animation()
+
 	if move.reverse_animation:
 		torso_animator.play_backwards(move.animation)
 	else:
@@ -59,6 +68,7 @@ func update_legs_animation():
 	# enable torso tracks for torso animation
 	toggle_tracks(model.current_move.animation, true, "torso")
 	legs_animator.play(model.legs.current_legs_move.animation)
+	full_body_mode = false
 
 func clear_torso_animation():
 	toggle_tracks(model.current_move.animation, true, "torso")
@@ -66,3 +76,4 @@ func clear_torso_animation():
 	toggle_tracks(model.legs.current_legs_move.animation, true, "torso")
 	toggle_tracks(model.legs.current_legs_move.animation, true, "legs")
 	legs_animator.stop()
+	full_body_mode = true
