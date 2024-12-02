@@ -28,7 +28,6 @@ func _ready():
 	presentation.accept_model(model)
 	presentation.register_sounds(model.sound_manager)
 	model.humanoid = self
-	model.animator.play("ready_idle")
 	camera.current = is_multiplayer_authority()
 
 func _physics_process(delta):

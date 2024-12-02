@@ -8,12 +8,13 @@ class_name HumanoidModel
 @onready var humanoid := $".." as CharacterBody3D
 @onready var sound_manager := $SoundManager as HumanoidSoundManager
 @onready var skeleton := %GeneralSkeleton as Skeleton3D
-@onready var animator := $AnimationPlayer as AnimationPlayer
+@onready var animator := $SplitAnimator as SplitAnimator
 @onready var combat := $Combat as HumanoidCombat
 @onready var moves_node = $States
 @onready var moves_data_repository := $MovesDataRepository as MovesDataRepository
 @onready var resources := $Resources as HumanoidResources
 @onready var moves_container := $States as HumanoidStates
+@onready var legs := $Legs as Legs
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -39,6 +40,9 @@ func _ready():
 	current_move = moves_container.moves["idle"]
 	current_move.on_enter_state()
 	current_move.mark_enter_state()
+
+	legs.current_legs_move = moves_container.get_move_by_name("idle")
+	legs.accept_behaviours()
 
 func update(input: InputPackage, delta: float):
 	input = combat.contextualize(input)
@@ -67,10 +71,7 @@ func switch_to(state: String):
 	current_move.mark_enter_state()
 	resources.pay_resource_cost(current_move)
 
-	if current_move.reverse_animation:
-		animator.play_backwards(current_move.animation)
-	else:
-		animator.play(current_move.animation)
+	animator.play(current_move)
 
 	sound_manager.update_once(current_move.sound)
 

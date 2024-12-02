@@ -25,6 +25,9 @@ func gather_input() -> InputPackage:
 			if Input.is_action_just_pressed("rest"):
 				new_input.actions.append("idle_to_rest")
 
+			if Input.is_action_pressed("block"):
+				new_input.actions.append("block")
+
 			if Input.is_action_just_pressed("light_attack"):
 				new_input.combat_actions.append("light_attack_pressed")
 

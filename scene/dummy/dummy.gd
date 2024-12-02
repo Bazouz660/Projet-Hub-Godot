@@ -7,7 +7,6 @@ func _enter_tree():
 func _ready():
 	presentation.accept_model(model)
 	presentation.register_sounds(model.sound_manager)
-	model.animator.play("ready_idle")
 
 func _physics_process(delta):
 	var input = input_gatherer.create_empty_input()

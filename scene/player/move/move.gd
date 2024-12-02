@@ -5,7 +5,7 @@ class_name Move
 var humanoid: CharacterBody3D
 var resources: HumanoidResources
 var container: HumanoidStates
-var animator: AnimationPlayer
+var animator: SplitAnimator
 var combat: HumanoidCombat
 var moves_data_repo: MovesDataRepository:
 	set(value):

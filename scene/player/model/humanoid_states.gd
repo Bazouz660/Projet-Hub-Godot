@@ -3,7 +3,7 @@ class_name HumanoidStates
 
 
 @export var humanoid: CharacterBody3D
-@export var animator: AnimationPlayer
+@export var animator: SplitAnimator
 @export var resources: HumanoidResources
 @export var combat: HumanoidCombat
 @export var moves_data_repo: MovesDataRepository
@@ -31,3 +31,6 @@ func moves_priority_sort(a: String, b: String):
 		return true
 	else:
 		return false
+
+func get_move_by_name(move_name: String) -> Move:
+	return moves[move_name]

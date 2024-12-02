@@ -6,3 +6,7 @@ func default_lifecycle(input) -> String:
 
 func on_enter_state():
 	humanoid.velocity = Vector3.ZERO
+
+func update(_input: InputPackage, _delta: float):
+	humanoid.velocity.x = 0
+	humanoid.velocity.z = 0
