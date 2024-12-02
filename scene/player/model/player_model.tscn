@@ -1,34 +1,35 @@
-[gd_scene load_steps=67 format=3 uid="uid://b6i3ktwxchyr8"]
+[gd_scene load_steps=70 format=3 uid="uid://b6i3ktwxchyr8"]
 
 [ext_resource type="Script" uid="uid://co1h0wmsp5oye" path="res://scene/player/model/humanoid_model.gd" id="1_dfp2c"]
 [ext_resource type="Script" uid="uid://7o8migntf3vc" path="res://scene/player/model/resources.gd" id="2_3b786"]
-[ext_resource type="Animation" uid="uid://c30rfefyk5ykf" path="res://asset/animation/humanoid/ready_idle.res" id="2_b6r85"]
+[ext_resource type="Animation" uid="uid://ccmsmauvab2ml" path="res://asset/animation/humanoid/ready_idle.res" id="2_b6r85"]
 [ext_resource type="Script" uid="uid://c6apxt83lp7g1" path="res://scene/player/model/humanoid_sound_manager.gd" id="2_hhekq"]
-[ext_resource type="Animation" uid="uid://c3vd7xb4dsl31" path="res://asset/animation/humanoid/roll.res" id="3_3r6fq"]
+[ext_resource type="Animation" uid="uid://cqr2bjdhl86ad" path="res://asset/animation/humanoid/roll.res" id="3_3r6fq"]
 [ext_resource type="PackedScene" uid="uid://wbrv6lo1jv4e" path="res://scene/weapon/sword_collision.tscn" id="3_47lqg"]
 [ext_resource type="Script" uid="uid://btxd3eudh64p4" path="res://scene/player/model/humanoid_hitbox.gd" id="3_jhxj8"]
-[ext_resource type="Animation" uid="uid://gk61tvs7ylqh" path="res://asset/animation/humanoid/run.res" id="4_f7g05"]
-[ext_resource type="Animation" uid="uid://c4lc46lkxocn6" path="res://asset/animation/humanoid/sprint.res" id="5_hq78x"]
-[ext_resource type="Animation" uid="uid://b0xqh4p0a5mxu" path="res://asset/animation/humanoid/walk.res" id="6_oqwur"]
+[ext_resource type="Animation" uid="uid://1gdlwxueu1px" path="res://asset/animation/humanoid/run.res" id="4_f7g05"]
+[ext_resource type="Animation" uid="uid://cvnaj5shnd4s3" path="res://asset/animation/humanoid/sprint.res" id="5_hq78x"]
+[ext_resource type="Animation" uid="uid://df051fkln1dnl" path="res://asset/animation/humanoid/walk.res" id="6_oqwur"]
 [ext_resource type="Script" uid="uid://bedev4smphtwt" path="res://scene/player/model/animation_player.gd" id="7_1ussp"]
-[ext_resource type="Animation" uid="uid://cide813ya7whq" path="res://asset/animation/humanoid/resting.res" id="7_d8rpn"]
+[ext_resource type="Animation" uid="uid://d1utthvyyxcgk" path="res://asset/animation/humanoid/resting.res" id="7_d8rpn"]
+[ext_resource type="Animation" uid="uid://dl5uabo8v7hqc" path="res://asset/animation/humanoid/death.res" id="7_eg8aa"]
 [ext_resource type="Script" uid="uid://cpct8g8fhybud" path="res://scene/player/move/idle.gd" id="8_ly13d"]
-[ext_resource type="Animation" uid="uid://cbnoqocs0p8wo" path="res://asset/animation/humanoid/sitting_ground_to_standing.res" id="9_4ay6k"]
-[ext_resource type="Animation" uid="uid://bead1uaa8v4hw" path="res://asset/animation/humanoid/slash_1.res" id="9_05qd0"]
+[ext_resource type="Animation" uid="uid://cub6hb1kai7es" path="res://asset/animation/humanoid/sitting_ground_to_standing.res" id="9_4ay6k"]
+[ext_resource type="Animation" uid="uid://bv1m0rwqmj6c2" path="res://asset/animation/humanoid/slash_1.res" id="9_05qd0"]
 [ext_resource type="Script" uid="uid://dveaucho34d5c" path="res://scene/player/model/humanoid_combat.gd" id="9_dpui0"]
 [ext_resource type="Script" uid="uid://cjsjl1u6behlb" path="res://scene/player/move/run.gd" id="9_w7hc7"]
-[ext_resource type="Animation" uid="uid://bub01dl8dhbby" path="res://asset/animation/humanoid/slash_2.res" id="10_51io1"]
+[ext_resource type="Animation" uid="uid://c4nb43nryjm6d" path="res://asset/animation/humanoid/slash_2.res" id="10_51io1"]
 [ext_resource type="Script" uid="uid://ds5770ix34xc" path="res://scene/player/move/roll.gd" id="10_u5sls"]
 [ext_resource type="Script" uid="uid://yfts1kn7u1wi" path="res://scene/player/move/sprint.gd" id="11_4su47"]
-[ext_resource type="Animation" uid="uid://t1f6b2vuxysy" path="res://asset/animation/humanoid/slash_3.res" id="11_qv3sr"]
+[ext_resource type="Animation" uid="uid://d03boypl1m3y7" path="res://asset/animation/humanoid/slash_3.res" id="11_qv3sr"]
 [ext_resource type="Script" uid="uid://bs2ow0vimrbwf" path="res://scene/player/move/rest.gd" id="13_yducd"]
-[ext_resource type="Animation" uid="uid://kbhsnltf6vs4" path="res://asset/animation/humanoid/dancing.res" id="14_o17y2"]
-[ext_resource type="Animation" uid="uid://lw8fnal2bxlh" path="res://asset/animation/humanoid/idle_swimming.res" id="15_paota"]
+[ext_resource type="Animation" uid="uid://dw8bpcmjx8fih" path="res://asset/animation/humanoid/dancing.res" id="14_o17y2"]
+[ext_resource type="Animation" uid="uid://bflriqktbhoys" path="res://asset/animation/humanoid/idle_swimming.res" id="15_paota"]
 [ext_resource type="Script" uid="uid://canv2cnchp4ie" path="res://scene/player/move/rest_to_idle.gd" id="16_f8u1j"]
-[ext_resource type="Animation" uid="uid://78rmmgkrb44t" path="res://asset/animation/humanoid/swimming.res" id="16_vqcj0"]
+[ext_resource type="Animation" uid="uid://dcg5fp2om41hk" path="res://asset/animation/humanoid/swimming.res" id="16_vqcj0"]
 [ext_resource type="Script" uid="uid://c6vlhi4f72tmv" path="res://scene/player/move/idle_to_rest.gd" id="17_voj4g"]
 [ext_resource type="Script" uid="uid://cqwtlyjs0t0g1" path="res://scripts/resource/move_sound.gd" id="18_15yph"]
-[ext_resource type="Animation" uid="uid://c0fntkk0itvh8" path="res://asset/animation/humanoid/stagger.res" id="18_oeqs3"]
+[ext_resource type="Animation" uid="uid://l6g0s2w02xv" path="res://asset/animation/humanoid/staggered.res" id="18_d6oi3"]
 [ext_resource type="Script" uid="uid://cihlw2kn051e7" path="res://scene/player/model/consecutive_attack.gd" id="19_sgwv5"]
 [ext_resource type="Script" uid="uid://bwn1ce3xi2pfi" path="res://scene/player/model/humanoid_states.gd" id="22_r3b6d"]
 [ext_resource type="Script" uid="uid://d0mvec84gtg31" path="res://scene/player/move/attack.gd" id="29_humdn"]
@@ -38,12 +39,14 @@
 [ext_resource type="Script" uid="uid://drfk3jisy54t0" path="res://scene/player/model/moves_data_storage.gd" id="34_4ubtw"]
 [ext_resource type="Script" uid="uid://bmswb10s1aoyq" path="res://scene/player/move/emote.gd" id="34_ik1el"]
 [ext_resource type="Script" uid="uid://dgmcxpehlums1" path="res://scene/player/move/staggered.gd" id="35_ewwt7"]
+[ext_resource type="Script" uid="uid://l5pg4yp3tnmm" path="res://scene/player/move/death.gd" id="38_eg8aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ier8"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58s4b"]
 _data = {
 &"dancing": ExtResource("14_o17y2"),
+&"death": ExtResource("7_eg8aa"),
 &"idle_swimming": ExtResource("15_paota"),
 &"ready_idle": ExtResource("2_b6r85"),
 &"resting": ExtResource("7_d8rpn"),
@@ -54,7 +57,7 @@ _data = {
 &"slash_2": ExtResource("10_51io1"),
 &"slash_3": ExtResource("11_qv3sr"),
 &"sprint": ExtResource("5_hq78x"),
-&"staggered": ExtResource("18_oeqs3"),
+&"staggered": ExtResource("18_d6oi3"),
 &"swimming": ExtResource("16_vqcj0"),
 &"walk": ExtResource("6_oqwur")
 }
@@ -213,6 +216,118 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MoveDatabase:tracks_input_vector")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qpjtq"]
+resource_name = "death_params"
+length = 3.9167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveDatabase:root_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MoveDatabase:transitions_to_queued")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MoveDatabase:accepts_queueing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MoveDatabase:is_parryable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MoveDatabase:is_vulnerable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MoveDatabase:is_interruptable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MoveDatabase:is_grabable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_k2jx5"]
 resource_name = "emote_params"
@@ -304,7 +419,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -405,7 +520,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -505,7 +620,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -605,7 +720,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -704,7 +819,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -804,7 +919,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -904,7 +1019,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1004,7 +1119,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1104,14 +1219,14 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_85hv7"]
@@ -1213,6 +1328,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MoveDatabase:tracks_input_vector")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_alj0v"]
 resource_name = "slash_2_params"
@@ -1313,6 +1440,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MoveDatabase:tracks_input_vector")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1xeda"]
 resource_name = "slash_3_params"
@@ -1337,9 +1476,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1349,9 +1488,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1412,6 +1551,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(0, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MoveDatabase:tracks_input_vector")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_up4vv"]
@@ -1504,14 +1655,14 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5tsu0"]
@@ -1604,7 +1755,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1704,19 +1855,20 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3jui1"]
 _data = {
 &"RESET": SubResource("Animation_l80mn"),
+&"death_params": SubResource("Animation_qpjtq"),
 &"emote_params": SubResource("Animation_k2jx5"),
 &"idle_params": SubResource("Animation_x0tf6"),
 &"idle_swim_params": SubResource("Animation_5kvkh"),
@@ -1736,11 +1888,14 @@ _data = {
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pxxqk"]
 properties/0/path = NodePath("Resources:sync_stamina")
-properties/0/spawn = true
-properties/0/replication_mode = 2
+properties/0/spawn = false
+properties/0/replication_mode = 0
 properties/1/path = NodePath("Resources:sync_health")
-properties/1/spawn = true
-properties/1/replication_mode = 2
+properties/1/spawn = false
+properties/1/replication_mode = 0
+properties/2/path = NodePath("Resources:health")
+properties/2/spawn = true
+properties/2/replication_mode = 2
 
 [node name="Model" type="Node3D"]
 script = ExtResource("1_dfp2c")
@@ -1758,29 +1913,29 @@ bones/0/name = "mixamorigHips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.993877, 0.104864, -0.0348147, -0.110492, 0.943568, -0.312204, 0.000111004, 0.314139, 0.949377, -1.39451, 77.1941, -2.14362)
 bones/0/enabled = true
-bones/0/position = Vector3(2.61071, 63.8548, 41.3204)
-bones/0/rotation = Quaternion(0.317292, 0.133584, -0.0323819, 0.938314)
+bones/0/position = Vector3(-21.4741, 14.0772, 81.8473)
+bones/0/rotation = Quaternion(0.729357, 0.108384, 0.101511, 0.667822)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "mixamorigSpine"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.987056, -0.105284, -0.120976, 0.0962784, 0.992291, -0.0780362, 0.128259, 0.0653788, 0.989583, 0, 8.86398, 0.116974)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 8.86398, 0.116974)
-bones/1/rotation = Quaternion(0.136209, 0.138811, -0.179104, 0.964417)
+bones/1/rotation = Quaternion(0.0752991, -0.0420296, -0.106398, 0.990577)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "mixamorigSpine1"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.998541, -0.0393115, -0.0370236, 0.0375601, 0.998195, -0.046866, 0.0387992, 0.045407, 0.998215, 0, 10.3422, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 10.3422, 0)
-bones/2/rotation = Quaternion(0.0298757, 0.0394369, -0.0515216, 0.997446)
+bones/2/rotation = Quaternion(-0.0128739, -0.00562214, -0.00361832, 0.999895)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "mixamorigSpine2"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.99859, -0.0388094, -0.0362234, 0.0371107, 0.998231, -0.0464464, 0.0379619, 0.0450366, 0.998264, 0, 11.8197, 0)
 bones/3/enabled = true
 bones/3/position = Vector3(0, 11.8197, 0)
-bones/3/rotation = Quaternion(0.0296655, 0.0394079, -0.0529657, 0.997377)
+bones/3/rotation = Quaternion(-0.012815, -0.00509393, -0.00375269, 0.999898)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "mixamorigSpine2_2"
 bones/4/parent = 3
@@ -1794,7 +1949,7 @@ bones/5/parent = 3
 bones/5/rest = Transform3D(0.996765, -0.080267, -0.00405575, 0.0802112, 0.990369, 0.112855, -0.00504183, -0.112815, 0.993603, 0, 13.2971, 2.0537e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(0, 13.2971, 2.0537e-08)
-bones/5/rotation = Quaternion(-0.0794122, -0.0677982, 0.0799096, 0.991318)
+bones/5/rotation = Quaternion(0.185854, 0.14138, -0.0805995, 0.969007)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "mixamorigNeck_2"
 bones/6/parent = 5
@@ -1808,7 +1963,7 @@ bones/7/parent = 5
 bones/7/rest = Transform3D(0.985116, 0.0965757, 0.142199, -0.109309, 0.990399, 0.084623, -0.132661, -0.098907, 0.986214, 0, 4.94179, -0.110829)
 bones/7/enabled = true
 bones/7/position = Vector3(0, 4.94179, -0.110829)
-bones/7/rotation = Quaternion(-0.229363, -0.239527, -0.0406222, 0.942533)
+bones/7/rotation = Quaternion(-0.211274, 0.163779, 0.0145574, 0.963498)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "mixamorigHead_2"
 bones/8/parent = 7
@@ -1829,21 +1984,21 @@ bones/10/parent = 3
 bones/10/rest = Transform3D(0.206827, 0.958731, -0.195083, 0.0113313, -0.201728, -0.979376, -0.978312, 0.200351, -0.0525867, 5.43585, 11.269, 0.0202943)
 bones/10/enabled = true
 bones/10/position = Vector3(5.43585, 11.269, 0.0202943)
-bones/10/rotation = Quaternion(0.565171, 0.422977, -0.595495, 0.383483)
+bones/10/rotation = Quaternion(0.525649, 0.480117, -0.337717, 0.615734)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "mixamorigLeftArm"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.990211, -0.13948, 0.00525826, 0.110587, 0.760992, -0.639267, 0.0851633, 0.63359, 0.768967, 4.44089e-16, 11.3224, -1.42109e-14)
 bones/11/enabled = true
 bones/11/position = Vector3(4.44089e-16, 11.3224, -1.42109e-14)
-bones/11/rotation = Quaternion(0.386597, -0.0093269, 0.0685728, 0.919649)
+bones/11/rotation = Quaternion(0.0309141, -0.745669, -0.00566419, 0.665575)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "mixamorigLeftForeArm"
 bones/12/parent = 11
 bones/12/rest = Transform3D(-0.473102, -0.881008, 0.000186709, 0.881008, -0.473102, -0.000102955, 0.000179037, 0.000115784, 1, -4.44089e-16, 30.4255, -7.10543e-15)
 bones/12/enabled = true
 bones/12/position = Vector3(-4.44089e-16, 30.4255, -7.10543e-15)
-bones/12/rotation = Quaternion(0.00633288, -0.0826649, 0.362106, 0.928443)
+bones/12/rotation = Quaternion(0.0122145, -0.0787355, 0.18603, 0.979308)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "mixamorigLeftHand"
 bones/13/parent = 12
@@ -1857,21 +2012,21 @@ bones/14/parent = 3
 bones/14/rest = Transform3D(0.22126, -0.974155, 0.0454546, -0.0461515, -0.0570173, -0.997306, 0.974122, 0.218566, -0.0575744, -5.43585, 11.2691, 0.0332328)
 bones/14/enabled = true
 bones/14/position = Vector3(-5.43585, 11.2691, 0.0332328)
-bones/14/rotation = Quaternion(0.633404, -0.353321, 0.328074, 0.605253)
+bones/14/rotation = Quaternion(0.581284, -0.421539, 0.541879, 0.436785)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "mixamorigRightArm"
 bones/15/parent = 14
 bones/15/rest = Transform3D(0.753513, -0.395701, -0.525014, -0.24985, 0.566305, -0.785413, 0.608107, 0.722994, 0.327851, 4.44089e-16, 11.3224, 0)
 bones/15/enabled = true
 bones/15/position = Vector3(4.44089e-16, 11.3224, 0)
-bones/15/rotation = Quaternion(0.17618, 0.322647, -0.394219, 0.842289)
+bones/15/rotation = Quaternion(0.0669009, 0.229647, 0.0801777, 0.967656)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "mixamorigRightForeArm"
 bones/16/parent = 15
 bones/16/rest = Transform3D(0.0847522, 0.976244, 0.199412, -0.974062, 0.0390348, 0.222887, 0.209808, -0.21313, 0.954231, 0, 30.4279, 0)
 bones/16/enabled = true
 bones/16/position = Vector3(0, 30.4279, 0)
-bones/16/rotation = Quaternion(0.249893, -0.508269, -0.501708, 0.653839)
+bones/16/rotation = Quaternion(0.0668705, 0.613337, 0.0104279, 0.786916)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "mixamorigRightHand"
 bones/17/parent = 16
@@ -1885,28 +2040,28 @@ bones/18/parent = 0
 bones/18/rest = Transform3D(-0.975116, 0.0961423, 0.199763, -0.102576, -0.99448, -0.0220876, 0.196537, -0.042029, 0.979595, 8.40872, -4.91863, 0.104784)
 bones/18/enabled = true
 bones/18/position = Vector3(8.40872, -4.91863, 0.104784)
-bones/18/rotation = Quaternion(0.0507801, 0.758821, 0.647543, -0.0479549)
+bones/18/rotation = Quaternion(0.22998, 0.437618, 0.807702, -0.321273)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "mixamorigLeftLeg"
 bones/19/parent = 18
 bones/19/rest = Transform3D(0.998802, 0.00141458, 0.0489233, -0.0306223, 0.79783, 0.602105, -0.0381808, -0.602881, 0.796917, 0, 38.0973, 0)
 bones/19/enabled = true
 bones/19/position = Vector3(0, 38.0973, 0)
-bones/19/rotation = Quaternion(-0.594771, 0.200492, -0.189673, 0.755032)
+bones/19/rotation = Quaternion(-0.46307, -0.273806, -0.0226292, 0.842665)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "mixamorigLeftFoot"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.989404, 0.0725591, -0.125756, -0.144974, 0.44685, -0.882784, -0.00786018, 0.891661, 0.452634, -1.77636e-15, 36.2443, 0)
 bones/20/enabled = true
 bones/20/position = Vector3(-1.77636e-15, 36.2443, 0)
-bones/20/rotation = Quaternion(0.612501, 0.0528171, 0.073456, 0.785275)
+bones/20/rotation = Quaternion(0.329502, 0.00459761, 0.0552688, 0.942525)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "mixamorigLeftToeBase"
 bones/21/parent = 20
 bones/21/rest = Transform3D(0.985756, 0.0706466, 0.152622, 0.124094, 0.306978, -0.943592, -0.113513, 0.949091, 0.293839, 1.77636e-15, 15.5795, 0)
 bones/21/enabled = true
 bones/21/position = Vector3(1.77636e-15, 15.5795, 0)
-bones/21/rotation = Quaternion(0.246106, -0.0563341, 0.0280641, 0.967197)
+bones/21/rotation = Quaternion(0.196434, -0.00384151, 0.0137195, 0.980414)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "mixamorigLeftToe_End"
 bones/22/parent = 21
@@ -1920,28 +2075,28 @@ bones/23/parent = 0
 bones/23/rest = Transform3D(-0.97686, 0.194846, -0.0882064, -0.177935, -0.511517, 0.840648, 0.118678, 0.83689, 0.53435, -8.40872, -4.91863, 0.00846076)
 bones/23/enabled = true
 bones/23/position = Vector3(-8.40872, -4.91863, 0.00846076)
-bones/23/rotation = Quaternion(-0.2192, 0.0229184, 0.972184, 0.0792742)
+bones/23/rotation = Quaternion(-0.150909, 0.065473, 0.978004, 0.128253)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "mixamorigRightLeg"
 bones/24/parent = 23
 bones/24/rest = Transform3D(0.999157, -0.0408894, 0.0037067, 0.028253, 0.750259, 0.66054, -0.0297901, -0.659878, 0.750782, -1.77636e-15, 38.1037, 2.22045e-16)
 bones/24/enabled = true
 bones/24/position = Vector3(-1.77636e-15, 38.1037, 2.22045e-16)
-bones/24/rotation = Quaternion(-0.331008, 0.0989489, 0.00827554, 0.938389)
+bones/24/rotation = Quaternion(-0.036062, -0.149741, 0.0428317, 0.987139)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "mixamorigRightFoot"
 bones/25/parent = 24
 bones/25/rest = Transform3D(0.989235, 0.0781579, -0.123716, -0.14125, 0.289018, -0.946846, -0.0382473, 0.954128, 0.296946, -1.77636e-15, 36.2447, 0)
 bones/25/enabled = true
 bones/25/position = Vector3(-1.77636e-15, 36.2447, 0)
-bones/25/rotation = Quaternion(0.494708, 0.0606779, 0.0642861, 0.864551)
+bones/25/rotation = Quaternion(0.216657, 0.116087, 0.166202, 0.954966)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "mixamorigRightToeBase"
 bones/26/parent = 25
 bones/26/rest = Transform3D(0.999527, -0.0141581, -0.0272931, -0.00187639, 0.85793, -0.513763, 0.0306895, 0.513571, 0.857498, 0, 15.5635, 0)
 bones/26/enabled = true
 bones/26/position = Vector3(0, 15.5635, 0)
-bones/26/rotation = Quaternion(0.598868, 0.331872, -0.0443885, 0.727494)
+bones/26/rotation = Quaternion(0.109609, 0.0526116, 0.104917, 0.987021)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "mixamorigRightToe_End"
 bones/27/parent = 26
@@ -1952,7 +2107,7 @@ bones/27/rotation = Quaternion(7.44847e-17, 2.26971e-17, -8.67362e-19, 1)
 bones/27/scale = Vector3(1, 1, 1)
 
 [node name="Root" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.962213, 0.145539, 0.230138, 0.0240015, 0.796555, -0.60409, -0.271236, 0.586787, 0.762962, 2.61071, 63.8548, 41.3204)
+transform = Transform3D(0.955897, 0.0225187, 0.292839, 0.293684, -0.0845321, -0.952157, 0.00331289, 0.996166, -0.0874174, -21.4741, 14.0772, 81.8473)
 bone_name = "mixamorigHips"
 bone_idx = 0
 
@@ -1964,7 +2119,7 @@ script = ExtResource("3_jhxj8")
 shape = SubResource("CapsuleShape3D_4ier8")
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.333779, 0.340583, -0.878974, 0.66296, -0.578063, -0.475737, -0.67013, -0.741516, -0.0328473, 35.0681, 43.7996, 72.525)
+transform = Transform3D(-0.263825, -0.950318, 0.165202, -0.0242276, -0.164687, -0.986048, 0.964266, -0.264147, 0.0204247, -78.858, -1.30084, 112.63)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -1976,14 +2131,14 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.726954, 0.044518, -0.685241, 0.211097, -0.935086, -0.284697, -0.653433, -0.351614, 0.670367, 19.6575, 51.3228, 18.611)
+transform = Transform3D(0.228465, 0.951834, -0.20449, -0.143378, -0.174859, -0.974098, -0.962936, 0.251867, 0.0965233, 54.2621, -0.686008, 122.274)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.843078, 0.461115, 0.276754, -0.376919, 0.873707, -0.307519, -0.383604, 0.154948, 0.910406, 38.8491, 110.901, 70.6144)
+transform = Transform3D(0.653404, 0.263529, 0.709658, 0.750024, -0.0983025, -0.654065, -0.102604, 0.959629, -0.261885, -4.36375, 4.59991, 147.775)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 
@@ -1991,8 +2146,9 @@ bone_idx = 9
 libraries = {
 &"": SubResource("AnimationLibrary_58s4b")
 }
-blend_times = [&"dancing", &"dancing", 0.2, &"dancing", &"idle_swimming", 0.2, &"dancing", &"ready_idle", 0.2, &"dancing", &"resting", 0.2, &"dancing", &"roll", 0.2, &"dancing", &"run", 0.2, &"dancing", &"sitting_ground_to_standing", 0.2, &"dancing", &"slash_1", 0.2, &"dancing", &"slash_2", 0.2, &"dancing", &"slash_3", 0.2, &"dancing", &"sprint", 0.2, &"dancing", &"staggered", 0.2, &"dancing", &"swimming", 0.2, &"dancing", &"walk", 0.2, &"idle_swimming", &"dancing", 0.2, &"idle_swimming", &"idle_swimming", 0.2, &"idle_swimming", &"ready_idle", 0.2, &"idle_swimming", &"resting", 0.2, &"idle_swimming", &"roll", 0.2, &"idle_swimming", &"run", 0.2, &"idle_swimming", &"sitting_ground_to_standing", 0.2, &"idle_swimming", &"slash_1", 0.2, &"idle_swimming", &"slash_2", 0.2, &"idle_swimming", &"slash_3", 0.2, &"idle_swimming", &"sprint", 0.2, &"idle_swimming", &"staggered", 0.2, &"idle_swimming", &"swimming", 0.2, &"idle_swimming", &"walk", 0.2, &"ready_idle", &"dancing", 0.2, &"ready_idle", &"idle_swimming", 0.2, &"ready_idle", &"ready_idle", 0.2, &"ready_idle", &"resting", 0.2, &"ready_idle", &"roll", 0.2, &"ready_idle", &"run", 0.2, &"ready_idle", &"sitting_ground_to_standing", 0.2, &"ready_idle", &"slash_1", 0.2, &"ready_idle", &"slash_2", 0.2, &"ready_idle", &"slash_3", 0.2, &"ready_idle", &"sprint", 0.2, &"ready_idle", &"staggered", 0.2, &"ready_idle", &"swimming", 0.2, &"ready_idle", &"walk", 0.2, &"resting", &"dancing", 0.2, &"resting", &"idle_swimming", 0.2, &"resting", &"ready_idle", 0.2, &"resting", &"resting", 0.2, &"resting", &"roll", 0.2, &"resting", &"run", 0.2, &"resting", &"sitting_ground_to_standing", 0.2, &"resting", &"slash_1", 0.2, &"resting", &"slash_2", 0.2, &"resting", &"slash_3", 0.2, &"resting", &"sprint", 0.2, &"resting", &"staggered", 0.2, &"resting", &"swimming", 0.2, &"resting", &"walk", 0.2, &"roll", &"dancing", 0.2, &"roll", &"idle_swimming", 0.2, &"roll", &"ready_idle", 0.2, &"roll", &"resting", 0.2, &"roll", &"roll", 0.2, &"roll", &"run", 0.2, &"roll", &"sitting_ground_to_standing", 0.2, &"roll", &"slash_1", 0.2, &"roll", &"slash_2", 0.2, &"roll", &"slash_3", 0.2, &"roll", &"sprint", 0.2, &"roll", &"staggered", 0.2, &"roll", &"swimming", 0.2, &"roll", &"walk", 0.2, &"run", &"dancing", 0.2, &"run", &"idle_swimming", 0.2, &"run", &"ready_idle", 0.2, &"run", &"resting", 0.2, &"run", &"roll", 0.2, &"run", &"run", 0.2, &"run", &"sitting_ground_to_standing", 0.2, &"run", &"slash_1", 0.2, &"run", &"slash_2", 0.2, &"run", &"slash_3", 0.2, &"run", &"sprint", 0.2, &"run", &"staggered", 0.2, &"run", &"swimming", 0.2, &"run", &"walk", 0.2, &"sitting_ground_to_standing", &"dancing", 0.2, &"sitting_ground_to_standing", &"idle_swimming", 0.2, &"sitting_ground_to_standing", &"ready_idle", 0.2, &"sitting_ground_to_standing", &"resting", 0.2, &"sitting_ground_to_standing", &"roll", 0.2, &"sitting_ground_to_standing", &"run", 0.2, &"sitting_ground_to_standing", &"sitting_ground_to_standing", 0.2, &"sitting_ground_to_standing", &"slash_1", 0.2, &"sitting_ground_to_standing", &"slash_2", 0.2, &"sitting_ground_to_standing", &"slash_3", 0.2, &"sitting_ground_to_standing", &"sprint", 0.2, &"sitting_ground_to_standing", &"staggered", 0.2, &"sitting_ground_to_standing", &"swimming", 0.2, &"sitting_ground_to_standing", &"walk", 0.2, &"slash_1", &"dancing", 0.2, &"slash_1", &"idle_swimming", 0.2, &"slash_1", &"ready_idle", 0.2, &"slash_1", &"resting", 0.2, &"slash_1", &"roll", 0.2, &"slash_1", &"run", 0.2, &"slash_1", &"sitting_ground_to_standing", 0.2, &"slash_1", &"slash_1", 0.2, &"slash_1", &"slash_3", 0.2, &"slash_1", &"sprint", 0.2, &"slash_1", &"staggered", 0.2, &"slash_1", &"swimming", 0.2, &"slash_1", &"walk", 0.2, &"slash_2", &"dancing", 0.2, &"slash_2", &"idle_swimming", 0.2, &"slash_2", &"ready_idle", 0.2, &"slash_2", &"resting", 0.2, &"slash_2", &"roll", 0.2, &"slash_2", &"run", 0.2, &"slash_2", &"sitting_ground_to_standing", 0.2, &"slash_2", &"slash_1", 0.2, &"slash_2", &"slash_2", 0.2, &"slash_2", &"slash_3", 0.2, &"slash_2", &"sprint", 0.2, &"slash_2", &"staggered", 0.2, &"slash_2", &"swimming", 0.2, &"slash_2", &"walk", 0.2, &"slash_3", &"dancing", 0.2, &"slash_3", &"idle_swimming", 0.2, &"slash_3", &"ready_idle", 0.2, &"slash_3", &"resting", 0.2, &"slash_3", &"roll", 0.2, &"slash_3", &"run", 0.2, &"slash_3", &"sitting_ground_to_standing", 0.2, &"slash_3", &"slash_1", 0.2, &"slash_3", &"slash_2", 0.2, &"slash_3", &"slash_3", 0.2, &"slash_3", &"sprint", 0.2, &"slash_3", &"staggered", 0.2, &"slash_3", &"swimming", 0.2, &"slash_3", &"walk", 0.2, &"sprint", &"dancing", 0.2, &"sprint", &"idle_swimming", 0.2, &"sprint", &"ready_idle", 0.2, &"sprint", &"resting", 0.2, &"sprint", &"roll", 0.2, &"sprint", &"run", 0.2, &"sprint", &"sitting_ground_to_standing", 0.2, &"sprint", &"slash_1", 0.2, &"sprint", &"slash_2", 0.2, &"sprint", &"slash_3", 0.2, &"sprint", &"sprint", 0.2, &"sprint", &"staggered", 0.2, &"sprint", &"swimming", 0.2, &"sprint", &"walk", 0.2, &"staggered", &"dancing", 0.2, &"staggered", &"idle_swimming", 0.2, &"staggered", &"ready_idle", 0.2, &"staggered", &"resting", 0.2, &"staggered", &"roll", 0.2, &"staggered", &"run", 0.2, &"staggered", &"sitting_ground_to_standing", 0.2, &"staggered", &"slash_1", 0.2, &"staggered", &"slash_2", 0.2, &"staggered", &"slash_3", 0.2, &"staggered", &"sprint", 0.2, &"staggered", &"staggered", 0.2, &"staggered", &"swimming", 0.2, &"staggered", &"walk", 0.2, &"swimming", &"dancing", 0.2, &"swimming", &"idle_swimming", 0.2, &"swimming", &"ready_idle", 0.2, &"swimming", &"resting", 0.2, &"swimming", &"roll", 0.2, &"swimming", &"run", 0.2, &"swimming", &"sitting_ground_to_standing", 0.2, &"swimming", &"slash_1", 0.2, &"swimming", &"slash_2", 0.2, &"swimming", &"slash_3", 0.2, &"swimming", &"sprint", 0.2, &"swimming", &"staggered", 0.2, &"swimming", &"swimming", 0.2, &"swimming", &"walk", 0.2, &"walk", &"dancing", 0.2, &"walk", &"idle_swimming", 0.2, &"walk", &"ready_idle", 0.2, &"walk", &"resting", 0.2, &"walk", &"roll", 0.2, &"walk", &"run", 0.2, &"walk", &"sitting_ground_to_standing", 0.2, &"walk", &"slash_1", 0.2, &"walk", &"slash_2", 0.2, &"walk", &"slash_3", 0.2, &"walk", &"sprint", 0.2, &"walk", &"staggered", 0.2, &"walk", &"swimming", 0.2, &"walk", &"walk", 0.2]
+blend_times = [&"dancing", &"dancing", 0.2, &"dancing", &"death", 0.2, &"dancing", &"idle_swimming", 0.2, &"dancing", &"ready_idle", 0.2, &"dancing", &"resting", 0.2, &"dancing", &"roll", 0.2, &"dancing", &"run", 0.2, &"dancing", &"sitting_ground_to_standing", 0.2, &"dancing", &"slash_1", 0.2, &"dancing", &"slash_2", 0.2, &"dancing", &"slash_3", 0.2, &"dancing", &"sprint", 0.2, &"dancing", &"staggered", 0.2, &"dancing", &"swimming", 0.2, &"dancing", &"walk", 0.2, &"death", &"dancing", 0.2, &"death", &"death", 0.2, &"death", &"idle_swimming", 0.2, &"death", &"ready_idle", 0.2, &"death", &"resting", 0.2, &"death", &"roll", 0.2, &"death", &"run", 0.2, &"death", &"sitting_ground_to_standing", 0.2, &"death", &"slash_1", 0.2, &"death", &"slash_2", 0.2, &"death", &"slash_3", 0.2, &"death", &"sprint", 0.2, &"death", &"staggered", 0.2, &"death", &"swimming", 0.2, &"death", &"walk", 0.2, &"idle_swimming", &"dancing", 0.2, &"idle_swimming", &"death", 0.2, &"idle_swimming", &"idle_swimming", 0.2, &"idle_swimming", &"ready_idle", 0.2, &"idle_swimming", &"resting", 0.2, &"idle_swimming", &"roll", 0.2, &"idle_swimming", &"run", 0.2, &"idle_swimming", &"sitting_ground_to_standing", 0.2, &"idle_swimming", &"slash_1", 0.2, &"idle_swimming", &"slash_2", 0.2, &"idle_swimming", &"slash_3", 0.2, &"idle_swimming", &"sprint", 0.2, &"idle_swimming", &"staggered", 0.2, &"idle_swimming", &"swimming", 0.2, &"idle_swimming", &"walk", 0.2, &"ready_idle", &"dancing", 0.2, &"ready_idle", &"death", 0.2, &"ready_idle", &"idle_swimming", 0.2, &"ready_idle", &"ready_idle", 0.2, &"ready_idle", &"resting", 0.2, &"ready_idle", &"roll", 0.2, &"ready_idle", &"run", 0.2, &"ready_idle", &"sitting_ground_to_standing", 0.2, &"ready_idle", &"slash_1", 0.2, &"ready_idle", &"slash_2", 0.2, &"ready_idle", &"slash_3", 0.2, &"ready_idle", &"sprint", 0.2, &"ready_idle", &"staggered", 0.2, &"ready_idle", &"swimming", 0.2, &"ready_idle", &"walk", 0.2, &"resting", &"dancing", 0.2, &"resting", &"death", 0.2, &"resting", &"idle_swimming", 0.2, &"resting", &"ready_idle", 0.2, &"resting", &"resting", 0.2, &"resting", &"roll", 0.2, &"resting", &"run", 0.2, &"resting", &"sitting_ground_to_standing", 0.2, &"resting", &"slash_1", 0.2, &"resting", &"slash_2", 0.2, &"resting", &"slash_3", 0.2, &"resting", &"sprint", 0.2, &"resting", &"staggered", 0.2, &"resting", &"swimming", 0.2, &"resting", &"walk", 0.2, &"roll", &"dancing", 0.2, &"roll", &"death", 0.2, &"roll", &"idle_swimming", 0.2, &"roll", &"ready_idle", 0.2, &"roll", &"resting", 0.2, &"roll", &"roll", 0.2, &"roll", &"run", 0.2, &"roll", &"sitting_ground_to_standing", 0.2, &"roll", &"slash_1", 0.2, &"roll", &"slash_2", 0.2, &"roll", &"slash_3", 0.2, &"roll", &"sprint", 0.2, &"roll", &"staggered", 0.2, &"roll", &"swimming", 0.2, &"roll", &"walk", 0.2, &"run", &"dancing", 0.2, &"run", &"death", 0.2, &"run", &"idle_swimming", 0.2, &"run", &"ready_idle", 0.2, &"run", &"resting", 0.2, &"run", &"roll", 0.2, &"run", &"run", 0.2, &"run", &"sitting_ground_to_standing", 0.2, &"run", &"slash_1", 0.2, &"run", &"slash_2", 0.2, &"run", &"slash_3", 0.2, &"run", &"sprint", 0.2, &"run", &"staggered", 0.2, &"run", &"swimming", 0.2, &"run", &"walk", 0.2, &"sitting_ground_to_standing", &"dancing", 0.2, &"sitting_ground_to_standing", &"death", 0.2, &"sitting_ground_to_standing", &"idle_swimming", 0.2, &"sitting_ground_to_standing", &"ready_idle", 0.2, &"sitting_ground_to_standing", &"resting", 0.2, &"sitting_ground_to_standing", &"roll", 0.2, &"sitting_ground_to_standing", &"run", 0.2, &"sitting_ground_to_standing", &"sitting_ground_to_standing", 0.2, &"sitting_ground_to_standing", &"slash_1", 0.2, &"sitting_ground_to_standing", &"slash_2", 0.2, &"sitting_ground_to_standing", &"slash_3", 0.2, &"sitting_ground_to_standing", &"sprint", 0.2, &"sitting_ground_to_standing", &"staggered", 0.2, &"sitting_ground_to_standing", &"swimming", 0.2, &"sitting_ground_to_standing", &"walk", 0.2, &"slash_1", &"dancing", 0.2, &"slash_1", &"death", 0.2, &"slash_1", &"idle_swimming", 0.2, &"slash_1", &"ready_idle", 0.2, &"slash_1", &"resting", 0.2, &"slash_1", &"roll", 0.2, &"slash_1", &"run", 0.2, &"slash_1", &"sitting_ground_to_standing", 0.2, &"slash_1", &"slash_1", 0.2, &"slash_1", &"slash_3", 0.2, &"slash_1", &"sprint", 0.2, &"slash_1", &"staggered", 0.2, &"slash_1", &"swimming", 0.2, &"slash_1", &"walk", 0.2, &"slash_2", &"dancing", 0.2, &"slash_2", &"death", 0.2, &"slash_2", &"idle_swimming", 0.2, &"slash_2", &"ready_idle", 0.2, &"slash_2", &"resting", 0.2, &"slash_2", &"roll", 0.2, &"slash_2", &"run", 0.2, &"slash_2", &"sitting_ground_to_standing", 0.2, &"slash_2", &"slash_1", 0.2, &"slash_2", &"slash_2", 0.2, &"slash_2", &"slash_3", 0.2, &"slash_2", &"sprint", 0.2, &"slash_2", &"staggered", 0.2, &"slash_2", &"swimming", 0.2, &"slash_2", &"walk", 0.2, &"slash_3", &"dancing", 0.2, &"slash_3", &"death", 0.2, &"slash_3", &"idle_swimming", 0.2, &"slash_3", &"ready_idle", 0.2, &"slash_3", &"resting", 0.2, &"slash_3", &"roll", 0.2, &"slash_3", &"run", 0.2, &"slash_3", &"sitting_ground_to_standing", 0.2, &"slash_3", &"slash_1", 0.2, &"slash_3", &"slash_2", 0.2, &"slash_3", &"slash_3", 0.2, &"slash_3", &"sprint", 0.2, &"slash_3", &"staggered", 0.2, &"slash_3", &"swimming", 0.2, &"slash_3", &"walk", 0.2, &"sprint", &"dancing", 0.2, &"sprint", &"death", 0.2, &"sprint", &"idle_swimming", 0.2, &"sprint", &"ready_idle", 0.2, &"sprint", &"resting", 0.2, &"sprint", &"roll", 0.2, &"sprint", &"run", 0.2, &"sprint", &"sitting_ground_to_standing", 0.2, &"sprint", &"slash_1", 0.2, &"sprint", &"slash_2", 0.2, &"sprint", &"slash_3", 0.2, &"sprint", &"sprint", 0.2, &"sprint", &"staggered", 0.2, &"sprint", &"swimming", 0.2, &"sprint", &"walk", 0.2, &"staggered", &"dancing", 0.2, &"staggered", &"death", 0.2, &"staggered", &"idle_swimming", 0.2, &"staggered", &"ready_idle", 0.2, &"staggered", &"resting", 0.2, &"staggered", &"roll", 0.2, &"staggered", &"run", 0.2, &"staggered", &"sitting_ground_to_standing", 0.2, &"staggered", &"slash_1", 0.2, &"staggered", &"slash_2", 0.2, &"staggered", &"slash_3", 0.2, &"staggered", &"sprint", 0.2, &"staggered", &"staggered", 0.2, &"staggered", &"swimming", 0.2, &"staggered", &"walk", 0.2, &"swimming", &"dancing", 0.2, &"swimming", &"death", 0.2, &"swimming", &"idle_swimming", 0.2, &"swimming", &"ready_idle", 0.2, &"swimming", &"resting", 0.2, &"swimming", &"roll", 0.2, &"swimming", &"run", 0.2, &"swimming", &"sitting_ground_to_standing", 0.2, &"swimming", &"slash_1", 0.2, &"swimming", &"slash_2", 0.2, &"swimming", &"slash_3", 0.2, &"swimming", &"sprint", 0.2, &"swimming", &"staggered", 0.2, &"swimming", &"swimming", 0.2, &"swimming", &"walk", 0.2, &"walk", &"dancing", 0.2, &"walk", &"death", 0.2, &"walk", &"idle_swimming", 0.2, &"walk", &"ready_idle", 0.2, &"walk", &"resting", 0.2, &"walk", &"roll", 0.2, &"walk", &"run", 0.2, &"walk", &"sitting_ground_to_standing", 0.2, &"walk", &"slash_1", 0.2, &"walk", &"slash_2", 0.2, &"walk", &"slash_3", 0.2, &"walk", &"sprint", 0.2, &"walk", &"staggered", 0.2, &"walk", &"swimming", 0.2, &"walk", &"walk", 0.2]
 script = ExtResource("7_1ussp")
+fps = 60
 
 [node name="Combat" type="Node" parent="."]
 script = ExtResource("9_dpui0")
@@ -2007,7 +2163,6 @@ moves_data_repo = NodePath("../MovesDataRepository")
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource("8_ly13d")
 move_name = "idle"
-priority = 1
 animation = "ready_idle"
 backend_animation = "idle_params"
 
@@ -2015,6 +2170,7 @@ backend_animation = "idle_params"
 script = ExtResource("9_w7hc7")
 move_name = "run"
 priority = 2
+speed = 5.0
 animation = "run"
 backend_animation = "run_params"
 sound = SubResource("Resource_dtec1")
@@ -2024,6 +2180,7 @@ script = ExtResource("10_u5sls")
 move_name = "roll"
 priority = 11
 enter_stamina_cost = 10.0
+speed = 12.0
 animation = "roll"
 backend_animation = "roll_params"
 sound = SubResource("Resource_nvww7")
@@ -2033,6 +2190,7 @@ script = ExtResource("11_4su47")
 move_name = "sprint"
 priority = 3
 enter_stamina_cost = 1.0
+speed = 8.0
 animation = "sprint"
 backend_animation = "sprint_params"
 sound = SubResource("Resource_qo5fi")
@@ -2106,6 +2264,7 @@ script = ExtResource("31_8ffxp")
 move_name = "swim"
 priority = 1
 affected_by_gravity = false
+speed = 3.0
 animation = "swimming"
 backend_animation = "swim_params"
 sound = SubResource("Resource_fqxv3")
@@ -2128,9 +2287,15 @@ backend_animation = "staggered_params"
 [node name="Emote" type="Node" parent="States"]
 script = ExtResource("34_ik1el")
 move_name = "emote"
-priority = 10
 animation = "dancing"
 backend_animation = "emote_params"
+
+[node name="Death" type="Node" parent="States"]
+script = ExtResource("38_eg8aa")
+move_name = "death"
+priority = 100000
+animation = "death"
+backend_animation = "death_params"
 
 [node name="MovesDataRepository" type="Node" parent="."]
 script = ExtResource("33_u5qca")

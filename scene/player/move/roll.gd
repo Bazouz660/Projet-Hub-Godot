@@ -1,8 +1,6 @@
 extends Move
 class_name Roll
 
-@export var speed: float = 12
-
 var _roll_direction: Vector3 = Vector3(0.0, 0.0, 0.0)
 var _roll_direction_defined: bool = false
 

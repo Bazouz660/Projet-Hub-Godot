@@ -50,8 +50,7 @@ func update(input: InputPackage, delta: float):
 	if current_move.affected_by_gravity:
 		apply_gravity(delta)
 
-	current_move.update_resources(delta)
-	current_move.update(input, delta)
+	current_move._update(input, delta)
 
 	raycast(delta)
 	humanoid.move_and_slide()

@@ -15,9 +15,9 @@ var moves_data_repo: MovesDataRepository:
 # unique fields to redefine
 @export var move_name: String
 @export var priority: int = 0
-@export_group("Parameters")
 @export var affected_by_gravity: bool = true
 @export var enter_stamina_cost: float = 0.0
+@export var speed: float = 0.0
 @export_group("Animation")
 @export var animation: String
 @export var backend_animation: String
@@ -72,6 +72,21 @@ func best_input_that_can_be_paid(input: InputPackage) -> String:
 				return action
 	return "throwing because for some reason input.actions doesn't contain even idle"
 
+# returns the highest priority move from the input and the current move
+func highest_priority_move(input: InputPackage) -> String:
+	var best = best_input_that_can_be_paid(input)
+	if best == "ok":
+		return "ok"
+	if container.moves[best].priority > self.priority:
+		return best
+	return "ok"
+
+
+func _update(input: InputPackage, delta: float):
+	update_resources(delta)
+	if tracks_input_vector():
+		process_input_vector(input, delta)
+	update(input, delta)
 
 func update_resources(delta: float):
 	resources.update(delta)
@@ -121,12 +136,29 @@ func get_root_position_delta(delta_time: float) -> Vector3:
 func right_weapon_hurts() -> bool:
 	return moves_data_repo.get_right_weapon_hurts(backend_animation, get_progress())
 
+func tracks_input_vector() -> bool:
+	return moves_data_repo.get_tracks_input_vector(backend_animation, get_progress())
+
 # "default-default", works for animations that just linger
 func default_lifecycle(input: InputPackage):
 	if works_longer_than(DURATION):
 		return best_input_that_can_be_paid(input)
 	return "ok"
 
+func process_input_vector(input: InputPackage, _delta: float):
+	var y = humanoid.velocity.y
+	var direction = Vector3(input.direction.x, 0, input.direction.y).rotated(Vector3.UP, input.camera_rotation.y)
+	var velocity = lerp(humanoid.velocity, direction * speed, 0.1)
+	velocity.y = y
+	humanoid.velocity = velocity
+
+	var rotation
+	if humanoid.velocity.length() < 0.1:
+		rotation = humanoid.rotation.y
+	else:
+		rotation = lerp_angle(humanoid.rotation.y, atan2(humanoid.velocity.x, humanoid.velocity.z), 0.1)
+
+	humanoid.rotation.y = rotation
 
 func update(_input: InputPackage, _delta: float):
 	pass

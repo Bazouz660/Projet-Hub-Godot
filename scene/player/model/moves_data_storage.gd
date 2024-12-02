@@ -9,6 +9,7 @@ extends AnimationPlayer
 @export var is_interruptable: bool
 @export var is_grabable: bool
 @export var right_hand_weapon_hurts: bool
+@export var tracks_input_vector: bool
 
 @export var add_tracks: bool = false:
 	set(value):
@@ -22,6 +23,13 @@ extends AnimationPlayer
 		if value:
 			_clear_tracks()
 
+@export var add_single_track: bool = false:
+	set(value):
+		add_single_track = value
+		if value:
+			for anim_name in get_animation_list():
+				_add_track(anim_name, "tracks_input_vector")
+
 func _init_tracks():
 	for anim_name in get_animation_list():
 		_add_track(anim_name, "root_position", Vector3(0, 0, 0), Animation.UPDATE_CONTINUOUS)
@@ -32,6 +40,7 @@ func _init_tracks():
 		_add_track(anim_name, "is_interruptable")
 		_add_track(anim_name, "is_grabable")
 		_add_track(anim_name, "right_hand_weapon_hurts")
+		_add_track(anim_name, "tracks_input_vector")
 
 func _clear_tracks():
 	for anim_name in get_animation_list():

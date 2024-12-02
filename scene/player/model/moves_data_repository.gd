@@ -45,3 +45,8 @@ func get_right_weapon_hurts(animation: String, timecode: float) -> bool:
 	var data = move_database.get_animation(animation)
 	var track = data.find_track("MoveDatabase:right_hand_weapon_hurts", Animation.TYPE_VALUE)
 	return move_database.get_boolean_value(animation, track, timecode)
+
+func get_tracks_input_vector(animation: String, timecode: float) -> bool:
+	var data = move_database.get_animation(animation)
+	var track = data.find_track("MoveDatabase:tracks_input_vector", Animation.TYPE_VALUE)
+	return move_database.get_boolean_value(animation, track, timecode)

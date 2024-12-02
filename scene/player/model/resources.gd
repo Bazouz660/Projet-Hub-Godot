@@ -9,28 +9,33 @@ signal stamina_regeneration_stopped
 
 @export var god_mode: bool = false
 
-@export var health: float = 100
+@export var health: float = 100:
+	set(value):
+		health = value
+		if health >= max_health:
+			health = max_health
+		if health <= 0:
+			health = 0
+			model.current_move.try_force_move.rpc("death")
+
 @export var max_health: float = 100
 
-@export var stamina: float = 100
+@export var stamina: float = 100:
+	set(value):
+		stamina = value
+		if stamina >= max_stamina:
+			stamina = max_stamina
+			stamina_full.emit()
+		if stamina <= 0:
+			stamina = 0
+			stamina_low.emit()
+		stamina_changed.emit(stamina)
+
 @export var max_stamina: float = 100
 @export var stamina_regeneration_rate: float = 10 # per sec because we will multiply it by delta
 @export var regeneration_enabled: bool = true
 
 @onready var model = $".." as HumanoidModel
-
-@export var sync_stamina: float:
-	get:
-		return stamina
-	set(value):
-		stamina = value
-		stamina_changed.emit(stamina)
-
-@export var sync_health: float:
-	get:
-		return health
-	set(value):
-		health = value
 
 var stamina_regeneration_timer: float = 0.0
 var is_stamina_regenerating: bool = true
@@ -42,25 +47,16 @@ func _ready():
 
 func lose_health(amount: float):
 	if not god_mode:
-		health -= amount
-		if health < 1:
-			health = 0
-			model.current_move.try_force_move("death")
+		health = health - amount
 
 func gain_health(amount: float):
-	health += amount
-	if health >= max_health:
-		health = max_health
+	health = health + amount
 
 func lose_stamina(amount: float):
 	if amount <= 0:
 		return
-	stamina -= amount
-	if stamina < 0:
-		stamina = 0
-		stamina_low.emit()
+	stamina = stamina - amount
 	stop_regeneration()
-	stamina_changed.emit(stamina)
 
 func get_current_stamina() -> float:
 	return stamina
@@ -69,11 +65,7 @@ func get_max_stamina() -> float:
 	return max_stamina
 
 func gain_stamina(amount: float):
-	stamina += amount
-	if stamina >= max_stamina:
-		stamina = max_stamina
-		stamina_full.emit()
-	stamina_changed.emit(stamina)
+	stamina = stamina + amount
 
 func update(delta: float):
 	if not regeneration_enabled:
