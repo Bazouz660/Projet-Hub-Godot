@@ -1,20 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://gs6et1173qu4"]
+[gd_scene load_steps=3 format=3 uid="uid://bqn6ova5e2kqt"]
 
-[ext_resource type="Script" path="res://scene/interface/inventory/inventory_ui.gd" id="1_yv1jb"]
-[ext_resource type="Script" path="res://scene/component/inventory/inventory_component.gd" id="2_endy0"]
+[ext_resource type="Script" path="res://scene/interface/inventory/inventory_ui.gd" id="1_ss002"]
+[ext_resource type="Script" path="res://scene/component/inventory/inventory_component.gd" id="2_wcg3r"]
 
 [node name="InventoryUI" type="Control" node_paths=PackedStringArray("inventory_component")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_yv1jb")
+anchors_preset = 0
+script = ExtResource("1_ss002")
 inventory_component = NodePath("InventoryComponent")
 
 [node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
+layout_mode = 2
+offset_right = 40.0
+columns = 5
 
 [node name="InventoryComponent" type="Node" parent="."]
-script = ExtResource("2_endy0")
+script = ExtResource("2_wcg3r")

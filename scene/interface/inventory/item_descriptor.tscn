@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cig1xomknqn4b"]
+
+[ext_resource type="Script" path="res://scene/interface/inventory/item_descriptor.gd" id="1_t4amh"]
+[ext_resource type="FontFile" uid="uid://b3ibjetxkblh2" path="res://asset/font/Alkhemikal.ttf" id="2_kkr5e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3wqhk"]
+load_path = "res://.godot/imported/item_descriptor.png-8b20a8ad7e4077598812e8cb2a24fe23.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_gajum"]
+font = ExtResource("2_kkr5e")
+font_size = 32
+font_color = Color(0.212305, 0.212305, 0.212305, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ulso2"]
+font = ExtResource("2_kkr5e")
+font_size = 22
+font_color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[node name="ItemDescriptor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t4amh")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 0
+offset_right = 514.0
+offset_bottom = 137.0
+texture = SubResource("CompressedTexture2D_3wqhk")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 42.0
+offset_right = 98.0
+offset_bottom = 96.0
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 34.0
+offset_right = 243.0
+offset_bottom = 66.0
+label_settings = SubResource("LabelSettings_gajum")
+
+[node name="ItemDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 67.0
+offset_right = 466.0
+offset_bottom = 102.0
+label_settings = SubResource("LabelSettings_ulso2")
+autowrap_mode = 3
+clip_text = true

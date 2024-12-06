@@ -1,51 +1,89 @@
 extends Control
-class_name InventoryUI
 
+@onready var _grid_container: GridContainer = $GridContainer
+@onready var _slot_ui: PackedScene = preload("res://scene/interface/inventory/slot_ui.tscn")
+@onready var _item_stack_ui: PackedScene = preload("res://scene/interface/inventory/item_stack_ui.tscn")
 @export var inventory_component: InventoryComponent
-@export var columns: int = 5
 
-@onready var grid_container: GridContainer = $GridContainer
-@onready var slot_scene = preload("res://scene/interface/inventory/inventory_slot_ui.tscn")
+var _slots: Array[SlotUI] = []
+var _selected_item_stack: ItemStackUI
 
 func _ready() -> void:
-    grid_container.columns = columns
-    inventory_component.inventory_updated.connect(_on_inventory_updated)
-    _setup_inventory_slots()
+	if not inventory_component:
+		printerr("InventoryComponent not set in InventoryUI")
+		return
+	_setup_slots()
+	_update_slots()
+	inventory_component.item_removed.connect(_on_removed_item)
+	inventory_component.inventory_changed.connect(_update_slots)
 
-    var sword = preload("res://data/item/sword.res")
-    var apple = preload("res://data/item/apple.res")
-    inventory_component.add_item(sword, 1)
-    inventory_component.add_item(apple, 1)
+	inventory_component.add_item(preload("res://data/item/potion_health.res"), 5)
+	inventory_component.add_item(preload("res://data/item/sword.res"))
 
-func _setup_inventory_slots() -> void:
-    for child in grid_container.get_children():
-        child.queue_free()
+func _process(_delta: float) -> void:
+	if _selected_item_stack:
+		_selected_item_stack.position = get_viewport().get_mouse_position() + Vector2(32, 32)
 
-    for i in range(inventory_component.size):
-        var slot_ui = slot_scene.instantiate()
-        grid_container.add_child(slot_ui)
-        slot_ui.slot_index = i
-        slot_ui.slot_clicked.connect(_on_slot_clicked)
-        slot_ui.slot_right_clicked.connect(_on_slot_right_clicked)
-        
-func _on_inventory_updated() -> void:
-    _update_slots_display()
+func _setup_slots() -> void:
+	for i in range(inventory_component.max_slots):
+		var slot = _slot_ui.instantiate()
+		_grid_container.add_child(slot)
+		slot.slot_clicked.connect(_on_slot_clicked)
+		_slots.append(slot)
 
-func _update_slots_display() -> void:
-    var slots = inventory_component.slots
-    var slot_uis = grid_container.get_children()
-    
-    for i in range(slots.size()):
-        var slot_data = slots[i]
-        var slot_ui = slot_uis[i]
-        slot_ui.update_display(slot_data.item, slot_data.quantity)
+func _on_removed_item(item_stack: ItemStack) -> void:
+	if not inventory_component.items.has(item_stack):
+		for slot in _slots:
+			if slot.item_stack == item_stack:
+				slot.item_stack_ui.clear()
 
-func _on_slot_clicked(slot_index: int) -> void:
-    var slot = inventory_component.slots[slot_index]
-    if slot.item:
-        print(slot.item.id, " clicked")
+func _update_slots() -> void:
+	for item_stack in inventory_component.items:
+		var assigned_slot = false
 
-func _on_slot_right_clicked(slot_index: int) -> void:
-    var slot = inventory_component.slots[slot_index]
-    if slot.item:
-       print(slot.item.id, " right clicked")
+		for slot in _slots:
+			slot.update_display()
+			if slot.item_stack == item_stack:
+				assigned_slot = true
+				break
+
+		if not assigned_slot:
+			for slot in _slots:
+				if slot.item_stack == null:
+					slot.item_stack = item_stack
+					assigned_slot = true
+					break
+
+func _bind_selected_stack(stack: ItemStack) -> void:
+	if _selected_item_stack:
+		_selected_item_stack.queue_free()
+	_selected_item_stack = _item_stack_ui.instantiate()
+	add_child(_selected_item_stack)
+	_selected_item_stack.item_stack = stack
+
+func _on_slot_clicked(slot: SlotUI) -> void:
+	if not _selected_item_stack:
+		if slot.item_stack:
+			_bind_selected_stack(slot.item_stack)
+			slot.item_stack = null
+
+	else:
+		if slot.item_stack:
+			if _selected_item_stack.item_stack.item == slot.item_stack.item and slot.item_stack.item.is_stackable:
+				if slot.item_stack.can_add(_selected_item_stack.item_stack.quantity):
+					slot.item_stack.add(_selected_item_stack.item_stack.quantity)
+					_selected_item_stack.queue_free()
+					_selected_item_stack = null
+					_update_slots()
+
+			else:
+				var temp = slot.item_stack
+				slot.item_stack = _selected_item_stack.item_stack
+				_selected_item_stack.queue_free()
+				_selected_item_stack = null
+				_bind_selected_stack(temp)
+
+		else:
+			slot.item_stack = _selected_item_stack.item_stack
+			_selected_item_stack.queue_free()
+			_selected_item_stack = null

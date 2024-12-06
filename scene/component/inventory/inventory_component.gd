@@ -1,63 +1,69 @@
-class_name InventoryComponent extends Node
+extends Node
+class_name InventoryComponent
 
-@export var size: int = 20
-var slots: Array[InventorySlot]
+signal item_added(item_stack: ItemStack)
+signal item_removed(item_stack: ItemStack)
+signal inventory_full
+signal inventory_changed 
 
-signal inventory_updated
+@export var max_slots: int = 20
+var items: Array[ItemStack] = []
 
-func _ready() -> void:
-    slots = []
-    for i in range(size):
-        slots.append(InventorySlot.new())
+func add_item(new_item: Item, quantity: int = 1) -> bool:
+    for item_stack in items:
+        if item_stack.item == new_item and item_stack.can_add(quantity):
+            var remaining = item_stack.add(quantity)
+            if remaining == 0:
+                item_added.emit(item_stack)
+                inventory_changed.emit()
+                return true
+            quantity = remaining
 
-func add_item(item: Item, amount: int = 1) -> int:
-    var remaining = amount
+    if items.size() < max_slots:
+        var new_stack = ItemStack.new(new_item, quantity)
+        if !new_stack.item.is_stackable:
+            new_stack.quantity = 1
+        items.append(new_stack)
+        item_added.emit(new_stack)
+        inventory_changed.emit()
+        return true
 
-    if item.is_stackable:
-        for slot in slots:
-            if remaining <= 0:
-                break
-            if not slot.is_empty() and slot.item.id == item.id:
-                remaining = slot.add_item(item, remaining)
+    inventory_full.emit()
+    return false
 
-    if remaining > 0:
-        for slot in slots:
-            if remaining <= 0:
-                break
-            if slot.is_empty():
-                remaining = slot.add_item(item, remaining)
+func remove_item(item_to_remove: Item, quantity: int = 1) -> bool:
+    
+    for i in range(items.size() - 1, -1, -1):
+        var item_stack = items[i]
+        if item_stack.item == item_to_remove:
+            var removed = item_stack.remove(quantity)
+            quantity -= removed
 
-    inventory_updated.emit()
-    return remaining
+            if item_stack.quantity <= 0:
+                items.remove_at(i)
 
-func remove_item(item_id: String, amount: int = 1) -> int:
-    var remaining = amount
-
-    for slot in slots:
-        if remaining <= 0:
-            break
-        if not slot.is_empty() and slot.item.id == item_id:
-            remaining -= slot.remove_item(remaining)
-
-    inventory_updated.emit()
-    return amount - remaining
-
-func has_item(item_id: String, amount: int = 1) -> bool:
-    var count = 0
-
-    for slot in slots:
-        if not slot.is_empty() and slot.item.id == item_id:
-            count += slot.quantity
-            if count >= amount:
+            if quantity <= 0:
+                item_removed.emit(item_stack)
+                inventory_changed.emit()
                 return true
 
     return false
 
-func get_item_count(item_id: String) -> int:
-    var count = 0
+func get_item_quantity(item: Item) -> int:
+    var total_quantity = 0
+    for item_stack in items:
+        if item_stack.item == item:
+            total_quantity += item_stack.quantity
+    return total_quantity
 
-    for slot in slots:
-        if not slot.is_empty() and slot.item.id == item_id:
-            count += slot.quantity
+func has_item(item: Item, quantity: int = 1) -> bool:
+    return get_item_quantity(item) >= quantity
 
-    return count
+func get_total_items() -> int:
+    return items.size()
+
+func is_full() -> bool:
+    return items.size() >= max_slots
+
+func get_items() -> Array[ItemStack]:
+    return items.duplicate()
