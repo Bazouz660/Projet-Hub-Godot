@@ -15,7 +15,7 @@ proton_scatter/always_show_gizmos=false
 [application]
 
 config/name="Projet-Hub-Godot"
-config/version="0.0.4"
+config/version="0.0.5"
 run/main_scene="res://scene/root.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

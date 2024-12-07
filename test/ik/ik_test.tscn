@@ -226,7 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145885, 0.190957, 0.504151)
 target_position = Vector3(0, -2, 0)
 
 [node name="LeftFoot" type="BoneAttachment3D" parent="CharacterBody3D/IK"]
-transform = Transform3D(-0.0148242, 0.000354861, -0.00226184, -0.00217605, -0.00679081, 0.0131966, -0.000711782, 0.0133701, 0.00676272, 0.157738, 0.0381206, 0.274897)
+transform = Transform3D(-0.0109622, -0.00887262, -0.00510959, -0.000415988, -0.00709356, 0.0132102, -0.0102303, 0.00979582, 0.00493798, 0.11838, 0.110204, 0.352452)
 bone_name = "mixamorigLeftFoot"
 bone_idx = 20
 use_external_skeleton = true
@@ -243,7 +243,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.068988, 0.191892, -0.54168
 target_position = Vector3(0, -2, 0)
 
 [node name="RightFoot" type="BoneAttachment3D" parent="CharacterBody3D/IK"]
-transform = Transform3D(-0.0149675, -0.000985182, 5.52734e-05, 0.000504317, -0.00691564, 0.0133011, -0.00084812, 0.0132742, 0.00693378, -0.145264, 0.0498819, -0.349058)
+transform = Transform3D(-0.00432255, -0.0126957, -0.00671828, 0.000449742, -0.00713208, 0.0131883, -0.0143566, 0.00359904, 0.0024359, -0.0611781, 0.110069, -0.381557)
 bone_name = "mixamorigRightFoot"
 bone_idx = 25
 use_external_skeleton = true

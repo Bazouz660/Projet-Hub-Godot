@@ -2339,7 +2339,7 @@ bones/27/scale = Vector3(1, 1, 1)
 script = ExtResource("4_jwgxg")
 
 [node name="Root" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.583357, -0.120882, -0.80317, -0.0147633, 0.987121, -0.15929, 0.812082, 0.10478, 0.574059, 0.283171, 70.7587, -0.245768)
+transform = Transform3D(0.583356, -0.120882, -0.803171, -0.0147634, 0.987121, -0.15929, 0.812082, 0.104781, 0.574059, 0.283171, 70.7587, -0.245768)
 bone_name = "mixamorigHips"
 bone_idx = 0
 
@@ -2351,7 +2351,7 @@ script = ExtResource("3_jhxj8")
 shape = SubResource("CapsuleShape3D_4ier8")
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.1889, -0.865297, 0.464304, 0.720083, -0.443534, -0.533627, 0.667681, 0.233535, 0.706869, -37.3727, 77.5475, -20.9625)
+transform = Transform3D(-0.1889, -0.865297, 0.464303, 0.720083, -0.443534, -0.533628, 0.667681, 0.233534, 0.706869, -37.3726, 77.5475, -20.9626)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -2363,14 +2363,14 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.10987, -0.948844, -0.296012, -0.99372, -0.0985104, -0.0530692, 0.0211941, 0.299984, -0.953709, -10.2218, 83.2057, 43.1001)
+transform = Transform3D(0.10987, -0.948844, -0.296012, -0.99372, -0.0985105, -0.0530692, 0.0211942, 0.299984, -0.953709, -10.2218, 83.2058, 43.1001)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.9674, -0.079467, -0.240463, 0.0374747, 0.98396, -0.174411, 0.250466, 0.159714, 0.95486, -11.4407, 137.881, 11.6987)
+transform = Transform3D(0.9674, -0.0794666, -0.240464, 0.0374743, 0.98396, -0.174411, 0.250466, 0.159714, 0.95486, -11.4407, 137.881, 11.6987)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 
@@ -2421,6 +2421,7 @@ moves_data_repo = NodePath("../MovesDataRepository")
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource("8_ly13d")
 move_name = "idle"
+priority = -1
 animation = "ready_idle"
 backend_animation = "idle_params"
 
@@ -2456,21 +2457,19 @@ sound = SubResource("Resource_c08nt")
 [node name="RestToIdle" type="Node" parent="States"]
 script = ExtResource("16_f8u1j")
 move_name = "rest_to_idle"
-priority = 1
 animation = "sitting_ground_to_standing"
 backend_animation = "rest_to_idle_params"
 
 [node name="IdleToRest" type="Node" parent="States"]
 script = ExtResource("17_voj4g")
 move_name = "idle_to_rest"
-priority = 1
 animation = "sitting_ground_to_standing"
 backend_animation = "idle_to_rest_params"
+reverse_animation = true
 
 [node name="Rest" type="Node" parent="States"]
 script = ExtResource("13_yducd")
 move_name = "rest"
-priority = 1
 animation = "resting"
 backend_animation = "rest_params"
 
@@ -2529,6 +2528,7 @@ sound = SubResource("Resource_jwgxg")
 [node name="IdleSwim" type="Node" parent="States"]
 script = ExtResource("32_nhgla")
 move_name = "idle_swim"
+priority = -1
 animation = "idle_swimming"
 backend_animation = "idle_swim_params"
 sound = SubResource("Resource_utimc")
