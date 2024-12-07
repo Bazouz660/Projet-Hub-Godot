@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpd2ff7ro8nmi"]
 
-[ext_resource type="Script" path="res://scene/player/camera/camera_controller.gd" id="1_iejq2"]
-[ext_resource type="Script" path="res://scene/player/camera/player_camera.gd" id="1_lnyyb"]
+[ext_resource type="Script" uid="uid://ccriky0nkv8tv" path="res://scene/player/camera/camera_controller.gd" id="1_iejq2"]
+[ext_resource type="Script" uid="uid://bjuy2w5boln68" path="res://scene/player/camera/player_camera.gd" id="1_lnyyb"]
 
 [node name="Camera" type="Node3D"]
 script = ExtResource("1_lnyyb")
@@ -19,6 +19,8 @@ update_scale = false
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
 script = ExtResource("1_iejq2")
 rotation_damping_scale = 1.0
+enable_vertical_rotation = false
+enable_zoom = false
 
 [node name="Camera3D" type="Camera3D" parent="PreventRotationCopy/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)

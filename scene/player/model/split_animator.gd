@@ -55,6 +55,7 @@ func play(move: Move):
 	if move.reverse_animation:
 		torso_animator.play_backwards(move.animation)
 	else:
+		print("Playing animation: ", move.animation)
 		torso_animator.play(move.animation)
 
 func update_legs_animation():
@@ -75,5 +76,6 @@ func clear_torso_animation():
 	toggle_tracks(model.current_move.animation, true, "legs")
 	toggle_tracks(model.legs.current_legs_move.animation, true, "torso")
 	toggle_tracks(model.legs.current_legs_move.animation, true, "legs")
+	print("Clearing torso animation")
 	legs_animator.stop()
 	full_body_mode = true

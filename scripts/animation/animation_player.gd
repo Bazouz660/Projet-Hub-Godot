@@ -1,0 +1,96 @@
+@tool
+extends AnimationPlayer
+
+@export var fps: int = 15
+var counter: float = 0
+
+@export var interpolation_type: Animation.InterpolationType = Animation.INTERPOLATION_NEAREST
+@export_tool_button("Set interpolation to nearest")
+var toolbutton_set_anims_interpolation_nearest = _set_anims_interpolation_nearest.bind()
+
+@export var track_prefix: String = "GeneralSkeleton:mixamorig"
+@export_tool_button("Rename tracks")
+var toolbutton_rename_tracks = _rename_tracks.bind()
+
+@export_category("Root Motion Tools")
+@export var move_database: AnimationPlayer
+@export var animation_to_extract_root_motion: String = ""
+@export_tool_button("Extract root motion")
+var toolbutton_extract_root_motion = _extract_root_motion.bind()
+
+@export var configure_blend_times: bool = true
+
+func _rename_tracks():
+	var anim_library = get_animation_library("")
+	for anim_name in get_animation_list():
+		var anim = anim_library.get_animation(anim_name)
+		for i in anim.get_track_count():
+			var path: String = anim.track_get_path(i)
+			if path.find("mixamorig") == -1: # not a mixamo track
+				continue
+			path = path.replace("_", "")
+			path = path.rsplit(":", 1)[1]
+			# remove "mixamorig" from the path
+			if path.find("mixamorig") != -1:
+				path = path.replace("mixamorig", "")
+			# if path starts swith an underscore, remove it
+			if path[0] == "_":
+				path = path.substr(1, path.length())
+			print("New path: ", path)
+			path = track_prefix + path
+			anim.track_set_path(i, path)
+
+func _set_anims_interpolation_nearest() -> void:
+	var anim_library = get_animation_library("")
+	for anim_name in get_animation_list():
+		var anim = anim_library.get_animation(anim_name)
+		for i in anim.get_track_count():
+			anim.track_set_interpolation_type(i, interpolation_type)
+
+func _process(delta):
+	if callback_mode_method == ANIMATION_CALLBACK_MODE_PROCESS_MANUAL:
+		counter += delta
+		if counter >= 1.0 / fps:
+			advance(counter)
+			counter = 0
+
+func _ready():
+	if configure_blend_times:
+		print("Configuring blend times")
+		_configure_blend_times()
+
+func _is_uppercase(p_char: String) -> bool:
+	print(p_char, p_char.to_upper())
+	return p_char == p_char.to_upper()
+
+func _configure_blend_times():
+	_set_default_blend_times(0.2)
+	set_blend_time("slash_1", "slash_2", 0)
+
+func _set_default_blend_times(blend_time: float):
+	for anim_name in get_animation_list():
+		for anim_name2 in get_animation_list():
+			set_blend_time(anim_name, anim_name2, blend_time)
+			set_blend_time(anim_name2, anim_name, blend_time)
+
+# DEVELOPMENT LAYER FUNCTIONAL, IT DOES MODIFY ASSETS, UNCOMMENT IF YOU KNOW WHAT YOU ARE DOING
+func _extract_root_motion():
+	var animation = get_animation(animation_to_extract_root_motion) as Animation
+	var hips_track = animation.find_track("GeneralSkeleton:mixamorigHips", Animation.TYPE_POSITION_3D)
+	var backend_animation = move_database.get_animation(animation_to_extract_root_motion + "_params")
+	var backend_track_path = "MoveDatabase:root_position"
+	var backend_track = backend_animation.find_track(backend_track_path, Animation.TYPE_VALUE)
+	if backend_track == -1:
+		print("Error: track not found: " + backend_track_path)
+		return
+
+	print(animation.track_get_key_count(hips_track))
+	for i: int in animation.track_get_key_count(hips_track):
+		var position = animation.track_get_key_value(hips_track, i)
+		var time = animation.track_get_key_time(hips_track, i)
+		print(str(position) + " at " + str(time))
+		var position_without_z = position
+		backend_animation.track_insert_key(backend_track, time, position)
+		position_without_z.z = 0
+		animation.track_set_key_value(hips_track, i, position_without_z)
+		ResourceSaver.save(animation, "res://test/" + animation_to_extract_root_motion + "_rooted.res")
