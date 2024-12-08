@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cig1xomknqn4b"]
 
-[ext_resource type="Script" path="res://scene/interface/inventory/item_descriptor.gd" id="1_t4amh"]
+[ext_resource type="Script" uid="uid://ct751qtfgelvd" path="res://scene/interface/inventory/item_descriptor.gd" id="1_t4amh"]
 [ext_resource type="FontFile" uid="uid://b3ibjetxkblh2" path="res://asset/font/Alkhemikal.ttf" id="2_kkr5e"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3wqhk"]
