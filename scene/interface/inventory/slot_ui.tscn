@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnn6qi800r2wy"]
+
+[ext_resource type="Script" path="res://scene/interface/inventory/slot_ui.gd" id="1_x1x2s"]
+[ext_resource type="Texture2D" uid="uid://w5bff2mb3wve" path="res://asset/texture/interface/inventory/slot_empty.png" id="2_gnxbd"]
+[ext_resource type="PackedScene" uid="uid://cdg1ch3ng255f" path="res://scene/interface/inventory/item_stack_ui.tscn" id="2_x3k7y"]
+
+[node name="SlotUI" type="CenterContainer"]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_x1x2s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_gnxbd")
+
+[node name="ItemStackUI" parent="." instance=ExtResource("2_x3k7y")]
+layout_mode = 2

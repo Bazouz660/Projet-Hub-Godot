@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1dg3sftvnleq"
-path="res://.godot/imported/caca.webp-8c583f2a099a49f5471c483cc8368c76.ctex"
+uid="uid://cj2uqaam7nqv6"
+path="res://.godot/imported/item_descriptor.png-8b20a8ad7e4077598812e8cb2a24fe23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/item/caca.webp"
-dest_files=["res://.godot/imported/caca.webp-8c583f2a099a49f5471c483cc8368c76.ctex"]
+source_file="res://asset/texture/interface/inventory/item_descriptor.png"
+dest_files=["res://.godot/imported/item_descriptor.png-8b20a8ad7e4077598812e8cb2a24fe23.ctex"]
 
 [params]
 

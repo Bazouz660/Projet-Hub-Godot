@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b6plbv6c14msu" path="res://manager/material_sampler.gd" id="2_nvjhd"]
 [ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="2_q7odf"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
-[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/InventoryComponent.tscn" id="5_gwy6j"]
+[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/inventory_component.tscn" id="5_gwy6j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
 
@@ -34,6 +34,7 @@ target_path = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_02uxe")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StepCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
