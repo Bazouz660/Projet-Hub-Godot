@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://clte1kr3xnnoi"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_jg3wg"]
-[ext_resource type="Script" path="res://scene/interface/settings_menu/settings_menu.gd" id="2_8my8n"]
-[ext_resource type="Shader" path="res://shader/darkened_blur.gdshader" id="3_pwrdd"]
+[ext_resource type="Script" uid="uid://di1hw4f44byy8" path="res://scene/interface/settings_menu/settings_menu.gd" id="2_8my8n"]
+[ext_resource type="Shader" uid="uid://da3g1thq84kms" path="res://shader/darkened_blur.gdshader" id="3_pwrdd"]
 [ext_resource type="Texture2D" uid="uid://bbxhrqeuqx0wn" path="res://asset/texture/placeholder/white.png" id="4_e5v7j"]
-[ext_resource type="Script" path="res://scene/interface/settings_menu/key_mapping_settings.gd" id="5_bupgj"]
+[ext_resource type="Script" uid="uid://cwj0j8ixl2jvt" path="res://scene/interface/settings_menu/key_mapping_settings.gd" id="5_bupgj"]
 [ext_resource type="PackedScene" uid="uid://daya2s2oqjtdr" path="res://scene/interface/settings_menu/input_button.tscn" id="5_xjh53"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0w7ub"]
@@ -141,6 +141,7 @@ alignment = 1
 selected = 2
 item_count = 4
 popup/item_0/text = "Disabled"
+popup/item_0/id = 0
 popup/item_1/text = "Enabled"
 popup/item_1/id = 1
 popup/item_2/text = "Adaptive"
@@ -185,6 +186,7 @@ size_flags_horizontal = 8
 selected = 2
 item_count = 3
 popup/item_0/text = "Windowed"
+popup/item_0/id = 0
 popup/item_1/text = "Borderless"
 popup/item_1/id = 3
 popup/item_2/text = "Fullscreen"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://8koyscic4v2s"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_go5d3"]
-[ext_resource type="Script" path="res://scene/interface/chat/chat.gd" id="2_vt8u4"]
+[ext_resource type="Script" uid="uid://c6sl7t04dbpvd" path="res://scene/interface/chat/chat.gd" id="2_vt8u4"]
 
 [node name="Chat" type="Control"]
 layout_mode = 3

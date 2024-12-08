@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://b08qn0p04cg0d"]
+
+[ext_resource type="Script" uid="uid://clfgt61r1a4ac" path="res://scene/interface/inventory/inventory_ui.gd" id="1_w3lcg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe4rn"]
+bg_color = Color(0.184314, 0.184314, 0.172549, 0.376471)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.855581, 0.731033, 0.521314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe157"]
+bg_color = Color(0.917647, 0.827451, 0.67451, 0.403922)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.848255, 0.752446, 0.540358, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CharacterInventory" type="Control" node_paths=PackedStringArray("inventory_component")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_w3lcg")
+inventory_component = NodePath("")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oe4rn")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe157")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 5

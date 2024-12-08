@@ -58,7 +58,7 @@ func _on_message_text_submitted(new_text):
 	message.text = ""
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("ui_text_completion_accept"):
+	if Input.is_action_just_pressed("toggle_chat"):
 		if message.has_focus():
 			message.release_focus()
 		else:

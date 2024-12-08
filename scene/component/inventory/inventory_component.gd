@@ -32,7 +32,6 @@ func add_item(new_item: Item, quantity: int = 1) -> bool:
 	return false
 
 func remove_item(item_to_remove: Item, quantity: int = 1) -> bool:
-	
 	for i in range(items.size() - 1, -1, -1):
 		var item_stack = items[i]
 		if item_stack.item == item_to_remove:
