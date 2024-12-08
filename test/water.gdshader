@@ -11,7 +11,7 @@ uniform float metallic : hint_range(0.0, 1.0) = 0;
 uniform float speed : hint_range(-1, 1) = 0.02;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap, repeat_disable;
 
 // Depth fade parameters
 uniform float depth_fade_distance : hint_range(0.0, 10.0) = 4.0;

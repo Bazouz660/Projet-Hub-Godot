@@ -7,18 +7,21 @@ extends Node3D
 @export var prediction_distance: float = 0.2 # How far ahead to predict foot positions
 @export var velocity_smoothing: float = 0.1 # Smoothing factor for velocity calculation
 
-@export var ray_cast_left: RayCast3D
-@export var ray_cast_right: RayCast3D
-@onready var right_target = $right_target_container/right_target
-@onready var left_target = $left_target_container/left_target
-@onready var left_target_container = $left_target_container
 @onready var right_target_container = $right_target_container
+@onready var left_target_container = $left_target_container
 @onready var ik_interpolation_left = $ik_interpolation_left
 @onready var ik_interpolation_right = $ik_interpolation_right
+@onready var ray_cast_left = $RayCastLeft
+@onready var left_foot = $LeftFoot
+@onready var ray_cast_right = $RayCastRight
+@onready var right_foot = $RightFoot
+@onready var right_target = $right_target_container/right_target
+@onready var left_target = $left_target_container/left_target
 @onready var ik_left = $"../GeneralSkeleton/IKLeft"
 @onready var ik_right = $"../GeneralSkeleton/IKRight"
-@onready var left_foot = $"LeftFoot"
-@onready var right_foot = $"RightFoot"
+@export var animation_player: AnimationPlayer
+@export var character: CharacterBody3D
+@export var skeleton: Skeleton3D
 
 var previous_position: Vector3
 var current_velocity: Vector3
@@ -84,7 +87,7 @@ func get_predicted_position(base_position: Vector3) -> Vector3:
 	return base_position
 
 func update_ik_target_pos(target: Marker3D, target_container: Node3D, raycast: RayCast3D, bone_attach: BoneAttachment3D):
-	var bone_pos = bone_attach.global_position
+	var bone_pos = bone_attach.global_transform.origin
 
 	# Get predicted position based on velocity
 	var predicted_pos = get_predicted_position(bone_pos)

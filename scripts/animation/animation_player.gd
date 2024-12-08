@@ -3,6 +3,7 @@ extends AnimationPlayer
 
 @export var fps: int = 15
 var counter: float = 0
+@export var configure_blend_times: bool = true
 
 @export var interpolation_type: Animation.InterpolationType = Animation.INTERPOLATION_NEAREST
 @export_tool_button("Set interpolation to nearest")
@@ -18,7 +19,16 @@ var toolbutton_rename_tracks = _rename_tracks.bind()
 @export_tool_button("Extract root motion")
 var toolbutton_extract_root_motion = _extract_root_motion.bind()
 
-@export var configure_blend_times: bool = true
+@export_category("Scale Tools")
+@export var scale_factor: float = 1.0
+@export_tool_button("Scale animations positions")
+var toolbutton_scale_animations_positions = _scale_animations_positions.bind()
+
+@export_category("Save Tools")
+@export var save_folder: String = ""
+@export_tool_button("Save all animations")
+var toolbutton_save_all_animations = _save_all_animations.bind()
+
 
 func _rename_tracks():
 	var anim_library = get_animation_library("")
@@ -94,3 +104,29 @@ func _extract_root_motion():
 		position_without_z.z = 0
 		animation.track_set_key_value(hips_track, i, position_without_z)
 		ResourceSaver.save(animation, "res://test/" + animation_to_extract_root_motion + "_rooted.res")
+
+# scales all the animations positions by a factor
+func _scale_animations_positions():
+	var anim_library = get_animation_library("")
+	for anim_name in get_animation_list():
+		var anim = anim_library.get_animation(anim_name)
+		for i in anim.get_track_count():
+			var path: String = anim.track_get_path(i)
+			if path.find("mixamorig") == -1: # not a mixamo track
+				continue
+			if anim.track_get_type(i) != Animation.TYPE_POSITION_3D:
+				continue
+			for j in anim.track_get_key_count(i):
+				var position = anim.track_get_key_value(i, j)
+				position *= scale_factor
+				anim.track_set_key_value(i, j, position)
+
+func _save_all_animations():
+	var anim_library = get_animation_library("")
+	for anim_name in get_animation_list():
+		var anim = anim_library.get_animation(anim_name)
+		if save_folder.ends_with("/") == false:
+			save_folder += "/"
+		var path = "res://" + save_folder + anim_name + ".res"
+		anim.take_over_path(path)
+		ResourceSaver.save(anim, path)
