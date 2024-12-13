@@ -9,7 +9,7 @@ extends Node3D
 @export var invert_horizontal_rotation: bool = false
 
 @onready var target = $"../Target"
-@onready var actual_camera = $Camera3D
+@onready var actual_camera = $Camera3D as Camera3D
 
 var target_rotation: Vector2 = Vector2.ZERO
 
@@ -52,7 +52,13 @@ func _unhandled_input(event):
 				target_rotation.x = clamp(target_rotation.x + event.relative.y * horizontal_sensitivity, -PI / 2, PI / 2)
 
 	if enable_zoom:
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			actual_camera.position.z = max(0.1, actual_camera.position.z - 0.1)
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			actual_camera.position.z = min(100, actual_camera.position.z + 0.1)
+		if actual_camera.projection == Camera3D.PROJECTION_ORTHOGONAL:
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				actual_camera.size = max(0.1, actual_camera.size - 0.1)
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				actual_camera.size = min(100, actual_camera.size + 0.1)
+		else:
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				actual_camera.position.z = max(0.1, actual_camera.position.z - 0.1)
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				actual_camera.position.z = min(100, actual_camera.position.z + 0.1)

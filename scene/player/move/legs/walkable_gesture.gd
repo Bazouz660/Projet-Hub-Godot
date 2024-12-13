@@ -1,7 +1,7 @@
 extends LegsBehaviour
 
 
-func transition_legs_state(input, _delta):
+func transition_legs_state(input: InputPackage, _delta):
 	var target_move: String
 
 	if input.direction:

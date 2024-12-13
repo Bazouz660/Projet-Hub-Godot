@@ -20,7 +20,6 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 script = ExtResource("1_iejq2")
 rotation_damping_scale = 1.0
 enable_vertical_rotation = false
-enable_zoom = false
 
 [node name="Camera3D" type="Camera3D" parent="PreventRotationCopy/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)

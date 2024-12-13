@@ -49,7 +49,7 @@ func _toggle_track(animation: Animation, enable: bool, path: String, type: Anima
 
 
 func play(move: Move):
-	if move is not TorsoPartialMove and full_body_mode:
+	if move is not TorsoPartialMove:
 		clear_torso_animation()
 
 	if move.reverse_animation:

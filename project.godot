@@ -35,10 +35,6 @@ TimeManager="*res://manager/time_manager.gd"
 
 gdscript/warnings/integer_division=0
 
-[display]
-
-window/size/always_on_top=true
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")

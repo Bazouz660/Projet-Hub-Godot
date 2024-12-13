@@ -10,8 +10,10 @@ height = 2.68505
 script = ExtResource("1_mi1tq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
 size = Vector3(0.1, 0.3, 0.1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49907, 0)
 shape = SubResource("CapsuleShape3D_lat11")
+debug_color = Color(0, 0.6, 0.7, 0.42)

@@ -31,5 +31,6 @@ func form_hit_data(weapon: Weapon) -> HitData:
 
 
 func on_exit_state():
+	super.on_exit_state()
 	humanoid.model.active_weapon.hitbox_ignore_list.clear()
 	humanoid.model.active_weapon.is_attacking = false

@@ -26,7 +26,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="CharacterInventory" type="Control" node_paths=PackedStringArray("inventory_component")]
+[node name="CharacterInventory" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,7 +37,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_w3lcg")
-inventory_component = NodePath("")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 texture_filter = 1
