@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://bqrmje6bgidxj"]
 
-[ext_resource type="Material" uid="uid://drdk27ngtdeoh" path="res://test/caillou.tres" id="1_sxisj"]
+[ext_resource type="Material" uid="uid://c5hgquesd0lur" path="res://test/rock_material.tres" id="1_kyfse"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aavei"]
 _surfaces = [{
@@ -24,7 +24,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYACAAKAAkACAALAAoADAAOAA0ADAAPAA4AEAASABEAEAATABIAFAAWABUAFAAXABYAGAAaABkAGAAbABoAHAAeAB0AHAAfAB4AIAAiACEAIAAjACIAJAAmACUAJAAnACYAKAAqACkAKAArACoALAAuAC0ALAAvAC4ADQAwAAwADQAxADAAMgA0ADMAMgA1ADQANgA4ADcANgA5ADgAOgA8ADsAOgA9ADwAPgBAAD8APgBBAEAAQgBEAEMAQgBFAEQARgBIAEcARgBJAEgASgBMAEsASgBNAEwA"),
-"material": ExtResource("1_sxisj"),
+"material": ExtResource("1_kyfse"),
 "name": "initialShadingGroup_0",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -48,3 +48,4 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, -0.0170178, -3.08198)
 shape = SubResource("ConcavePolygonShape3D_2r4fd")
+debug_color = Color(0, 0.6, 0.7, 0.42)

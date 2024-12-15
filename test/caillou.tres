@@ -6,12 +6,12 @@
 
 [resource]
 resource_name = "initialShadingGroup_1"
-cull_mode = 2
 albedo_texture = ExtResource("1_b1lix")
 metallic_texture = ExtResource("2_pg5bx")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("2_pg5bx")
 roughness_texture_channel = 1
 normal_enabled = true
+normal_scale = 4.92
 normal_texture = ExtResource("3_df7iq")
 metadata/type = "rock"

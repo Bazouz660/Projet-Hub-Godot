@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5hgquesd0lur"]
+
+[ext_resource type="Material" uid="uid://cugshe8fon5yk" path="res://data/materials/outline.tres" id="1_m6vc8"]
+
+[resource]
+next_pass = ExtResource("1_m6vc8")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.404511, 0.404511, 0.404511, 1)
+metadata/type = "rock"

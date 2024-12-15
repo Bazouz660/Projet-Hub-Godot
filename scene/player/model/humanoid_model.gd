@@ -37,12 +37,10 @@ func _ready():
 	moves_container.humanoid = humanoid
 	moves_container.accept_moves()
 	moves = moves_container.moves
-	current_move = moves_container.moves["idle"]
-	current_move.on_enter_state()
-	current_move.mark_enter_state()
-
 	legs.current_legs_move = moves_container.get_move_by_name("idle")
 	legs.accept_behaviours()
+
+	init_first_move("idle")
 
 func update(input: InputPackage, delta: float):
 	input = combat.contextualize(input)
@@ -74,6 +72,13 @@ func switch_to(state: String):
 	animator.play(current_move)
 
 	sound_manager.update_once(current_move.sound)
+
+func init_first_move(state: String):
+	_current_state = state
+	current_move = moves[state]
+	current_move.on_enter_state()
+	current_move.mark_enter_state()
+	animator.play(current_move)
 
 func apply_gravity(delta: float, gravity: float = DEFAULT_GRAVITY):
 	if not humanoid.is_grounded():

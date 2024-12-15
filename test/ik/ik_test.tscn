@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bxa3xnteb8eb"]
+[gd_scene load_steps=30 format=4 uid="uid://bxa3xnteb8eb"]
 
 [ext_resource type="Material" uid="uid://d2rq00r7kk0ga" path="res://data/materials/default_material.tres" id="1_ebthx"]
 [ext_resource type="Script" uid="uid://dscgdlbqo1je6" path="res://test/ik/character_body_3d.gd" id="1_uqj1e"]
@@ -15,6 +15,8 @@
 [ext_resource type="Animation" uid="uid://24h0pxerkfhs" path="res://test/ik/run.res" id="8_ag3hl"]
 [ext_resource type="Animation" uid="uid://uq5fhmpyuwws" path="res://test/ik/sprint.res" id="9_dk4i1"]
 [ext_resource type="Texture2D" uid="uid://ca3v0qke3notj" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="9_gtfj0"]
+[ext_resource type="PackedScene" uid="uid://caj4uw43llohe" path="res://scene/weapon/sword_visuals.tscn" id="16_tpg3p"]
+[ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="17_tpg3p"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hp6ov"]
 radius = 0.1
@@ -533,9 +535,6 @@ use_collision = true
 size = Vector3(7.91313, 1, 2.64529)
 material = SubResource("StandardMaterial3D_jpfn3")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.873908, -0.190267, -0.447307, 0.486091, 0.342067, 0.80418, -8.88179e-16, -0.920211, 0.391422, 0, 11.1284, 0)
-
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(0.97446, -0.22456, 0, 0.22456, 0.97446, 0, 0, 0, 1, 0, -8.77936, 11.8168)
 use_collision = true
@@ -543,3 +542,8 @@ radius = 11.626
 radial_segments = 20
 rings = 26
 material = SubResource("StandardMaterial3D_hp6ov")
+
+[node name="Sword" parent="." instance=ExtResource("16_tpg3p")]
+transform = Transform3D(1, 0, 0, 0, 0.601146, -0.799139, 0, 0.799139, 0.601146, 0, 1.91796, 2.80565)
+
+[node name="SkyLight" parent="." instance=ExtResource("17_tpg3p")]

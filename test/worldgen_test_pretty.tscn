@@ -20,7 +20,7 @@ shader = ExtResource("3_d50ol")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_r38en")
 shader_parameter/cloud_direction = Vector2(1, 1)
 shader_parameter/cloud_speed = 0.002
-shader_parameter/cut_threshold = 0.5
+shader_parameter/cut_threshold = 0.2
 shader_parameter/uv1_blend_sharpness = 1.0
 shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
 
@@ -37,7 +37,6 @@ script = ExtResource("1_oufg5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2.273)
 cast_shadow = 3
 mesh = SubResource("PlaneMesh_stvr8")
-skeleton = NodePath("")
 script = ExtResource("4_w8qx5")
 
 [node name="SkyLight" parent="." instance=ExtResource("5_7hkfx")]

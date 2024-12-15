@@ -1,6 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://caj4uw43llohe"]
+[gd_scene load_steps=10 format=4 uid="uid://caj4uw43llohe"]
 
-[ext_resource type="Texture2D" uid="uid://dhfl8mfy4x4wn" path="res://asset/model/weapon/sword_0.png" id="1_xrsts"]
+[ext_resource type="Texture2D" uid="uid://r0oxc3w864yu" path="res://asset/model/weapon/sword/sword_C.png" id="2_8cedj"]
+[ext_resource type="Texture2D" uid="uid://dl4e26xs2suih" path="res://asset/model/weapon/sword/Unnamed_H.png" id="2_sgy3i"]
+[ext_resource type="Texture2D" uid="uid://bevmh5e0wfa2h" path="res://asset/model/weapon/sword/sword_RM.png" id="3_8cedj"]
+[ext_resource type="Texture2D" uid="uid://doyowsub4sn2m" path="res://asset/model/weapon/sword/sword_N.png" id="4_idgpu"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sgy3i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgj4k"]
 resource_name = "material_0"
@@ -8,7 +13,7 @@ transparency = 2
 alpha_scissor_threshold = 0.05
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("1_xrsts")
+albedo_texture = SubResource("CompressedTexture2D_sgy3i")
 texture_filter = 0
 texture_repeat = false
 
@@ -46,11 +51,25 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uosxg")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5iei"]
+albedo_texture = ExtResource("2_8cedj")
+metallic = 0.95
+metallic_specular = 0.3
+metallic_texture = ExtResource("3_8cedj")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_8cedj")
+normal_enabled = true
+normal_texture = ExtResource("4_idgpu")
+heightmap_scale = 0.1
+heightmap_flip_tangent = true
+heightmap_texture = ExtResource("2_sgy3i")
+texture_filter = 0
+
 [node name="Sword" type="Node3D"]
 
 [node name="mesh" type="Node3D" parent="."]
-transform = Transform3D(0.134319, 0.0667703, 0, -0.0667703, 0.134319, 0, 0, 0, 0.15, -0.121747, -0.195646, 0)
+transform = Transform3D(0.0880041, 0.121026, 0.0103983, -0.111452, 0.0753416, 0.0663493, 0.0483103, -0.0466528, 0.134125, -0.359625, -0.0166321, 0.151546)
 
 [node name="cuboid" type="MeshInstance3D" parent="mesh"]
-transform = Transform3D(0.908114, 0.418723, 0, -0.418723, 0.908114, 0, 0, 0, 1, -1.48107, -0.11114, 0)
 mesh = SubResource("ArrayMesh_3a8fn")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5iei")
