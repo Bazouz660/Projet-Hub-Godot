@@ -44,7 +44,7 @@ func is_grounded() -> bool:
 func is_in_water() -> bool:
 	return global_position.y + height <= WATER_LEVEL
 
-@rpc("any_peer", "call_remote", "reliable")
-func rpc_set_position(pos):
-	position = pos
+@rpc("any_peer", "call_local", "reliable")
+func rpc_set_position(pos: Vector3):
+	global_position = pos
 	velocity = Vector3.ZERO

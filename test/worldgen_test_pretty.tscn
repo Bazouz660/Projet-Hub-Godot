@@ -20,13 +20,13 @@ shader = ExtResource("3_d50ol")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_r38en")
 shader_parameter/cloud_direction = Vector2(1, 1)
 shader_parameter/cloud_speed = 0.002
-shader_parameter/cut_threshold = 0.2
+shader_parameter/cut_threshold = 0.5
 shader_parameter/uv1_blend_sharpness = 1.0
 shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_stvr8"]
 material = SubResource("ShaderMaterial_ywwrw")
-size = Vector2(150, 150)
+size = Vector2(300, 300)
 
 [node name="WorldManager" type="Node3D"]
 script = ExtResource("1_oufg5")

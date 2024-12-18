@@ -10,7 +10,7 @@ var time_scale: float = 1.0:
 		time_scale_changed.emit(time_scale)
 		time_changed.emit(time)
 
-var time: float = 12.0
+var time: float = 23.0
 var _paused: bool = true
 
 const _SECONDS_PER_HOUR: float = 60.0

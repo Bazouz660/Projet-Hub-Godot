@@ -30,6 +30,9 @@ MultiplayerManager="*res://manager/multiplayer_manager.gd"
 SceneManager="*res://manager/scene_manager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TimeManager="*res://manager/time_manager.gd"
+Console="*res://addons/console/console.gd"
+CommandsManager="*res://manager/commands_manager.gd"
+ItemRegistry="*res://manager/item_registry.gd"
 
 [debug]
 
@@ -37,7 +40,7 @@ gdscript/warnings/integer_division=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
 
 [filesystem]
 

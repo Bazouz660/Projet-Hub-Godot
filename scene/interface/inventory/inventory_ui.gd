@@ -36,13 +36,13 @@ func _connect_signals() -> void:
 	inventory_component.inventory_changed.connect(_update_slots)
 
 func _on_removed_item(item_stack: ItemStack) -> void:
-	if not inventory_component.items.has(item_stack):
+	if not inventory_component.item_stacks.has(item_stack):
 		for slot in _slots:
 			if slot.item_stack == item_stack:
 				slot.item_stack_ui.clear()
 
 func _update_slots() -> void:
-	for item_stack in inventory_component.items:
+	for item_stack in inventory_component.item_stacks:
 		_assign_item_stack_to_slot(item_stack)
 
 	for slot in _slots:
@@ -73,7 +73,7 @@ func _bind_selected_stack(stack: ItemStack) -> void:
 	_selected_item_stack = _item_stack_ui.instantiate()
 	add_child(_selected_item_stack)
 	_selected_item_stack.item_stack = stack
-	inventory_component.items.erase(stack)
+	inventory_component.item_stacks.erase(stack)
 
 func _on_slot_clicked(slot: SlotUI) -> void:
 	if not _selected_item_stack:
@@ -115,13 +115,13 @@ func _merge_item_stacks(slot: SlotUI) -> void:
 func _swap_item_stacks(slot: SlotUI) -> void:
 	var temp = slot.item_stack
 	slot.item_stack = _selected_item_stack.item_stack
-	inventory_component.items.append(_selected_item_stack.item_stack)
+	inventory_component.item_stacks.append(_selected_item_stack.item_stack)
 	_selected_item_stack.queue_free()
 	_selected_item_stack = null
 	_bind_selected_stack(temp)
 
 func _place_selected_item_stack_in_empty_slot(slot: SlotUI) -> void:
 	slot.item_stack = _selected_item_stack.item_stack
-	inventory_component.items.append(slot.item_stack)
+	inventory_component.item_stacks.append(slot.item_stack)
 	_selected_item_stack.queue_free()
 	_selected_item_stack = null

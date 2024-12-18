@@ -9,3 +9,4 @@ func _ready():
 	SceneManager.root = self
 	SceneManager.current_gui_scene = $GUI/MainMenu
 	MultiplayerManager.root = self
+	CommandsManager.register_commands()
