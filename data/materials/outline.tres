@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://2h5kausqyygm" path="res://shader/outline.gdshader" id="1_xbyx6"]
 
 [resource]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("1_xbyx6")
 shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gkai57dhq3qb"]
+[gd_scene load_steps=13 format=3 uid="uid://gkai57dhq3qb"]
 
 [ext_resource type="Script" uid="uid://cc62qw8vsnai1" path="res://scene/player/player.gd" id="1_k72xi"]
 [ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="2_15wi1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="2_q7odf"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
 [ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/inventory_component.tscn" id="5_gwy6j"]
+[ext_resource type="Script" uid="uid://btr6ce7y2582k" path="res://scene/player/interact_area.gd" id="8_hfhxk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
 
@@ -23,6 +24,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("Model:sync_state")
 properties/2/spawn = true
 properties/2/replication_mode = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_732fb"]
+radius = 1.42241
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_k72xi")
@@ -48,6 +52,7 @@ debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 script = ExtResource("2_q7odf")
 
 [node name="InventoryComponent" parent="." instance=ExtResource("5_gwy6j")]
+is_dropping_enabled = true
 
 [node name="Model" parent="." instance=ExtResource("3_xohdc")]
 
@@ -55,3 +60,12 @@ script = ExtResource("2_q7odf")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_iviky")
+
+[node name="InteractArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309888, 0)
+script = ExtResource("8_hfhxk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780433, 0)
+shape = SubResource("SphereShape3D_732fb")
+debug_color = Color(0, 0.6, 0.7, 0.42)

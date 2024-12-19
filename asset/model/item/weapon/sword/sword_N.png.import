@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl4e26xs2suih"
-path.s3tc="res://.godot/imported/Unnamed_H.png-d55819e2de78bb0a1fe7ce24692a2ae4.s3tc.ctex"
+uid="uid://doyowsub4sn2m"
+path.s3tc="res://.godot/imported/sword_N.png-00a32333c0da30e074eb442f7756d7a0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://asset/model/weapon/sword/Unnamed_H.png"
-dest_files=["res://.godot/imported/Unnamed_H.png-d55819e2de78bb0a1fe7ce24692a2ae4.s3tc.ctex"]
+source_file="res://asset/model/item/weapon/sword/sword_N.png"
+dest_files=["res://.godot/imported/sword_N.png-00a32333c0da30e074eb442f7756d7a0.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://asset/texture/placeholder/sword_N.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

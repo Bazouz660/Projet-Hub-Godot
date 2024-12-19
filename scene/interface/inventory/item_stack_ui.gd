@@ -5,23 +5,24 @@ class_name ItemStackUI
 @onready var quantity_label: Label = %QuantityLabel
 
 var item_stack: ItemStack:
-	set(value):
-		item_stack = value
-		update_display()
+    set(value):
+        item_stack = value
+        update_display()
 
 func clear() -> void:
-	item_stack = null
+    item_stack = null
 
 func update_display() -> void:
-	if not item_stack:
-		item_icon.texture = null
-		quantity_label.text = ""
-		return
+    if not item_stack:
+        item_icon.texture = null
+        quantity_label.text = ""
+        return
 
-	item_icon.texture = item_stack.item.icon
+    var item = ItemRegistry.get_item_by_id(item_stack.item_id)
+    item_icon.texture = item.icon
 
-	if item_stack.quantity > 1:
-		quantity_label.text = str(item_stack.quantity)
-		quantity_label.show()
-	else:
-		quantity_label.hide()
+    if item_stack.quantity > 1:
+        quantity_label.text = str(item_stack.quantity)
+        quantity_label.show()
+    else:
+        quantity_label.hide()

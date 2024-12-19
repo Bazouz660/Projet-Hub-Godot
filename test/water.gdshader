@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled, shadows_disabled;
+render_mode cull_disabled, shadows_disabled, depth_draw_always;
 
 // Water Color
 uniform vec4 color : source_color;

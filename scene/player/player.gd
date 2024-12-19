@@ -11,6 +11,7 @@ class_name Player
 @onready var collision_shape := $CollisionShape3D as CollisionShape3D
 @onready var material_detector := $MaterialDetector as MaterialDetector
 @onready var resources := $Model/Resources as HumanoidResources
+@onready var interact_area := $InteractArea as Area3D
 
 var sensitivity = 0.003;
 var yaw = 0.0;
@@ -23,12 +24,16 @@ const WATER_LEVEL = 0;
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
+
 func _ready():
 	SceneManager.disable_player_input = false
 	presentation.accept_model(model)
 	presentation.register_sounds(model.sound_manager)
 	model.humanoid = self
 	camera.current = is_multiplayer_authority()
+
+	if is_multiplayer_authority():
+		interact_area.add_to_group("player")
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():

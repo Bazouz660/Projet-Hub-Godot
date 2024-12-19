@@ -1,21 +1,23 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dk13toa37nud5"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dk13toa37nud5"]
 
 [ext_resource type="Shader" uid="uid://cu5yyst1lh7oa" path="res://shader/glass.gdshader" id="1_oid2d"]
+[ext_resource type="Material" uid="uid://cugshe8fon5yk" path="res://data/materials/outline.tres" id="1_wal5a"]
 [ext_resource type="Texture2D" uid="uid://cb1kw702kpal8" path="res://asset/model/item/potion/health_potionC.png" id="2_wal5a"]
 [ext_resource type="Texture2D" uid="uid://s0plurk8ji7v" path="res://asset/model/item/potion/health_potionRM.png" id="3_8qrd0"]
 [ext_resource type="Texture2D" uid="uid://c447fe6g1jsah" path="res://asset/model/item/potion/health_potionN.png" id="4_76imk"]
 
 [resource]
 render_priority = 0
+next_pass = ExtResource("1_wal5a")
 shader = ExtResource("1_oid2d")
 shader_parameter/albedo = Color(1, 1, 1, 0.627451)
 shader_parameter/albedo_texture = ExtResource("2_wal5a")
-shader_parameter/roughness = 0.14
+shader_parameter/roughness = 0.15
 shader_parameter/roughness_texture = ExtResource("3_8qrd0")
 shader_parameter/refraction = 0.100001
 shader_parameter/texture_refraction = ExtResource("3_8qrd0")
 shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/normal_strength = 0.800001
+shader_parameter/normal_strength = 7.6e-07
 shader_parameter/normal_map = ExtResource("4_76imk")
 shader_parameter/edge_color = Color(0, 0, 0, 1)
 shader_parameter/surface_contribution = 0.2

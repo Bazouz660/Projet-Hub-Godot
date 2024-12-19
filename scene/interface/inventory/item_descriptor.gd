@@ -10,16 +10,17 @@ var _item_descriptor_active_texture: Texture = preload("res://asset/texture/inte
 var _item_descriptor_texture: Texture = preload("res://asset/texture/interface/inventory/item_descriptor.png")
 
 func show_item(slot: SlotUI) -> void:
-	if slot.item_stack:
-		_background.texture = _item_descriptor_active_texture
-		_item_icon.texture = slot.item_stack.item.icon
-		_item_name.text = slot.item_stack.item.name
-		_item_description.text = slot.item_stack.item.description
-	else:
-		clear()
+    if slot.item_stack:
+        var item = ItemRegistry.get_item_by_id(slot.item_stack.item_id)
+        _background.texture = _item_descriptor_active_texture
+        _item_icon.texture = item.icon
+        _item_name.text = item.name
+        _item_description.text = item.description
+    else:
+        clear()
 
 func clear() -> void:
-	_background.texture = _item_descriptor_texture
-	_item_icon.texture = null
-	_item_name.text = ""
-	_item_description.text = ""
+    _background.texture = _item_descriptor_texture
+    _item_icon.texture = null
+    _item_name.text = ""
+    _item_description.text = ""

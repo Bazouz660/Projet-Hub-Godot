@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvcl7vca8lawk"]
+
+[ext_resource type="Script" uid="uid://b6ucm7jm8e0mm" path="res://scene/item/dropped_item/dropped_item.gd" id="1_72i18"]
+[ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="2_57gwh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57gwh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57gwh"]
+transparency = 1
+blend_mode = 4
+shading_mode = 0
+albedo_color = Color(0.89, 0, 0, 0.447059)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1uib1"]
+
+[node name="DroppedItem" type="Node3D"]
+script = ExtResource("1_72i18")
+
+[node name="InteractArea" type="Area3D" parent="." groups=["ground_item"]]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+shape = SubResource("SphereShape3D_57gwh")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="MeshContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="LabelTarget" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878841, 0)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.585
+offset_top = -11.5
+offset_right = 24.415
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_57gwh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "skibidi"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugMesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_57gwh")
+mesh = SubResource("SphereMesh_1uib1")

@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bevmh5e0wfa2h"
-path.s3tc="res://.godot/imported/sword_RM.png-b780bde93fa0dce289f23f9952a08ae4.s3tc.ctex"
+uid="uid://4f5w2g67arng"
+path.s3tc="res://.godot/imported/sword_0.png-0c3cfa7ec5ea131693f82f55f4ad6b6a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "c305fbeb57ac64e086179520b69e15bc"
+}
 
 [deps]
 
-source_file="res://asset/model/weapon/sword/sword_RM.png"
-dest_files=["res://.godot/imported/sword_RM.png-b780bde93fa0dce289f23f9952a08ae4.s3tc.ctex"]
+source_file="res://asset/model/item/weapon/sword/sword_0.png"
+dest_files=["res://.godot/imported/sword_0.png-0c3cfa7ec5ea131693f82f55f4ad6b6a.s3tc.ctex"]
 
 [params]
 

@@ -17,6 +17,7 @@ var input_actions = {
 	"roll": "Roll",
 	"inventory": "Inventory",
 	"rest": "Rest",
+	"interact": "Interact",
 	"emote": "Emote",
 	"toggle_chat": "Toggle chat",
 	"cycle_debug_menu": "Debug menu",

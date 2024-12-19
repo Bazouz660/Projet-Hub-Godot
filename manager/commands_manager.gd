@@ -26,6 +26,16 @@ func register_commands():
 	print("Commands registered.")
 
 func set_time(time: String) -> void:
+
+	if time == "day":
+		time = "9"
+	elif time == "night":
+		time = "21"
+	elif time == "noon":
+		time = "12"
+	elif time == "midnight":
+		time = "0"
+
 	# Convert time to float
 	if not time.is_valid_float():
 		Console.print_error("Invalid time. It must be a float.")

@@ -7,6 +7,7 @@ class_name Item
 @export var is_stackable: bool = false
 @export var max_stack_size: int = 1
 @export var icon: Texture2D
+@export var model: PackedScene
 
 func _init(p_id: String = "", p_name: String = "", p_description: String = "", p_is_stackable: bool = false, p_max_stack_size: int = 1) -> void:
 	id = p_id

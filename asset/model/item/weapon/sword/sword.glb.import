@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dy51n7hnlyd2p"
-path="res://.godot/imported/sword.glb-1da8eaaa0249e7ed1a0c53e610791b86.scn"
+path="res://.godot/imported/sword.glb-ee98d89dbc3ada08abc92a268cd4dd1e.scn"
 
 [deps]
 
-source_file="res://asset/model/weapon/sword/sword.glb"
-dest_files=["res://.godot/imported/sword.glb-1da8eaaa0249e7ed1a0c53e610791b86.scn"]
+source_file="res://asset/model/item/weapon/sword/sword.glb"
+dest_files=["res://.godot/imported/sword.glb-ee98d89dbc3ada08abc92a268cd4dd1e.scn"]
 
 [params]
 
