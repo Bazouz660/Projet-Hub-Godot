@@ -87,7 +87,7 @@ func _spawn_item(item_id: String, quantity: int, p_position: Vector3) -> void:
 	item_instance.set_multiplayer_authority(1, true)
 	item_instance.name = item_id + "?" + str(quantity) + "?" + str(item_instance.get_instance_id())
 	SceneManager.current_3d_scene.add_child(item_instance)
-	item_instance.rpc_set_position.rpc(p_position)
+	item_instance.rpc_init.rpc(item_id, quantity, ItemRegistry.get_item_by_id(item_id).name, p_position)
 	print("Item spawned at " + str(p_position) + " in node " + str(SceneManager.current_3d_scene.name))
 
 func get_item_quantity(item_id: String) -> int:

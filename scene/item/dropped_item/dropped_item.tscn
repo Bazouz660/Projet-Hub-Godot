@@ -1,17 +1,138 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvcl7vca8lawk"]
+[gd_scene load_steps=9 format=3 uid="uid://dvcl7vca8lawk"]
 
 [ext_resource type="Script" uid="uid://b6ucm7jm8e0mm" path="res://scene/item/dropped_item/dropped_item.gd" id="1_72i18"]
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="2_57gwh"]
+[ext_resource type="Texture2D" uid="uid://rgnn73uosvia" path="res://asset/texture/interface/hud/sparkle.png" id="3_1uib1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_57gwh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57gwh"]
-transparency = 1
-blend_mode = 4
-shading_mode = 0
-albedo_color = Color(0.89, 0, 0, 0.447059)
+[sub_resource type="Shader" id="Shader_vrvij"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, unshaded, ambient_light_disabled, fog_disabled;
 
-[sub_resource type="SphereMesh" id="SphereMesh_1uib1"]
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap_anisotropic, repeat_disable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+// Base uniforms for all layers
+uniform float rotation_speed : hint_range(0.0, 10.0) = 1.0;
+uniform float pulse_speed : hint_range(0.0, 10.0) = 1.0;
+uniform float pulse_strength : hint_range(0.0, 1.0) = 0.2;
+
+// Number of layers and layer-specific uniforms
+uniform int num_layers : hint_range(1, 10) = 3;
+uniform float layer_opacity_base : hint_range(0.0, 1.0) = 0.5;
+uniform float layer_opacity_step : hint_range(-0.1, 0.1) = -0.1;
+uniform float rotation_offset_step : hint_range(-3.14159, 3.14159) = 0.7854; // PI/4 default
+
+void vertex() {
+    MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+            MAIN_CAM_INV_VIEW_MATRIX[0],
+            MAIN_CAM_INV_VIEW_MATRIX[1],
+            MAIN_CAM_INV_VIEW_MATRIX[2],
+            MODEL_MATRIX[3]);
+    MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+vec2 rotate_uv(vec2 uv, float rotation) {
+    float mid = 0.5;
+    vec2 centered_uv = uv - vec2(mid);
+    float s = sin(rotation);
+    float c = cos(rotation);
+    mat2 rot_matrix = mat2(vec2(c, -s), vec2(s, c));
+    vec2 rotated_uv = rot_matrix * centered_uv;
+    return rotated_uv + vec2(mid);
+}
+
+// Hash function for procedural rotation direction
+float hash(float n) {
+    return fract(sin(n) * 43758.5453123);
+}
+
+void fragment() {
+    // Calculate base pulsation scale
+    float pulse = 1.0 + sin(TIME * pulse_speed) * pulse_strength;
+    
+    // Initialize final color and alpha
+    vec3 final_color = vec3(0.0);
+    float final_alpha = 0.0;
+    
+    // Process each layer
+    for(int i = 0; i < num_layers; i++) {
+        // Skip if we've reached the maximum number of layers
+        if(i >= num_layers) break;
+        
+        // Calculate layer-specific parameters
+        float layer_index = float(i);
+        float rotation_direction = hash(layer_index) * 2.0 - 1.0; // Random -1 or 1
+        float layer_rotation = TIME * rotation_speed * rotation_direction 
+                             + layer_index * rotation_offset_step;
+        float layer_opacity = layer_opacity_base + (float(i) * layer_opacity_step);
+        layer_opacity = clamp(layer_opacity, 0.0, 1.0);
+        
+        // Process UV coordinates
+        vec2 current_uv = UV;
+        current_uv = rotate_uv(current_uv, layer_rotation);
+        current_uv = (current_uv - vec2(0.5)) * pulse + vec2(0.5);
+        
+        // Sample texture
+        vec4 current_tex = texture(texture_albedo, current_uv);
+        
+        // Blend with accumulated result
+        if(i == 0) {
+            // Base layer
+            final_color = albedo.rgb * current_tex.rgb;
+            final_alpha = albedo.a * current_tex.a;
+        } else {
+            // Overlay additional layers
+            final_color = mix(
+                final_color,
+                current_tex.rgb,
+                layer_opacity * current_tex.a
+            );
+            final_alpha = max(final_alpha, layer_opacity * current_tex.a);
+        }
+    }
+    
+    ALBEDO = final_color;
+    ALPHA *= final_alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jshue"]
+render_priority = -1
+shader = SubResource("Shader_vrvij")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_1uib1")
+shader_parameter/point_size = 1.0
+shader_parameter/rotation_speed = 0.3
+shader_parameter/pulse_speed = 1.0
+shader_parameter/pulse_strength = 0.15
+shader_parameter/num_layers = 10
+shader_parameter/layer_opacity_base = 1.0
+shader_parameter/layer_opacity_step = -0.1
+shader_parameter/rotation_offset_step = 0.19641
+
+[sub_resource type="QuadMesh" id="QuadMesh_tps12"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1uib1"]
+properties/0/path = NodePath(".:item_id")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:item_label")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:quantity")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath(".:created_at")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:sync_item")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+properties/5/path = NodePath(".:position")
+properties/5/spawn = true
+properties/5/replication_mode = 2
 
 [node name="DroppedItem" type="Node3D"]
 script = ExtResource("1_72i18")
@@ -52,6 +173,10 @@ text = "skibidi"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DebugMesh" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_57gwh")
-mesh = SubResource("SphereMesh_1uib1")
+[node name="Spark" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250955, 0)
+material_override = SubResource("ShaderMaterial_jshue")
+mesh = SubResource("QuadMesh_tps12")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1uib1")

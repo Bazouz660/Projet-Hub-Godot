@@ -6,23 +6,21 @@ class_name DroppedItem
 @onready var label := $Label as Label
 @onready var label_target := %LabelTarget as Marker3D
 
-var item_id: String = ""
-var quantity = 0
+@export var item_id: String = ""
+@export var item_label: String = ""
+@export var quantity = 0
 var item_visuals: PackedScene
-var created_at: int # Add timestamp for creation
+@export var created_at: int # Add timestamp for creation
+
+@export var sync_item: bool = false:
+	set(value):
+		sync_item = value
+		call_deferred("_create")
 
 func _ready():
 	area.area_entered.connect(_on_area_entered)
 	area.area_exited.connect(_on_area_exited)
 
-	item_id = name.split("?")[0]
-	print("Dropped item ID: " + item_id)
-	quantity = name.split("?")[1].to_int()
-	item_visuals = ItemRegistry.get_item_by_id(item_id).model
-	created_at = Time.get_ticks_msec() # Store creation time
-
-	mesh_container.add_child(item_visuals.instantiate())
-	label.text = str(item_id) + " x" + str(quantity)
 	label.hide()
 
 func _process(_delta):
@@ -69,8 +67,19 @@ func _on_interact(player: Player) -> void:
 	print("Failed to pick up item.")
 
 @rpc("any_peer", "call_local", "reliable")
-func rpc_set_position(p_position: Vector3) -> void:
+func rpc_init(p_item_id: String, p_quantity: int, p_label: String, p_position: Vector3) -> void:
+	item_id = p_item_id
+	item_label = p_label
+	quantity = p_quantity
 	position = p_position
+	sync_item = true
+
+func _create() -> void:
+	item_visuals = ItemRegistry.get_item_by_id(item_id).model
+	created_at = Time.get_ticks_msec() # Store creation time
+
+	mesh_container.add_child(item_visuals.instantiate())
+	label.text = str(item_label) + " x" + str(quantity)
 
 @rpc("any_peer", "call_remote", "reliable")
 func _delete_self() -> void:
