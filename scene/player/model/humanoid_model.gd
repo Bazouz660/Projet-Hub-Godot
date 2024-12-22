@@ -61,7 +61,7 @@ func update(input: InputPackage, delta: float):
 	sound_manager.update(current_move.sound, delta)
 
 func switch_to(state: String):
-	print(_current_state, " -> ", state)
+	#print(_current_state, " -> ", state)
 	_current_state = state
 	current_move.on_exit_state()
 	current_move = moves[state]

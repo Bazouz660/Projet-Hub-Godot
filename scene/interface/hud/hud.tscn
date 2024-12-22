@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmf7wwcdj1shu"]
+[gd_scene load_steps=13 format=3 uid="uid://dmf7wwcdj1shu"]
 
 [ext_resource type="Theme" uid="uid://b5o03o1xpcgx2" path="res://data/interface/theme/default_theme.tres" id="1_oexk0"]
 [ext_resource type="Script" uid="uid://dirpknpvfw6g" path="res://scene/interface/hud/hud.gd" id="2_as46u"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dqxfatiubrru" path="res://scripts/toggle_menu.gd" id="3_e2hu5"]
 [ext_resource type="PackedScene" uid="uid://8koyscic4v2s" path="res://scene/interface/chat/chat.tscn" id="3_p8041"]
 [ext_resource type="PackedScene" uid="uid://lhp0pmmfdk2h" path="res://scene/interface/pause_menu/pause_menu.tscn" id="4_cby67"]
+[ext_resource type="PackedScene" uid="uid://cw1ds6oixy5ht" path="res://scene/interface/hud/health/health_bar.tscn" id="4_tmfjb"]
 [ext_resource type="PackedScene" uid="uid://clte1kr3xnnoi" path="res://scene/interface/settings_menu/settings_menu.tscn" id="5_m4bv2"]
 [ext_resource type="PackedScene" uid="uid://b08qn0p04cg0d" path="res://scene/interface/inventory/character_inventory.tscn" id="9_f3bk7"]
 
@@ -67,6 +68,10 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 30
+
+[node name="HealthHUD" parent="MarginContainer/MarginContainer" instance=ExtResource("4_tmfjb")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="StaminaHUD" parent="MarginContainer/MarginContainer" instance=ExtResource("2_bw5k5")]
 unique_name_in_owner = true

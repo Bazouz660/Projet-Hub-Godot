@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw1ds6oixy5ht"]
+
+[ext_resource type="Script" uid="uid://blidhaloxr7xr" path="res://scene/interface/hud/health/health_hud.gd" id="1_2oat5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2oat5"]
+bg_color = Color(0.165656, 0.165656, 0.165656, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdakd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pdakd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcfv2"]
+bg_color = Color(0.541159, 0.128123, 0, 1)
+
+[node name="HealthBar" type="Control" node_paths=PackedStringArray("health_bar", "ghost_bar")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_2oat5")
+health_bar = NodePath("ProgressBarForeground")
+ghost_bar = NodePath("ProgressBarBackground")
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 331.0
+offset_bottom = 13.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2oat5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pdakd")
+max_value = 1.0
+show_percentage = false
+
+[node name="ProgressBarForeground" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 331.0
+offset_bottom = 13.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_pdakd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vcfv2")
+max_value = 1.0
+value = 0.5
+show_percentage = false

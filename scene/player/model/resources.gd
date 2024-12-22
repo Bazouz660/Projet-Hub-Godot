@@ -7,6 +7,10 @@ signal stamina_full
 signal stamina_regeneration_started
 signal stamina_regeneration_stopped
 
+signal health_changed(current_health: float)
+signal health_low
+signal health_full
+
 @export var god_mode: bool = false
 
 @export var health: float = 100:
@@ -14,9 +18,12 @@ signal stamina_regeneration_stopped
 		health = value
 		if health >= max_health:
 			health = max_health
+			health_full.emit()
 		if health <= 0:
 			health = 0
+			health_low.emit()
 			model.current_move.try_force_move.rpc("death")
+		print("set health: ", health)
 
 @export var max_health: float = 100
 
@@ -42,15 +49,16 @@ var is_stamina_regenerating: bool = true
 
 func _ready():
 	stamina = max_stamina
-	stamina_changed.emit(stamina)
-	stamina_full.emit()
+	health = max_health
 
 func lose_health(amount: float):
 	if not god_mode:
 		health = health - amount
+		_on_health_changed(health)
 
 func gain_health(amount: float):
 	health = health + amount
+	_on_health_changed(health)
 
 func lose_stamina(amount: float):
 	if amount <= 0:
@@ -63,6 +71,12 @@ func get_current_stamina() -> float:
 
 func get_max_stamina() -> float:
 	return max_stamina
+
+func get_current_health() -> float:
+	return health
+
+func get_max_health() -> float:
+	return max_health
 
 func gain_stamina(amount: float):
 	stamina = stamina + amount
@@ -100,3 +114,11 @@ func can_be_paid(move: Move) -> bool:
 		return true
 	stamina_low.emit()
 	return false
+
+func _on_health_changed(current_health: float):
+	_rpc_set_health.rpc(current_health)
+
+@rpc("any_peer", "call_local", "reliable")
+func _rpc_set_health(p_health: float):
+	self.health = p_health
+	health_changed.emit(health)

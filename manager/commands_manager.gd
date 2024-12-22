@@ -22,6 +22,7 @@ func register_commands():
 	Console.add_command("tp", tp, ["player_to", "player_from"], 1, "Teleports to a player.")
 	Console.add_command("give", give, ["player_id", "item_id", "amount"], 2, "Gives an item to a player.")
 	Console.add_command("kick", kick, ["player_id"], 1, "Kicks a player.")
+	Console.add_command("set_health", _set_health, ["player_id", "health"], 2, "Sets the health of a player.")
 
 	print("Commands registered.")
 
@@ -109,3 +110,15 @@ func kick(player_id: String) -> void:
 		return
 	MultiplayerManager.peer.disconnect_peer(player_id.to_int())
 	Console.print_line("Kicked player " + player_id + ".")
+
+
+func _set_health(player_id: String, health: String) -> void:
+	var player = MultiplayerManager.players.get(player_id)
+	if player == null:
+		Console.print_error("Player: " + player_id + " not found.")
+		return
+	if not health.is_valid_int() or health.to_int() < 0:
+		Console.print_error("Invalid health. It must be a positive integer.")
+		return
+	player.resources.health = health.to_int()
+	Console.print_line("Set health of " + player_id + " to " + health + ".")

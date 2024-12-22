@@ -7,3 +7,7 @@ func default_lifecycle(input) -> String:
 func update(_input: InputPackage, _delta: float):
 	humanoid.position.y = humanoid.WATER_LEVEL - humanoid.height
 	humanoid.velocity = Vector3.ZERO
+
+func on_enter_state():
+	humanoid.velocity.x = 0
+	humanoid.velocity.z = 0

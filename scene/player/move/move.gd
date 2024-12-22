@@ -194,7 +194,7 @@ func react_on_hit(hit: HitData):
 func react_on_parry(_hit: HitData):
 	pass
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func try_force_move(new_forced_move: String):
 	if not has_forced_move:
 		has_forced_move = true

@@ -5,11 +5,17 @@ var mouse_mode = null
 
 func _ready() -> void:
 	MultiplayerManager.active_player_loaded.connect(_set_stamina_hud)
+	MultiplayerManager.active_player_loaded.connect(_set_health_hud)
 	MultiplayerManager.active_player_loaded.connect(_set_inventory_hud)
 
 func _set_stamina_hud(_id):
 	%StaminaHUD.resources = MultiplayerManager.active_player.resources
 	%StaminaHUD._setup()
+
+func _set_health_hud(_id):
+	%HealthHUD.resources = MultiplayerManager.active_player.resources
+	%HealthHUD._setup()
+	(%StaminaHUD.resources as HumanoidResources).gain_health(1000000)
 
 func _set_inventory_hud(_id):
 	%Inventory.inventory_component = MultiplayerManager.active_player.inventory
