@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://dl245gd7qni6c"]
+[gd_scene load_steps=5 format=4 uid="uid://m27dp7q8x80h"]
 
-[ext_resource type="Material" uid="uid://dk13toa37nud5" path="res://asset/model/item/potion/health_potion_material.tres" id="1_1kho8"]
+[ext_resource type="Material" uid="uid://dk13toa37nud5" path="res://asset/model/item/potion/health_potion_material.tres" id="1_rqomd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b3t8"]
 resource_name = "Material"
@@ -8,7 +8,7 @@ cull_mode = 2
 roughness = 0.5
 texture_filter = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1kho8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_756i6"]
 _surfaces = [{
 "aabb": AABB(-1, -0.0141033, -1, 2, 3.386, 2),
 "format": 34359742465,
@@ -23,7 +23,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_s3pnc"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_eg4ej"]
 resource_name = "basic_potion_Cube"
 _surfaces = [{
 "aabb": AABB(-1, -0.0141033, -1, 2, 3.386, 2),
@@ -40,12 +40,12 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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/z//v/9//38AAP+/b7gfj/8//7//f/9/AAD/v///////f///////f/9///////9//3//////////f///3vCPx3hyd/IAAP9//////wAA/7/////fAAD/f/////8AAP+/////3/+/AADHxDb7/z//PzUA5P//v/8///////9//z91wnWC/z//fwAA/9//P/9/AAD/3/8//38AAP/f/z//fwAA/98AAP9//////wAA/3//////AAD/f/////8AAP9///////9//38AAP+//3//fwAA/7//f/9/AAD/v/9//38AAP+//////////7//////////v/////////+//////////7//f///////v/9///////+//3///////7//f///////v/9/AAD//////38AAP//////fwAA//////9/AAD//////38AAP//////fwAA//////9/AAD//////38AAP//////fwAA//////9//////////3//////////f/////////9//////////3//////////f/////////9//////////3//////////f////////wAALb7/fwCAAAD/f/9/AIAAAP9//38AgAAALb7/fwCA//////9/AID//////38AgP//////fwCA//////9/AID///9//38AgP///3//fwCA173/f/9/AID/f/9//38AgP9//3//fwCA173/f/9/AIA+Qf9/AABf3z5B/38AAF/fPkH/fwAAX98+Qf9/AABf3/+//z+OAEaA/7//P3gCO4H/v/8/////v/+//z8zAhmB/7//P////7//f/+/Bsf4+P9//79BPUD9/3//v5/QXu//f/+/iT2I/f9//78sOyv7/z//v2sANYD/P/+/DPIF+f8//7///////z//v+399v7/P/+/1+Jr8f9//38AAP+//3//fwAA/7////9//3///////3//f///AAD/f/////8AAP9/////////////f/////////9/////fwAA//////9/AAD//////38AAP//////fwAA//////9//z8dMeKO/3//P/QyCo3/f/8/DSHxnv9//z+kOlqF/3//P6oqVJX/P/8/dv9DgP8//z9TFNX1/z//P///////P/8///////8//z+JJTrt/78AAPXCCP3/vwAA88YK+f+/AAD///+//78AAHXCiP3/vwAAksls9v+//79rAMn//7//vwzy+Ib/v/+///////+//7///////7//v9fik47e8I/HeHJ38t7wj8d4cnfyb7gfj/8//79vuB+P/z//vyAPj8f////fIA+Px////98gD4/H////349HH48AAP/fj0cfjwAA/9+PRx+PAAD/397wbzgNmzv53vBvOA2bO/ne8G84DZs7+W+433D/P/+/b7jfcP8//78gD284////3yAPbzj////fIA9vOP///9+PR99wAAD/349H33AAAP/fj0ffcAAA/98AAP+/////3wAA/7/////f////v/9///////+//3///////7//f///////v/9/////v/9//z//v/+//3//P/+//7//f/8//7//v/9//z//v/+///+hPV2C/7///8U8OYP/v///////v/+///+dPWGC/3+NwcQ9Tv//f43BbDna+v9/jcHjwqD+cL6Nwf////9wvo3B/////3C+jcH/////cL6Nwf////+OQY3B/////45BjcH/////cL7//8Y9roBwvv//xD2wgHC+///jwl2B/3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//fwAA//////9/AAD//////38AAP////////9//38AgP///3//fwCA/3//////////f/////////9/////////AAD/f/9/AIAAAP9//38AgP9//3//fwCA/3//f/9/AIDXvf9//38AgNe9/3//fwCA//8Xv/9/AID//xe//38AgP//F7//fwCA//8Xv/9/AIAAAC2+/38AgAAALb7/fwCA")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_1kho8")
+shadow_mesh = SubResource("ArrayMesh_756i6")
 
-[node name="HealthPotion" type="Node3D"]
+[node name="HealthPotionVisuals" type="Node3D"]
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-material_override = ExtResource("1_1kho8")
-mesh = SubResource("ArrayMesh_s3pnc")
+transform = Transform3D(0.00194767, -0.099981, 0, 0.099981, 0.00194767, 0, 0, 0, 0.1, 0.266095, 0.154307, 0.048681)
+material_override = ExtResource("1_rqomd")
+mesh = SubResource("ArrayMesh_eg4ej")
 skeleton = NodePath("")

@@ -1,39 +1,25 @@
-[gd_scene load_steps=80 format=3 uid="uid://b6i3ktwxchyr8"]
+[gd_scene load_steps=67 format=3 uid="uid://b6i3ktwxchyr8"]
 
 [ext_resource type="Script" uid="uid://co1h0wmsp5oye" path="res://scene/player/model/humanoid_model.gd" id="1_dfp2c"]
 [ext_resource type="Script" uid="uid://7o8migntf3vc" path="res://scene/player/model/resources.gd" id="2_3b786"]
 [ext_resource type="Script" uid="uid://c6apxt83lp7g1" path="res://scene/player/model/humanoid_sound_manager.gd" id="2_hhekq"]
-[ext_resource type="Animation" uid="uid://cqr2bjdhl86ad" path="res://asset/animation/humanoid/roll.res" id="3_3r6fq"]
-[ext_resource type="PackedScene" uid="uid://wbrv6lo1jv4e" path="res://scene/weapon/sword_collision.tscn" id="3_47lqg"]
+[ext_resource type="PackedScene" uid="uid://wbrv6lo1jv4e" path="res://scene/item/held_item/weapon/sword/sword_collision.tscn" id="3_47lqg"]
 [ext_resource type="Script" uid="uid://btxd3eudh64p4" path="res://scene/player/model/humanoid_hitbox.gd" id="3_jhxj8"]
 [ext_resource type="Script" uid="uid://boo7nrqgcemsv" path="res://scene/player/model/skeleton.gd" id="4_jwgxg"]
 [ext_resource type="Script" uid="uid://kavqt3i38r0u" path="res://scene/player/model/split_animator.gd" id="6_vny0r"]
 [ext_resource type="Script" uid="uid://bedev4smphtwt" path="res://scripts/animation/animation_player.gd" id="7_1ussp"]
-[ext_resource type="Animation" uid="uid://d1utthvyyxcgk" path="res://asset/animation/humanoid/resting.res" id="7_d8rpn"]
-[ext_resource type="Animation" uid="uid://bphpjmcwu8ftt" path="res://asset/animation/humanoid/death.res" id="7_eg8aa"]
+[ext_resource type="AnimationLibrary" uid="uid://cpubdoy58tcnp" path="res://asset/animation/humanoid/torso/torso_animation_library.res" id="8_grkx0"]
 [ext_resource type="Script" uid="uid://cpct8g8fhybud" path="res://scene/player/move/idle.gd" id="8_ly13d"]
-[ext_resource type="Animation" uid="uid://cub6hb1kai7es" path="res://asset/animation/humanoid/sitting_ground_to_standing.res" id="9_4ay6k"]
-[ext_resource type="Animation" uid="uid://bv1m0rwqmj6c2" path="res://asset/animation/humanoid/slash_1.res" id="9_05qd0"]
 [ext_resource type="Script" uid="uid://dveaucho34d5c" path="res://scene/player/model/humanoid_combat.gd" id="9_dpui0"]
 [ext_resource type="Script" uid="uid://cjsjl1u6behlb" path="res://scene/player/move/run.gd" id="9_w7hc7"]
-[ext_resource type="Animation" uid="uid://c4nb43nryjm6d" path="res://asset/animation/humanoid/slash_2.res" id="10_51io1"]
+[ext_resource type="AnimationLibrary" uid="uid://uysvpwe8lheo" path="res://asset/animation/humanoid/legs/legs_animation_library.res" id="10_cfkae"]
 [ext_resource type="Script" uid="uid://ds5770ix34xc" path="res://scene/player/move/roll.gd" id="10_u5sls"]
 [ext_resource type="Script" uid="uid://yfts1kn7u1wi" path="res://scene/player/move/sprint.gd" id="11_4su47"]
-[ext_resource type="Animation" uid="uid://d03boypl1m3y7" path="res://asset/animation/humanoid/slash_3.res" id="11_qv3sr"]
 [ext_resource type="Script" uid="uid://bs2ow0vimrbwf" path="res://scene/player/move/rest.gd" id="13_yducd"]
-[ext_resource type="Animation" uid="uid://dw8bpcmjx8fih" path="res://asset/animation/humanoid/dancing.res" id="14_o17y2"]
-[ext_resource type="Animation" uid="uid://bflriqktbhoys" path="res://asset/animation/humanoid/idle_swimming.res" id="15_paota"]
 [ext_resource type="Script" uid="uid://canv2cnchp4ie" path="res://scene/player/move/rest_to_idle.gd" id="16_f8u1j"]
-[ext_resource type="Animation" uid="uid://dcg5fp2om41hk" path="res://asset/animation/humanoid/swimming.res" id="16_vqcj0"]
 [ext_resource type="Script" uid="uid://c6vlhi4f72tmv" path="res://scene/player/move/idle_to_rest.gd" id="17_voj4g"]
-[ext_resource type="Animation" uid="uid://l6g0s2w02xv" path="res://asset/animation/humanoid/staggered.res" id="18_d6oi3"]
 [ext_resource type="Script" uid="uid://cihlw2kn051e7" path="res://scene/player/model/consecutive_attack.gd" id="19_sgwv5"]
-[ext_resource type="Animation" uid="uid://bma6qhqc385sr" path="res://asset/animation/humanoid/block.res" id="21_iyeqv"]
-[ext_resource type="Animation" uid="uid://1gdlwxueu1px" path="res://asset/animation/humanoid/run.res" id="22_jwgxg"]
 [ext_resource type="Script" uid="uid://bwn1ce3xi2pfi" path="res://scene/player/model/humanoid_states.gd" id="22_r3b6d"]
-[ext_resource type="Animation" uid="uid://cvnaj5shnd4s3" path="res://asset/animation/humanoid/sprint.res" id="23_emppj"]
-[ext_resource type="Animation" uid="uid://bjaurp0f2uwws" path="res://asset/animation/humanoid/walk.res" id="23_jwgxg"]
-[ext_resource type="Animation" uid="uid://ccmsmauvab2ml" path="res://asset/animation/humanoid/ready_idle.res" id="23_utimc"]
 [ext_resource type="Script" uid="uid://dvihhm1ejyxhu" path="res://scene/player/model/legs.gd" id="24_tda74"]
 [ext_resource type="Script" uid="uid://cce1kb220lki5" path="res://scene/player/move/legs/walkable_gesture.gd" id="25_vny0r"]
 [ext_resource type="Script" uid="uid://cqwtlyjs0t0g1" path="res://scripts/resource/move_sound.gd" id="26_d6oi3"]
@@ -47,28 +33,10 @@
 [ext_resource type="Script" uid="uid://l5pg4yp3tnmm" path="res://scene/player/move/death.gd" id="38_eg8aa"]
 [ext_resource type="Script" uid="uid://0wwmvuku1ci1" path="res://scene/player/move/walk.gd" id="39_d6oi3"]
 [ext_resource type="Script" uid="uid://bjt0nntnq5o4b" path="res://scene/player/move/block.gd" id="43_jwgxg"]
+[ext_resource type="Script" uid="uid://c0gv5ax84wcov" path="res://scene/player/move/drink.gd" id="47_emppj"]
+[ext_resource type="PackedScene" uid="uid://m27dp7q8x80h" path="res://scene/item/held_item/consumable/health_potion/health_potion_visuals.tscn" id="49_38a35"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ier8"]
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_58s4b"]
-_data = {
-&"block": ExtResource("21_iyeqv"),
-&"dancing": ExtResource("14_o17y2"),
-&"death": ExtResource("7_eg8aa"),
-&"idle_swimming": ExtResource("15_paota"),
-&"ready_idle": ExtResource("23_utimc"),
-&"resting": ExtResource("7_d8rpn"),
-&"roll": ExtResource("3_3r6fq"),
-&"run": ExtResource("22_jwgxg"),
-&"sitting_ground_to_standing": ExtResource("9_4ay6k"),
-&"slash_1": ExtResource("9_05qd0"),
-&"slash_2": ExtResource("10_51io1"),
-&"slash_3": ExtResource("11_qv3sr"),
-&"sprint": ExtResource("23_emppj"),
-&"staggered": ExtResource("18_d6oi3"),
-&"swimming": ExtResource("16_vqcj0"),
-&"walk": ExtResource("23_jwgxg")
-}
 
 [sub_resource type="Resource" id="Resource_iyeqv"]
 script = ExtResource("26_d6oi3")
@@ -440,6 +408,106 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(0),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MoveDatabase:tracks_input_vector")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xxf6s"]
+resource_name = "drink_params"
+length = 4.5071
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveDatabase:root_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MoveDatabase:transitions_to_queued")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MoveDatabase:accepts_queueing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MoveDatabase:is_parryable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MoveDatabase:is_vulnerable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MoveDatabase:is_interruptable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MoveDatabase:is_grabable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -1674,7 +1742,7 @@ tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.566667, 1),
+"times": PackedFloat32Array(0, 0.233333, 1),
 "transitions": PackedFloat32Array(0, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -2099,6 +2167,7 @@ _data = {
 &"RESET": SubResource("Animation_l80mn"),
 &"block_params": SubResource("Animation_tda74"),
 &"death_params": SubResource("Animation_qpjtq"),
+&"drink_params": SubResource("Animation_xxf6s"),
 &"emote_params": SubResource("Animation_k2jx5"),
 &"idle_params": SubResource("Animation_x0tf6"),
 &"idle_swim_params": SubResource("Animation_5kvkh"),
@@ -2117,8 +2186,6 @@ _data = {
 &"walk_params": SubResource("Animation_emppj")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pxxqk"]
-
 [node name="Model" type="Node3D"]
 script = ExtResource("1_dfp2c")
 
@@ -2135,8 +2202,8 @@ bones/0/name = "mixamorigHips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.993877, 0.104864, -0.0348147, -0.110492, 0.943568, -0.312204, 0.000111004, 0.314139, 0.949377, -1.39451, 77.1941, -2.14362)
 bones/0/enabled = true
-bones/0/position = Vector3(1.61082, 76.3423, 0)
-bones/0/rotation = Quaternion(0.0133922, -0.033736, -0.00634382, 0.999321)
+bones/0/position = Vector3(-1.36365, 83.0091, -0.290488)
+bones/0/rotation = Quaternion(-0.015401, -0.0514996, -8.05274e-05, 0.998554)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "mixamorigSpine"
 bones/1/parent = 0
@@ -2262,28 +2329,28 @@ bones/18/parent = 0
 bones/18/rest = Transform3D(-0.975116, 0.0961423, 0.199763, -0.102576, -0.99448, -0.0220876, 0.196537, -0.042029, 0.979595, 8.40872, -4.91863, 0.104784)
 bones/18/enabled = true
 bones/18/position = Vector3(8.40872, -4.91863, 0.104784)
-bones/18/rotation = Quaternion(0.0548803, 0.322293, 0.944868, -0.0184399)
+bones/18/rotation = Quaternion(0.0433968, 0.0255852, 0.995785, -0.0766382)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "mixamorigLeftLeg"
 bones/19/parent = 18
 bones/19/rest = Transform3D(0.998802, 0.00141458, 0.0489233, -0.0306223, 0.79783, 0.602105, -0.0381808, -0.602881, 0.796917, 0, 38.0973, 0)
 bones/19/enabled = true
 bones/19/position = Vector3(0, 38.0973, 0)
-bones/19/rotation = Quaternion(-0.303903, 0.0323238, -0.0277338, 0.951751)
+bones/19/rotation = Quaternion(-0.190981, -0.0617641, -0.00591294, 0.979631)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "mixamorigLeftFoot"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.989404, 0.0725591, -0.125756, -0.144974, 0.44685, -0.882784, -0.00786018, 0.891661, 0.452634, -1.77636e-15, 36.2443, 0)
 bones/20/enabled = true
 bones/20/position = Vector3(-1.77636e-15, 36.2443, 0)
-bones/20/rotation = Quaternion(0.508298, -0.00341081, 0.0360205, 0.860421)
+bones/20/rotation = Quaternion(0.622009, -0.0609505, -0.0470338, 0.779216)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "mixamorigLeftToeBase"
 bones/21/parent = 20
 bones/21/rest = Transform3D(0.985756, 0.0706466, 0.152622, 0.124094, 0.306978, -0.943592, -0.113513, 0.949091, 0.293839, 1.77636e-15, 15.5795, 0)
 bones/21/enabled = true
 bones/21/position = Vector3(1.77636e-15, 15.5795, 0)
-bones/21/rotation = Quaternion(0.277857, -0.00692227, 0.0172382, 0.960443)
+bones/21/rotation = Quaternion(0.245487, 0.0388076, -0.00977784, 0.968573)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "mixamorigLeftToe_End"
 bones/22/parent = 21
@@ -2297,28 +2364,28 @@ bones/23/parent = 0
 bones/23/rest = Transform3D(-0.97686, 0.194846, -0.0882064, -0.177935, -0.511517, 0.840648, 0.118678, 0.83689, 0.53435, -8.40872, -4.91863, 0.00846076)
 bones/23/enabled = true
 bones/23/position = Vector3(-8.40872, -4.91863, 0.00846076)
-bones/23/rotation = Quaternion(-0.105839, -0.138273, 0.983357, 0.0518391)
+bones/23/rotation = Quaternion(-0.0919455, 0.0410276, 0.989717, 0.1016)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "mixamorigRightLeg"
 bones/24/parent = 23
 bones/24/rest = Transform3D(0.999157, -0.0408894, 0.0037067, 0.028253, 0.750259, 0.66054, -0.0297901, -0.659878, 0.750782, -1.77636e-15, 38.1037, 2.22045e-16)
 bones/24/enabled = true
 bones/24/position = Vector3(-1.77636e-15, 38.1037, 2.22045e-16)
-bones/24/rotation = Quaternion(-0.330835, -0.0744306, 0.0268, 0.940367)
+bones/24/rotation = Quaternion(-0.182115, -0.0845419, 0.04039, 0.978803)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "mixamorigRightFoot"
 bones/25/parent = 24
 bones/25/rest = Transform3D(0.989235, 0.0781579, -0.123716, -0.14125, 0.289018, -0.946846, -0.0382473, 0.954128, 0.296946, -1.77636e-15, 36.2447, 0)
 bones/25/enabled = true
 bones/25/position = Vector3(-1.77636e-15, 36.2447, 0)
-bones/25/rotation = Quaternion(0.369792, -0.0115504, -0.03189, 0.928495)
+bones/25/rotation = Quaternion(0.618941, 0.00733179, 0.0374575, 0.784509)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "mixamorigRightToeBase"
 bones/26/parent = 25
 bones/26/rest = Transform3D(0.999527, -0.0141581, -0.0272931, -0.00187639, 0.85793, -0.513763, 0.0306895, 0.513571, 0.857498, 0, 15.5635, 0)
 bones/26/enabled = true
 bones/26/position = Vector3(0, 15.5635, 0)
-bones/26/rotation = Quaternion(0.693602, -0.00162768, -0.0109939, 0.720272)
+bones/26/rotation = Quaternion(0.585833, -0.0368476, -0.00980522, 0.809534)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "mixamorigRightToe_End"
 bones/27/parent = 26
@@ -2330,7 +2397,7 @@ bones/27/scale = Vector3(1, 1, 1)
 script = ExtResource("4_jwgxg")
 
 [node name="Root" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.997643, 0.0117754, -0.0675961, -0.0135826, 0.999561, -0.0263382, 0.0672563, 0.0271942, 0.997365, 1.61082, 76.3423, 0)
+transform = Transform3D(0.994696, 0.00174711, -0.102848, 0.00142547, 0.999526, 0.0307658, 0.102853, -0.0307492, 0.994221, -1.36365, 83.0091, -0.290488)
 bone_name = "mixamorigHips"
 bone_idx = 0
 
@@ -2340,10 +2407,9 @@ script = ExtResource("3_jhxj8")
 
 [node name="HitboxCollider" type="CollisionShape3D" parent="GeneralSkeleton/Root/Hitbox"]
 shape = SubResource("CapsuleShape3D_4ier8")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.135144, -0.665026, 0.73449, -0.0968509, -0.746607, -0.658177, 0.986081, 0.0178125, -0.165308, -43.7024, 81.0294, 2.38641)
+transform = Transform3D(0.100794, -0.658449, 0.745845, -0.0380235, -0.751665, -0.658448, 0.99418, 0.0380084, -0.1008, -46.7737, 87.3227, 0.229118)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -2355,14 +2421,14 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.048261, -0.444654, -0.894401, -0.978797, 0.157405, -0.131069, 0.199064, 0.881763, -0.42763, 40.7124, 118.651, 45.5245)
+transform = Transform3D(0.0499982, -0.477197, -0.877373, -0.965017, 0.203298, -0.165565, 0.257376, 0.854958, -0.450339, 35.7063, 128.317, 44.0314)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.55945, 0.0985586, 0.822983, -0.131809, 0.990849, -0.0290601, -0.818316, -0.0922192, 0.567322, 10.3033, 143.485, 8.2472)
+transform = Transform3D(0.589423, 0.0928056, 0.802476, -0.172793, 0.984872, 0.0130183, -0.789128, -0.146336, 0.596543, 6.42111, 150.609, 4.32655)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 
@@ -2376,9 +2442,9 @@ skeleton = NodePath("../GeneralSkeleton")
 [node name="TorsoAnimator" type="AnimationPlayer" parent="SplitAnimator" node_paths=PackedStringArray("move_database")]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_58s4b")
+&"": ExtResource("8_grkx0")
 }
-blend_times = [&"block", &"block", 0.2, &"block", &"dancing", 0.2, &"block", &"death", 0.2, &"block", &"idle_swimming", 0.2, &"block", &"ready_idle", 0.2, &"block", &"resting", 0.2, &"block", &"roll", 0.2, &"block", &"run", 0.2, &"block", &"sitting_ground_to_standing", 0.2, &"block", &"slash_1", 0.2, &"block", &"slash_2", 0.2, &"block", &"slash_3", 0.2, &"block", &"sprint", 0.2, &"block", &"staggered", 0.2, &"block", &"swimming", 0.2, &"block", &"walk", 0.2, &"dancing", &"block", 0.2, &"dancing", &"dancing", 0.2, &"dancing", &"death", 0.2, &"dancing", &"idle_swimming", 0.2, &"dancing", &"ready_idle", 0.2, &"dancing", &"resting", 0.2, &"dancing", &"roll", 0.2, &"dancing", &"run", 0.2, &"dancing", &"sitting_ground_to_standing", 0.2, &"dancing", &"slash_1", 0.2, &"dancing", &"slash_2", 0.2, &"dancing", &"slash_3", 0.2, &"dancing", &"sprint", 0.2, &"dancing", &"staggered", 0.2, &"dancing", &"swimming", 0.2, &"dancing", &"walk", 0.2, &"death", &"block", 0.2, &"death", &"dancing", 0.2, &"death", &"death", 0.2, &"death", &"idle_swimming", 0.2, &"death", &"ready_idle", 0.2, &"death", &"resting", 0.2, &"death", &"roll", 0.2, &"death", &"run", 0.2, &"death", &"sitting_ground_to_standing", 0.2, &"death", &"slash_1", 0.2, &"death", &"slash_2", 0.2, &"death", &"slash_3", 0.2, &"death", &"sprint", 0.2, &"death", &"staggered", 0.2, &"death", &"swimming", 0.2, &"death", &"walk", 0.2, &"idle_swimming", &"block", 0.2, &"idle_swimming", &"dancing", 0.2, &"idle_swimming", &"death", 0.2, &"idle_swimming", &"idle_swimming", 0.2, &"idle_swimming", &"ready_idle", 0.2, &"idle_swimming", &"resting", 0.2, &"idle_swimming", &"roll", 0.2, &"idle_swimming", &"run", 0.2, &"idle_swimming", &"sitting_ground_to_standing", 0.2, &"idle_swimming", &"slash_1", 0.2, &"idle_swimming", &"slash_2", 0.2, &"idle_swimming", &"slash_3", 0.2, &"idle_swimming", &"sprint", 0.2, &"idle_swimming", &"staggered", 0.2, &"idle_swimming", &"swimming", 0.2, &"idle_swimming", &"walk", 0.2, &"ready_idle", &"block", 0.2, &"ready_idle", &"dancing", 0.2, &"ready_idle", &"death", 0.2, &"ready_idle", &"idle_swimming", 0.2, &"ready_idle", &"ready_idle", 0.2, &"ready_idle", &"resting", 0.2, &"ready_idle", &"roll", 0.2, &"ready_idle", &"run", 0.2, &"ready_idle", &"sitting_ground_to_standing", 0.2, &"ready_idle", &"slash_1", 0.2, &"ready_idle", &"slash_2", 0.2, &"ready_idle", &"slash_3", 0.2, &"ready_idle", &"sprint", 0.2, &"ready_idle", &"staggered", 0.2, &"ready_idle", &"swimming", 0.2, &"ready_idle", &"walk", 0.2, &"resting", &"block", 0.2, &"resting", &"dancing", 0.2, &"resting", &"death", 0.2, &"resting", &"idle_swimming", 0.2, &"resting", &"ready_idle", 0.2, &"resting", &"resting", 0.2, &"resting", &"roll", 0.2, &"resting", &"run", 0.2, &"resting", &"sitting_ground_to_standing", 0.2, &"resting", &"slash_1", 0.2, &"resting", &"slash_2", 0.2, &"resting", &"slash_3", 0.2, &"resting", &"sprint", 0.2, &"resting", &"staggered", 0.2, &"resting", &"swimming", 0.2, &"resting", &"walk", 0.2, &"roll", &"block", 0.2, &"roll", &"dancing", 0.2, &"roll", &"death", 0.2, &"roll", &"idle_swimming", 0.2, &"roll", &"ready_idle", 0.2, &"roll", &"resting", 0.2, &"roll", &"roll", 0.2, &"roll", &"run", 0.2, &"roll", &"sitting_ground_to_standing", 0.2, &"roll", &"slash_1", 0.2, &"roll", &"slash_2", 0.2, &"roll", &"slash_3", 0.2, &"roll", &"sprint", 0.2, &"roll", &"staggered", 0.2, &"roll", &"swimming", 0.2, &"roll", &"walk", 0.2, &"run", &"block", 0.2, &"run", &"dancing", 0.2, &"run", &"death", 0.2, &"run", &"idle_swimming", 0.2, &"run", &"ready_idle", 0.2, &"run", &"resting", 0.2, &"run", &"roll", 0.2, &"run", &"run", 0.2, &"run", &"sitting_ground_to_standing", 0.2, &"run", &"slash_1", 0.2, &"run", &"slash_2", 0.2, &"run", &"slash_3", 0.2, &"run", &"sprint", 0.2, &"run", &"staggered", 0.2, &"run", &"swimming", 0.2, &"run", &"walk", 0.2, &"sitting_ground_to_standing", &"block", 0.2, &"sitting_ground_to_standing", &"dancing", 0.2, &"sitting_ground_to_standing", &"death", 0.2, &"sitting_ground_to_standing", &"idle_swimming", 0.2, &"sitting_ground_to_standing", &"ready_idle", 0.2, &"sitting_ground_to_standing", &"resting", 0.2, &"sitting_ground_to_standing", &"roll", 0.2, &"sitting_ground_to_standing", &"run", 0.2, &"sitting_ground_to_standing", &"sitting_ground_to_standing", 0.2, &"sitting_ground_to_standing", &"slash_1", 0.2, &"sitting_ground_to_standing", &"slash_2", 0.2, &"sitting_ground_to_standing", &"slash_3", 0.2, &"sitting_ground_to_standing", &"sprint", 0.2, &"sitting_ground_to_standing", &"staggered", 0.2, &"sitting_ground_to_standing", &"swimming", 0.2, &"sitting_ground_to_standing", &"walk", 0.2, &"slash_1", &"block", 0.2, &"slash_1", &"dancing", 0.2, &"slash_1", &"death", 0.2, &"slash_1", &"idle_swimming", 0.2, &"slash_1", &"ready_idle", 0.2, &"slash_1", &"resting", 0.2, &"slash_1", &"roll", 0.2, &"slash_1", &"run", 0.2, &"slash_1", &"sitting_ground_to_standing", 0.2, &"slash_1", &"slash_1", 0.2, &"slash_1", &"slash_3", 0.2, &"slash_1", &"sprint", 0.2, &"slash_1", &"staggered", 0.2, &"slash_1", &"swimming", 0.2, &"slash_1", &"walk", 0.2, &"slash_2", &"block", 0.2, &"slash_2", &"dancing", 0.2, &"slash_2", &"death", 0.2, &"slash_2", &"idle_swimming", 0.2, &"slash_2", &"ready_idle", 0.2, &"slash_2", &"resting", 0.2, &"slash_2", &"roll", 0.2, &"slash_2", &"run", 0.2, &"slash_2", &"sitting_ground_to_standing", 0.2, &"slash_2", &"slash_1", 0.2, &"slash_2", &"slash_2", 0.2, &"slash_2", &"slash_3", 0.2, &"slash_2", &"sprint", 0.2, &"slash_2", &"staggered", 0.2, &"slash_2", &"swimming", 0.2, &"slash_2", &"walk", 0.2, &"slash_3", &"block", 0.2, &"slash_3", &"dancing", 0.2, &"slash_3", &"death", 0.2, &"slash_3", &"idle_swimming", 0.2, &"slash_3", &"ready_idle", 0.2, &"slash_3", &"resting", 0.2, &"slash_3", &"roll", 0.2, &"slash_3", &"run", 0.2, &"slash_3", &"sitting_ground_to_standing", 0.2, &"slash_3", &"slash_1", 0.2, &"slash_3", &"slash_2", 0.2, &"slash_3", &"slash_3", 0.2, &"slash_3", &"sprint", 0.2, &"slash_3", &"staggered", 0.2, &"slash_3", &"swimming", 0.2, &"slash_3", &"walk", 0.2, &"sprint", &"block", 0.2, &"sprint", &"dancing", 0.2, &"sprint", &"death", 0.2, &"sprint", &"idle_swimming", 0.2, &"sprint", &"ready_idle", 0.2, &"sprint", &"resting", 0.2, &"sprint", &"roll", 0.2, &"sprint", &"run", 0.2, &"sprint", &"sitting_ground_to_standing", 0.2, &"sprint", &"slash_1", 0.2, &"sprint", &"slash_2", 0.2, &"sprint", &"slash_3", 0.2, &"sprint", &"sprint", 0.2, &"sprint", &"staggered", 0.2, &"sprint", &"swimming", 0.2, &"sprint", &"walk", 0.2, &"staggered", &"block", 0.2, &"staggered", &"dancing", 0.2, &"staggered", &"death", 0.2, &"staggered", &"idle_swimming", 0.2, &"staggered", &"ready_idle", 0.2, &"staggered", &"resting", 0.2, &"staggered", &"roll", 0.2, &"staggered", &"run", 0.2, &"staggered", &"sitting_ground_to_standing", 0.2, &"staggered", &"slash_1", 0.2, &"staggered", &"slash_2", 0.2, &"staggered", &"slash_3", 0.2, &"staggered", &"sprint", 0.2, &"staggered", &"staggered", 0.2, &"staggered", &"swimming", 0.2, &"staggered", &"walk", 0.2, &"swimming", &"block", 0.2, &"swimming", &"dancing", 0.2, &"swimming", &"death", 0.2, &"swimming", &"idle_swimming", 0.2, &"swimming", &"ready_idle", 0.2, &"swimming", &"resting", 0.2, &"swimming", &"roll", 0.2, &"swimming", &"run", 0.2, &"swimming", &"sitting_ground_to_standing", 0.2, &"swimming", &"slash_1", 0.2, &"swimming", &"slash_2", 0.2, &"swimming", &"slash_3", 0.2, &"swimming", &"sprint", 0.2, &"swimming", &"staggered", 0.2, &"swimming", &"swimming", 0.2, &"swimming", &"walk", 0.2, &"walk", &"block", 0.2, &"walk", &"dancing", 0.2, &"walk", &"death", 0.2, &"walk", &"idle_swimming", 0.2, &"walk", &"ready_idle", 0.2, &"walk", &"resting", 0.2, &"walk", &"roll", 0.2, &"walk", &"run", 0.2, &"walk", &"sitting_ground_to_standing", 0.2, &"walk", &"slash_1", 0.2, &"walk", &"slash_2", 0.2, &"walk", &"slash_3", 0.2, &"walk", &"sprint", 0.2, &"walk", &"staggered", 0.2, &"walk", &"swimming", 0.2, &"walk", &"walk", 0.2]
+blend_times = [&"block", &"block", 0.2, &"block", &"dancing", 0.2, &"block", &"death", 0.2, &"block", &"drink_placeholder", 0.2, &"block", &"idle_swimming", 0.2, &"block", &"ready_idle", 0.2, &"block", &"resting", 0.2, &"block", &"roll", 0.2, &"block", &"run", 0.2, &"block", &"sitting_ground_to_standing", 0.2, &"block", &"slash_1", 0.2, &"block", &"slash_2", 0.2, &"block", &"slash_3", 0.2, &"block", &"sprint", 0.2, &"block", &"staggered", 0.2, &"block", &"swimming", 0.2, &"block", &"walk", 0.2, &"dancing", &"block", 0.2, &"dancing", &"dancing", 0.2, &"dancing", &"death", 0.2, &"dancing", &"drink_placeholder", 0.2, &"dancing", &"idle_swimming", 0.2, &"dancing", &"ready_idle", 0.2, &"dancing", &"resting", 0.2, &"dancing", &"roll", 0.2, &"dancing", &"run", 0.2, &"dancing", &"sitting_ground_to_standing", 0.2, &"dancing", &"slash_1", 0.2, &"dancing", &"slash_2", 0.2, &"dancing", &"slash_3", 0.2, &"dancing", &"sprint", 0.2, &"dancing", &"staggered", 0.2, &"dancing", &"swimming", 0.2, &"dancing", &"walk", 0.2, &"death", &"block", 0.2, &"death", &"dancing", 0.2, &"death", &"death", 0.2, &"death", &"drink_placeholder", 0.2, &"death", &"idle_swimming", 0.2, &"death", &"ready_idle", 0.2, &"death", &"resting", 0.2, &"death", &"roll", 0.2, &"death", &"run", 0.2, &"death", &"sitting_ground_to_standing", 0.2, &"death", &"slash_1", 0.2, &"death", &"slash_2", 0.2, &"death", &"slash_3", 0.2, &"death", &"sprint", 0.2, &"death", &"staggered", 0.2, &"death", &"swimming", 0.2, &"death", &"walk", 0.2, &"drink_placeholder", &"block", 0.2, &"drink_placeholder", &"dancing", 0.2, &"drink_placeholder", &"death", 0.2, &"drink_placeholder", &"drink_placeholder", 0.2, &"drink_placeholder", &"idle_swimming", 0.2, &"drink_placeholder", &"ready_idle", 0.2, &"drink_placeholder", &"resting", 0.2, &"drink_placeholder", &"roll", 0.2, &"drink_placeholder", &"run", 0.2, &"drink_placeholder", &"sitting_ground_to_standing", 0.2, &"drink_placeholder", &"slash_1", 0.2, &"drink_placeholder", &"slash_2", 0.2, &"drink_placeholder", &"slash_3", 0.2, &"drink_placeholder", &"sprint", 0.2, &"drink_placeholder", &"staggered", 0.2, &"drink_placeholder", &"swimming", 0.2, &"drink_placeholder", &"walk", 0.2, &"idle_swimming", &"block", 0.2, &"idle_swimming", &"dancing", 0.2, &"idle_swimming", &"death", 0.2, &"idle_swimming", &"drink_placeholder", 0.2, &"idle_swimming", &"idle_swimming", 0.2, &"idle_swimming", &"ready_idle", 0.2, &"idle_swimming", &"resting", 0.2, &"idle_swimming", &"roll", 0.2, &"idle_swimming", &"run", 0.2, &"idle_swimming", &"sitting_ground_to_standing", 0.2, &"idle_swimming", &"slash_1", 0.2, &"idle_swimming", &"slash_2", 0.2, &"idle_swimming", &"slash_3", 0.2, &"idle_swimming", &"sprint", 0.2, &"idle_swimming", &"staggered", 0.2, &"idle_swimming", &"swimming", 0.2, &"idle_swimming", &"walk", 0.2, &"ready_idle", &"block", 0.2, &"ready_idle", &"dancing", 0.2, &"ready_idle", &"death", 0.2, &"ready_idle", &"drink_placeholder", 0.2, &"ready_idle", &"idle_swimming", 0.2, &"ready_idle", &"ready_idle", 0.2, &"ready_idle", &"resting", 0.2, &"ready_idle", &"roll", 0.2, &"ready_idle", &"run", 0.2, &"ready_idle", &"sitting_ground_to_standing", 0.2, &"ready_idle", &"slash_1", 0.2, &"ready_idle", &"slash_2", 0.2, &"ready_idle", &"slash_3", 0.2, &"ready_idle", &"sprint", 0.2, &"ready_idle", &"staggered", 0.2, &"ready_idle", &"swimming", 0.2, &"ready_idle", &"walk", 0.2, &"resting", &"block", 0.2, &"resting", &"dancing", 0.2, &"resting", &"death", 0.2, &"resting", &"drink_placeholder", 0.2, &"resting", &"idle_swimming", 0.2, &"resting", &"ready_idle", 0.2, &"resting", &"resting", 0.2, &"resting", &"roll", 0.2, &"resting", &"run", 0.2, &"resting", &"sitting_ground_to_standing", 0.2, &"resting", &"slash_1", 0.2, &"resting", &"slash_2", 0.2, &"resting", &"slash_3", 0.2, &"resting", &"sprint", 0.2, &"resting", &"staggered", 0.2, &"resting", &"swimming", 0.2, &"resting", &"walk", 0.2, &"roll", &"block", 0.2, &"roll", &"dancing", 0.2, &"roll", &"death", 0.2, &"roll", &"drink_placeholder", 0.2, &"roll", &"idle_swimming", 0.2, &"roll", &"ready_idle", 0.2, &"roll", &"resting", 0.2, &"roll", &"roll", 0.2, &"roll", &"run", 0.2, &"roll", &"sitting_ground_to_standing", 0.2, &"roll", &"slash_1", 0.2, &"roll", &"slash_2", 0.2, &"roll", &"slash_3", 0.2, &"roll", &"sprint", 0.2, &"roll", &"staggered", 0.2, &"roll", &"swimming", 0.2, &"roll", &"walk", 0.2, &"run", &"block", 0.2, &"run", &"dancing", 0.2, &"run", &"death", 0.2, &"run", &"drink_placeholder", 0.2, &"run", &"idle_swimming", 0.2, &"run", &"ready_idle", 0.2, &"run", &"resting", 0.2, &"run", &"roll", 0.2, &"run", &"run", 0.2, &"run", &"sitting_ground_to_standing", 0.2, &"run", &"slash_1", 0.2, &"run", &"slash_2", 0.2, &"run", &"slash_3", 0.2, &"run", &"sprint", 0.2, &"run", &"staggered", 0.2, &"run", &"swimming", 0.2, &"run", &"walk", 0.2, &"sitting_ground_to_standing", &"block", 0.2, &"sitting_ground_to_standing", &"dancing", 0.2, &"sitting_ground_to_standing", &"death", 0.2, &"sitting_ground_to_standing", &"drink_placeholder", 0.2, &"sitting_ground_to_standing", &"idle_swimming", 0.2, &"sitting_ground_to_standing", &"ready_idle", 0.2, &"sitting_ground_to_standing", &"resting", 0.2, &"sitting_ground_to_standing", &"roll", 0.2, &"sitting_ground_to_standing", &"run", 0.2, &"sitting_ground_to_standing", &"sitting_ground_to_standing", 0.2, &"sitting_ground_to_standing", &"slash_1", 0.2, &"sitting_ground_to_standing", &"slash_2", 0.2, &"sitting_ground_to_standing", &"slash_3", 0.2, &"sitting_ground_to_standing", &"sprint", 0.2, &"sitting_ground_to_standing", &"staggered", 0.2, &"sitting_ground_to_standing", &"swimming", 0.2, &"sitting_ground_to_standing", &"walk", 0.2, &"slash_1", &"block", 0.2, &"slash_1", &"dancing", 0.2, &"slash_1", &"death", 0.2, &"slash_1", &"drink_placeholder", 0.2, &"slash_1", &"idle_swimming", 0.2, &"slash_1", &"ready_idle", 0.2, &"slash_1", &"resting", 0.2, &"slash_1", &"roll", 0.2, &"slash_1", &"run", 0.2, &"slash_1", &"sitting_ground_to_standing", 0.2, &"slash_1", &"slash_1", 0.2, &"slash_1", &"slash_3", 0.2, &"slash_1", &"sprint", 0.2, &"slash_1", &"staggered", 0.2, &"slash_1", &"swimming", 0.2, &"slash_1", &"walk", 0.2, &"slash_2", &"block", 0.2, &"slash_2", &"dancing", 0.2, &"slash_2", &"death", 0.2, &"slash_2", &"drink_placeholder", 0.2, &"slash_2", &"idle_swimming", 0.2, &"slash_2", &"ready_idle", 0.2, &"slash_2", &"resting", 0.2, &"slash_2", &"roll", 0.2, &"slash_2", &"run", 0.2, &"slash_2", &"sitting_ground_to_standing", 0.2, &"slash_2", &"slash_1", 0.2, &"slash_2", &"slash_2", 0.2, &"slash_2", &"slash_3", 0.2, &"slash_2", &"sprint", 0.2, &"slash_2", &"staggered", 0.2, &"slash_2", &"swimming", 0.2, &"slash_2", &"walk", 0.2, &"slash_3", &"block", 0.2, &"slash_3", &"dancing", 0.2, &"slash_3", &"death", 0.2, &"slash_3", &"drink_placeholder", 0.2, &"slash_3", &"idle_swimming", 0.2, &"slash_3", &"ready_idle", 0.2, &"slash_3", &"resting", 0.2, &"slash_3", &"roll", 0.2, &"slash_3", &"run", 0.2, &"slash_3", &"sitting_ground_to_standing", 0.2, &"slash_3", &"slash_1", 0.2, &"slash_3", &"slash_2", 0.2, &"slash_3", &"slash_3", 0.2, &"slash_3", &"sprint", 0.2, &"slash_3", &"staggered", 0.2, &"slash_3", &"swimming", 0.2, &"slash_3", &"walk", 0.2, &"sprint", &"block", 0.2, &"sprint", &"dancing", 0.2, &"sprint", &"death", 0.2, &"sprint", &"drink_placeholder", 0.2, &"sprint", &"idle_swimming", 0.2, &"sprint", &"ready_idle", 0.2, &"sprint", &"resting", 0.2, &"sprint", &"roll", 0.2, &"sprint", &"run", 0.2, &"sprint", &"sitting_ground_to_standing", 0.2, &"sprint", &"slash_1", 0.2, &"sprint", &"slash_2", 0.2, &"sprint", &"slash_3", 0.2, &"sprint", &"sprint", 0.2, &"sprint", &"staggered", 0.2, &"sprint", &"swimming", 0.2, &"sprint", &"walk", 0.2, &"staggered", &"block", 0.2, &"staggered", &"dancing", 0.2, &"staggered", &"death", 0.2, &"staggered", &"drink_placeholder", 0.2, &"staggered", &"idle_swimming", 0.2, &"staggered", &"ready_idle", 0.2, &"staggered", &"resting", 0.2, &"staggered", &"roll", 0.2, &"staggered", &"run", 0.2, &"staggered", &"sitting_ground_to_standing", 0.2, &"staggered", &"slash_1", 0.2, &"staggered", &"slash_2", 0.2, &"staggered", &"slash_3", 0.2, &"staggered", &"sprint", 0.2, &"staggered", &"staggered", 0.2, &"staggered", &"swimming", 0.2, &"staggered", &"walk", 0.2, &"swimming", &"block", 0.2, &"swimming", &"dancing", 0.2, &"swimming", &"death", 0.2, &"swimming", &"drink_placeholder", 0.2, &"swimming", &"idle_swimming", 0.2, &"swimming", &"ready_idle", 0.2, &"swimming", &"resting", 0.2, &"swimming", &"roll", 0.2, &"swimming", &"run", 0.2, &"swimming", &"sitting_ground_to_standing", 0.2, &"swimming", &"slash_1", 0.2, &"swimming", &"slash_2", 0.2, &"swimming", &"slash_3", 0.2, &"swimming", &"sprint", 0.2, &"swimming", &"staggered", 0.2, &"swimming", &"swimming", 0.2, &"swimming", &"walk", 0.2, &"walk", &"block", 0.2, &"walk", &"dancing", 0.2, &"walk", &"death", 0.2, &"walk", &"drink_placeholder", 0.2, &"walk", &"idle_swimming", 0.2, &"walk", &"ready_idle", 0.2, &"walk", &"resting", 0.2, &"walk", &"roll", 0.2, &"walk", &"run", 0.2, &"walk", &"sitting_ground_to_standing", 0.2, &"walk", &"slash_1", 0.2, &"walk", &"slash_2", 0.2, &"walk", &"slash_3", 0.2, &"walk", &"sprint", 0.2, &"walk", &"staggered", 0.2, &"walk", &"swimming", 0.2, &"walk", &"walk", 0.2]
 script = ExtResource("7_1ussp")
 fps = 60
 move_database = NodePath("../../MovesDataRepository/MoveDatabase")
@@ -2387,9 +2453,9 @@ animation_to_extract_root_motion = "walk_root_motion"
 [node name="LegsAnimator" type="AnimationPlayer" parent="SplitAnimator"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_58s4b")
+&"": ExtResource("10_cfkae")
 }
-blend_times = [&"block", &"block", 0.2, &"block", &"dancing", 0.2, &"block", &"death", 0.2, &"block", &"idle_swimming", 0.2, &"block", &"ready_idle", 0.2, &"block", &"resting", 0.2, &"block", &"roll", 0.2, &"block", &"run", 0.2, &"block", &"sitting_ground_to_standing", 0.2, &"block", &"slash_1", 0.2, &"block", &"slash_2", 0.2, &"block", &"slash_3", 0.2, &"block", &"sprint", 0.2, &"block", &"staggered", 0.2, &"block", &"swimming", 0.2, &"block", &"walk", 0.2, &"dancing", &"block", 0.2, &"dancing", &"dancing", 0.2, &"dancing", &"death", 0.2, &"dancing", &"idle_swimming", 0.2, &"dancing", &"ready_idle", 0.2, &"dancing", &"resting", 0.2, &"dancing", &"roll", 0.2, &"dancing", &"run", 0.2, &"dancing", &"sitting_ground_to_standing", 0.2, &"dancing", &"slash_1", 0.2, &"dancing", &"slash_2", 0.2, &"dancing", &"slash_3", 0.2, &"dancing", &"sprint", 0.2, &"dancing", &"staggered", 0.2, &"dancing", &"swimming", 0.2, &"dancing", &"walk", 0.2, &"death", &"block", 0.2, &"death", &"dancing", 0.2, &"death", &"death", 0.2, &"death", &"idle_swimming", 0.2, &"death", &"ready_idle", 0.2, &"death", &"resting", 0.2, &"death", &"roll", 0.2, &"death", &"run", 0.2, &"death", &"sitting_ground_to_standing", 0.2, &"death", &"slash_1", 0.2, &"death", &"slash_2", 0.2, &"death", &"slash_3", 0.2, &"death", &"sprint", 0.2, &"death", &"staggered", 0.2, &"death", &"swimming", 0.2, &"death", &"walk", 0.2, &"idle_swimming", &"block", 0.2, &"idle_swimming", &"dancing", 0.2, &"idle_swimming", &"death", 0.2, &"idle_swimming", &"idle_swimming", 0.2, &"idle_swimming", &"ready_idle", 0.2, &"idle_swimming", &"resting", 0.2, &"idle_swimming", &"roll", 0.2, &"idle_swimming", &"run", 0.2, &"idle_swimming", &"sitting_ground_to_standing", 0.2, &"idle_swimming", &"slash_1", 0.2, &"idle_swimming", &"slash_2", 0.2, &"idle_swimming", &"slash_3", 0.2, &"idle_swimming", &"sprint", 0.2, &"idle_swimming", &"staggered", 0.2, &"idle_swimming", &"swimming", 0.2, &"idle_swimming", &"walk", 0.2, &"ready_idle", &"block", 0.2, &"ready_idle", &"dancing", 0.2, &"ready_idle", &"death", 0.2, &"ready_idle", &"idle_swimming", 0.2, &"ready_idle", &"ready_idle", 0.2, &"ready_idle", &"resting", 0.2, &"ready_idle", &"roll", 0.2, &"ready_idle", &"run", 0.2, &"ready_idle", &"sitting_ground_to_standing", 0.2, &"ready_idle", &"slash_1", 0.2, &"ready_idle", &"slash_2", 0.2, &"ready_idle", &"slash_3", 0.2, &"ready_idle", &"sprint", 0.2, &"ready_idle", &"staggered", 0.2, &"ready_idle", &"swimming", 0.2, &"ready_idle", &"walk", 0.2, &"resting", &"block", 0.2, &"resting", &"dancing", 0.2, &"resting", &"death", 0.2, &"resting", &"idle_swimming", 0.2, &"resting", &"ready_idle", 0.2, &"resting", &"resting", 0.2, &"resting", &"roll", 0.2, &"resting", &"run", 0.2, &"resting", &"sitting_ground_to_standing", 0.2, &"resting", &"slash_1", 0.2, &"resting", &"slash_2", 0.2, &"resting", &"slash_3", 0.2, &"resting", &"sprint", 0.2, &"resting", &"staggered", 0.2, &"resting", &"swimming", 0.2, &"resting", &"walk", 0.2, &"roll", &"block", 0.2, &"roll", &"dancing", 0.2, &"roll", &"death", 0.2, &"roll", &"idle_swimming", 0.2, &"roll", &"ready_idle", 0.2, &"roll", &"resting", 0.2, &"roll", &"roll", 0.2, &"roll", &"run", 0.2, &"roll", &"sitting_ground_to_standing", 0.2, &"roll", &"slash_1", 0.2, &"roll", &"slash_2", 0.2, &"roll", &"slash_3", 0.2, &"roll", &"sprint", 0.2, &"roll", &"staggered", 0.2, &"roll", &"swimming", 0.2, &"roll", &"walk", 0.2, &"run", &"block", 0.2, &"run", &"dancing", 0.2, &"run", &"death", 0.2, &"run", &"idle_swimming", 0.2, &"run", &"ready_idle", 0.2, &"run", &"resting", 0.2, &"run", &"roll", 0.2, &"run", &"run", 0.2, &"run", &"sitting_ground_to_standing", 0.2, &"run", &"slash_1", 0.2, &"run", &"slash_2", 0.2, &"run", &"slash_3", 0.2, &"run", &"sprint", 0.2, &"run", &"staggered", 0.2, &"run", &"swimming", 0.2, &"run", &"walk", 0.2, &"sitting_ground_to_standing", &"block", 0.2, &"sitting_ground_to_standing", &"dancing", 0.2, &"sitting_ground_to_standing", &"death", 0.2, &"sitting_ground_to_standing", &"idle_swimming", 0.2, &"sitting_ground_to_standing", &"ready_idle", 0.2, &"sitting_ground_to_standing", &"resting", 0.2, &"sitting_ground_to_standing", &"roll", 0.2, &"sitting_ground_to_standing", &"run", 0.2, &"sitting_ground_to_standing", &"sitting_ground_to_standing", 0.2, &"sitting_ground_to_standing", &"slash_1", 0.2, &"sitting_ground_to_standing", &"slash_2", 0.2, &"sitting_ground_to_standing", &"slash_3", 0.2, &"sitting_ground_to_standing", &"sprint", 0.2, &"sitting_ground_to_standing", &"staggered", 0.2, &"sitting_ground_to_standing", &"swimming", 0.2, &"sitting_ground_to_standing", &"walk", 0.2, &"slash_1", &"block", 0.2, &"slash_1", &"dancing", 0.2, &"slash_1", &"death", 0.2, &"slash_1", &"idle_swimming", 0.2, &"slash_1", &"ready_idle", 0.2, &"slash_1", &"resting", 0.2, &"slash_1", &"roll", 0.2, &"slash_1", &"run", 0.2, &"slash_1", &"sitting_ground_to_standing", 0.2, &"slash_1", &"slash_1", 0.2, &"slash_1", &"slash_3", 0.2, &"slash_1", &"sprint", 0.2, &"slash_1", &"staggered", 0.2, &"slash_1", &"swimming", 0.2, &"slash_1", &"walk", 0.2, &"slash_2", &"block", 0.2, &"slash_2", &"dancing", 0.2, &"slash_2", &"death", 0.2, &"slash_2", &"idle_swimming", 0.2, &"slash_2", &"ready_idle", 0.2, &"slash_2", &"resting", 0.2, &"slash_2", &"roll", 0.2, &"slash_2", &"run", 0.2, &"slash_2", &"sitting_ground_to_standing", 0.2, &"slash_2", &"slash_1", 0.2, &"slash_2", &"slash_2", 0.2, &"slash_2", &"slash_3", 0.2, &"slash_2", &"sprint", 0.2, &"slash_2", &"staggered", 0.2, &"slash_2", &"swimming", 0.2, &"slash_2", &"walk", 0.2, &"slash_3", &"block", 0.2, &"slash_3", &"dancing", 0.2, &"slash_3", &"death", 0.2, &"slash_3", &"idle_swimming", 0.2, &"slash_3", &"ready_idle", 0.2, &"slash_3", &"resting", 0.2, &"slash_3", &"roll", 0.2, &"slash_3", &"run", 0.2, &"slash_3", &"sitting_ground_to_standing", 0.2, &"slash_3", &"slash_1", 0.2, &"slash_3", &"slash_2", 0.2, &"slash_3", &"slash_3", 0.2, &"slash_3", &"sprint", 0.2, &"slash_3", &"staggered", 0.2, &"slash_3", &"swimming", 0.2, &"slash_3", &"walk", 0.2, &"sprint", &"block", 0.2, &"sprint", &"dancing", 0.2, &"sprint", &"death", 0.2, &"sprint", &"idle_swimming", 0.2, &"sprint", &"ready_idle", 0.2, &"sprint", &"resting", 0.2, &"sprint", &"roll", 0.2, &"sprint", &"run", 0.2, &"sprint", &"sitting_ground_to_standing", 0.2, &"sprint", &"slash_1", 0.2, &"sprint", &"slash_2", 0.2, &"sprint", &"slash_3", 0.2, &"sprint", &"sprint", 0.2, &"sprint", &"staggered", 0.2, &"sprint", &"swimming", 0.2, &"sprint", &"walk", 0.2, &"staggered", &"block", 0.2, &"staggered", &"dancing", 0.2, &"staggered", &"death", 0.2, &"staggered", &"idle_swimming", 0.2, &"staggered", &"ready_idle", 0.2, &"staggered", &"resting", 0.2, &"staggered", &"roll", 0.2, &"staggered", &"run", 0.2, &"staggered", &"sitting_ground_to_standing", 0.2, &"staggered", &"slash_1", 0.2, &"staggered", &"slash_2", 0.2, &"staggered", &"slash_3", 0.2, &"staggered", &"sprint", 0.2, &"staggered", &"staggered", 0.2, &"staggered", &"swimming", 0.2, &"staggered", &"walk", 0.2, &"swimming", &"block", 0.2, &"swimming", &"dancing", 0.2, &"swimming", &"death", 0.2, &"swimming", &"idle_swimming", 0.2, &"swimming", &"ready_idle", 0.2, &"swimming", &"resting", 0.2, &"swimming", &"roll", 0.2, &"swimming", &"run", 0.2, &"swimming", &"sitting_ground_to_standing", 0.2, &"swimming", &"slash_1", 0.2, &"swimming", &"slash_2", 0.2, &"swimming", &"slash_3", 0.2, &"swimming", &"sprint", 0.2, &"swimming", &"staggered", 0.2, &"swimming", &"swimming", 0.2, &"swimming", &"walk", 0.2, &"walk", &"block", 0.2, &"walk", &"dancing", 0.2, &"walk", &"death", 0.2, &"walk", &"idle_swimming", 0.2, &"walk", &"ready_idle", 0.2, &"walk", &"resting", 0.2, &"walk", &"roll", 0.2, &"walk", &"run", 0.2, &"walk", &"sitting_ground_to_standing", 0.2, &"walk", &"slash_1", 0.2, &"walk", &"slash_2", 0.2, &"walk", &"slash_3", 0.2, &"walk", &"sprint", 0.2, &"walk", &"staggered", 0.2, &"walk", &"swimming", 0.2, &"walk", &"walk", 0.2]
+blend_times = [&"block", &"block", 0.2, &"block", &"dancing", 0.2, &"block", &"death", 0.2, &"block", &"drink_placeholder", 0.2, &"block", &"idle_swimming", 0.2, &"block", &"ready_idle", 0.2, &"block", &"resting", 0.2, &"block", &"roll", 0.2, &"block", &"run", 0.2, &"block", &"sitting_ground_to_standing", 0.2, &"block", &"slash_1", 0.2, &"block", &"slash_2", 0.2, &"block", &"slash_3", 0.2, &"block", &"sprint", 0.2, &"block", &"staggered", 0.2, &"block", &"swimming", 0.2, &"block", &"walk", 0.2, &"dancing", &"block", 0.2, &"dancing", &"dancing", 0.2, &"dancing", &"death", 0.2, &"dancing", &"drink_placeholder", 0.2, &"dancing", &"idle_swimming", 0.2, &"dancing", &"ready_idle", 0.2, &"dancing", &"resting", 0.2, &"dancing", &"roll", 0.2, &"dancing", &"run", 0.2, &"dancing", &"sitting_ground_to_standing", 0.2, &"dancing", &"slash_1", 0.2, &"dancing", &"slash_2", 0.2, &"dancing", &"slash_3", 0.2, &"dancing", &"sprint", 0.2, &"dancing", &"staggered", 0.2, &"dancing", &"swimming", 0.2, &"dancing", &"walk", 0.2, &"death", &"block", 0.2, &"death", &"dancing", 0.2, &"death", &"death", 0.2, &"death", &"drink_placeholder", 0.2, &"death", &"idle_swimming", 0.2, &"death", &"ready_idle", 0.2, &"death", &"resting", 0.2, &"death", &"roll", 0.2, &"death", &"run", 0.2, &"death", &"sitting_ground_to_standing", 0.2, &"death", &"slash_1", 0.2, &"death", &"slash_2", 0.2, &"death", &"slash_3", 0.2, &"death", &"sprint", 0.2, &"death", &"staggered", 0.2, &"death", &"swimming", 0.2, &"death", &"walk", 0.2, &"drink_placeholder", &"block", 0.2, &"drink_placeholder", &"dancing", 0.2, &"drink_placeholder", &"death", 0.2, &"drink_placeholder", &"drink_placeholder", 0.2, &"drink_placeholder", &"idle_swimming", 0.2, &"drink_placeholder", &"ready_idle", 0.2, &"drink_placeholder", &"resting", 0.2, &"drink_placeholder", &"roll", 0.2, &"drink_placeholder", &"run", 0.2, &"drink_placeholder", &"sitting_ground_to_standing", 0.2, &"drink_placeholder", &"slash_1", 0.2, &"drink_placeholder", &"slash_2", 0.2, &"drink_placeholder", &"slash_3", 0.2, &"drink_placeholder", &"sprint", 0.2, &"drink_placeholder", &"staggered", 0.2, &"drink_placeholder", &"swimming", 0.2, &"drink_placeholder", &"walk", 0.2, &"idle_swimming", &"block", 0.2, &"idle_swimming", &"dancing", 0.2, &"idle_swimming", &"death", 0.2, &"idle_swimming", &"drink_placeholder", 0.2, &"idle_swimming", &"idle_swimming", 0.2, &"idle_swimming", &"ready_idle", 0.2, &"idle_swimming", &"resting", 0.2, &"idle_swimming", &"roll", 0.2, &"idle_swimming", &"run", 0.2, &"idle_swimming", &"sitting_ground_to_standing", 0.2, &"idle_swimming", &"slash_1", 0.2, &"idle_swimming", &"slash_2", 0.2, &"idle_swimming", &"slash_3", 0.2, &"idle_swimming", &"sprint", 0.2, &"idle_swimming", &"staggered", 0.2, &"idle_swimming", &"swimming", 0.2, &"idle_swimming", &"walk", 0.2, &"ready_idle", &"block", 0.2, &"ready_idle", &"dancing", 0.2, &"ready_idle", &"death", 0.2, &"ready_idle", &"drink_placeholder", 0.2, &"ready_idle", &"idle_swimming", 0.2, &"ready_idle", &"ready_idle", 0.2, &"ready_idle", &"resting", 0.2, &"ready_idle", &"roll", 0.2, &"ready_idle", &"run", 0.2, &"ready_idle", &"sitting_ground_to_standing", 0.2, &"ready_idle", &"slash_1", 0.2, &"ready_idle", &"slash_2", 0.2, &"ready_idle", &"slash_3", 0.2, &"ready_idle", &"sprint", 0.2, &"ready_idle", &"staggered", 0.2, &"ready_idle", &"swimming", 0.2, &"ready_idle", &"walk", 0.2, &"resting", &"block", 0.2, &"resting", &"dancing", 0.2, &"resting", &"death", 0.2, &"resting", &"drink_placeholder", 0.2, &"resting", &"idle_swimming", 0.2, &"resting", &"ready_idle", 0.2, &"resting", &"resting", 0.2, &"resting", &"roll", 0.2, &"resting", &"run", 0.2, &"resting", &"sitting_ground_to_standing", 0.2, &"resting", &"slash_1", 0.2, &"resting", &"slash_2", 0.2, &"resting", &"slash_3", 0.2, &"resting", &"sprint", 0.2, &"resting", &"staggered", 0.2, &"resting", &"swimming", 0.2, &"resting", &"walk", 0.2, &"roll", &"block", 0.2, &"roll", &"dancing", 0.2, &"roll", &"death", 0.2, &"roll", &"drink_placeholder", 0.2, &"roll", &"idle_swimming", 0.2, &"roll", &"ready_idle", 0.2, &"roll", &"resting", 0.2, &"roll", &"roll", 0.2, &"roll", &"run", 0.2, &"roll", &"sitting_ground_to_standing", 0.2, &"roll", &"slash_1", 0.2, &"roll", &"slash_2", 0.2, &"roll", &"slash_3", 0.2, &"roll", &"sprint", 0.2, &"roll", &"staggered", 0.2, &"roll", &"swimming", 0.2, &"roll", &"walk", 0.2, &"run", &"block", 0.2, &"run", &"dancing", 0.2, &"run", &"death", 0.2, &"run", &"drink_placeholder", 0.2, &"run", &"idle_swimming", 0.2, &"run", &"ready_idle", 0.2, &"run", &"resting", 0.2, &"run", &"roll", 0.2, &"run", &"run", 0.2, &"run", &"sitting_ground_to_standing", 0.2, &"run", &"slash_1", 0.2, &"run", &"slash_2", 0.2, &"run", &"slash_3", 0.2, &"run", &"sprint", 0.2, &"run", &"staggered", 0.2, &"run", &"swimming", 0.2, &"run", &"walk", 0.2, &"sitting_ground_to_standing", &"block", 0.2, &"sitting_ground_to_standing", &"dancing", 0.2, &"sitting_ground_to_standing", &"death", 0.2, &"sitting_ground_to_standing", &"drink_placeholder", 0.2, &"sitting_ground_to_standing", &"idle_swimming", 0.2, &"sitting_ground_to_standing", &"ready_idle", 0.2, &"sitting_ground_to_standing", &"resting", 0.2, &"sitting_ground_to_standing", &"roll", 0.2, &"sitting_ground_to_standing", &"run", 0.2, &"sitting_ground_to_standing", &"sitting_ground_to_standing", 0.2, &"sitting_ground_to_standing", &"slash_1", 0.2, &"sitting_ground_to_standing", &"slash_2", 0.2, &"sitting_ground_to_standing", &"slash_3", 0.2, &"sitting_ground_to_standing", &"sprint", 0.2, &"sitting_ground_to_standing", &"staggered", 0.2, &"sitting_ground_to_standing", &"swimming", 0.2, &"sitting_ground_to_standing", &"walk", 0.2, &"slash_1", &"block", 0.2, &"slash_1", &"dancing", 0.2, &"slash_1", &"death", 0.2, &"slash_1", &"drink_placeholder", 0.2, &"slash_1", &"idle_swimming", 0.2, &"slash_1", &"ready_idle", 0.2, &"slash_1", &"resting", 0.2, &"slash_1", &"roll", 0.2, &"slash_1", &"run", 0.2, &"slash_1", &"sitting_ground_to_standing", 0.2, &"slash_1", &"slash_1", 0.2, &"slash_1", &"slash_3", 0.2, &"slash_1", &"sprint", 0.2, &"slash_1", &"staggered", 0.2, &"slash_1", &"swimming", 0.2, &"slash_1", &"walk", 0.2, &"slash_2", &"block", 0.2, &"slash_2", &"dancing", 0.2, &"slash_2", &"death", 0.2, &"slash_2", &"drink_placeholder", 0.2, &"slash_2", &"idle_swimming", 0.2, &"slash_2", &"ready_idle", 0.2, &"slash_2", &"resting", 0.2, &"slash_2", &"roll", 0.2, &"slash_2", &"run", 0.2, &"slash_2", &"sitting_ground_to_standing", 0.2, &"slash_2", &"slash_1", 0.2, &"slash_2", &"slash_2", 0.2, &"slash_2", &"slash_3", 0.2, &"slash_2", &"sprint", 0.2, &"slash_2", &"staggered", 0.2, &"slash_2", &"swimming", 0.2, &"slash_2", &"walk", 0.2, &"slash_3", &"block", 0.2, &"slash_3", &"dancing", 0.2, &"slash_3", &"death", 0.2, &"slash_3", &"drink_placeholder", 0.2, &"slash_3", &"idle_swimming", 0.2, &"slash_3", &"ready_idle", 0.2, &"slash_3", &"resting", 0.2, &"slash_3", &"roll", 0.2, &"slash_3", &"run", 0.2, &"slash_3", &"sitting_ground_to_standing", 0.2, &"slash_3", &"slash_1", 0.2, &"slash_3", &"slash_2", 0.2, &"slash_3", &"slash_3", 0.2, &"slash_3", &"sprint", 0.2, &"slash_3", &"staggered", 0.2, &"slash_3", &"swimming", 0.2, &"slash_3", &"walk", 0.2, &"sprint", &"block", 0.2, &"sprint", &"dancing", 0.2, &"sprint", &"death", 0.2, &"sprint", &"drink_placeholder", 0.2, &"sprint", &"idle_swimming", 0.2, &"sprint", &"ready_idle", 0.2, &"sprint", &"resting", 0.2, &"sprint", &"roll", 0.2, &"sprint", &"run", 0.2, &"sprint", &"sitting_ground_to_standing", 0.2, &"sprint", &"slash_1", 0.2, &"sprint", &"slash_2", 0.2, &"sprint", &"slash_3", 0.2, &"sprint", &"sprint", 0.2, &"sprint", &"staggered", 0.2, &"sprint", &"swimming", 0.2, &"sprint", &"walk", 0.2, &"staggered", &"block", 0.2, &"staggered", &"dancing", 0.2, &"staggered", &"death", 0.2, &"staggered", &"drink_placeholder", 0.2, &"staggered", &"idle_swimming", 0.2, &"staggered", &"ready_idle", 0.2, &"staggered", &"resting", 0.2, &"staggered", &"roll", 0.2, &"staggered", &"run", 0.2, &"staggered", &"sitting_ground_to_standing", 0.2, &"staggered", &"slash_1", 0.2, &"staggered", &"slash_2", 0.2, &"staggered", &"slash_3", 0.2, &"staggered", &"sprint", 0.2, &"staggered", &"staggered", 0.2, &"staggered", &"swimming", 0.2, &"staggered", &"walk", 0.2, &"swimming", &"block", 0.2, &"swimming", &"dancing", 0.2, &"swimming", &"death", 0.2, &"swimming", &"drink_placeholder", 0.2, &"swimming", &"idle_swimming", 0.2, &"swimming", &"ready_idle", 0.2, &"swimming", &"resting", 0.2, &"swimming", &"roll", 0.2, &"swimming", &"run", 0.2, &"swimming", &"sitting_ground_to_standing", 0.2, &"swimming", &"slash_1", 0.2, &"swimming", &"slash_2", 0.2, &"swimming", &"slash_3", 0.2, &"swimming", &"sprint", 0.2, &"swimming", &"staggered", 0.2, &"swimming", &"swimming", 0.2, &"swimming", &"walk", 0.2, &"walk", &"block", 0.2, &"walk", &"dancing", 0.2, &"walk", &"death", 0.2, &"walk", &"drink_placeholder", 0.2, &"walk", &"idle_swimming", 0.2, &"walk", &"ready_idle", 0.2, &"walk", &"resting", 0.2, &"walk", &"roll", 0.2, &"walk", &"run", 0.2, &"walk", &"sitting_ground_to_standing", 0.2, &"walk", &"slash_1", 0.2, &"walk", &"slash_2", 0.2, &"walk", &"slash_3", 0.2, &"walk", &"sprint", 0.2, &"walk", &"staggered", 0.2, &"walk", &"swimming", 0.2, &"walk", &"walk", 0.2]
 script = ExtResource("7_1ussp")
 fps = 60
 
@@ -2563,6 +2629,17 @@ priority = 200
 animation = "block"
 backend_animation = "block_params"
 
+[node name="Drink" type="Node" parent="States" node_paths=PackedStringArray("left_hand", "legs_behaviour")]
+script = ExtResource("47_emppj")
+left_hand = NodePath("../../GeneralSkeleton/LeftHand/WeaponSocket")
+hand_attachement = ExtResource("49_38a35")
+drink_time = 2.0
+legs_behaviour = NodePath("../../Legs/WalkableGesture")
+move_name = "drink"
+priority = 10
+animation = "drink_placeholder"
+backend_animation = "drink_params"
+
 [node name="MovesDataRepository" type="Node" parent="."]
 script = ExtResource("33_u5qca")
 
@@ -2571,6 +2648,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_3jui1")
 }
 script = ExtResource("34_4ubtw")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_pxxqk")

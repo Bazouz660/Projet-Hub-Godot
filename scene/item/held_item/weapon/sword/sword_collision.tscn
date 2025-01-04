@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://wbrv6lo1jv4e"]
 
-[ext_resource type="Script" uid="uid://do0i018p10s6e" path="res://scene/weapon/sword.gd" id="1_mi1tq"]
+[ext_resource type="Script" uid="uid://do0i018p10s6e" path="res://scene/item/held_item/weapon/sword/sword.gd" id="1_mi1tq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lat11"]
 radius = 0.282746
-height = 3.6466
+height = 4.10024
 
 [node name="SwordCollision" type="Area3D"]
 script = ExtResource("1_mi1tq")
@@ -14,6 +14,5 @@ visible = false
 size = Vector3(0.1, 0.3, 0.1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2147, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05518, 0)
 shape = SubResource("CapsuleShape3D_lat11")
-debug_color = Color(0, 0.6, 0.7, 0.42)

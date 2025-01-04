@@ -34,6 +34,9 @@ func gather_input() -> InputPackage:
 			if Input.is_action_just_pressed("emote"):
 				new_input.actions.append("emote")
 
+			if Input.is_action_just_pressed("drink"):
+				new_input.actions.append("drink")
+
 		new_input.actions.append("idle")
 
 	else:

@@ -17,6 +17,9 @@ var full_body_mode: bool = true
 var synchronization_delta = 0.01
 
 func toggle_tracks(animation_name: String, enable: bool, torso_or_legs: String):
+
+	#print("Toggling tracks for: ", animation_name, " enable: ", enable, " torso_or_legs: ", torso_or_legs)
+
 	var animation = legs_animator.get_animation(animation_name)
 	if animation:
 		var bones = []
@@ -49,9 +52,6 @@ func _toggle_track(animation: Animation, enable: bool, path: String, type: Anima
 
 
 func play(move: Move):
-	if move is not TorsoPartialMove:
-		clear_torso_animation()
-
 	if move.reverse_animation:
 		torso_animator.play_backwards(move.animation)
 	else:

@@ -61,7 +61,7 @@ func update(input: InputPackage, delta: float):
 	sound_manager.update(current_move.sound, delta)
 
 func switch_to(state: String):
-	#print(_current_state, " -> ", state)
+	#print('player [', humanoid.name, ']', _current_state, " -> ", state)
 	_current_state = state
 	current_move.on_exit_state()
 	current_move = moves[state]
@@ -69,6 +69,7 @@ func switch_to(state: String):
 	current_move.mark_enter_state()
 	resources.pay_resource_cost(current_move)
 
+	print('<<<<< player [', humanoid.name, '] playing: ', current_move.move_name, ' >>>>>')
 	animator.play(current_move)
 
 	sound_manager.update_once(current_move.sound)

@@ -15,7 +15,7 @@
 [ext_resource type="Animation" uid="uid://24h0pxerkfhs" path="res://test/ik/run.res" id="8_ag3hl"]
 [ext_resource type="Animation" uid="uid://uq5fhmpyuwws" path="res://test/ik/sprint.res" id="9_dk4i1"]
 [ext_resource type="Texture2D" uid="uid://ca3v0qke3notj" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="9_gtfj0"]
-[ext_resource type="PackedScene" uid="uid://caj4uw43llohe" path="res://scene/weapon/sword_visuals.tscn" id="16_tpg3p"]
+[ext_resource type="PackedScene" uid="uid://caj4uw43llohe" path="res://scene/item/held_item/weapon/sword/sword_visuals.tscn" id="16_tpg3p"]
 [ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="17_tpg3p"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hp6ov"]

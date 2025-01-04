@@ -142,7 +142,6 @@ unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
 shape = SubResource("SphereShape3D_57gwh")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="MeshContainer" type="Node3D" parent="."]
 unique_name_in_owner = true

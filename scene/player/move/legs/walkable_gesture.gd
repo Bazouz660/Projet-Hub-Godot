@@ -1,6 +1,5 @@
 extends LegsBehaviour
 
-
 func transition_legs_state(input: InputPackage, _delta):
 	var target_move: String
 
@@ -9,5 +8,4 @@ func transition_legs_state(input: InputPackage, _delta):
 	else:
 		target_move = "idle"
 
-	if target_move != current_legs_move.move_name:
-		change_state(target_move)
+	change_state(target_move)
