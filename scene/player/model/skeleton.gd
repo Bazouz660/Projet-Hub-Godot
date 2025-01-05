@@ -1,6 +1,6 @@
 extends Skeleton3D
 
-var torso_bones = [
+var torso_bones: Array[String] = [
 	"mixamorigSpine",
 	"mixamorigSpine1",
 	"mixamorigSpine2",
@@ -16,7 +16,7 @@ var torso_bones = [
 	"mixamorigRightHand",
 ]
 
-var legs_bones = [
+var legs_bones: Array[String] = [
 	"mixamorigHips",
 	"mixamorigLeftUpLeg",
 	"mixamorigLeftLeg",

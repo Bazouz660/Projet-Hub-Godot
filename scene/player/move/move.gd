@@ -7,6 +7,7 @@ var resources: HumanoidResources
 var container: HumanoidStates
 var animator: SplitAnimator
 var combat: HumanoidCombat
+var sound_manager: HumanoidSoundManager
 var moves_data_repo: MovesDataRepository:
 	set(value):
 		moves_data_repo = value
@@ -87,6 +88,7 @@ func _update(input: InputPackage, delta: float):
 	update_resources(delta)
 	if tracks_input_vector():
 		process_input_vector(input, delta)
+	sound_manager.update(sound, delta)
 	update(input, delta)
 
 func update_resources(delta: float):
@@ -95,6 +97,7 @@ func update_resources(delta: float):
 
 func mark_enter_state():
 	enter_state_time = Time.get_unix_time_from_system()
+	_on_enter_state()
 
 func get_progress() -> float:
 	var now = Time.get_unix_time_from_system()
@@ -165,6 +168,9 @@ func process_default_movement(input: InputPackage, _delta: float):
 
 func update(_input: InputPackage, _delta: float):
 	pass
+
+func _on_enter_state():
+	sound_manager.update_once(sound)
 
 func on_enter_state():
 	pass

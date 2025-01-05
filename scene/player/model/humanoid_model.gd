@@ -8,7 +8,7 @@ class_name HumanoidModel
 @onready var humanoid := $".." as CharacterBody3D
 @onready var sound_manager := $SoundManager as HumanoidSoundManager
 @onready var skeleton := %GeneralSkeleton as Skeleton3D
-@onready var animator := $SplitAnimator as SplitAnimator
+@onready var animator := $Animator as SplitAnimator
 @onready var combat := $Combat as HumanoidCombat
 @onready var moves_node = $States
 @onready var moves_data_repository := $MovesDataRepository as MovesDataRepository
@@ -57,8 +57,6 @@ func update(input: InputPackage, delta: float):
 	raycast(delta)
 	humanoid.move_and_slide()
 
-	# Sound
-	sound_manager.update(current_move.sound, delta)
 
 func switch_to(state: String):
 	#print('player [', humanoid.name, ']', _current_state, " -> ", state)
@@ -72,7 +70,6 @@ func switch_to(state: String):
 	print('<<<<< player [', humanoid.name, '] playing: ', current_move.move_name, ' >>>>>')
 	animator.play(current_move)
 
-	sound_manager.update_once(current_move.sound)
 
 func init_first_move(state: String):
 	_current_state = state
