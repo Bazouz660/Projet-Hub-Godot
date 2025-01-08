@@ -2,7 +2,6 @@ extends Move
 class_name Attack
 
 @export var COMBO_TIMING = 0.8 # Time at which we can chain the attack
-@export var hit_damage = 20 # will be a function of player stats in the future
 
 func on_enter_state():
 	humanoid.velocity = Vector3.ZERO
@@ -23,7 +22,7 @@ func update(_input: InputPackage, _delta: float):
 
 func form_hit_data(weapon: Weapon) -> HitData:
 	var hit = HitData.new()
-	hit.damage = hit_damage
+	hit.damage = ItemRegistry.get_item_by_id(weapon.item_id).get_component("weapon").damage
 	hit.hit_move_animation = animation
 	hit.is_parryable = is_parryable()
 	hit.weapon = humanoid.model.active_weapon

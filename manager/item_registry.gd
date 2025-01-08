@@ -10,7 +10,6 @@ func _ready():
 
 	var dir = DirAccess.open(ITEMS_DATA_PATH)
 	for file in dir.get_files():
-		print(file)
 		if file.get_extension() == "res":
 			var item = load(ITEMS_DATA_PATH + file)
 			if item is Item:

@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://g6pkabjn63cy" path="res://asset/mesh/tree_trunk.res" id="1_0aswv"]
 [ext_resource type="ArrayMesh" uid="uid://bwp3540as14pi" path="res://asset/mesh/tree_foliage.res" id="2_kt0a0"]
-[ext_resource type="Shader" path="res://shader/billboard_sway.gdshader" id="2_qxyk0"]
+[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="2_qxyk0"]
 [ext_resource type="PackedScene" uid="uid://chadkn2cp4tjn" path="res://scene/level/foliage/leaf.tscn" id="4_ucq26"]
 [ext_resource type="Texture2D" uid="uid://2ya63icubt2y" path="res://asset/texture/foliage/leaf.png" id="4_uddrs"]
 
@@ -18,17 +18,17 @@ noise = SubResource("FastNoiseLite_d5aw3")
 render_priority = 0
 shader = ExtResource("2_qxyk0")
 shader_parameter/albedo = Color(0.367537, 0.570938, 5.77569e-07, 1)
+shader_parameter/texture_albedo = ExtResource("4_uddrs")
 shader_parameter/backlight = Color(1, 1, 1, 1)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = null
 shader_parameter/wind_strength = 0.5
 shader_parameter/wind_speed = 2.0
 shader_parameter/wind_scale = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 shader_parameter/noise_scale = 10.0
 shader_parameter/player_influence_radius = 0.0
 shader_parameter/player_influence_strength = 0.0
-shader_parameter/texture_albedo = ExtResource("4_uddrs")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
 
 [sub_resource type="QuadMesh" id="QuadMesh_l3cbl"]
 material = SubResource("ShaderMaterial_3pxu1")

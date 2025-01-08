@@ -1,7 +1,7 @@
 extends Node3D
 class_name HumanoidModel
 
-@onready var active_weapon: Weapon = $GeneralSkeleton/RightHand/WeaponSocket/Sword as Sword
+@onready var active_weapon: Weapon = $GeneralSkeleton/RightHand/WeaponSocket/Sword as Weapon
 
 @onready var DEFAULT_GRAVITY: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -39,6 +39,8 @@ func _ready():
 	moves = moves_container.moves
 	legs.current_legs_move = moves_container.get_move_by_name("idle")
 	legs.accept_behaviours()
+
+	resources.right_hand_slot = ItemRegistry.get_item_by_id("sword")
 
 	init_first_move("idle")
 

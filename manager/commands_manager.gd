@@ -117,8 +117,8 @@ func _set_health(player_id: String, health: String) -> void:
 	if player == null:
 		Console.print_error("Player: " + player_id + " not found.")
 		return
-	if not health.is_valid_int() or health.to_int() < 0:
+	if not health.is_valid_float() or health.to_float() < 0:
 		Console.print_error("Invalid health. It must be a positive integer.")
 		return
-	player.resources.health = health.to_int()
+	player.resources.set_health(health.to_float())
 	Console.print_line("Set health of " + player_id + " to " + health + ".")

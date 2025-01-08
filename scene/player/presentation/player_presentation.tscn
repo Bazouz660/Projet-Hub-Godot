@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://co4txsbny7boe"]
+[gd_scene load_steps=54 format=4 uid="uid://co4txsbny7boe"]
 
 [ext_resource type="Script" uid="uid://d4ltldswrgt5q" path="res://scene/player/presentation/player_presentation.gd" id="1_b84pu"]
 [ext_resource type="Material" uid="uid://d2rq00r7kk0ga" path="res://data/materials/default_material.tres" id="2_gsq85"]
@@ -48,6 +48,7 @@
 [ext_resource type="AudioStream" uid="uid://cim4t2jjtkafs" path="res://asset/audio/sound/humanoid/swim/swim_threading_7.wav" id="41_eui2s"]
 [ext_resource type="AudioStream" uid="uid://b3n6gipwlqn1k" path="res://asset/audio/sound/humanoid/swim/swim_threading_8.wav" id="42_50vfi"]
 [ext_resource type="AudioStream" uid="uid://pbun3q24ln4w" path="res://asset/audio/sound/humanoid/swim/swim_threading_9.wav" id="43_2hpoy"]
+[ext_resource type="AudioStream" uid="uid://d4a7qm8huymqe" path="res://asset/audio/sound/effect/heal_potion.ogg" id="49_2gk1d"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wm5ms"]
 resource_name = "AuxScene_mesh"
@@ -239,4 +240,12 @@ script = ExtResource("5_yq0dp")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/SwipeQueue3"]
 stream = ExtResource("13_fcn6c")
+max_distance = 20.0
+
+[node name="HealPotionQueue" type="Node3D" parent="SoundPlayer3D"]
+script = ExtResource("5_yq0dp")
+metadata/_custom_type_script = ExtResource("5_yq0dp")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/HealPotionQueue"]
+stream = ExtResource("49_2gk1d")
 max_distance = 20.0

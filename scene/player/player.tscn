@@ -31,9 +31,10 @@ radius = 1.42241
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_k72xi")
 
-[node name="MaterialDetector" type="Node3D" parent="."]
+[node name="MaterialDetector" type="Node3D" parent="." node_paths=PackedStringArray("exceptions")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340646, 0)
 script = ExtResource("2_nvjhd")
-target_path = NodePath("..")
+exceptions = [NodePath("..")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

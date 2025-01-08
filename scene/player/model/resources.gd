@@ -47,9 +47,13 @@ signal health_full
 var stamina_regeneration_timer: float = 0.0
 var is_stamina_regenerating: bool = true
 
+@export var left_hand_slot: Item
+@export var right_hand_slot: Item
+
 func _ready():
 	stamina = max_stamina
 	health = max_health
+
 
 func lose_health(amount: float):
 	if not god_mode:
@@ -58,6 +62,10 @@ func lose_health(amount: float):
 
 func gain_health(amount: float):
 	health = health + amount
+	_on_health_changed(health)
+
+func set_health(amount: float):
+	health = amount
 	_on_health_changed(health)
 
 func lose_stamina(amount: float):

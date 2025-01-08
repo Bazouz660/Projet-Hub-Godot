@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://wbrv6lo1jv4e"]
 
-[ext_resource type="Script" uid="uid://do0i018p10s6e" path="res://scene/item/held_item/weapon/sword/sword.gd" id="1_mi1tq"]
+[ext_resource type="Script" uid="uid://ds3p7rcltpyql" path="res://scene/item/held_item/weapon/weapon.gd" id="1_qom34"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lat11"]
 radius = 0.282746
 height = 4.10024
 
 [node name="SwordCollision" type="Area3D"]
-script = ExtResource("1_mi1tq")
+script = ExtResource("1_qom34")
+item_id = "sword"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 visible = false

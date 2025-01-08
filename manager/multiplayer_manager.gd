@@ -1,7 +1,7 @@
 extends Node
 
 @export var player_scene: PackedScene = preload("res://scene/player/player.tscn")
-var level_scene_path: String = "res://test/worldgen_test_pretty.tscn"
+var level_scene_path: String = "res://test/demo/demo.tscn"
 var level_node_path: String = "SubViewportContainer/SubViewport/WorldManager"
 
 var root: Root

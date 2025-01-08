@@ -10,3 +10,4 @@ specular_mode = 1
 albedo_texture = ExtResource("1_gxdeo")
 uv1_triplanar = true
 uv1_world_triplanar = true
+metadata/type = "rock"

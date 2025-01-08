@@ -4,13 +4,8 @@ class_name Weapon
 var hitbox_ignore_list: Array[Area3D]
 var is_attacking: bool = false
 
+@export var item_id: String
 @export var holder: HumanoidModel
 
-@export var base_damage: float = 10
-
-var basic_attacks: Dictionary
-
-
 func get_hit_data() -> HitData:
-	print("someone tries to get hit by default Weapon")
-	return HitData.blank()
+	return holder.current_move.form_hit_data(self)

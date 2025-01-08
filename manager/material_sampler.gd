@@ -1,14 +1,13 @@
 extends Node
 class_name MaterialDetector
 
-## The path to the node whose position will be used for detection
-@export var target_path: NodePath
-
 ## The maximum distance to check for materials
 @export var detection_distance: float = 1.0
 
+## A list of nodes to exclude from detection
+@export var exceptions: Array[CollisionObject3D] = []
+
 # Internal variables
-var _target: Node3D
 var _ray_cast: RayCast3D
 var _current_material: Material = null
 var _last_position: Vector3 = Vector3.ZERO
@@ -24,22 +23,11 @@ func _ready() -> void:
 	_ray_cast.target_position = Vector3(0, -detection_distance, 0)
 	add_child(_ray_cast)
 
-	# Get target node
-	if not target_path.is_empty():
-		_target = get_node(target_path)
-		if not _target:
-			push_warning("MaterialDetector: Target node not found at path: ", target_path)
-	else:
-		# If no target specified, use parent
-		_target = get_parent() if get_parent() is Node3D else null
-
-	if not _target:
-		push_error("MaterialDetector: No valid target found. Ensure the node is attached to or targeting a Node3D.")
+	# Add exlusion mask for the target node
+	for exception in exceptions:
+		_ray_cast.add_exception(exception)
 
 func check_material() -> Dictionary:
-	# Update raycast position to target's position
-	_ray_cast.global_position = _target.global_position
-
 	if not _ray_cast.is_colliding():
 		if _current_material != null:
 			_current_material = null
@@ -58,14 +46,23 @@ func check_material() -> Dictionary:
 	if not collider:
 		return {}
 
+	if collider is CSGBox3D:
+		var csg_box = collider as CSGBox3D
+		var _surface_info = _get_surface_info(csg_box.material, null, collision_point, collider)
+		return _surface_info
+
 	var mesh_instance = find_mesh_instance(collider)
 	if not mesh_instance:
 		return {}
 
-	var material = get_material_from_mesh(mesh_instance)
+	var surface_info = _get_surface_info(get_material_from_mesh(mesh_instance), mesh_instance, collision_point, collider)
+
+	return surface_info
+
+func _get_surface_info(material: Material, mesh_instance: MeshInstance3D, collision_point: Vector3, collider: Node) -> Dictionary:
 	var type: String
 	#print("Material found: ", material.resource_path.get_file())
-	if material.has_meta("type"):
+	if material and material.has_meta("type"):
 		type = material.get_meta("type")
 		#print("Material type: ", type)
 		if type == "terrain":
