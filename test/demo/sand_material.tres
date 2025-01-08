@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://csc8fbwtxlk58"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.919856, 0.868917, 0.568899, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+metadata/type = "sand"

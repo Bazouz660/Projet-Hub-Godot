@@ -17,3 +17,4 @@ size = Vector3(0.1, 0.3, 0.1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05518, 0)
 shape = SubResource("CapsuleShape3D_lat11")
+debug_color = Color(0, 0.6, 0.7, 0.42)

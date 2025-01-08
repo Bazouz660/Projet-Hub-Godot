@@ -248,4 +248,5 @@ metadata/_custom_type_script = ExtResource("5_yq0dp")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/HealPotionQueue"]
 stream = ExtResource("49_2gk1d")
+volume_db = -20.0
 max_distance = 20.0

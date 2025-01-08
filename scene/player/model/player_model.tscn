@@ -2416,6 +2416,7 @@ script = ExtResource("3_jhxj8")
 
 [node name="HitboxCollider" type="CollisionShape3D" parent="GeneralSkeleton/Root/Hitbox"]
 shape = SubResource("CapsuleShape3D_4ier8")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
 transform = Transform3D(-0.725636, -0.450151, 0.5204, -0.126664, -0.655996, -0.74406, 0.67632, -0.605833, 0.418996, -29.3122, 79.7763, -34.5539)

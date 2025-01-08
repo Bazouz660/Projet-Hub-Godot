@@ -39,6 +39,7 @@ exceptions = [NodePath("..")]
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_02uxe")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StepCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
@@ -68,3 +69,4 @@ script = ExtResource("8_hfhxk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780433, 0)
 shape = SubResource("SphereShape3D_732fb")
+debug_color = Color(0, 0.6, 0.7, 0.42)
