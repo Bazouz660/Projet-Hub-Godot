@@ -6,7 +6,7 @@ var quantity: int
 var max_stack_size: int
 var slot_index: int # Track which slot this stack belongs to
 
-func _init(p_item_id: String, p_quantity: int = 1, p_max_stack_size = 1, p_slot_index: int = -1) -> void:
+func _init(p_item_id: String = "", p_quantity: int = 1, p_max_stack_size = 1, p_slot_index: int = -1) -> void:
     item_id = p_item_id
     quantity = p_quantity
     slot_index = p_slot_index

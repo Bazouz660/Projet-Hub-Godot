@@ -56,6 +56,7 @@ func host_game():
 
 	# Set scene to world
 	SceneManager.change_3d_scene(level_scene_path)
+	TimeManager.start()
 	await SceneManager.scene_loaded
 
 	peer = ENetMultiplayerPeer.new() # Create a new peer instance
@@ -83,6 +84,7 @@ func join_game(ip: String, host_port: int):
 
 	# Set scene to world
 	SceneManager.change_3d_scene(level_scene_path)
+	TimeManager.start()
 	await SceneManager.scene_loaded
 
 	peer = ENetMultiplayerPeer.new() # Create a new peer instance

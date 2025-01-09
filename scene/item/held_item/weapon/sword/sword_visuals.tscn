@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://caj4uw43llohe"]
+[gd_scene load_steps=10 format=4 uid="uid://caj4uw43llohe"]
 
 [ext_resource type="Texture2D" uid="uid://r0oxc3w864yu" path="res://asset/model/item/weapon/sword/sword_C.png" id="2_8cedj"]
 [ext_resource type="Texture2D" uid="uid://dl4e26xs2suih" path="res://asset/model/item/weapon/sword/Unnamed_H.png" id="2_sgy3i"]
 [ext_resource type="Texture2D" uid="uid://bevmh5e0wfa2h" path="res://asset/model/item/weapon/sword/sword_RM.png" id="3_8cedj"]
 [ext_resource type="Material" uid="uid://cugshe8fon5yk" path="res://data/materials/outline.tres" id="4_8cedj"]
-[ext_resource type="Texture2D" uid="uid://doyowsub4sn2m" path="res://asset/model/item/weapon/sword/sword_N.png" id="4_idgpu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sgy3i"]
 
@@ -61,7 +60,6 @@ metallic_texture = ExtResource("3_8cedj")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("3_8cedj")
 normal_enabled = true
-normal_texture = ExtResource("4_idgpu")
 heightmap_scale = 0.1
 heightmap_flip_tangent = true
 heightmap_texture = ExtResource("2_sgy3i")

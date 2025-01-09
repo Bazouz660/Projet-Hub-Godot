@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://cu5yyst1lh7oa" path="res://shader/glass.gdshader" id="1_oid2d"]
 [ext_resource type="Material" uid="uid://cugshe8fon5yk" path="res://data/materials/outline.tres" id="1_wal5a"]
-[ext_resource type="Texture2D" uid="uid://cb1kw702kpal8" path="res://asset/model/item/potion/health_potionC.png" id="2_wal5a"]
+[ext_resource type="Texture2D" uid="uid://bxmvjxelpr7ye" path="res://asset/model/item/potion/health_potionC.png" id="2_wal5a"]
 [ext_resource type="Texture2D" uid="uid://s0plurk8ji7v" path="res://asset/model/item/potion/health_potionRM.png" id="3_8qrd0"]
 [ext_resource type="Texture2D" uid="uid://c447fe6g1jsah" path="res://asset/model/item/potion/health_potionN.png" id="4_76imk"]
 

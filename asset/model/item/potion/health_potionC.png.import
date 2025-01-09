@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb1kw702kpal8"
-path.s3tc="res://.godot/imported/health_potionC.png-53490b026c8d69f6d762327d567977b1.s3tc.ctex"
+uid="uid://bxmvjxelpr7ye"
+path.bptc="res://.godot/imported/health_potionC.png-53490b026c8d69f6d762327d567977b1.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://asset/model/item/potion/health_potionC.png"
-dest_files=["res://.godot/imported/health_potionC.png-53490b026c8d69f6d762327d567977b1.s3tc.ctex"]
+dest_files=["res://.godot/imported/health_potionC.png-53490b026c8d69f6d762327d567977b1.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

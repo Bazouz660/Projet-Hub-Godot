@@ -18,12 +18,13 @@ var yaw = 0.0;
 var grounded = false;
 @export var height = 1.0
 
+var multiplayer_authority: int = 0
+
 ## TO DO: MAKE THIS A GLOBAL VARIABLE
 const WATER_LEVEL = 0;
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
-
 
 func _ready():
 	SceneManager.disable_player_input = false
@@ -33,7 +34,9 @@ func _ready():
 	camera.current = is_multiplayer_authority()
 
 	if is_multiplayer_authority():
+		multiplayer_authority = 1
 		interact_area.add_to_group("player")
+		inventory.load_inventory()
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():
@@ -48,6 +51,10 @@ func is_grounded() -> bool:
 
 func is_in_water() -> bool:
 	return global_position.y + height <= WATER_LEVEL
+
+func _exit_tree():
+	if multiplayer_authority == 1:
+		inventory.save_inventory()
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_set_position(pos: Vector3):

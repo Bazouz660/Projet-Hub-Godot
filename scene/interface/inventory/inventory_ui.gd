@@ -29,8 +29,8 @@ func _setup_inventory() -> void:
 	_connect_signals()
 
 	# Example of adding initial items with IDs
-	inventory_component.add_item_by_id("potion_health", 5)
-	inventory_component.add_item_by_id("sword")
+	#inventory_component.add_item_by_id("potion_health", 5)
+	#inventory_component.add_item_by_id("sword")
 
 func _process(_delta: float) -> void:
 	if _selected_item_stack:
@@ -79,7 +79,7 @@ func _bind_selected_stack(stack: ItemStack) -> void:
 	_selected_item_stack = _item_stack_ui.instantiate()
 	add_child(_selected_item_stack)
 	_selected_item_stack.item_stack = stack
-	inventory_component.item_stacks.erase(stack)
+	inventory_component.content.item_stacks.erase(stack)
 
 func _on_slot_clicked(slot: SlotUI) -> void:
 	var slot_index = _slots.find(slot)
@@ -134,7 +134,7 @@ func _swap_item_stacks(to_slot_index: int) -> void:
 
 	# Swap the stacks in the inventory
 	inventory_component.slots[to_slot_index] = from_stack
-	inventory_component.item_stacks.append(from_stack)
+	inventory_component.content.item_stacks.append(from_stack)
 
 	_selected_item_stack.queue_free()
 	_selected_item_stack = null
@@ -143,7 +143,7 @@ func _swap_item_stacks(to_slot_index: int) -> void:
 func _place_selected_item_stack_in_empty_slot(slot: SlotUI, slot_index: int) -> void:
 	_selected_item_stack.item_stack.slot_index = slot_index
 	inventory_component.slots[slot_index] = _selected_item_stack.item_stack
-	inventory_component.item_stacks.append(_selected_item_stack.item_stack)
+	inventory_component.content.item_stacks.append(_selected_item_stack.item_stack)
 	slot.item_stack = _selected_item_stack.item_stack
 	_selected_item_stack.queue_free()
 

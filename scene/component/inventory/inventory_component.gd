@@ -9,7 +9,7 @@ signal inventory_changed
 @export var max_slots: int = 20
 @export var is_dropping_enabled: bool = false
 
-var item_stacks: Array[ItemStack] = []
+var content: InventoryContent = InventoryContent.new()
 var slots: Array[ItemStack] = [] # Array of size max_slots, null means empty slot
 
 static var dropped_item_scene: PackedScene = preload("res://scene/item/dropped_item/dropped_item.tscn")
@@ -25,9 +25,9 @@ func find_first_empty_slot() -> int:
 			return i
 	return -1
 
-func add_item_by_id(item_id: String, quantity: int = 1) -> bool:
+func add_item_by_id(item_id: String, quantity: int = 1) -> int:
 	# First try to stack with existing items
-	for existing_stack in item_stacks:
+	for existing_stack in content.item_stacks:
 		if existing_stack.item_id == item_id:
 			var item = ItemRegistry.get_item_by_id(item_id)
 			if item.is_stackable and existing_stack.can_add(quantity):
@@ -35,7 +35,7 @@ func add_item_by_id(item_id: String, quantity: int = 1) -> bool:
 				if remaining == 0:
 					item_added.emit(existing_stack)
 					inventory_changed.emit()
-					return true
+					return existing_stack.slot_index
 				quantity = remaining
 
 	# If we couldn't stack or have remaining quantity, create new stack
@@ -45,14 +45,14 @@ func add_item_by_id(item_id: String, quantity: int = 1) -> bool:
 		var new_stack = ItemStack.new(item_id, quantity, item.max_stack_size, empty_slot_index)
 		if !item.is_stackable:
 			new_stack.quantity = 1
-		item_stacks.append(new_stack)
+		content.item_stacks.append(new_stack)
 		slots[empty_slot_index] = new_stack
 		item_added.emit(new_stack)
 		inventory_changed.emit()
-		return true
+		return empty_slot_index
 
 	inventory_full.emit()
-	return false
+	return -1
 
 func remove_item_from_slot(slot_index: int, quantity: int = 1) -> bool:
 	print("Removing " + str(quantity) + " items from slot " + str(slot_index))
@@ -66,7 +66,7 @@ func remove_item_from_slot(slot_index: int, quantity: int = 1) -> bool:
 	if removed > 0:
 		if item_stack.quantity <= 0:
 			print("Removing item stack")
-			item_stacks.erase(item_stack)
+			content.item_stacks.erase(item_stack)
 			slots[slot_index] = null
 		item_removed.emit(item_stack)
 		inventory_changed.emit()
@@ -92,7 +92,7 @@ func _spawn_item(item_id: String, quantity: int, p_position: Vector3) -> void:
 
 func get_item_quantity(item_id: String) -> int:
 	var total_quantity = 0
-	for item_stack in item_stacks:
+	for item_stack in content.item_stacks:
 		if item_stack.item_id == item_id:
 			total_quantity += item_stack.quantity
 	return total_quantity
@@ -114,3 +114,36 @@ func move_item(from_slot: int, to_slot: int) -> void:
 		slots[from_slot].slot_index = from_slot
 
 	inventory_changed.emit()
+
+func save_inventory() -> void:
+	print("Saving test inventory")
+
+	content.slot_indices.resize(content.item_stacks.size())
+	content.item_ids.resize(content.item_stacks.size())
+	content.quantities.resize(content.item_stacks.size())
+	content.max_stack_sizes.resize(content.item_stacks.size())
+
+	for i in range(content.item_stacks.size()):
+		content.slot_indices[i] = content.item_stacks[i].slot_index
+		content.item_ids[i] = content.item_stacks[i].item_id
+		content.quantities[i] = content.item_stacks[i].quantity
+		content.max_stack_sizes[i] = content.item_stacks[i].max_stack_size
+	ResourceSaver.save(content, "user://test.tres")
+
+func load_inventory() -> void:
+	print("Loading test inventory")
+	if ResourceLoader.exists("user://test.tres"):
+		var res = ResourceLoader.load("user://test.tres")
+		if res == null or not res is InventoryContent:
+			print("Failed to load test inventory")
+			return
+		print("Test inventory loaded: ")
+		for i in range(res.item_ids.size()):
+			var slot = add_item_by_id(res.item_ids[i], res.quantities[i])
+			if slot != -1:
+				move_item(slot, res.slot_indices[i])
+
+		inventory_changed.emit()
+
+	else:
+		print("No test inventory file found")
