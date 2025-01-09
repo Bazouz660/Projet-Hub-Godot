@@ -1,10 +1,10 @@
-extends RefCounted
+extends Resource
 class_name ItemStack
 
-var item_id: String
-var quantity: int
-var max_stack_size: int
-var slot_index: int # Track which slot this stack belongs to
+@export var item_id: String
+@export var quantity: int
+@export var max_stack_size: int
+@export var slot_index: int # Track which slot this stack belongs to
 
 func _init(p_item_id: String = "", p_quantity: int = 1, p_max_stack_size = 1, p_slot_index: int = -1) -> void:
     item_id = p_item_id

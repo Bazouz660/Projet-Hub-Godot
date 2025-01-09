@@ -57,7 +57,7 @@ func _on_area_exited(p_area: Area3D) -> void:
 
 func _on_interact(player: Player) -> void:
 	var success = player.inventory.add_item_by_id(item_id, quantity)
-	if success:
+	if success != -1:
 		if MultiplayerManager.is_host:
 			queue_free()
 		else:

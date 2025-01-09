@@ -1,6 +1,7 @@
 extends Control
 
 @onready var _grid_container: GridContainer = %GridContainer
+@onready var _sort_button: Button = %SortInventoryButton
 @onready var _slot_ui: PackedScene = preload("res://scene/interface/inventory/slot_ui.tscn")
 @onready var _item_stack_ui: PackedScene = preload("res://scene/interface/inventory/item_stack_ui.tscn")
 @export var inventory_component: InventoryComponent
@@ -50,6 +51,7 @@ func _connect_signals() -> void:
 
 	inventory_component.item_removed.connect(_on_removed_item)
 	inventory_component.inventory_changed.connect(_update_slots)
+	_sort_button.pressed.connect(inventory_component.sort_inventory)
 
 func _update_hovering_state() -> void:
 	for inventory in inventories:

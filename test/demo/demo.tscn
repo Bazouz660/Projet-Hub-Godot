@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsjltrqk7ovlx"]
+[gd_scene load_steps=29 format=3 uid="uid://dsjltrqk7ovlx"]
 
 [ext_resource type="Material" uid="uid://ddatkkw8dvntg" path="res://data/materials/level_prototype.tres" id="1_1f2bg"]
 [ext_resource type="Material" uid="uid://rn8cheks5dxt" path="res://test/grass_ground_material.tres" id="2_pd2ih"]
@@ -69,6 +69,12 @@ albedo_color = Color(1, 0.247458, 0.165549, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ipyqj"]
 material = SubResource("StandardMaterial3D_mycxx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fydhd"]
+shading_mode = 0
+disable_fog = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_47w0t"]
 
 [node name="WorldManager" type="Node3D"]
 
@@ -358,3 +364,8 @@ transform = Transform3D(0.558281, 0, -0.829652, 0, 1, 0, 0.829652, 0, 0.558281, 
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.951, 1.87101, -13.0191)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OmniLight3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fydhd")
+mesh = SubResource("SphereMesh_47w0t")

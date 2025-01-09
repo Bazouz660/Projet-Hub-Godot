@@ -11,6 +11,7 @@ signal inventory_changed
 
 var content: InventoryContent = InventoryContent.new()
 var slots: Array[ItemStack] = [] # Array of size max_slots, null means empty slot
+var save_location: String
 
 static var dropped_item_scene: PackedScene = preload("res://scene/item/dropped_item/dropped_item.tscn")
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 	# Initialize slots array
 	slots.resize(max_slots)
 	slots.fill(null)
+	save_location = "user://inventory_test.res"
 
 func find_first_empty_slot() -> int:
 	for i in range(slots.size()):
@@ -42,6 +44,11 @@ func add_item_by_id(item_id: String, quantity: int = 1) -> int:
 	var empty_slot_index = find_first_empty_slot()
 	if empty_slot_index != -1:
 		var item = ItemRegistry.get_item_by_id(item_id)
+		var remaining: int
+		if quantity > item.max_stack_size:
+			remaining = quantity - item.max_stack_size
+			quantity = item.max_stack_size
+
 		var new_stack = ItemStack.new(item_id, quantity, item.max_stack_size, empty_slot_index)
 		if !item.is_stackable:
 			new_stack.quantity = 1
@@ -49,6 +56,8 @@ func add_item_by_id(item_id: String, quantity: int = 1) -> int:
 		slots[empty_slot_index] = new_stack
 		item_added.emit(new_stack)
 		inventory_changed.emit()
+		if remaining > 0:
+			add_item_by_id(item_id, remaining)
 		return empty_slot_index
 
 	inventory_full.emit()
@@ -115,34 +124,40 @@ func move_item(from_slot: int, to_slot: int) -> void:
 
 	inventory_changed.emit()
 
-func save_inventory() -> void:
-	print("Saving test inventory")
-
-	content.slot_indices.resize(content.item_stacks.size())
-	content.item_ids.resize(content.item_stacks.size())
-	content.quantities.resize(content.item_stacks.size())
-	content.max_stack_sizes.resize(content.item_stacks.size())
+func sort_inventory() -> void:
+	print("Sorting inventory")
+	content.item_stacks.sort_custom(func(a, b) -> int:
+		if a.item_id == b.item_id:
+			return 0
+		var item_a = ItemRegistry.get_item_by_id(a.item_id)
+		var item_b = ItemRegistry.get_item_by_id(b.item_id)
+		return item_a.name < item_b.name
+	)
 
 	for i in range(content.item_stacks.size()):
-		content.slot_indices[i] = content.item_stacks[i].slot_index
-		content.item_ids[i] = content.item_stacks[i].item_id
-		content.quantities[i] = content.item_stacks[i].quantity
-		content.max_stack_sizes[i] = content.item_stacks[i].max_stack_size
-	ResourceSaver.save(content, "user://test.tres")
+		move_item(content.item_stacks[i].slot_index, i)
+
+
+	inventory_changed.emit()
+
+func save_inventory() -> void:
+	print("Saving test inventory")
+	ResourceSaver.save(content, save_location)
 
 func load_inventory() -> void:
 	print("Loading test inventory")
-	if ResourceLoader.exists("user://test.tres"):
-		var res = ResourceLoader.load("user://test.tres")
+	if ResourceLoader.exists(save_location):
+		var res = ResourceLoader.load(save_location)
 		if res == null or not res is InventoryContent:
 			print("Failed to load test inventory")
 			return
 		print("Test inventory loaded: ")
-		for i in range(res.item_ids.size()):
-			var slot = add_item_by_id(res.item_ids[i], res.quantities[i])
-			if slot != -1:
-				move_item(slot, res.slot_indices[i])
-
+		for stack in res.item_stacks:
+			print(stack.item_id + " x" + str(stack.quantity))
+		content = res
+		slots.fill(null)
+		for stack in content.item_stacks:
+			slots[stack.slot_index] = stack
 		inventory_changed.emit()
 
 	else:

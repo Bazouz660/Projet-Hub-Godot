@@ -124,7 +124,9 @@ environment = ExtResource("1_vrw0p")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 shadow_enabled = true
-directional_shadow_pancake_size = 300.0
+directional_shadow_fade_start = 0.715
+directional_shadow_max_distance = 1176.6
+directional_shadow_pancake_size = 60.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
