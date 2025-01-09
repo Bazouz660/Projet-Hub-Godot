@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsjltrqk7ovlx"]
+[gd_scene load_steps=34 format=3 uid="uid://dsjltrqk7ovlx"]
 
 [ext_resource type="Material" uid="uid://ddatkkw8dvntg" path="res://data/materials/level_prototype.tres" id="1_1f2bg"]
 [ext_resource type="Material" uid="uid://rn8cheks5dxt" path="res://test/grass_ground_material.tres" id="2_pd2ih"]
 [ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/grass.tres" id="3_cgd06"]
 [ext_resource type="Material" uid="uid://ctixvytfgub33" path="res://test/Stylized_Water.material" id="3_i1li3"]
 [ext_resource type="ArrayMesh" uid="uid://c4r4sq6wn8011" path="res://asset/mesh/rock_1.res" id="4_pxcdt"]
-[ext_resource type="Material" uid="uid://csc8fbwtxlk58" path="res://test/demo/sand_material.tres" id="4_q7r4j"]
+[ext_resource type="Material" uid="uid://csc8fbwtxlk58" path="res://test/demo/wet_sand_material.tres" id="4_q7r4j"]
 [ext_resource type="Shader" uid="uid://dsb07av81lkcp" path="res://shader/cloud_shadows.gdshader" id="4_u47v4"]
 [ext_resource type="Script" uid="uid://btawd0vcqvrnt" path="res://scripts/follow_active_player.gd" id="5_pd2ih"]
 [ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="6_fydhd"]
@@ -14,7 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://bqrmje6bgidxj" path="res://test/rock_2.tscn" id="10_b33sj"]
 [ext_resource type="PackedScene" uid="uid://d0n7y1ii0vs0j" path="res://test/rock_4.tscn" id="11_pxcdt"]
 [ext_resource type="PackedScene" uid="uid://cq4h71va8685u" path="res://test/rock_5.tscn" id="12_b33sj"]
+[ext_resource type="Texture2D" uid="uid://rgnn73uosvia" path="res://asset/texture/interface/hud/sparkle.png" id="16_5fbjs"]
 [ext_resource type="PackedScene" uid="uid://cr4g71mimy1nh" path="res://scene/level/foliage/tree.tscn" id="16_47w0t"]
+[ext_resource type="PackedScene" uid="uid://0drdmj6ay65q" path="res://scene/dummy/dummy.tscn" id="17_5fbjs"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cgd06"]
 size = Vector2(30, 36)
@@ -36,8 +38,8 @@ buffer = PackedFloat32Array(-0.138916, 0, -0.0718941, 2.3663, 0, 0.156418, 0, 0.
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b33sj"]
 size = Vector2(150, 120)
-subdivide_width = 30
-subdivide_depth = 30
+subdivide_width = 170
+subdivide_depth = 140
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j8er0"]
 noise_type = 3
@@ -71,10 +73,119 @@ albedo_color = Color(1, 0.247458, 0.165549, 1)
 material = SubResource("StandardMaterial3D_mycxx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fydhd"]
+blend_mode = 1
 shading_mode = 0
 disable_fog = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_47w0t"]
+
+[sub_resource type="Shader" id="Shader_vrvij"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, unshaded, ambient_light_disabled, fog_disabled;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap_anisotropic, repeat_disable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+// Base uniforms for all layers
+uniform float rotation_speed : hint_range(0.0, 10.0) = 1.0;
+uniform float pulse_speed : hint_range(0.0, 10.0) = 1.0;
+uniform float pulse_strength : hint_range(0.0, 1.0) = 0.2;
+
+// Number of layers and layer-specific uniforms
+uniform int num_layers : hint_range(1, 10) = 3;
+uniform float layer_opacity_base : hint_range(0.0, 1.0) = 0.5;
+uniform float layer_opacity_step : hint_range(-0.1, 0.1) = -0.1;
+uniform float rotation_offset_step : hint_range(-3.14159, 3.14159) = 0.7854; // PI/4 default
+
+void vertex() {
+    MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+            MAIN_CAM_INV_VIEW_MATRIX[0],
+            MAIN_CAM_INV_VIEW_MATRIX[1],
+            MAIN_CAM_INV_VIEW_MATRIX[2],
+            MODEL_MATRIX[3]);
+    MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+vec2 rotate_uv(vec2 uv, float rotation) {
+    float mid = 0.5;
+    vec2 centered_uv = uv - vec2(mid);
+    float s = sin(rotation);
+    float c = cos(rotation);
+    mat2 rot_matrix = mat2(vec2(c, -s), vec2(s, c));
+    vec2 rotated_uv = rot_matrix * centered_uv;
+    return rotated_uv + vec2(mid);
+}
+
+// Hash function for procedural rotation direction
+float hash(float n) {
+    return fract(sin(n) * 43758.5453123);
+}
+
+void fragment() {
+    // Calculate base pulsation scale
+    float pulse = 1.0 + sin(TIME * pulse_speed) * pulse_strength;
+    
+    // Initialize final color and alpha
+    vec3 final_color = vec3(0.0);
+    float final_alpha = 0.0;
+    
+    // Process each layer
+    for(int i = 0; i < num_layers; i++) {
+        // Skip if we've reached the maximum number of layers
+        if(i >= num_layers) break;
+        
+        // Calculate layer-specific parameters
+        float layer_index = float(i);
+        float rotation_direction = hash(layer_index) * 2.0 - 1.0; // Random -1 or 1
+        float layer_rotation = TIME * rotation_speed * rotation_direction 
+                             + layer_index * rotation_offset_step;
+        float layer_opacity = layer_opacity_base + (float(i) * layer_opacity_step);
+        layer_opacity = clamp(layer_opacity, 0.0, 1.0);
+        
+        // Process UV coordinates
+        vec2 current_uv = UV;
+        current_uv = rotate_uv(current_uv, layer_rotation);
+        current_uv = (current_uv - vec2(0.5)) * pulse + vec2(0.5);
+        
+        // Sample texture
+        vec4 current_tex = texture(texture_albedo, current_uv);
+        
+        // Blend with accumulated result
+        if(i == 0) {
+            // Base layer
+            final_color = albedo.rgb * current_tex.rgb;
+            final_alpha = albedo.a * current_tex.a;
+        } else {
+            // Overlay additional layers
+            final_color = mix(
+                final_color,
+                current_tex.rgb,
+                layer_opacity * current_tex.a
+            );
+            final_alpha = max(final_alpha, layer_opacity * current_tex.a);
+        }
+    }
+    
+    ALBEDO = final_color;
+    ALPHA *= final_alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rx53p"]
+render_priority = 0
+shader = SubResource("Shader_vrvij")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("16_5fbjs")
+shader_parameter/point_size = 1.0
+shader_parameter/rotation_speed = 0.3
+shader_parameter/pulse_speed = 1.0
+shader_parameter/pulse_strength = 0.15
+shader_parameter/num_layers = 10
+shader_parameter/layer_opacity_base = 1.0
+shader_parameter/layer_opacity_step = -0.1
+shader_parameter/rotation_offset_step = 0.19641
+
+[sub_resource type="QuadMesh" id="QuadMesh_84agk"]
 
 [node name="WorldManager" type="Node3D"]
 
@@ -369,3 +480,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.951, 1.87101, -13.0191)
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_fydhd")
 mesh = SubResource("SphereMesh_47w0t")
+
+[node name="Spark" type="MeshInstance3D" parent="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0100642, 0)
+material_override = SubResource("ShaderMaterial_rx53p")
+mesh = SubResource("QuadMesh_84agk")
+
+[node name="Dummy" parent="." instance=ExtResource("17_5fbjs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.69624, 0.499999, 12.3205)

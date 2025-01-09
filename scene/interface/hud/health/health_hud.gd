@@ -15,6 +15,8 @@ var ghost_tween: Tween
 func _ready() -> void:
 	#animation_player.play("health_hide")
 	_is_hide = true
+	if resources:
+		_setup()
 
 func _setup():
 	resources.health_changed.connect(_on_health_health_changed)

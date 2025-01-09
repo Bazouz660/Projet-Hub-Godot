@@ -16,27 +16,24 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcfv2"]
 bg_color = Color(0.541159, 0.128123, 0, 1)
 
-[node name="HealthBar" type="Control" node_paths=PackedStringArray("health_bar", "ghost_bar")]
-layout_mode = 3
-anchors_preset = 0
+[node name="HealthBar" type="PanelContainer" node_paths=PackedStringArray("health_bar", "ghost_bar")]
+custom_minimum_size = Vector2(340, 10)
+anchors_preset = -1
+offset_right = 484.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_2oat5")
 health_bar = NodePath("Panel/MarginContainer/ProgressBarForeground")
 ghost_bar = NodePath("Panel/MarginContainer/ProgressBarBackground")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 333.0
-offset_bottom = 9.0
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ik3gd")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1

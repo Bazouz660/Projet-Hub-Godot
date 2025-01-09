@@ -1751,7 +1751,7 @@ tracks/7/path = NodePath("MoveDatabase:right_hand_weapon_hurts")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.233333, 1),
+"times": PackedFloat32Array(0, 0.133333, 1),
 "transitions": PackedFloat32Array(0, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -2406,7 +2406,7 @@ bones/27/scale = Vector3(1, 1, 1)
 script = ExtResource("4_jwgxg")
 
 [node name="Root" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.377238, 0.027723, -0.925701, -0.156469, 0.987091, -0.0342019, 0.912803, 0.157745, 0.376706, -0.0773196, 62.2503, -1.14721)
+transform = Transform3D(0.377237, 0.0277229, -0.925702, -0.156469, 0.987091, -0.0342019, 0.912803, 0.157746, 0.376705, -0.0773196, 62.2503, -1.14721)
 bone_name = "mixamorigHips"
 bone_idx = 0
 
@@ -2418,7 +2418,7 @@ script = ExtResource("3_jhxj8")
 shape = SubResource("CapsuleShape3D_4ier8")
 
 [node name="RightHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(-0.609092, -0.489155, 0.624287, -0.0753156, -0.747916, -0.659506, 0.789515, -0.448719, 0.418709, -2.97285, 92.4227, -40.5905)
+transform = Transform3D(-0.609094, -0.489154, 0.624287, -0.075317, -0.747916, -0.659507, 0.789514, -0.448721, 0.418709, -2.97277, 92.4228, -40.5906)
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
@@ -2430,14 +2430,14 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.794306, -0.465092, 0.390856, -0.116189, -0.747786, -0.653695, 0.596304, 0.47382, -0.648009, -7.24471, 62.3292, 57.6278)
+transform = Transform3D(0.794306, -0.465092, 0.390856, -0.116189, -0.747787, -0.653694, 0.596304, 0.473819, -0.64801, -7.24472, 62.3291, 57.6277)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
-transform = Transform3D(0.949148, -0.0904508, -0.301557, 0.0122714, 0.967742, -0.251646, 0.314591, 0.235149, 0.91964, -14.4597, 126.85, 15.6418)
+transform = Transform3D(0.949148, -0.0904518, -0.301558, 0.0122721, 0.967741, -0.251647, 0.314592, 0.235149, 0.91964, -14.4597, 126.85, 15.6418)
 bone_name = "mixamorigHeadTop_End"
 bone_idx = 9
 

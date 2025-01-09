@@ -1,20 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs2gn2wodbkxy"]
+[gd_scene load_steps=14 format=3 uid="uid://0drdmj6ay65q"]
 
-[ext_resource type="Script" uid="uid://cy7jiemgmmgjn" path="res://scene/dummy/dummy.gd" id="1_7ptr2"]
-[ext_resource type="Script" uid="uid://b6plbv6c14msu" path="res://manager/material_sampler.gd" id="2_o3ct4"]
-[ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="3_upf5j"]
-[ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="4_aie4b"]
-[ext_resource type="Script" path="res://scene/component/stamina/stamina_component.gd" id="5_g1lb4"]
-[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/InventoryComponent.tscn" id="6_yep7n"]
-[ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="7_dywsd"]
-[ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="8_6wxvi"]
+[ext_resource type="Script" uid="uid://cy7jiemgmmgjn" path="res://scene/dummy/dummy.gd" id="1_16ukc"]
+[ext_resource type="Script" uid="uid://b6plbv6c14msu" path="res://manager/material_sampler.gd" id="2_4fkum"]
+[ext_resource type="PackedScene" uid="uid://co4txsbny7boe" path="res://scene/player/presentation/player_presentation.tscn" id="3_j2hy4"]
+[ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="4_ort3h"]
+[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/inventory_component.tscn" id="5_5k4qq"]
+[ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="6_aabmj"]
+[ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="7_qixpv"]
+[ext_resource type="Script" uid="uid://btr6ce7y2582k" path="res://scene/player/interact_area.gd" id="8_2dvsr"]
+[ext_resource type="PackedScene" uid="uid://cw1ds6oixy5ht" path="res://scene/interface/hud/health/health_bar.tscn" id="9_4fkum"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ga3ab"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_hqvnx"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j4sn8"]
 height = 0.1
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s2ki5"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iviky"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
@@ -25,36 +26,72 @@ properties/2/path = NodePath("Model:sync_state")
 properties/2/spawn = true
 properties/2/replication_mode = 2
 
-[node name="Dummy" type="CharacterBody3D"]
-script = ExtResource("1_7ptr2")
+[sub_resource type="SphereShape3D" id="SphereShape3D_732fb"]
+radius = 1.42241
 
-[node name="MaterialDetector" type="Node3D" parent="."]
-script = ExtResource("2_o3ct4")
-target_path = NodePath("..")
+[node name="Dummy" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_16ukc")
+
+[node name="MaterialDetector" type="Node3D" parent="." node_paths=PackedStringArray("exceptions")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340646, 0)
+script = ExtResource("2_4fkum")
+exceptions = [NodePath("..")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_ga3ab")
+shape = SubResource("CapsuleShape3D_02uxe")
 
 [node name="StepCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
 enabled = false
-shape = SubResource("CylinderShape3D_hqvnx")
+shape = SubResource("CylinderShape3D_j4sn8")
 debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 
-[node name="Presentation" parent="." instance=ExtResource("3_upf5j")]
+[node name="Presentation" parent="." instance=ExtResource("3_j2hy4")]
 
 [node name="Input" type="Node" parent="."]
-script = ExtResource("4_aie4b")
+script = ExtResource("4_ort3h")
 
-[node name="StaminaComponent" type="Node" parent="."]
-script = ExtResource("5_g1lb4")
+[node name="InventoryComponent" parent="." instance=ExtResource("5_5k4qq")]
+is_dropping_enabled = true
 
-[node name="InventoryComponent" parent="." instance=ExtResource("6_yep7n")]
+[node name="Model" parent="." instance=ExtResource("6_aabmj")]
 
-[node name="Model" parent="." instance=ExtResource("7_dywsd")]
+[node name="Root" parent="Model/GeneralSkeleton" index="0"]
+transform = Transform3D(0.377237, 0.0277229, -0.925702, -0.156469, 0.987091, -0.0342019, 0.912803, 0.157746, 0.376705, -0.0773196, 62.2503, -1.14721)
 
-[node name="Camera" parent="." instance=ExtResource("8_6wxvi")]
+[node name="RightHand" parent="Model/GeneralSkeleton" index="1"]
+transform = Transform3D(-0.609094, -0.489154, 0.624287, -0.075317, -0.747916, -0.659507, 0.789514, -0.448721, 0.418709, -2.97277, 92.4228, -40.5906)
+
+[node name="LeftHand" parent="Model/GeneralSkeleton" index="2"]
+transform = Transform3D(0.794306, -0.465092, 0.390856, -0.116189, -0.747787, -0.653694, 0.596304, 0.473819, -0.64801, -7.24472, 62.3291, 57.6277)
+
+[node name="Head" parent="Model/GeneralSkeleton" index="3"]
+transform = Transform3D(0.949148, -0.0904518, -0.301558, 0.0122721, 0.967741, -0.251647, 0.314592, 0.235149, 0.91964, -14.4597, 126.85, 15.6418)
+
+[node name="Camera" parent="." instance=ExtResource("7_qixpv")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_s2ki5")
+replication_config = SubResource("SceneReplicationConfig_iviky")
+
+[node name="InteractArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309888, 0)
+script = ExtResource("8_2dvsr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780433, 0)
+shape = SubResource("SphereShape3D_732fb")
+
+[node name="HealthBarTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.86492, 0)
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("resources") instance=ExtResource("9_4fkum")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 0)
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 5.0
+resources = NodePath("../Model/Resources")
+
+[editable path="Model"]

@@ -45,7 +45,7 @@ func _on_area_entered(p_area: Area3D) -> void:
 
 func merge_stack(other_item: DroppedItem) -> void:
 	quantity += other_item.quantity
-	label.text = str(item_id) + " x" + str(quantity)
+	label.text = str(item_label) + " x" + str(quantity)
 	other_item.queue_free()
 	print("Merged item stack.")
 

@@ -6,7 +6,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_57gwh"]
 
-[sub_resource type="Shader" id="Shader_vrvij"]
+[sub_resource type="Shader" id="Shader_1uib1"]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, unshaded, ambient_light_disabled, fog_disabled;
 
@@ -100,7 +100,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jshue"]
 render_priority = -1
-shader = SubResource("Shader_vrvij")
+shader = SubResource("Shader_1uib1")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("3_1uib1")
 shader_parameter/point_size = 1.0

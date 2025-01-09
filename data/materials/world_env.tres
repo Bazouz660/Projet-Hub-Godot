@@ -21,6 +21,7 @@ sky = SubResource("Sky_v7ted")
 ambient_light_source = 2
 ambient_light_color = Color(0.359068, 0.359069, 0.359069, 1)
 reflected_light_source = 2
+tonemap_mode = 2
 ssao_intensity = 5.76
 sdfgi_use_occlusion = true
 glow_enabled = true
