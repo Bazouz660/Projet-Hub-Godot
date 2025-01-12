@@ -18,6 +18,7 @@ func register_commands():
 
 
 	Console.add_command("time_set", set_time, ["time"], 1, "Sets the time of day.")
+	Console.add_command("time_scale", set_time_scale, ["scale"], 1, "Sets the time scale.")
 	Console.add_command("players_list", list_players, [], 0, "Lists all players.")
 	Console.add_command("tp", tp, ["player_to", "player_from"], 1, "Teleports to a player.")
 	Console.add_command("give", give, ["player_id", "item_id", "amount"], 2, "Gives an item to a player.")
@@ -43,6 +44,13 @@ func set_time(time: String) -> void:
 		return
 	var time_float = time.to_float()
 	TimeManager.set_time_of_day(time_float)
+
+func set_time_scale(scale: String) -> void:
+	if not scale.is_valid_float():
+		Console.print_error("Invalid scale. It must be a float.")
+		return
+	var scale_float = scale.to_float()
+	TimeManager.time_scale = scale_float
 
 func list_players() -> void:
 	var players = MultiplayerManager.players

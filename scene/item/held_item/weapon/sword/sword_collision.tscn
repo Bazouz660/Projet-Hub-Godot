@@ -10,11 +10,6 @@ height = 4.10024
 script = ExtResource("1_qom34")
 item_id = "sword"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(7.50247, 0, 0, 0, 13.951, 0, 0, 0, 7.40609, 0, 2.0428, 0)
-visible = false
-size = Vector3(0.1, 0.3, 0.1)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05518, 0)
 shape = SubResource("CapsuleShape3D_lat11")

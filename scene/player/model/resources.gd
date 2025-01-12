@@ -49,6 +49,7 @@ var is_stamina_regenerating: bool = true
 
 @export var left_hand_slot: Item
 @export var right_hand_slot: Item
+@export var item_in_use: String
 
 func _ready():
 	stamina = max_stamina

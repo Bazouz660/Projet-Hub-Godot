@@ -20,8 +20,10 @@ func on_enter_state():
 
 func update(_input: InputPackage, _delta: float):
 	if works_longer_than(drink_time) and not drank:
-		resources.gain_health(50)
 		drank = true
+		var item = ItemRegistry.get_item_by_id(resources.item_in_use)
+		var consumable_component := item.get_component("consumable") as ConsumableItemComponent
+		consumable_component.apply_effects(resources)
 
 func on_exit_state():
 	super.on_exit_state()

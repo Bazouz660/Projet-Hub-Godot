@@ -20,7 +20,14 @@ func _physics_process(delta):
 	var screen_pos = p_camera.unproject_position($HealthBarTarget.global_position)
 	health_bar.global_position = screen_pos - (health_bar.size / 2)
 
+	update_health_bar_visibility()
+
+func update_health_bar_visibility():
 	var active_player = MultiplayerManager.active_player as Player
+
+	if !active_player:
+		return
+
 	var distance_to_player = global_position.distance_to(active_player.global_position)
 	var max_distance = 10
 	# if the distance is greater than the max distance, use a tween to modulate the alpha of the health bar

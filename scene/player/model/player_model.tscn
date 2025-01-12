@@ -2200,6 +2200,7 @@ script = ExtResource("1_dfp2c")
 
 [node name="Resources" type="Node" parent="."]
 script = ExtResource("2_3b786")
+item_in_use = "health_potion"
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource("2_hhekq")

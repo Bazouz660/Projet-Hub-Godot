@@ -32,6 +32,9 @@ func add_item_by_id(item_id: String, quantity: int = 1) -> int:
 	for existing_stack in content.item_stacks:
 		if existing_stack.item_id == item_id:
 			var item = ItemRegistry.get_item_by_id(item_id)
+			if !item:
+				print("Item not found")
+				return -1
 			if item.is_stackable and existing_stack.can_add(quantity):
 				var remaining = existing_stack.add(quantity)
 				if remaining == 0:
@@ -136,7 +139,6 @@ func sort_inventory() -> void:
 
 	for i in range(content.item_stacks.size()):
 		move_item(content.item_stacks[i].slot_index, i)
-
 
 	inventory_changed.emit()
 

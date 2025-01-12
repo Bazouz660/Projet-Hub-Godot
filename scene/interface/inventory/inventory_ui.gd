@@ -117,6 +117,9 @@ func _can_merge_stacks(selected_stack: ItemStack, target_stack: ItemStack) -> bo
 	if selected_stack.item_id != target_stack.item_id:
 		return false
 	var item = ItemRegistry.get_item_by_id(selected_stack.item_id)
+	if !item:
+		printerr("Item: " + selected_stack.item_id + " not found.")
+		return false
 	return item.is_stackable and target_stack.can_add(selected_stack.quantity)
 
 func _merge_item_stacks(to_slot_index: int) -> void:

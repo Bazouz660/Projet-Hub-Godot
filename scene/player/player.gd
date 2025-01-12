@@ -39,7 +39,7 @@ func _ready():
 		inventory.load_inventory()
 
 func _physics_process(delta):
-	if not is_multiplayer_authority():
+	if not multiplayer_authority:
 		return
 	var input = input_gatherer.gather_input()
 	model.update(input, delta)

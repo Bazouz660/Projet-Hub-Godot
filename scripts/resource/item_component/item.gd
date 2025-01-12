@@ -10,6 +10,10 @@ class_name Item
 @export var model: PackedScene
 @export var components: Array[ItemComponent] = []
 
+func _init():
+    for component in components:
+        component.base_item = self
+
 func has_component(component_type: String) -> bool:
     for component in components:
         if component.component_type == component_type:

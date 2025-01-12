@@ -58,18 +58,6 @@ is_dropping_enabled = true
 
 [node name="Model" parent="." instance=ExtResource("6_aabmj")]
 
-[node name="Root" parent="Model/GeneralSkeleton" index="0"]
-transform = Transform3D(0.377237, 0.0277229, -0.925702, -0.156469, 0.987091, -0.0342019, 0.912803, 0.157746, 0.376705, -0.0773196, 62.2503, -1.14721)
-
-[node name="RightHand" parent="Model/GeneralSkeleton" index="1"]
-transform = Transform3D(-0.609094, -0.489154, 0.624287, -0.075317, -0.747916, -0.659507, 0.789514, -0.448721, 0.418709, -2.97277, 92.4228, -40.5906)
-
-[node name="LeftHand" parent="Model/GeneralSkeleton" index="2"]
-transform = Transform3D(0.794306, -0.465092, 0.390856, -0.116189, -0.747787, -0.653694, 0.596304, 0.473819, -0.64801, -7.24472, 62.3291, 57.6277)
-
-[node name="Head" parent="Model/GeneralSkeleton" index="3"]
-transform = Transform3D(0.949148, -0.0904518, -0.301558, 0.0122721, 0.967741, -0.251647, 0.314592, 0.235149, 0.91964, -14.4597, 126.85, 15.6418)
-
 [node name="Camera" parent="." instance=ExtResource("7_qixpv")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
@@ -89,7 +77,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.86492, 0)
 [node name="HealthBar" parent="." node_paths=PackedStringArray("resources") instance=ExtResource("9_4fkum")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 0)
-anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 5.0
 resources = NodePath("../Model/Resources")

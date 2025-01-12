@@ -487,4 +487,4 @@ material_override = SubResource("ShaderMaterial_rx53p")
 mesh = SubResource("QuadMesh_84agk")
 
 [node name="Dummy" parent="." instance=ExtResource("17_5fbjs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.69624, 0.499999, 12.3205)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.16776, 0.5, 14.7053)
