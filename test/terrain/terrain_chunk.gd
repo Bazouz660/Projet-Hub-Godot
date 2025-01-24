@@ -5,10 +5,10 @@ class_name TerrainChunk
 var mesh_instance: MeshInstance3D
 var collision_shape: CollisionShape3D
 var water_mesh_instance: MeshInstance3D
-var config : TerrainConfig
-var feature_container : FeatureContainer
+var config: TerrainConfig
+var feature_container: FeatureContainer
 
-func _init(p_config : TerrainConfig):
+func _init(p_config: TerrainConfig):
 	config = p_config
 	# Create mesh instance
 	mesh_instance = MeshInstance3D.new()
@@ -33,7 +33,7 @@ func _setup_water_mesh():
 	plane.size = Vector2(config.chunk_size * config.grid_size, config.chunk_size * config.grid_size)
 	plane.subdivide_depth = config.chunk_size
 	plane.subdivide_width = config.chunk_size
-	
+
 	water_mesh_instance.mesh = plane
 	water_mesh_instance.material_override = config.water_material
 	water_mesh_instance.position = Vector3(
@@ -46,7 +46,7 @@ func apply_mesh_data(mesh_data: ArrayMesh):
 	mesh_instance.mesh = mesh_data
 	mesh_instance.material_override = config.terrain_material
 	mesh_instance.material_override.set_meta("type", "terrain")
-	
+
 	var shape = ConcavePolygonShape3D.new()
 	shape.set_faces(mesh_data.get_faces())
 	collision_shape.shape = shape

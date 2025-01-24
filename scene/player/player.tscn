@@ -41,8 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_02uxe")
 
 [node name="StepCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618207, 0)
-enabled = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618, 0)
 shape = SubResource("CylinderShape3D_j4sn8")
 debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 

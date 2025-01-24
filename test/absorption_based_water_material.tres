@@ -1,0 +1,74 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://d23orv5be5and"]
+
+[ext_resource type="Shader" uid="uid://dcqjb5a06d6tu" path="res://shader/absorption_water.gdshader" id="1_yuogx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wfbcp"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_57i8q"]
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.3
+noise = SubResource("FastNoiseLite_wfbcp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hbo4u"]
+frequency = 0.0278
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wfbcp"]
+seamless = true
+noise = SubResource("FastNoiseLite_hbo4u")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_57i8q"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ydona"]
+noise = SubResource("FastNoiseLite_57i8q")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fg56f"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hbo4u"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_fg56f")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yuogx")
+shader_parameter/absorption_color = Color(1, 0.35, 0, 1)
+shader_parameter/fresnel_radius = 2.0
+shader_parameter/fresnel_color = Color(0, 0.57, 0.72, 1)
+shader_parameter/roughness = 0.15
+shader_parameter/specular = 0.25
+shader_parameter/depth_distance = 7.3
+shader_parameter/beers_law = 4.5
+shader_parameter/displacement_strength = 0.1
+shader_parameter/displacement_scroll_speed = 0.1
+shader_parameter/displacement_scroll_offset = Vector2(-0.2, 0.3)
+shader_parameter/displacement_scale_offset = 0.5
+shader_parameter/displacement_scale = Vector2(0.04, 0.04)
+shader_parameter/displacement_texture = SubResource("NoiseTexture2D_57i8q")
+shader_parameter/edge_thickness = 0.068
+shader_parameter/edge_speed = 0.35
+shader_parameter/edge_noise_scale = Vector2(0.4, 0.4)
+shader_parameter/edge_noise = SubResource("NoiseTexture2D_wfbcp")
+shader_parameter/edge_ramp = SubResource("NoiseTexture2D_ydona")
+shader_parameter/influence_size = 1.8
+shader_parameter/player_wave_frequenzy = 20.0
+shader_parameter/player_wave_speed = 4.4
+shader_parameter/caustic_size = 2.0
+shader_parameter/caustic_range = 40.0
+shader_parameter/caustic_strength = 0.08
+shader_parameter/ssr_mix_strength = 0.65
+shader_parameter/ssr_travel = 300.0
+shader_parameter/ssr_resolution_near = 0.313
+shader_parameter/ssr_resolution_far = 0.001
+shader_parameter/ssr_tolerance = 1.0
+shader_parameter/refraction_strength = 0.43
+shader_parameter/normal_map_strength = 1.0
+shader_parameter/scroll_speed = 0.1
+shader_parameter/scroll_offset = Vector2(0.1, -0.3)
+shader_parameter/scale_offset = 0.5
+shader_parameter/normal_map_scale = Vector2(0.1, 0.1)
+shader_parameter/normal_map = SubResource("NoiseTexture2D_hbo4u")
+shader_parameter/wind_intensity = 0.1
+shader_parameter/wind_direction = Vector3(0.01, 0.01, 0.01)

@@ -38,6 +38,10 @@ ItemRegistry="*res://manager/item_registry.gd"
 
 gdscript/warnings/integer_division=0
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
