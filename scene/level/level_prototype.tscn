@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvqhhuwslf5hx"]
 
-[ext_resource type="Shader" path="res://shader/outline.gdshader" id="2_53irq"]
+[ext_resource type="Shader" uid="uid://2h5kausqyygm" path="res://shader/outline.gdshader" id="2_53irq"]
 [ext_resource type="Material" uid="uid://ddatkkw8dvntg" path="res://data/materials/level_prototype.tres" id="2_jwx53"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g0jbb"]

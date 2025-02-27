@@ -47,4 +47,3 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_6mtot")
-debug_color = Color(0, 0.6, 0.7, 0.42)

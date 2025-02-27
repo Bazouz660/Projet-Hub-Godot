@@ -1,0 +1,12 @@
+[gd_resource type="FastNoiseLite" load_steps=0 format=3 uid="uid://j6gpi4ikn3pl"]
+
+[resource]
+frequency = 0.0038
+fractal_type = 2
+fractal_octaves = 1
+fractal_ping_pong_strength = 1.325
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_frequency = 0.01
+domain_warp_fractal_octaves = 3
+domain_warp_fractal_lacunarity = 2.0

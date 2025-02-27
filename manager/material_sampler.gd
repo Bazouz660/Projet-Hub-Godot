@@ -20,7 +20,7 @@ signal surface_detected(info: Dictionary)
 func _ready() -> void:
 	# Create internal RayCast3D
 	_ray_cast = RayCast3D.new()
-	_ray_cast.target_position = Vector3(0, -detection_distance, 0)
+	_ray_cast.target_position = Vector3(0, - detection_distance, 0)
 	add_child(_ray_cast)
 
 	# Add exlusion mask for the target node
@@ -66,7 +66,8 @@ func _get_surface_info(material: Material, mesh_instance: MeshInstance3D, collis
 		type = material.get_meta("type")
 		#print("Material type: ", type)
 		if type == "terrain":
-			type = TerrainSystem.get_biome_material()
+			type = "Unknown"
+			#type = TerrainSystem.get_biome_material()
 	else:
 		type = "Unknown"
 		#print("Material type: Unknown")

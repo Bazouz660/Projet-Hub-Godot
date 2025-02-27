@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cp07yec0ykt7j"]
+
+[ext_resource type="Shader" uid="uid://rvf12cwv54iq" path="res://shader/terrain.gdshader" id="1_urifp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_urifp")
+shader_parameter/biome_colors = null
+shader_parameter/height_ranges = null
+shader_parameter/humidity_ranges = null
+shader_parameter/temperature_ranges = null
+shader_parameter/difficulty_ranges = null
+shader_parameter/biome_count = null
+shader_parameter/max_height = null
+shader_parameter/min_height = null

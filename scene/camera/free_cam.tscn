@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bisb4lyly214g"]
+
+[ext_resource type="Script" uid="uid://d1h53rhqi551o" path="res://scene/camera/free_cam.gd" id="1_mmlyg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mmlyg"]
+
+[node name="FreeCam" type="CharacterBody3D"]
+script = ExtResource("1_mmlyg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_mmlyg")
+disabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]

@@ -1,15 +1,127 @@
-[gd_resource type="Resource" script_class="TerrainConfig" load_steps=11 format=3 uid="uid://cokasmcn0l1oi"]
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=26 format=3 uid="uid://cokasmcn0l1oi"]
 
 [ext_resource type="Texture2D" uid="uid://2ywa2csvy6ou" path="res://test/biome_noise.tres" id="1_2upir"]
-[ext_resource type="Script" uid="uid://dtg48ni4dxwdv" path="res://test/terrain/terrain_config.gd" id="2_21cop"]
-[ext_resource type="Script" uid="uid://fc3alctgfi38" path="res://test/terrain/feature_definition.gd" id="2_34bvf"]
-[ext_resource type="Resource" uid="uid://cahg0md754q0o" path="res://test/terrain/features/forest_grass.tres" id="3_bqi6h"]
+[ext_resource type="Script" path="res://test/terrain/terrain_config.gd" id="2_21cop"]
+[ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_34bvf"]
 [ext_resource type="Material" uid="uid://cpsqba08sf7if" path="res://test/terrain_material.tres" id="3_snsk4"]
+[ext_resource type="PackedScene" uid="uid://cr4g71mimy1nh" path="res://scene/level/foliage/tree.tscn" id="3_t1iov"]
 [ext_resource type="Material" uid="uid://ctixvytfgub33" path="res://test/Stylized_Water.material" id="4_6f4v6"]
-[ext_resource type="Resource" uid="uid://jvu0k40ighim" path="res://test/terrain/features/rocks.tres" id="4_l1au3"]
-[ext_resource type="Resource" uid="uid://c6jcs60rvmuex" path="res://test/terrain/features/forest_wheat.tres" id="5_yerqh"]
-[ext_resource type="Resource" uid="uid://dajrd508a0aid" path="res://test/terrain/features/forest_trees.tres" id="6_0f5bs"]
-[ext_resource type="Resource" uid="uid://g1mn583itdta" path="res://test/terrain/features/plains_grass.tres" id="7_s21ai"]
+[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/grass.tres" id="4_ww1vs"]
+[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="5_qpm2x"]
+[ext_resource type="Texture2D" uid="uid://c2fqujuastn6o" path="res://asset/texture/foliage/grass_blade.png" id="6_v17rx"]
+[ext_resource type="PackedScene" uid="uid://dynpad00mn05q" path="res://test/rock_1.tscn" id="7_734jd"]
+[ext_resource type="PackedScene" uid="uid://bqrmje6bgidxj" path="res://test/rock_2.tscn" id="8_elcdp"]
+[ext_resource type="PackedScene" uid="uid://bp5peb788j1tj" path="res://test/rock_3.tscn" id="9_8qkej"]
+[ext_resource type="PackedScene" uid="uid://d0n7y1ii0vs0j" path="res://test/rock_4.tscn" id="10_g76sq"]
+[ext_resource type="PackedScene" uid="uid://cq4h71va8685u" path="res://test/rock_5.tscn" id="11_i184w"]
+[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/wheat.tres" id="12_or6oh"]
+
+[sub_resource type="Resource" id="Resource_g07t8"]
+script = ExtResource("2_34bvf")
+name = "forest_trees"
+type = 1
+packed_scenes = Array[PackedScene]([ExtResource("3_t1iov")])
+cast_shadow = true
+biome_ranges = Array[Vector2]([Vector2(0.05, 0.3)])
+elevation_range = Vector2(-10, 100)
+density = 5
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 2.0
+noise_threshold = 0.0
+custom_data = {}
+
+[sub_resource type="Resource" id="Resource_1vvn0"]
+script = ExtResource("2_34bvf")
+name = "forest_grass"
+type = 0
+mesh = ExtResource("4_ww1vs")
+packed_scenes = Array[PackedScene]([])
+cast_shadow = false
+biome_ranges = Array[Vector2]([Vector2(0.05, 0.3)])
+elevation_range = Vector2(-10, 100)
+density = 1000
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 0.1
+noise_threshold = 0.0
+custom_data = {}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uvk1w"]
+noise = SubResource("FastNoiseLite_gte14")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lgvl8"]
+render_priority = 0
+shader = ExtResource("5_qpm2x")
+shader_parameter/albedo = Color(0.494451, 0.681392, 0.282821, 1)
+shader_parameter/texture_albedo = ExtResource("6_v17rx")
+shader_parameter/backlight = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/wind_strength = 0.3
+shader_parameter/wind_speed = 2.0
+shader_parameter/wind_scale = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
+shader_parameter/noise_scale = 10.0
+shader_parameter/player_influence_radius = 2.0
+shader_parameter/player_influence_strength = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_mc16r"]
+material = SubResource("ShaderMaterial_lgvl8")
+center_offset = Vector3(0, 0.5, 0)
+
+[sub_resource type="Resource" id="Resource_3gwrk"]
+script = ExtResource("2_34bvf")
+name = "plains_grass"
+type = 0
+mesh = SubResource("QuadMesh_mc16r")
+packed_scenes = Array[PackedScene]([])
+cast_shadow = false
+biome_ranges = Array[Vector2]([Vector2(0.01, 0.05)])
+elevation_range = Vector2(-10, 100)
+density = 1000
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 0.1
+noise_threshold = 0.0
+custom_data = {}
+
+[sub_resource type="Resource" id="Resource_f76eh"]
+script = ExtResource("2_34bvf")
+name = "rocks"
+type = 1
+packed_scenes = Array[PackedScene]([ExtResource("7_734jd"), ExtResource("8_elcdp"), ExtResource("9_8qkej"), ExtResource("10_g76sq"), ExtResource("11_i184w")])
+cast_shadow = true
+biome_ranges = Array[Vector2]([Vector2(0.3, 1), Vector2(-1, 0.05)])
+elevation_range = Vector2(-100, 100)
+density = 2
+follow_normal = true
+scale_range = Vector2(1, 1)
+spacing = 1.0
+noise_threshold = 0.0
+custom_data = {}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xomn7"]
+frequency = 0.0424
+
+[sub_resource type="Resource" id="Resource_50erc"]
+script = ExtResource("2_34bvf")
+name = "forest_wheat"
+type = 0
+mesh = ExtResource("12_or6oh")
+packed_scenes = Array[PackedScene]([])
+cast_shadow = false
+biome_ranges = Array[Vector2]([Vector2(0.05, 0.3)])
+elevation_range = Vector2(-10, 100)
+density = 500
+follow_normal = false
+scale_range = Vector2(0.8, 1.2)
+spacing = 0.2
+noise = SubResource("FastNoiseLite_xomn7")
+noise_threshold = 0.35
+custom_data = {}
 
 [resource]
 script = ExtResource("2_21cop")
@@ -28,6 +140,6 @@ beach_threshold = 0.01
 terrain_material = ExtResource("3_snsk4")
 water_material = ExtResource("4_6f4v6")
 enable_features = true
-features = Array[ExtResource("2_34bvf")]([ExtResource("6_0f5bs"), ExtResource("3_bqi6h"), ExtResource("7_s21ai"), ExtResource("4_l1au3"), ExtResource("5_yerqh")])
+features = Array[ExtResource("2_34bvf")]([SubResource("Resource_g07t8"), SubResource("Resource_1vvn0"), SubResource("Resource_3gwrk"), SubResource("Resource_f76eh"), SubResource("Resource_50erc")])
 use_threading = true
 max_concurrent_jobs = 4

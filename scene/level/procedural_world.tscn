@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctpjj1btn02uw"]
+
+[ext_resource type="Script" uid="uid://cwbwd3qhklfgl" path="res://scene/terrain/terrain_generator.gd" id="1_0pd6d"]
+[ext_resource type="Resource" uid="uid://th58pjy54nio" path="res://data/terrain/terrain_config.tres" id="2_2ogqt"]
+[ext_resource type="Script" uid="uid://b2vi4cvouoiat" path="res://scene/terrain/structure_manager.gd" id="3_4qyrc"]
+[ext_resource type="Script" uid="uid://b85wwc428gk3r" path="res://scene/terrain/debug_region_visualiser.gd" id="4_yorsh"]
+[ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="5_yorsh"]
+
+[node name="ProceduralWorld" type="Node3D" node_paths=PackedStringArray("origin")]
+script = ExtResource("1_0pd6d")
+config = ExtResource("2_2ogqt")
+origin = NodePath("FreeCam")
+
+[node name="StructureManager" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_4qyrc")
+metadata/_custom_type_script = ExtResource("3_4qyrc")
+
+[node name="DebugRegionVisualizer" type="Node3D" parent="." node_paths=PackedStringArray("structure_manager")]
+script = ExtResource("4_yorsh")
+structure_manager = NodePath("../StructureManager")
+metadata/_custom_type_script = ExtResource("4_yorsh")
+
+[node name="FreeCam" parent="." instance=ExtResource("5_yorsh")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.955865, -0.0732456, -0.28453, 0.293807, 0.238296, 0.925685, 0, -0.968427, 0.249298, 0, 11.9687, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 1.0
+offset_bottom = 23.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
