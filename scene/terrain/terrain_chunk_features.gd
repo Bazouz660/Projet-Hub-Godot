@@ -37,6 +37,7 @@ static func _generate_features_positions(chunk: TerrainChunk) -> Dictionary[Vect
 				var world_z = chunk.world_offset_z + (cell_z * TerrainChunk.CELL_SIZE) + chunk.rng.randf() * TerrainChunk.CELL_SIZE
 
 				var vertex_index = vertex_z * chunk.vertex_count + vertex_x
+
 				var corners = PackedInt32Array([
 					chunk.biome_data[vertex_index],
 					chunk.biome_data[vertex_index + 1],

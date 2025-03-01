@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="TerrainConfig" load_steps=31 format=3 uid="uid://th58pjy54nio"]
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=34 format=3 uid="uid://th58pjy54nio"]
 
 [ext_resource type="Script" uid="uid://djvm267dea2ne" path="res://scene/terrain/biome.gd" id="1_20jv2"]
 [ext_resource type="Script" uid="uid://coo0t5a7ochux" path="res://scene/terrain/terrain_config.gd" id="2_4iod4"]
 [ext_resource type="Material" uid="uid://cgcisn7qpmd63" path="res://data/terrain/materials/chunk_borders_material.tres" id="2_ctkyc"]
 [ext_resource type="Script" uid="uid://dswyytmpuapp1" path="res://scene/terrain/feature_gen_params.gd" id="2_pkeq4"]
 [ext_resource type="FastNoiseLite" uid="uid://c35p6yt5l8dyi" path="res://data/terrain/noise/continentalness.tres" id="2_qqxad"]
+[ext_resource type="Resource" uid="uid://bdar2j7nxtoxo" path="res://data/terrain/features/grass.tres" id="3_ex04j"]
 [ext_resource type="FastNoiseLite" uid="uid://b8hvxyg48atci" path="res://data/terrain/noise/difficulty.tres" id="3_yexoa"]
 [ext_resource type="FastNoiseLite" uid="uid://bpocydun56avg" path="res://data/terrain/noise/erosion.tres" id="4_ctkyc"]
 [ext_resource type="Curve" uid="uid://bfu6cj3xrvb0d" path="res://data/terrain/noise/curves/continentalness_curve.tres" id="4_pa5ko"]
@@ -20,7 +21,7 @@
 script = ExtResource("1_20jv2")
 label = "Ocean"
 color = Color(0.870588, 0.721569, 0.529412, 1)
-height_range = Vector2(-30, 5)
+height_range = Vector2(-30, 4)
 humidity_range = Vector2(-1, 1)
 temperature_range = Vector2(-1, 1)
 difficulty_range = Vector2(-1, 1)
@@ -38,6 +39,12 @@ difficulty_range = Vector2(-1, 1)
 features = Array[ExtResource("2_pkeq4")]([])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
+[sub_resource type="Resource" id="Resource_foxm2"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_ex04j")
+density = 100.0
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_akk4h"]
 script = ExtResource("1_20jv2")
 label = "Grasslands"
@@ -46,7 +53,7 @@ height_range = Vector2(6, 15)
 humidity_range = Vector2(-0.2, 0.3)
 temperature_range = Vector2(-0.2, 0.3)
 difficulty_range = Vector2(-1, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_foxm2")])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_t8xjf"]
@@ -60,6 +67,12 @@ difficulty_range = Vector2(-1, 1)
 features = Array[ExtResource("2_pkeq4")]([])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
+[sub_resource type="Resource" id="Resource_1n2x8"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_ex04j")
+density = 100.0
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_nfl70"]
 script = ExtResource("1_20jv2")
 label = "Taiga Forest"
@@ -68,8 +81,14 @@ height_range = Vector2(10, 25)
 humidity_range = Vector2(0.1, 0.4)
 temperature_range = Vector2(-0.8, -0.4)
 difficulty_range = Vector2(-1, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_1n2x8")])
 metadata/_custom_type_script = ExtResource("1_20jv2")
+
+[sub_resource type="Resource" id="Resource_sj1ts"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_ex04j")
+density = 100.0
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
 [sub_resource type="Resource" id="Resource_hywid"]
 script = ExtResource("1_20jv2")
@@ -79,7 +98,7 @@ height_range = Vector2(8, 20)
 humidity_range = Vector2(0.3, 0.6)
 temperature_range = Vector2(-0.2, 0.2)
 difficulty_range = Vector2(-1, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_sj1ts")])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_6by17"]
@@ -170,20 +189,15 @@ difficulty_range = Vector2(-1, 1)
 features = Array[ExtResource("2_pkeq4")]([])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_pkeq4"]
-seed = 26625
-frequency = 0.005
-
 [resource]
 script = ExtResource("2_4iod4")
 chunk_size = 16
 vertex_per_meter = 1
-view_distance = 30
-update_rate = 1.0
+view_distance = 15
+update_rate = 0.5
 world_seed = 215
 max_threads = 4
 height_scale = 1.0
-large_scale_noise = SubResource("FastNoiseLite_pkeq4")
 continentalness = ExtResource("2_qqxad")
 continentalness_curve = ExtResource("4_pa5ko")
 peaks_and_valeys = ExtResource("7_sc5gb")
@@ -199,4 +213,4 @@ show_chunk_borders = false
 water_material = ExtResource("11_xy6xd")
 sea_level = 5.0
 biomes = Array[ExtResource("1_20jv2")]([SubResource("Resource_ex04j"), SubResource("Resource_pkeq4"), SubResource("Resource_akk4h"), SubResource("Resource_t8xjf"), SubResource("Resource_nfl70"), SubResource("Resource_hywid"), SubResource("Resource_6by17"), SubResource("Resource_kfufk"), SubResource("Resource_n5dfa"), SubResource("Resource_xhsyr"), SubResource("Resource_q8k6g"), SubResource("Resource_ujs85"), SubResource("Resource_5juvr"), SubResource("Resource_wdbo7")])
-metadata/_custom_type_script = ExtResource("2_4iod4")
+metadata/_custom_type_script = "uid://coo0t5a7ochux"

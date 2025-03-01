@@ -1,10 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctpjj1btn02uw"]
+[gd_scene load_steps=11 format=3 uid="uid://ctpjj1btn02uw"]
 
 [ext_resource type="Script" uid="uid://cwbwd3qhklfgl" path="res://scene/terrain/terrain_generator.gd" id="1_0pd6d"]
 [ext_resource type="Resource" uid="uid://th58pjy54nio" path="res://data/terrain/terrain_config.tres" id="2_2ogqt"]
 [ext_resource type="Script" uid="uid://b2vi4cvouoiat" path="res://scene/terrain/structure_manager.gd" id="3_4qyrc"]
+[ext_resource type="Script" uid="uid://c3qd3w3gel8pu" path="res://scene/terrain/structure_gen_params.gd" id="4_ajdhx"]
 [ext_resource type="Script" uid="uid://b85wwc428gk3r" path="res://scene/terrain/debug_region_visualiser.gd" id="4_yorsh"]
+[ext_resource type="PackedScene" uid="uid://dqd6qql3fwmmx" path="res://data/terrain/structures/house.tscn" id="5_5s2im"]
 [ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="5_yorsh"]
+[ext_resource type="Resource" uid="uid://cp0yf7y0l3elv" path="res://data/terrain/structures/house_data.tres" id="6_falob"]
+[ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="9_5s2im"]
+
+[sub_resource type="Resource" id="Resource_ui6ee"]
+script = ExtResource("4_ajdhx")
+structure = ExtResource("5_5s2im")
+structure_data = ExtResource("6_falob")
+difficulty_min = -1.0
+difficulty_max = 1.0
+loot_rarity = 0.0
+loot_amount = 0
+danger_level = 0
+density = 0.1
+valid_biomes = Array[String](["Grasslands"])
+metadata/_custom_type_script = "uid://c3qd3w3gel8pu"
 
 [node name="ProceduralWorld" type="Node3D" node_paths=PackedStringArray("origin")]
 script = ExtResource("1_0pd6d")
@@ -14,17 +31,17 @@ origin = NodePath("FreeCam")
 [node name="StructureManager" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_4qyrc")
-metadata/_custom_type_script = ExtResource("3_4qyrc")
+structure_params = Array[ExtResource("4_ajdhx")]([SubResource("Resource_ui6ee")])
+metadata/_custom_type_script = "uid://b2vi4cvouoiat"
 
 [node name="DebugRegionVisualizer" type="Node3D" parent="." node_paths=PackedStringArray("structure_manager")]
 script = ExtResource("4_yorsh")
 structure_manager = NodePath("../StructureManager")
-metadata/_custom_type_script = ExtResource("4_yorsh")
+metadata/_custom_type_script = "uid://b85wwc428gk3r"
 
 [node name="FreeCam" parent="." instance=ExtResource("5_yorsh")]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.955865, -0.0732456, -0.28453, 0.293807, 0.238296, 0.925685, 0, -0.968427, 0.249298, 0, 11.9687, 0)
+BASE_SPEED = 50.0
+SPRINT_SPEED = 100.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_right = 1.0
@@ -40,3 +57,5 @@ theme_override_constants/margin_bottom = 10
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="SkyLight" parent="." instance=ExtResource("9_5s2im")]

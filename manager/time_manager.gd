@@ -10,7 +10,7 @@ var time_scale: float = 1.0:
 		time_scale_changed.emit(time_scale)
 		time_changed.emit(time)
 
-var time: float = 23.0
+var time: float = 10.0
 var _paused: bool = true
 
 const _SECONDS_PER_HOUR: float = 60.0
@@ -19,11 +19,9 @@ const DAY_START = 6
 const NIGHT_START = 18
 
 func _ready() -> void:
-
 	await MultiplayerManager.is_host_changed
 
 	if MultiplayerManager.is_host:
-
 		MultiplayerManager.session_active.connect(func():
 				time_changed.connect(func(p_time):
 					rpc("_peers_sync_time", p_time)))

@@ -12,8 +12,6 @@ signal debug_toggled(state: bool)
 
 @export var height_scale: float = 1.0
 
-@export var large_scale_noise: FastNoiseLite
-
 @export var continentalness: FastNoiseLite
 @export var continentalness_curve: Curve
 
@@ -48,3 +46,9 @@ func setup():
 	humidity.seed = world_seed + 3
 	temperature.seed = world_seed + 4
 	difficulty.seed = world_seed + 5
+
+	_generate_biomes_ids()
+
+func _generate_biomes_ids():
+	for i in range(biomes.size()):
+		biomes[i].id = i

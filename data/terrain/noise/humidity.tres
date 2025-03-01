@@ -1,5 +1,8 @@
-[gd_resource type="FastNoiseLite" load_steps=0 format=3 uid="uid://bglsf8xewapix"]
+[gd_resource type="FastNoiseLite" format=3 uid="uid://bglsf8xewapix"]
 
 [resource]
-frequency = 0.004
+frequency = 0.001
 fractal_octaves = 3
+domain_warp_enabled = true
+domain_warp_amplitude = 10.0
+domain_warp_frequency = 0.005
