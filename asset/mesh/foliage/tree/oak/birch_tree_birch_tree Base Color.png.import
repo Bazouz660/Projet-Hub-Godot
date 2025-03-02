@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bk6dp4f5ecv1n"
-path.s3tc="res://.godot/imported/birch_tree_birch_tree Base Color.png-ea7bd1ca5805747c33e4326fb40d9a10.s3tc.ctex"
+path.s3tc="res://.godot/imported/birch_tree_birch_tree Base Color.png-e3c5d7e1efbfed51bcc679521cd0e1fe.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://asset/mesh/oak_tree/birch_tree_birch_tree Base Color.png"
-dest_files=["res://.godot/imported/birch_tree_birch_tree Base Color.png-ea7bd1ca5805747c33e4326fb40d9a10.s3tc.ctex"]
+source_file="res://asset/mesh/foliage/tree/oak/birch_tree_birch_tree Base Color.png"
+dest_files=["res://.godot/imported/birch_tree_birch_tree Base Color.png-e3c5d7e1efbfed51bcc679521cd0e1fe.s3tc.ctex"]
 
 [params]
 

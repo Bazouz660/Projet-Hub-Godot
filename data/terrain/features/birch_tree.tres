@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Feature" load_steps=3 format=3 uid="uid://ceh3t70yrja4j"]
 
-[ext_resource type="PackedScene" uid="uid://dwhl5jkqy46hf" path="res://scene/level/foliage/birch_tree/birch_tree.tscn" id="1_014jf"]
+[ext_resource type="PackedScene" uid="uid://dwhl5jkqy46hf" path="res://scene/level/foliage/tree/birch/birch_tree.tscn" id="1_014jf"]
 [ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="2_jxcm3"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Feature" load_steps=3 format=3 uid="uid://646jj32smik8"]
 
-[ext_resource type="PackedScene" uid="uid://ctyk3a6odu2gc" path="res://scene/level/foliage/oak_tree/oak_tree.tscn" id="1_i87ba"]
+[ext_resource type="PackedScene" uid="uid://ctyk3a6odu2gc" path="res://scene/level/foliage/tree/oak/oak_tree.tscn" id="1_i87ba"]
 [ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="2_gr8os"]
 
 [resource]

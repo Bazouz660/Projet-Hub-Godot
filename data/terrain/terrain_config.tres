@@ -17,7 +17,7 @@
 [ext_resource type="FastNoiseLite" uid="uid://bglsf8xewapix" path="res://data/terrain/noise/humidity.tres" id="5_xy6xd"]
 [ext_resource type="Resource" uid="uid://umcpfal4s6qs" path="res://data/terrain/features/wheat.tres" id="6_nfl70"]
 [ext_resource type="Material" uid="uid://cp07yec0ykt7j" path="res://data/terrain/materials/terrain_material.tres" id="6_yexoa"]
-[ext_resource type="QuadMesh" uid="uid://d0f4k5yctdlyq" path="res://asset/mesh/flowers.tres" id="7_6by17"]
+[ext_resource type="QuadMesh" uid="uid://d0f4k5yctdlyq" path="res://asset/mesh/foliage/flower/poppy.tres" id="7_6by17"]
 [ext_resource type="Curve" uid="uid://ra7w6eywa350" path="res://data/terrain/noise/curves/erosion_curve.tres" id="7_pkeq4"]
 [ext_resource type="FastNoiseLite" uid="uid://j6gpi4ikn3pl" path="res://data/terrain/noise/peaks_and_valleys.tres" id="7_sc5gb"]
 [ext_resource type="FastNoiseLite" uid="uid://neh0047ipvn2" path="res://data/terrain/noise/temperature.tres" id="8_p42iu"]
