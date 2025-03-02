@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dxip5wf6orgai"]
 
 [ext_resource type="Shader" uid="uid://t0gsq4tqj6qa" path="res://shader/billboard_sway.gdshader" id="1_sx1oy"]
-[ext_resource type="Texture2D" uid="uid://c2fqujuastn6o" path="res://asset/texture/foliage/grass_blade.png" id="2_36huk"]
+[ext_resource type="Texture2D" uid="uid://4s5r8pn36cvo" path="res://asset/texture/foliage/flowers.png" id="2_c50ns"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gte14"]
 
@@ -11,15 +11,15 @@ noise = SubResource("FastNoiseLite_gte14")
 [resource]
 render_priority = 0
 shader = ExtResource("1_sx1oy")
-shader_parameter/albedo = Color(0.341176, 0.478431, 0.184314, 1)
-shader_parameter/texture_albedo = ExtResource("2_36huk")
+shader_parameter/albedo = Color(0.847059, 0.25098, 0.25098, 1)
+shader_parameter/texture_albedo = ExtResource("2_c50ns")
 shader_parameter/backlight = Color(1, 1, 1, 1)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/wind_strength = 0.3
-shader_parameter/wind_speed = 2.0
-shader_parameter/wind_scale = 10.0
+shader_parameter/wind_strength = 0.1
+shader_parameter/wind_speed = 1.0
+shader_parameter/wind_scale = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_uvk1w")
-shader_parameter/noise_scale = 10.0
+shader_parameter/noise_scale = 1.0
 shader_parameter/player_influence_radius = 2.0
 shader_parameter/player_influence_strength = 0.5
