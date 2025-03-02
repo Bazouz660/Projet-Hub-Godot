@@ -12,7 +12,7 @@ enum FeatureType {
 @export var type: FeatureType = FeatureType.INSTANCE
 
 @export_subgroup("Instance")
-@export var scene: PackedScene
+@export var scenes: Array[PackedScene]
 
 @export_subgroup("Multimesh")
 @export var mesh: Mesh
@@ -21,7 +21,7 @@ enum FeatureType {
 @export var shader_parameter_color_name: String = "albedo"
 
 @export_group("Randomization")
-@export var random_scale: Vector2 = Vector2(1, 1)
-@export var random_rotation: Vector2
-@export var random_offset: Vector3
-@export var follow_normals: bool
+@export var random_scale: Vector2 = Vector2(0.9, 1.1)
+@export var random_rotation: Vector2 = Vector2(0, 360)
+@export var random_offset: Vector3 = Vector3(0.5, 0, 0.5)
+@export var follow_normals: bool = false

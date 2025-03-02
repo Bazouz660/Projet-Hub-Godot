@@ -1,9 +1,12 @@
-[gd_resource type="FastNoiseLite" load_steps=0 format=3 uid="uid://j6gpi4ikn3pl"]
+[gd_resource type="FastNoiseLite" format=3 uid="uid://j6gpi4ikn3pl"]
 
 [resource]
-frequency = 0.0038
+noise_type = 4
+frequency = 0.0117
 fractal_type = 2
-fractal_octaves = 1
+fractal_octaves = 3
+fractal_gain = 0.405
+fractal_weighted_strength = 1.0
 fractal_ping_pong_strength = 1.325
 domain_warp_enabled = true
 domain_warp_type = 2

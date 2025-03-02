@@ -131,7 +131,8 @@ static func _instantiate_instances(chunk: TerrainChunk, feature: Feature, positi
 		_instantiate_feature(chunk, feature, pos)
 
 static func _instantiate_feature(chunk: TerrainChunk, feature: Feature, p_position: Vector3) -> void:
-	var instance = feature.scene.instantiate() as Node3D
+	var scene = feature.scenes[chunk.rng.randi() % feature.scenes.size()]
+	var instance = scene.instantiate() as Node3D
 	chunk.add_child(instance)
 	instance.global_position = p_position
 	instance.global_rotation = Vector3(0.0, deg_to_rad(chunk._funny_randf(feature.random_rotation.x, feature.random_rotation.y)), 0.0)

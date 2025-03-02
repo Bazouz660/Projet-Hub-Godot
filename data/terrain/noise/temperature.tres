@@ -2,7 +2,7 @@
 
 [resource]
 noise_type = 0
-frequency = 0.001
+frequency = 0.002
 domain_warp_enabled = true
 domain_warp_amplitude = 10.0
 domain_warp_frequency = 0.005

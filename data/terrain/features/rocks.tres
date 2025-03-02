@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Feature" load_steps=7 format=3 uid="uid://djgcqin2qr81"]
+
+[ext_resource type="PackedScene" uid="uid://dynpad00mn05q" path="res://test/rock_1.tscn" id="1_h7dwi"]
+[ext_resource type="PackedScene" uid="uid://bqrmje6bgidxj" path="res://test/rock_2.tscn" id="2_r52sa"]
+[ext_resource type="PackedScene" uid="uid://bp5peb788j1tj" path="res://test/rock_3.tscn" id="3_q3n2w"]
+[ext_resource type="PackedScene" uid="uid://d0n7y1ii0vs0j" path="res://test/rock_4.tscn" id="4_l1ooj"]
+[ext_resource type="PackedScene" uid="uid://cq4h71va8685u" path="res://test/rock_5.tscn" id="5_enn6v"]
+[ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="6_f6f3b"]
+
+[resource]
+script = ExtResource("6_f6f3b")
+label = "Rocks"
+type = 0
+scenes = Array[PackedScene]([ExtResource("1_h7dwi"), ExtResource("2_r52sa"), ExtResource("3_q3n2w"), ExtResource("3_q3n2w"), ExtResource("4_l1ooj"), ExtResource("5_enn6v")])
+cast_shadow = 0
+receive_biome_color = false
+shader_parameter_color_name = "albedo"
+random_scale = Vector2(0.9, 1.1)
+random_rotation = Vector2(0, 360)
+random_offset = Vector3(0.5, 0, 0.5)
+follow_normals = true
+metadata/_custom_type_script = "uid://b17kgm5mvh88b"

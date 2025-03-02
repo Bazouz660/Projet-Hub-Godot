@@ -33,7 +33,7 @@ func _generate_footprint_mesh():
 
 func _generate_data(_p = ""):
     var aabb := mesh.global_transform * mesh.get_aabb()
-    aabb.grow(2.0)
+    aabb = aabb.grow(1.0)
     data = StructureData.new()
     data.size = aabb.size
     data.position = aabb.position

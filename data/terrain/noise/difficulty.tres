@@ -2,5 +2,5 @@
 
 [resource]
 noise_type = 4
-frequency = 0.001
+frequency = 0.002
 fractal_octaves = 1

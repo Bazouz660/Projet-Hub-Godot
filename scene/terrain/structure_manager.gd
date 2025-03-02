@@ -17,7 +17,7 @@ signal structure_generated(structure: Structure)
 func _ready():
 	# Create a timer to update structure visibility, similar to chunk loading
 	timer = Timer.new()
-	timer.wait_time = 1.0 # Update once per second
+	timer.wait_time = 0.5 # Update once per second
 	timer.one_shot = false
 	timer.timeout.connect(_update_structures)
 	add_child(timer)

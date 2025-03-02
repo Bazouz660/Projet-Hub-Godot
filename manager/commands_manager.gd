@@ -21,6 +21,7 @@ func register_commands():
 	Console.add_command("time_scale", set_time_scale, ["scale"], 1, "Sets the time scale.")
 	Console.add_command("players_list", list_players, [], 0, "Lists all players.")
 	Console.add_command("tp", tp, ["player_to", "player_from"], 1, "Teleports to a player.")
+	Console.add_command("tp_position", tp_to_position, ["x", "y", "z"], 3, "Teleports to a position.")
 	Console.add_command("give", give, ["player_id", "item_id", "amount"], 2, "Gives an item to a player.")
 	Console.add_command("kick", kick, ["player_id"], 1, "Kicks a player.")
 	Console.add_command("set_health", _set_health, ["player_id", "health"], 2, "Sets the health of a player.")
@@ -28,7 +29,6 @@ func register_commands():
 	print("Commands registered.")
 
 func set_time(time: String) -> void:
-
 	if time == "day":
 		time = "9"
 	elif time == "night":
@@ -130,3 +130,21 @@ func _set_health(player_id: String, health: String) -> void:
 		return
 	player.resources.set_health(health.to_float())
 	Console.print_line("Set health of " + player_id + " to " + health + ".")
+
+func tp_to_position(x: String, y: String, z: String) -> void:
+	if (not x.is_valid_float() and x != "~~") or (not y.is_valid_float() and y != "~~") or (not z.is_valid_float() and z != "~~"):
+		Console.print_error("Invalid position. It must be a float.")
+		return
+
+	if x == "~~":
+		x = str(MultiplayerManager.active_player.global_position.x)
+
+	if y == "~~":
+		y = str(MultiplayerManager.active_player.global_position.y)
+
+	if z == "~~":
+		z = str(MultiplayerManager.active_player.global_position.z)
+
+	var position = Vector3(x.to_float(), y.to_float(), z.to_float())
+	MultiplayerManager.players.get(str(MultiplayerManager.active_player_id)).rpc_set_position.rpc(position)
+	Console.print_line("Teleported to position: " + str(position) + ".")

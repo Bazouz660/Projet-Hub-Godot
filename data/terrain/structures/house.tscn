@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://dqd6qql3fwmmx"]
 
 [ext_resource type="Script" uid="uid://bb0nwmnvavlcq" path="res://scene/terrain/structure.gd" id="1_8k276"]
-[ext_resource type="Resource" uid="uid://cp0yf7y0l3elv" path="res://data/terrain/structures/house_data.tres" id="2_4cjvi"]
+[ext_resource type="Resource" uid="uid://cqna6lm3n1qcj" path="res://data/terrain/structures/house_data.tres" id="2_4cjvi"]
 [ext_resource type="Texture2D" uid="uid://bmamexhmy5pea" path="res://asset/model/building/house_Image_0.png" id="2_i4y2m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ny1e"]
@@ -50,8 +50,10 @@ mesh = NodePath("Mesh")
 data = ExtResource("2_4cjvi")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, -0.0497205, 0)
 mesh = SubResource("ArrayMesh_vxcdu")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, -0.0497205, 0)
 shape = SubResource("ConcavePolygonShape3D_4cjvi")

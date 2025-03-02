@@ -22,16 +22,18 @@ static var player_grid_position: Vector2i = Vector2i(0, 0)
 var last_player_grid_position: Vector2i = Vector2i(0, 0)
 
 func _ready():
-	MultiplayerManager.active_player_loaded.connect(func(_id: int):
-		origin = MultiplayerManager.active_player
-		freecam.disable()
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	)
+	# Register commands
+	_register_commands()
 
 	config.setup()
 	TerrainChunk.set_config(config)
-	structure_manager.view_distance = config.view_distance * config.chunk_size
 	_generate_structure_data()
+
+	# Set the view distance
+	structure_manager.view_distance = config.view_distance * config.chunk_size
+	config.view_distance_changed.connect(func(value: int):
+		structure_manager.view_distance = config.view_distance * config.chunk_size
+	)
 
 
 	config.debug_toggled.connect(_on_toggle_debug_view)
@@ -41,16 +43,59 @@ func _ready():
 	timer.start.call_deferred()
 	add_child(timer)
 
+	MultiplayerManager.active_player_loaded.connect(func(_id: int):
+		origin = MultiplayerManager.active_player
+		freecam.disable()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	)
+
+
+func _register_commands():
+	Console.add_command("locate_biome", locate_biome, ["biome", "teleport"], 1, "Finds the nearest biome of given label. Optionally teleports the player to it.")
+
+func locate_biome(biome_label: String, teleport: String = "false"):
+	if teleport != "" and not Utils.is_valid_bool(teleport):
+		Console.print_error("Invalid teleport value: " + teleport)
+		return
+
+	Console.print_line("Locating biome: " + biome_label)
+	var world_pos = origin.global_transform.origin
+	if not config.biomes_label_index.has(biome_label):
+		Console.print_error("Biome \"" + biome_label + "\" not found.")
+		return
+	var biome := config.biomes_label_index[biome_label]
+
+	# This is a blocking operation, so we run it in a separate thread
+	WorkerThreadPool.add_task(func():
+		var start_time = Time.get_ticks_msec()
+		var pos = TerrainChunkBiome.find_biome_world_position(biome, world_pos.x, world_pos.z, 20, 10000)
+
+		var on_error = func(error: String):
+			Console.print_error(error)
+			return
+
+		if pos == null:
+			on_error.bind("Biome not found, timeout reached.").call_deferred()
+			return
+
+		var end_time = Time.get_ticks_msec()
+		var time_ms = end_time - start_time
+
+		var on_complete = func():
+			Console.print_line("Biome found at: " + str(pos) + " in " + str(time_ms) + "ms")
+			if Utils.string_to_bool(teleport):
+				var heigh_at_pos = TerrainChunk.sample_height(pos.x, pos.z)
+				(Console.console_commands["tp_position"].function as Callable).call(str(pos.x), str(heigh_at_pos + 1), str(pos.z))
+
+		on_complete.call_deferred()
+
+		, true)
+
 func _generate_structure_data():
-	# We no longer pre-generate structures for the whole world
-	# Instead, structures will be generated on-demand as the player explores
-	# This is handled by the structure_manager._ensure_structures_generated method
-	# You can still generate structures for the starting area if desired
 	var starting_region = Vector2(0, 0)
 	structure_manager._generate_structures_for_region(starting_region)
-
-	# Mark the starting region as generated
 	structure_manager.generated_regions[starting_region] = true
+	structure_manager._update_structures()
 
 func _on_toggle_debug_view(state: bool):
 	for chunk in terrain_chunks.values():
@@ -72,8 +117,13 @@ func _process_chunk_queue():
 		_create_chunk(grid_position.x, grid_position.y)
 
 func _create_chunk(x: int, z: int):
+	# S'assurer que les structures sont générées pour cette région avant de créer le chunk
+	var chunk_pos = Vector3(x * config.chunk_size, 0, z * config.chunk_size)
+	structure_manager._ensure_structures_generated(chunk_pos)
+
+
 	var chunk = TerrainChunk.new(Vector2i(x, z))
-	chunk.position = Vector3(x * config.chunk_size, 0, z * config.chunk_size)
+	chunk.position = chunk_pos
 	add_child(chunk)
 	terrain_chunks[chunk.grid_position] = chunk
 	chunk.generate()
@@ -159,11 +209,11 @@ func _sort_positions(a: Vector2i, b: Vector2i) -> int:
 	var delta_b = b - player_grid_position
 	return delta_a.x * delta_a.x + delta_a.y * delta_a.y < delta_b.x * delta_b.x + delta_b.y * delta_b.y
 
-# func _input(event):
-# 	if event is InputEventKey:
-# 		event = event as InputEventKey
-# 		if event.pressed and event.keycode == KEY_ESCAPE:
-# 			get_tree().quit()
+func _input(event):
+	if event is InputEventKey:
+		event = event as InputEventKey
+		if event.pressed and event.keycode == KEY_ESCAPE and Input.is_key_label_pressed(KEY_SHIFT):
+			get_tree().quit()
 
 func _process(_delta):
 	if origin == null:
@@ -178,13 +228,13 @@ func _process(_delta):
 	var label = %Label as Label
 	var world_pos := origin.global_transform.origin
 
-	var continentalness = config.continentalness.get_noise_2d(world_pos.x, world_pos.z)
-	var peaks_and_valeys = config.peaks_and_valeys.get_noise_2d(world_pos.x, world_pos.z)
-	var erosion = config.erosion.get_noise_2d(world_pos.x, world_pos.z)
+	var continentalness = Utils.get_normalized_noise_2d(config.continentalness, world_pos.x, world_pos.z)
+	var peaks_and_valeys = Utils.get_normalized_noise_2d(config.peaks_and_valeys, world_pos.x, world_pos.z)
+	var erosion = Utils.get_normalized_noise_2d(config.erosion, world_pos.x, world_pos.z)
 
-	var humidity = config.humidity.get_noise_2d(world_pos.x, world_pos.z)
-	var temperature = config.temperature.get_noise_2d(world_pos.x, world_pos.z)
-	var difficulty = config.difficulty.get_noise_2d(world_pos.x, world_pos.z)
+	var humidity = Utils.get_normalized_noise_2d(config.humidity, world_pos.x, world_pos.z)
+	var temperature = Utils.get_normalized_noise_2d(config.temperature, world_pos.x, world_pos.z)
+	var difficulty = Utils.get_normalized_noise_2d(config.difficulty, world_pos.x, world_pos.z)
 
 	var height = TerrainChunk.sample_height(world_pos.x, world_pos.z)
 
@@ -212,26 +262,26 @@ func _process(_delta):
 		+"X: " + x_str + "  Y: " + y_str + "  Z: " + z_str + "\n" \
 		+"Biome: " + biome_str
 
-# func _exit_tree():
-# 	print("Max unload time: ", max_unload_time, "ms")
-# 	print("Max load time: ", max_load_time, "ms")
-# 	print("Max refresh queue time: ", max_refresh_queue_time, "ms")
-# 	var generation_time_samples = TerrainChunk.generation_time_samples
+func _exit_tree():
+	print("Max unload time: ", max_unload_time, "ms")
+	print("Max load time: ", max_load_time, "ms")
+	print("Max refresh queue time: ", max_refresh_queue_time, "ms")
+	var generation_time_samples = TerrainChunk.generation_time_samples
 
-# 	var average_generation_time = 0
-# 	var median_generation_time = 0
+	var average_generation_time = 0
+	var median_generation_time = 0
 
-# 	if TerrainChunk.sample_array_filled:
-# 		for sample in generation_time_samples:
-# 			average_generation_time += sample
-# 		average_generation_time /= generation_time_samples.size()
-# 		median_generation_time = generation_time_samples[generation_time_samples.size() / 2]
-# 		print("Average generation time: ", average_generation_time, "ms, samples: ", generation_time_samples.size())
-# 		print("Median generation time: ", median_generation_time, "ms")
-# 	else:
-# 		for sample in range(TerrainChunk.sample_index):
-# 			average_generation_time += generation_time_samples[sample]
-# 		average_generation_time /= TerrainChunk.sample_index
-# 		median_generation_time = generation_time_samples[TerrainChunk.sample_index / 2]
-# 		print("Average generation time: ", average_generation_time, "ms, samples: ", TerrainChunk.sample_index)
-# 		print("Median generation time: ", median_generation_time, "ms")
+	if TerrainChunk.sample_array_filled:
+		for sample in generation_time_samples:
+			average_generation_time += sample
+		average_generation_time /= generation_time_samples.size()
+		median_generation_time = generation_time_samples[generation_time_samples.size() / 2]
+		print("Average generation time: ", average_generation_time, "ms, samples: ", generation_time_samples.size())
+		print("Median generation time: ", median_generation_time, "ms")
+	else:
+		for sample in range(TerrainChunk.sample_index):
+			average_generation_time += generation_time_samples[sample]
+		average_generation_time /= TerrainChunk.sample_index
+		median_generation_time = generation_time_samples[TerrainChunk.sample_index / 2]
+		print("Average generation time: ", average_generation_time, "ms, samples: ", TerrainChunk.sample_index)
+		print("Median generation time: ", median_generation_time, "ms")

@@ -56,21 +56,38 @@ static func _determine_biome(chunk: TerrainChunk, world_x: float, world_z: float
 static func _determine_biome_precise(chunk: TerrainChunk, world_x: float, world_z: float) -> Biome:
 	var config = TerrainChunk.config
 	var height = chunk.get_interpolated_height_at_world_position(Vector3(world_x, 0.0, world_z))
-	var humidity = config.humidity.get_noise_2d(world_x, world_z)
-	var temperature = config.temperature.get_noise_2d(world_x, world_z)
-	var difficulty = config.difficulty.get_noise_2d(world_x, world_z)
+	var humidity = Utils.get_normalized_noise_2d(config.humidity, world_x, world_z)
+	var temperature = Utils.get_normalized_noise_2d(config.temperature, world_x, world_z)
+	var difficulty = Utils.get_normalized_noise_2d(config.difficulty, world_x, world_z)
 	return _get_best_biome(height, humidity, temperature, difficulty)
 
 static func determine_biome(world_x: float, world_z: float) -> Biome:
 	var config = TerrainChunk.config
-	var continentalness = config.continentalness.get_noise_2d(world_x, world_z)
-	var erosion = config.erosion.get_noise_2d(world_x, world_z)
-	var peaks_and_valleys = config.peaks_and_valeys.get_noise_2d(world_x, world_z)
+	var continentalness = Utils.get_normalized_noise_2d(config.continentalness, world_x, world_z)
+	var erosion = Utils.get_normalized_noise_2d(config.erosion, world_x, world_z)
+	var peaks_and_valleys = Utils.get_normalized_noise_2d(config.peaks_and_valeys, world_x, world_z)
 	var height = config.continentalness_curve.sample_baked(continentalness) + \
 				 config.erosion_curve.sample_baked(erosion) + \
 				 config.peaks_and_valeys_curve.sample_baked(peaks_and_valleys)
 
-	var humidity = config.humidity.get_noise_2d(world_x, world_z)
-	var temperature = config.temperature.get_noise_2d(world_x, world_z)
-	var difficulty = config.difficulty.get_noise_2d(world_x, world_z)
+	var humidity = Utils.get_normalized_noise_2d(config.humidity, world_x, world_z)
+	var temperature = Utils.get_normalized_noise_2d(config.temperature, world_x, world_z)
+	var difficulty = Utils.get_normalized_noise_2d(config.difficulty, world_x, world_z)
 	return _get_best_biome(height, humidity, temperature, difficulty)
+
+
+# Finds the postion of the nearest biome of given type in the world
+static func find_biome_world_position(type: Biome, world_x: float, world_z: float, step: float = 10.0, timeout: float = 5000.0) -> Variant:
+	var start_time = Time.get_ticks_msec()
+	var x = world_x
+	var z = world_z
+	var biome = TerrainChunkBiome.determine_biome(x, z)
+	while biome != type:
+		if Time.get_ticks_msec() - start_time > timeout:
+			return null # Timeout
+
+		var angle = randf_range(0.0, 2.0 * PI)
+		x += cos(angle) * step
+		z += sin(angle) * step
+		biome = TerrainChunkBiome.determine_biome(x, z)
+	return Vector3(x, 0.0, z)

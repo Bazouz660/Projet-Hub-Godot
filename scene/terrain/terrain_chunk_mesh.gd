@@ -1,14 +1,14 @@
 extends Node
 class_name TerrainChunkMesh
 
-static func _generate_water_mesh(chunk) -> PlaneMesh:
+static func _generate_water_mesh(chunk: TerrainChunk) -> PlaneMesh:
 	var mesh = PlaneMesh.new()
 	mesh.size = Vector2(TerrainChunk.config.chunk_size, TerrainChunk.config.chunk_size)
-	mesh.subdivide_depth = chunk.vertex_count - 1
-	mesh.subdivide_width = chunk.vertex_count - 1
+	mesh.subdivide_depth = chunk.vertex_count * 2
+	mesh.subdivide_width = chunk.vertex_count * 2
 	return mesh
 
-static func _generate_mesh(chunk) -> ArrayMesh:
+static func _generate_mesh(chunk: TerrainChunk) -> ArrayMesh:
 	var config = TerrainChunk.config
 	var vertex_spacing = 1.0 / config.vertex_per_meter
 	var st = SurfaceTool.new()
@@ -73,3 +73,24 @@ static func create_heightmap_collision(chunk: TerrainChunk) -> HeightMapShape3D:
 	shape.map_width = chunk.vertex_count
 	shape.map_data = chunk.height_data
 	return shape
+
+
+# creates the occluder shape based on the height data of the chunk
+static func create_occluder_shape(mesh: ArrayMesh) -> ArrayOccluder3D:
+	var occluder_shape = ArrayOccluder3D.new()
+	var arrays := mesh.surface_get_arrays(0)
+
+	var packed_vertices: PackedVector3Array
+	var packed_indices: PackedInt32Array
+
+	packed_vertices.resize(arrays[Mesh.ARRAY_VERTEX].size())
+	packed_indices.resize(arrays[Mesh.ARRAY_INDEX].size())
+
+	for i in range(arrays[Mesh.ARRAY_VERTEX].size()):
+		packed_vertices.set(i, arrays[Mesh.ARRAY_VERTEX][i])
+
+	for i in range(arrays[Mesh.ARRAY_INDEX].size()):
+		packed_indices.set(i, arrays[Mesh.ARRAY_INDEX][i])
+
+	occluder_shape.set_arrays(packed_vertices, packed_indices)
+	return occluder_shape

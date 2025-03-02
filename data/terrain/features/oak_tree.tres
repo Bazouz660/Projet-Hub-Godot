@@ -7,11 +7,11 @@
 script = ExtResource("2_gr8os")
 label = "Oak Tree"
 type = 0
-scene = ExtResource("1_i87ba")
+scenes = Array[PackedScene]([ExtResource("1_i87ba")])
 cast_shadow = 0
 receive_biome_color = false
 shader_parameter_color_name = "albedo"
-random_scale = Vector2(0.8, 1.1)
+random_scale = Vector2(0.7, 1.2)
 random_rotation = Vector2(0, 360)
 random_offset = Vector3(0.5, 0, 0.5)
 follow_normals = false

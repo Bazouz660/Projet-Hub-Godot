@@ -1,7 +1,8 @@
-[gd_resource type="FastNoiseLite" load_steps=0 format=3 uid="uid://bpocydun56avg"]
+[gd_resource type="FastNoiseLite" format=3 uid="uid://bpocydun56avg"]
 
 [resource]
 noise_type = 3
-frequency = 0.0126
+frequency = 0.0144
+fractal_octaves = 4
 domain_warp_type = 1
 domain_warp_fractal_type = 0

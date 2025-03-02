@@ -61,7 +61,7 @@ static func _apply_structure_deformation(chunk: TerrainChunk, structure_data: St
 	var max_z = ceil(structure_pos.z + structure_size.z)
 
 	# Define a blend distance (in world units) outside the footprint.
-	var blend_distance = 8.0
+	var blend_distance = 4.0
 
 	# Loop over an area that covers both the footprint and a surrounding blending margin.
 	var start_x = int(floor(min_x - blend_distance))

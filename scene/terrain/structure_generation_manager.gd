@@ -77,7 +77,7 @@ static func generate_structure_data_for_region(
 
 			# Get terrain data at this position
 			var height = TerrainChunkNoise.sample_height(x, z)
-			var difficulty = TerrainChunk.config.difficulty.get_noise_2d(x, z)
+			var difficulty = Utils.get_normalized_noise_2d(TerrainChunk.config.difficulty, x, z)
 			# Determine biome at this position
 			var biome = TerrainChunkBiome.determine_biome(x, z)
 			var biome_name = biome.label

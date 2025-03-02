@@ -29,12 +29,12 @@ static func _generate_noise_data(chunk: TerrainChunk) -> void:
 			var index = (z + 3) * extended_vertex_count + (x + 3)
 
 			# Sample all noise values
-			var continentalness = config.continentalness.get_noise_2d(world_x, world_z)
-			var erosion = config.erosion.get_noise_2d(world_x, world_z)
-			var peaks_valleys = config.peaks_and_valeys.get_noise_2d(world_x, world_z)
-			var humidity = config.humidity.get_noise_2d(world_x, world_z)
-			var temperature = config.temperature.get_noise_2d(world_x, world_z)
-			var difficulty = config.difficulty.get_noise_2d(world_x, world_z)
+			var continentalness = Utils.get_normalized_noise_2d(config.continentalness, world_x, world_z)
+			var erosion = Utils.get_normalized_noise_2d(config.erosion, world_x, world_z)
+			var peaks_valleys = Utils.get_normalized_noise_2d(config.peaks_and_valeys, world_x, world_z)
+			var humidity = Utils.get_normalized_noise_2d(config.humidity, world_x, world_z)
+			var temperature = Utils.get_normalized_noise_2d(config.temperature, world_x, world_z)
+			var difficulty = Utils.get_normalized_noise_2d(config.difficulty, world_x, world_z)
 
 			chunk.continentalness_data[index] = continentalness
 			chunk.erosion_data[index] = erosion
@@ -58,14 +58,13 @@ static func _sample_height(chunk: TerrainChunk, world_x: float, world_z: float) 
 	var peaks_and_valleys: float
 	if index >= chunk.continentalness_data.size():
 		push_warning("Index out of bounds: index is " + str(index) + " and data size is " + str(chunk.continentalness_data.size()))
-		continentalness = config.continentalness.get_noise_2d(world_x, world_z)
-		erosion = config.erosion.get_noise_2d(world_x, world_z)
-		peaks_and_valleys = config.peaks_and_valeys.get_noise_2d(world_x, world_z)
+		continentalness = Utils.get_normalized_noise_2d(config.continentalness, world_x, world_z)
+		erosion = Utils.get_normalized_noise_2d(config.erosion, world_x, world_z)
+		peaks_and_valleys = Utils.get_normalized_noise_2d(config.peaks_and_valeys, world_x, world_z)
 	else:
 		continentalness = chunk.continentalness_data[index]
 		erosion = chunk.erosion_data[index]
 		peaks_and_valleys = chunk.peaks_and_valleys_data[index]
-
 	var continentalness_height = config.continentalness_curve.sample_baked(continentalness)
 	var peaks_height = config.peaks_and_valeys_curve.sample_baked(peaks_and_valleys)
 	var erosion_height = config.erosion_curve.sample_baked(erosion)
@@ -73,9 +72,9 @@ static func _sample_height(chunk: TerrainChunk, world_x: float, world_z: float) 
 
 static func sample_height(world_x: float, world_z: float) -> float:
 	var config = TerrainChunk.config
-	var continentalness = config.continentalness.get_noise_2d(world_x, world_z)
-	var erosion = config.erosion.get_noise_2d(world_x, world_z)
-	var peaks_and_valleys = config.peaks_and_valeys.get_noise_2d(world_x, world_z)
+	var continentalness = Utils.get_normalized_noise_2d(config.continentalness, world_x, world_z)
+	var erosion = Utils.get_normalized_noise_2d(config.erosion, world_x, world_z)
+	var peaks_and_valleys = Utils.get_normalized_noise_2d(config.peaks_and_valeys, world_x, world_z)
 	var continentalness_height = config.continentalness_curve.sample_baked(continentalness)
 	var peaks_height = config.peaks_and_valeys_curve.sample_baked(peaks_and_valleys)
 	var erosion_height = config.erosion_curve.sample_baked(erosion)

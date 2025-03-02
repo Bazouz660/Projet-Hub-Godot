@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="StructureData" load_steps=2 format=3 uid="uid://cp0yf7y0l3elv"]
+[gd_resource type="Resource" script_class="StructureData" load_steps=2 format=3 uid="uid://cqna6lm3n1qcj"]
 
 [ext_resource type="Script" uid="uid://dpjkrythnwbr8" path="res://scene/terrain/structure_data.gd" id="1_puk5b"]
 
 [resource]
 script = ExtResource("1_puk5b")
-size = Vector3(5.26698, 6.43016, 6.47463)
-position = Vector3(-2.44634, 0.00998688, -3.28289)
-local_pos = Vector3(-2.44634, 0.00998688, -3.28289)
+size = Vector3(11.4806, 13.5743, 13.6543)
+position = Vector3(-5.40341, -1.03174, -6.9092)
+local_pos = Vector3(-5.40341, -1.03174, -6.9092)
 rotation_degrees = Vector3(0, 0, 0)

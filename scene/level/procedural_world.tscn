@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b85wwc428gk3r" path="res://scene/terrain/debug_region_visualiser.gd" id="4_yorsh"]
 [ext_resource type="PackedScene" uid="uid://dqd6qql3fwmmx" path="res://data/terrain/structures/house.tscn" id="5_5s2im"]
 [ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="5_yorsh"]
-[ext_resource type="Resource" uid="uid://cp0yf7y0l3elv" path="res://data/terrain/structures/house_data.tres" id="6_falob"]
+[ext_resource type="Resource" uid="uid://cqna6lm3n1qcj" path="res://data/terrain/structures/house_data.tres" id="6_falob"]
 [ext_resource type="Shader" uid="uid://dsb07av81lkcp" path="res://shader/cloud_shadows.gdshader" id="9_falob"]
 [ext_resource type="Script" uid="uid://ctlc6hr60mcec" path="res://scene/level/lighting/sky_light.gd" id="9_la2k0"]
 [ext_resource type="Environment" uid="uid://bjkb0dd7nowhb" path="res://data/materials/world_env.tres" id="10_r2dwa"]
@@ -25,7 +25,7 @@ loot_rarity = 0.0
 loot_amount = 0
 danger_level = 0
 density = 1.0
-valid_biomes = Array[String](["Grasslands"])
+valid_biomes = Array[String](["Temperate Grasslands"])
 metadata/_custom_type_script = "uid://c3qd3w3gel8pu"
 
 [sub_resource type="Animation" id="Animation_unpkv"]
@@ -181,7 +181,6 @@ structure_manager = NodePath("../StructureManager")
 metadata/_custom_type_script = "uid://b85wwc428gk3r"
 
 [node name="PanelContainer" type="PanelContainer" parent="ProceduralWorld"]
-visible = false
 offset_right = 1.0
 offset_bottom = 23.0
 
@@ -206,7 +205,7 @@ environment = ExtResource("10_r2dwa")
 [node name="Sun" type="DirectionalLight3D" parent="ProceduralWorld/SkyLight"]
 shadow_enabled = true
 directional_shadow_fade_start = 0.715
-directional_shadow_pancake_size = 60.0
+directional_shadow_pancake_size = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ProceduralWorld/SkyLight"]
 libraries = {
