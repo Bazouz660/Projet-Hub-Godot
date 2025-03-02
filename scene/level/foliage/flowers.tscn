@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://6qrv0otuqtpm"]
-
-[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/grass.tres" id="1_jl82v"]
-
-[node name="flowers" type="MeshInstance3D"]
-mesh = ExtResource("1_jl82v")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TerrainConfig" load_steps=44 format=3 uid="uid://th58pjy54nio"]
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=50 format=3 uid="uid://th58pjy54nio"]
 
 [ext_resource type="Script" uid="uid://djvm267dea2ne" path="res://scene/terrain/biome.gd" id="1_20jv2"]
 [ext_resource type="Script" uid="uid://coo0t5a7ochux" path="res://scene/terrain/terrain_config.gd" id="2_4iod4"]
@@ -10,10 +10,12 @@
 [ext_resource type="FastNoiseLite" uid="uid://bpocydun56avg" path="res://data/terrain/noise/erosion.tres" id="4_ctkyc"]
 [ext_resource type="Resource" uid="uid://ceh3t70yrja4j" path="res://data/terrain/features/birch_tree.tres" id="4_nfl70"]
 [ext_resource type="Curve" uid="uid://bfu6cj3xrvb0d" path="res://data/terrain/noise/curves/continentalness_curve.tres" id="4_pa5ko"]
+[ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="5_nfl70"]
 [ext_resource type="Resource" uid="uid://646jj32smik8" path="res://data/terrain/features/oak_tree.tres" id="5_t8xjf"]
 [ext_resource type="FastNoiseLite" uid="uid://bglsf8xewapix" path="res://data/terrain/noise/humidity.tres" id="5_xy6xd"]
 [ext_resource type="Resource" uid="uid://umcpfal4s6qs" path="res://data/terrain/features/wheat.tres" id="6_nfl70"]
 [ext_resource type="Material" uid="uid://cp07yec0ykt7j" path="res://data/terrain/materials/terrain_material.tres" id="6_yexoa"]
+[ext_resource type="QuadMesh" uid="uid://d0f4k5yctdlyq" path="res://asset/mesh/flowers.tres" id="7_6by17"]
 [ext_resource type="Curve" uid="uid://ra7w6eywa350" path="res://data/terrain/noise/curves/erosion_curve.tres" id="7_pkeq4"]
 [ext_resource type="FastNoiseLite" uid="uid://j6gpi4ikn3pl" path="res://data/terrain/noise/peaks_and_valleys.tres" id="7_sc5gb"]
 [ext_resource type="FastNoiseLite" uid="uid://neh0047ipvn2" path="res://data/terrain/noise/temperature.tres" id="8_p42iu"]
@@ -69,7 +71,7 @@ script = ExtResource("2_pkeq4")
 feature = ExtResource("5_t8xjf")
 density = 0.08
 spawn_noise = SubResource("FastNoiseLite_kfufk")
-spawn_noise_threshold = 0.6
+spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
@@ -90,6 +92,34 @@ patch_mask_noise = SubResource("FastNoiseLite_hywid")
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_vhdja"]
+script = ExtResource("5_nfl70")
+label = "Flowers"
+type = 1
+mesh = ExtResource("7_6by17")
+cast_shadow = 0
+receive_biome_color = false
+shader_parameter_color_name = "albedo"
+random_scale = Vector2(1, 1)
+random_rotation = Vector2(0, 0)
+random_offset = Vector3(0.855, 0, 0.88)
+follow_normals = false
+metadata/_custom_type_script = "uid://b17kgm5mvh88b"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xhsyr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n5dfa"]
+
+[sub_resource type="Resource" id="Resource_ldaqy"]
+script = ExtResource("2_pkeq4")
+feature = SubResource("Resource_vhdja")
+density = 1.0
+spawn_noise = SubResource("FastNoiseLite_n5dfa")
+spawn_noise_threshold = 0.5
+patch_mask_noise = SubResource("FastNoiseLite_xhsyr")
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_akk4h"]
 script = ExtResource("1_20jv2")
 label = "Grasslands"
@@ -98,7 +128,7 @@ height_range = Vector2(6, 15)
 humidity_range = Vector2(-0.2, 0.3)
 temperature_range = Vector2(-0.2, 0.3)
 difficulty_range = Vector2(-1, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_foxm2"), SubResource("Resource_q4rbw"), SubResource("Resource_441kt"), SubResource("Resource_24v01")])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_foxm2"), SubResource("Resource_q4rbw"), SubResource("Resource_441kt"), SubResource("Resource_24v01"), SubResource("Resource_ldaqy")])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_t8xjf"]
@@ -243,7 +273,7 @@ script = ExtResource("2_4iod4")
 chunk_size = 16
 vertex_per_meter = 1
 view_distance = 15
-update_rate = 0.1
+update_rate = 0.5
 world_seed = 99149
 max_threads = 4
 height_scale = 1.0
