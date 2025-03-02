@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://test/terrain/terrain_config.gd" id="2_21cop"]
 [ext_resource type="Script" path="res://test/terrain/feature_definition.gd" id="2_34bvf"]
 [ext_resource type="Material" uid="uid://cpsqba08sf7if" path="res://test/terrain_material.tres" id="3_snsk4"]
-[ext_resource type="PackedScene" uid="uid://cr4g71mimy1nh" path="res://scene/level/foliage/tree.tscn" id="3_t1iov"]
+[ext_resource type="PackedScene" path="res://scene/level/foliage/tree.tscn" id="3_t1iov"]
 [ext_resource type="Material" uid="uid://ctixvytfgub33" path="res://test/Stylized_Water.material" id="4_6f4v6"]
-[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/grass.tres" id="4_ww1vs"]
+[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/foliage/grass.tres" id="4_ww1vs"]
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="5_qpm2x"]
 [ext_resource type="Texture2D" uid="uid://c2fqujuastn6o" path="res://asset/texture/foliage/grass_blade.png" id="6_v17rx"]
 [ext_resource type="PackedScene" uid="uid://dynpad00mn05q" path="res://test/rock_1.tscn" id="7_734jd"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bp5peb788j1tj" path="res://test/rock_3.tscn" id="9_8qkej"]
 [ext_resource type="PackedScene" uid="uid://d0n7y1ii0vs0j" path="res://test/rock_4.tscn" id="10_g76sq"]
 [ext_resource type="PackedScene" uid="uid://cq4h71va8685u" path="res://test/rock_5.tscn" id="11_i184w"]
-[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/wheat.tres" id="12_or6oh"]
+[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/foliage/wheat.tres" id="12_or6oh"]
 
 [sub_resource type="Resource" id="Resource_g07t8"]
 script = ExtResource("2_34bvf")

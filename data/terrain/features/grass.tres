@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Feature" load_steps=3 format=3 uid="uid://bdar2j7nxtoxo"]
 
-[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/grass.tres" id="1_i1u0k"]
+[ext_resource type="QuadMesh" uid="uid://lxkynidgk3i6" path="res://asset/mesh/foliage/grass.tres" id="1_i1u0k"]
 [ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="2_o8fp1"]
 
 [resource]

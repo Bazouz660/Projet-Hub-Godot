@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4s5r8pn36cvo"
-path.s3tc="res://.godot/imported/flowers.png-e3a1c78315306f1c49b6c29eac01db1b.s3tc.ctex"
+uid="uid://nyskrh0qqxxr"
+path.s3tc="res://.godot/imported/poppy.png-1fdbbbc72512b45de64a2e664f994e34.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://asset/texture/foliage/flowers.png"
-dest_files=["res://.godot/imported/flowers.png-e3a1c78315306f1c49b6c29eac01db1b.s3tc.ctex"]
+source_file="res://asset/texture/foliage/poppy.png"
+dest_files=["res://.godot/imported/poppy.png-1fdbbbc72512b45de64a2e664f994e34.s3tc.ctex"]
 
 [params]
 

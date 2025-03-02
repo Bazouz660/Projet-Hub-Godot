@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jnf0yn8ues57"]
 
-[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/wheat.tres" id="1_gl2av"]
+[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/foliage/wheat.tres" id="1_gl2av"]
 
 [node name="GrassBlade" type="Node3D"]
 
