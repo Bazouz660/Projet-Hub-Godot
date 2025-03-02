@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctpjj1btn02uw"]
+[gd_scene load_steps=22 format=3 uid="uid://ctpjj1btn02uw"]
 
 [ext_resource type="Script" uid="uid://cwbwd3qhklfgl" path="res://scene/terrain/terrain_generator.gd" id="1_0pd6d"]
+[ext_resource type="Script" uid="uid://c5od6saer5dg2" path="res://test/world_manager.gd" id="1_ui6ee"]
 [ext_resource type="Resource" uid="uid://th58pjy54nio" path="res://data/terrain/terrain_config.tres" id="2_2ogqt"]
 [ext_resource type="Script" uid="uid://b2vi4cvouoiat" path="res://scene/terrain/structure_manager.gd" id="3_4qyrc"]
 [ext_resource type="Script" uid="uid://c3qd3w3gel8pu" path="res://scene/terrain/structure_gen_params.gd" id="4_ajdhx"]
@@ -8,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dqd6qql3fwmmx" path="res://data/terrain/structures/house.tscn" id="5_5s2im"]
 [ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="5_yorsh"]
 [ext_resource type="Resource" uid="uid://cp0yf7y0l3elv" path="res://data/terrain/structures/house_data.tres" id="6_falob"]
-[ext_resource type="PackedScene" uid="uid://u57tqs5c6205" path="res://scene/level/lighting/sky_light.tscn" id="9_5s2im"]
+[ext_resource type="Shader" uid="uid://dsb07av81lkcp" path="res://shader/cloud_shadows.gdshader" id="9_falob"]
+[ext_resource type="Script" uid="uid://ctlc6hr60mcec" path="res://scene/level/lighting/sky_light.gd" id="9_la2k0"]
+[ext_resource type="Environment" uid="uid://bjkb0dd7nowhb" path="res://data/materials/world_env.tres" id="10_r2dwa"]
+[ext_resource type="Script" uid="uid://btawd0vcqvrnt" path="res://scripts/follow_active_player.gd" id="10_ui6ee"]
+[ext_resource type="Animation" uid="uid://bn04smwqyuqdy" path="res://scene/level/lighting/day_night_cycle.res" id="11_iu3qb"]
 
 [sub_resource type="Resource" id="Resource_ui6ee"]
 script = ExtResource("4_ajdhx")
@@ -19,43 +24,204 @@ difficulty_max = 1.0
 loot_rarity = 0.0
 loot_amount = 0
 danger_level = 0
-density = 0.1
+density = 1.0
 valid_biomes = Array[String](["Grasslands"])
 metadata/_custom_type_script = "uid://c3qd3w3gel8pu"
 
-[node name="ProceduralWorld" type="Node3D" node_paths=PackedStringArray("origin")]
+[sub_resource type="Animation" id="Animation_unpkv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sun:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sun:light_color:r")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sun:light_color:g")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sun:light_color:b")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sun:light_color:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sun:light_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WorldEnvironment:environment:ambient_light_color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.359068, 0.359069, 0.359069, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gaedy"]
+_data = {
+&"RESET": SubResource("Animation_unpkv"),
+&"day_night_cycle": ExtResource("11_iu3qb")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c348g"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qpeis"]
+seamless = true
+noise = SubResource("FastNoiseLite_c348g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j36wm"]
+render_priority = 0
+shader = ExtResource("9_falob")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_qpeis")
+shader_parameter/cloud_direction = Vector2(1, 1)
+shader_parameter/cloud_speed = 0.002
+shader_parameter/cut_threshold = 0.5
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tkc0p"]
+material = SubResource("ShaderMaterial_j36wm")
+size = Vector2(300, 300)
+
+[node name="WorldManager" type="Node3D"]
+script = ExtResource("1_ui6ee")
+
+[node name="ProceduralWorld" type="Node3D" parent="." node_paths=PackedStringArray("origin")]
 script = ExtResource("1_0pd6d")
 config = ExtResource("2_2ogqt")
 origin = NodePath("FreeCam")
 
-[node name="StructureManager" type="Node3D" parent="."]
+[node name="StructureManager" type="Node3D" parent="ProceduralWorld"]
 unique_name_in_owner = true
 script = ExtResource("3_4qyrc")
 structure_params = Array[ExtResource("4_ajdhx")]([SubResource("Resource_ui6ee")])
 metadata/_custom_type_script = "uid://b2vi4cvouoiat"
 
-[node name="DebugRegionVisualizer" type="Node3D" parent="." node_paths=PackedStringArray("structure_manager")]
+[node name="DebugRegionVisualizer" type="Node3D" parent="ProceduralWorld" node_paths=PackedStringArray("structure_manager")]
 script = ExtResource("4_yorsh")
 structure_manager = NodePath("../StructureManager")
 metadata/_custom_type_script = "uid://b85wwc428gk3r"
 
-[node name="FreeCam" parent="." instance=ExtResource("5_yorsh")]
-BASE_SPEED = 50.0
-SPRINT_SPEED = 100.0
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="ProceduralWorld"]
+visible = false
 offset_right = 1.0
 offset_bottom = 23.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ProceduralWorld/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+[node name="Label" type="Label" parent="ProceduralWorld/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SkyLight" parent="." instance=ExtResource("9_5s2im")]
+[node name="SkyLight" type="Node3D" parent="ProceduralWorld" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("9_la2k0")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ProceduralWorld/SkyLight"]
+environment = ExtResource("10_r2dwa")
+
+[node name="Sun" type="DirectionalLight3D" parent="ProceduralWorld/SkyLight"]
+shadow_enabled = true
+directional_shadow_fade_start = 0.715
+directional_shadow_pancake_size = 60.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ProceduralWorld/SkyLight"]
+libraries = {
+&"": SubResource("AnimationLibrary_gaedy")
+}
+
+[node name="CouldShadow" type="MeshInstance3D" parent="ProceduralWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2.273)
+cast_shadow = 3
+mesh = SubResource("PlaneMesh_tkc0p")
+script = ExtResource("10_ui6ee")
+
+[node name="FreeCam" parent="ProceduralWorld" instance=ExtResource("5_yorsh")]
+unique_name_in_owner = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ProceduralWorld"]
+_spawnable_scenes = PackedStringArray("uid://dvcl7vca8lawk")
+spawn_path = NodePath("..")

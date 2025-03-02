@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctyk3a6odu2gc"]
+[gd_scene load_steps=9 format=3 uid="uid://ctyk3a6odu2gc"]
 
-[ext_resource type="Shader" uid="uid://t0gsq4tqj6qa" path="res://shader/billboard_sway.gdshader" id="4_inqre"]
+[ext_resource type="Texture2D" uid="uid://ctxe476mf5dj2" path="res://data/noise/wind_noise_texture.tres" id="2_inqre"]
+[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="4_inqre"]
 [ext_resource type="ArrayMesh" uid="uid://cd0lvw4yps3oh" path="res://asset/mesh/oak_tree/oak_trunk.res" id="4_n4ctf"]
 [ext_resource type="ArrayMesh" uid="uid://df82y5tfi7xqf" path="res://asset/mesh/oak_tree/oak_foliage.res" id="5_inqre"]
 [ext_resource type="Texture2D" uid="uid://dprw0xstl2r4s" path="res://asset/texture/foliage/leaves.png" id="5_ofnl6"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_n4ctf"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_inqre"]
-noise = SubResource("FastNoiseLite_n4ctf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_inqre"]
 render_priority = 0
@@ -21,7 +17,7 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/wind_strength = 0.3
 shader_parameter/wind_speed = 1.0
 shader_parameter/wind_scale = 1.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_inqre")
+shader_parameter/noise_texture = ExtResource("2_inqre")
 shader_parameter/noise_scale = 1.0
 shader_parameter/player_influence_radius = 0.0
 shader_parameter/player_influence_strength = 0.0

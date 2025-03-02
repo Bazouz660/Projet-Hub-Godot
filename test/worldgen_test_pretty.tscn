@@ -32,6 +32,7 @@ size = Vector2(300, 300)
 script = ExtResource("1_oufg5")
 
 [node name="TerrainSystem" parent="." instance=ExtResource("2_t1ltl")]
+script = null
 
 [node name="CouldShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2.273)

@@ -21,7 +21,7 @@ var grounded = false;
 var multiplayer_authority: int = 0
 
 ## TO DO: MAKE THIS A GLOBAL VARIABLE
-const WATER_LEVEL = 0;
+const WATER_LEVEL = 5;
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())

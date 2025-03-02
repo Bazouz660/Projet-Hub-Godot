@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Feature" load_steps=3 format=3 uid="uid://umcpfal4s6qs"]
+
+[ext_resource type="QuadMesh" uid="uid://dqsfghpuwto8" path="res://asset/mesh/wheat.tres" id="1_747q1"]
+[ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="2_6hxet"]
+
+[resource]
+script = ExtResource("2_6hxet")
+label = "Wheat"
+type = 1
+mesh = ExtResource("1_747q1")
+cast_shadow = 0
+receive_biome_color = false
+shader_parameter_color_name = "albedo"
+random_scale = Vector2(1, 1)
+random_rotation = Vector2(0, 0)
+random_offset = Vector3(0, 0, 0)
+follow_normals = false
+metadata/_custom_type_script = "uid://b17kgm5mvh88b"

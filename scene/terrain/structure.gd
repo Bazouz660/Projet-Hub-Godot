@@ -12,6 +12,7 @@ var _footprint_mesh: MeshInstance3D
 func _ready():
     _footprint_mesh = MeshInstance3D.new()
     add_child(_footprint_mesh)
+    _footprint_mesh.visible = false
     if not data:
         _generate_data()
     _generate_footprint_mesh()

@@ -2,12 +2,12 @@ extends Node3D
 class_name TerrainGenerator
 
 @export var config: TerrainConfig
-@export var origin: Node3D
+@export var origin: Node3D = null
+@export var enable_idle_updates: bool = false
 
-
-static var player_grid_position: Vector2i = Vector2i(0, 0)
 
 @onready var structure_manager := %StructureManager as StructureManager
+@onready var freecam := %FreeCam as FreeCam
 var terrain_chunks: Dictionary[Vector2i, TerrainChunk] = {}
 var timer := Timer.new()
 var current_thread_usage: int = 0
@@ -18,11 +18,21 @@ var max_refresh_queue_time: float = -1
 var max_load_time: float = -1
 var max_unload_time: float = -1
 
+static var player_grid_position: Vector2i = Vector2i(0, 0)
+var last_player_grid_position: Vector2i = Vector2i(0, 0)
+
 func _ready():
+	MultiplayerManager.active_player_loaded.connect(func(_id: int):
+		origin = MultiplayerManager.active_player
+		freecam.disable()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	)
+
 	config.setup()
 	TerrainChunk.set_config(config)
 	structure_manager.view_distance = config.view_distance * config.chunk_size
 	_generate_structure_data()
+
 
 	config.debug_toggled.connect(_on_toggle_debug_view)
 	timer.timeout.connect(_refresh_chunks)
@@ -80,6 +90,9 @@ func world_to_grid_position(world_position: Vector3) -> Vector2i:
 	)
 
 func _refresh_chunks():
+	if origin == null:
+		return
+
 	player_grid_position = world_to_grid_position(origin.global_transform.origin)
 	var start_time = Time.get_ticks_msec()
 	_unload_chunks()
@@ -146,13 +159,16 @@ func _sort_positions(a: Vector2i, b: Vector2i) -> int:
 	var delta_b = b - player_grid_position
 	return delta_a.x * delta_a.x + delta_a.y * delta_a.y < delta_b.x * delta_b.x + delta_b.y * delta_b.y
 
-func _input(event):
-	if event is InputEventKey:
-		event = event as InputEventKey
-		if event.pressed and event.keycode == KEY_ESCAPE:
-			get_tree().quit()
+# func _input(event):
+# 	if event is InputEventKey:
+# 		event = event as InputEventKey
+# 		if event.pressed and event.keycode == KEY_ESCAPE:
+# 			get_tree().quit()
 
 func _process(_delta):
+	if origin == null:
+		return
+
 	_process_chunk_queue()
 
 	# var frame_time_ms = delta * 1000

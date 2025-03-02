@@ -17,6 +17,16 @@ static func _generate_features_positions(chunk: TerrainChunk) -> Dictionary[Vect
 			candidate_positions.resize(target_features)
 			var valid_count = 0
 
+			# Get noise parameters
+			var spawn_noise = feature_params.spawn_noise
+			var use_noise = spawn_noise != null
+			var noise_threshold = feature_params.spawn_noise_threshold
+
+			# Get patch mask parameters
+			var patch_mask = feature_params.patch_mask_noise
+			var use_patch_mask = patch_mask != null
+			var patch_threshold = feature_params.patch_mask_threshold
+
 			for _i in range(max_attempts):
 				if valid_count >= target_features:
 					break
@@ -36,6 +46,21 @@ static func _generate_features_positions(chunk: TerrainChunk) -> Dictionary[Vect
 				var world_x = chunk.world_offset_x + (cell_x * TerrainChunk.CELL_SIZE) + chunk.rng.randf() * TerrainChunk.CELL_SIZE
 				var world_z = chunk.world_offset_z + (cell_z * TerrainChunk.CELL_SIZE) + chunk.rng.randf() * TerrainChunk.CELL_SIZE
 
+				# Check patch mask first - this determines if features can appear in this region at all
+				if use_patch_mask:
+					var mask_value = patch_mask.get_noise_2d(world_x, world_z)
+					mask_value = (mask_value + 1.0) / 2.0 # Normalize to [0,1]
+					if mask_value < patch_threshold:
+						continue # Skip this position - outside valid patch regions
+
+				# Then check detailed spawn noise for the precise feature placement
+				if use_noise:
+					var noise_value = spawn_noise.get_noise_2d(world_x, world_z)
+					noise_value = (noise_value + 1.0) / 2.0
+					if noise_value < noise_threshold:
+						continue
+
+				# Rest of your existing code - biome checks, etc.
 				var vertex_index = vertex_z * chunk.vertex_count + vertex_x
 
 				var corners = PackedInt32Array([
