@@ -38,6 +38,7 @@ temperature_range = Vector2(0, 1)
 humidity_range = Vector2(0, 1)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([])
+material_type = "sand"
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5juvr"]
@@ -62,9 +63,10 @@ label = "Beach"
 color = Color(0.870588, 0.721569, 0.529412, 1)
 height_range = Vector2(4, 6)
 temperature_range = Vector2(0.5, 1)
-humidity_range = Vector2(0, 1)
+humidity_range = Vector2(0, 0.5)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_chkl1")])
+material_type = "sand"
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_nylur"]
@@ -87,9 +89,10 @@ label = "Gravel Beach"
 color = Color(0.427493, 0.427493, 0.427493, 1)
 height_range = Vector2(4, 6)
 temperature_range = Vector2(0, 0.5)
-humidity_range = Vector2(0, 1)
+humidity_range = Vector2(0, 0.5)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_1klug")])
+material_type = "rock"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_6by17"]
@@ -101,6 +104,7 @@ temperature_range = Vector2(0.85, 1)
 humidity_range = Vector2(0, 0.2)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([])
+material_type = "sand"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_jqrxn"]
@@ -125,6 +129,7 @@ temperature_range = Vector2(0.7, 0.85)
 humidity_range = Vector2(0.2, 0.4)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_fyk7h")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_rri76"]
@@ -149,6 +154,7 @@ temperature_range = Vector2(0.7, 1)
 humidity_range = Vector2(0.7, 1)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_co277")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_76r5u"]
@@ -186,6 +192,7 @@ temperature_range = Vector2(0.45, 0.65)
 humidity_range = Vector2(0.45, 0.7)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_q1707"), SubResource("Resource_nj2tm")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_foxm2"]
@@ -311,6 +318,7 @@ temperature_range = Vector2(0.45, 0.65)
 humidity_range = Vector2(0.3, 0.45)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_ewrla"), SubResource("Resource_6fdyo")])
+material_type = "grass"
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_j8wnv"]
@@ -336,6 +344,7 @@ temperature_range = Vector2(0.55, 0.7)
 humidity_range = Vector2(0.3, 0.45)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_24cw0")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_cy5u0"]
@@ -373,6 +382,7 @@ temperature_range = Vector2(0, 0.25)
 humidity_range = Vector2(0.1, 0.3)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_47id2"), SubResource("Resource_f2bdx")])
+material_type = "snow"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_83rfk"]
@@ -410,6 +420,7 @@ temperature_range = Vector2(0.2, 0.4)
 humidity_range = Vector2(0.4, 0.7)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_78odh"), SubResource("Resource_mcjpd")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_wdbo7"]
@@ -421,6 +432,7 @@ temperature_range = Vector2(0.2, 0.4)
 humidity_range = Vector2(0.3, 0.5)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_08rn7"]
@@ -445,6 +457,7 @@ temperature_range = Vector2(0.4, 0.7)
 humidity_range = Vector2(0.7, 0.9)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_pp01p")])
+material_type = "water"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_t2oj8"]
@@ -472,6 +485,7 @@ temperature_range = Vector2(0.5, 0.7)
 humidity_range = Vector2(0.2, 0.3)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_bas7v")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_t2oj8"]
@@ -496,6 +510,7 @@ temperature_range = Vector2(0.4, 0.55)
 humidity_range = Vector2(0.8, 1)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_p4nso")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_sy3o8"]
@@ -507,6 +522,7 @@ temperature_range = Vector2(0, 0.15)
 humidity_range = Vector2(0, 0.2)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ujs85"]
@@ -534,6 +550,7 @@ temperature_range = Vector2(0.15, 0.35)
 humidity_range = Vector2(0, 0.15)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_73d6u")])
+material_type = "grass"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_6vlfj"]
@@ -558,15 +575,16 @@ temperature_range = Vector2(0.55, 0.75)
 humidity_range = Vector2(0.8, 1)
 difficulty_range = Vector2(0, 1)
 feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_704my")])
+material_type = "water"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [resource]
 script = ExtResource("2_4iod4")
 chunk_size = 16
 vertex_per_meter = 1
-view_distance = 10
+view_distance = 3
 update_rate = 0.5
-world_seed = 94414
+world_seed = 92764
 max_threads = 4
 height_scale = 1.0
 continentalness = ExtResource("2_qqxad")

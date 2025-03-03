@@ -9,3 +9,4 @@ var id: int
 @export var humidity_range: Vector2 = Vector2(0, 1.0)
 @export var difficulty_range: Vector2 = Vector2(0, 1.0)
 @export var feature_layers: Array[FeatureLayer] = []
+@export var material_type: String = "grass"

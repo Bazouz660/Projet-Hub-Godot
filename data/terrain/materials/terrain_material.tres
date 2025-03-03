@@ -13,3 +13,4 @@ shader_parameter/difficulty_ranges = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 
 shader_parameter/biome_count = 0
 shader_parameter/max_height = 0.0
 shader_parameter/min_height = 0.0
+metadata/type = "terrain"

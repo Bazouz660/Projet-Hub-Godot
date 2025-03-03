@@ -5,7 +5,6 @@ class_name TerrainGenerator
 @export var origin: Node3D = null
 @export var enable_idle_updates: bool = false
 
-
 @onready var structure_manager := %StructureManager as StructureManager
 @onready var freecam := %FreeCam as FreeCam
 var terrain_chunks: Dictionary[Vector2i, TerrainChunk] = {}
@@ -17,6 +16,8 @@ var queued_chunks: Dictionary[Vector2i, bool] = {}
 var max_refresh_queue_time: float = -1
 var max_load_time: float = -1
 var max_unload_time: float = -1
+
+var spawn_chunk_loaded: bool = false
 
 static var player_grid_position: Vector2i = Vector2i(0, 0)
 var last_player_grid_position: Vector2i = Vector2i(0, 0)
@@ -48,6 +49,13 @@ func _ready():
 		freecam.disable()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	)
+
+func _set_player_on_ground():
+	var player := MultiplayerManager.active_player
+	var pos = player.global_transform.origin
+	var height_at_pos = TerrainChunk.sample_height(pos.x, pos.z)
+	pos = Vector3(pos.x, height_at_pos, pos.z)
+	player.rpc_set_position.rpc(pos)
 
 
 func _register_commands():
@@ -128,7 +136,17 @@ func _create_chunk(x: int, z: int):
 	terrain_chunks[chunk.grid_position] = chunk
 	chunk.generate()
 	current_thread_usage += 1
+
 	chunk.generated.connect(on_chunk_generated)
+
+	if !spawn_chunk_loaded and chunk.grid_position == player_grid_position:
+		spawn_chunk_loaded = true
+		chunk.generated.connect(func(_position: Vector2i):
+			if MultiplayerManager.active_player != null:
+				_set_player_on_ground()
+			else:
+				MultiplayerManager.active_player_loaded.connect(_set_player_on_ground)
+		)
 
 func on_chunk_generated(_grid_position: Vector2i):
 	current_thread_usage -= 1
@@ -209,11 +227,15 @@ func _sort_positions(a: Vector2i, b: Vector2i) -> int:
 	var delta_b = b - player_grid_position
 	return delta_a.x * delta_a.x + delta_a.y * delta_a.y < delta_b.x * delta_b.x + delta_b.y * delta_b.y
 
-func _input(event):
+func _input(event: InputEvent):
 	if event is InputEventKey:
 		event = event as InputEventKey
 		if event.pressed and event.keycode == KEY_ESCAPE and Input.is_key_label_pressed(KEY_SHIFT):
 			get_tree().quit()
+
+func is_chunk_loaded(world_position: Vector3) -> bool:
+	var grid_position = world_to_grid_position(world_position)
+	return terrain_chunks.has(grid_position)
 
 func _process(_delta):
 	if origin == null:

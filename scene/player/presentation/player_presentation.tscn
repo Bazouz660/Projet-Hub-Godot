@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://co4txsbny7boe"]
+[gd_scene load_steps=58 format=4 uid="uid://co4txsbny7boe"]
 
 [ext_resource type="Script" uid="uid://d4ltldswrgt5q" path="res://scene/player/presentation/player_presentation.gd" id="1_b84pu"]
 [ext_resource type="Material" uid="uid://d2rq00r7kk0ga" path="res://data/materials/default_material.tres" id="2_gsq85"]
@@ -29,9 +29,13 @@
 [ext_resource type="AudioStream" uid="uid://dimorkk8fxo2x" path="res://asset/audio/sound/humanoid/step/step_rock_6.wav" id="15_f7qmc"]
 [ext_resource type="AudioStream" uid="uid://bpvnhgn8j7bbb" path="res://asset/audio/sound/humanoid/step/step_water_1.wav" id="22_dma5t"]
 [ext_resource type="AudioStream" uid="uid://bvh6vsf3hty0o" path="res://asset/audio/sound/humanoid/step/step_water_2.wav" id="23_ekktu"]
+[ext_resource type="AudioStream" uid="uid://beaiks6vs78dw" path="res://asset/audio/sound/humanoid/step/step_snow_1.ogg" id="23_jmbba"]
+[ext_resource type="AudioStream" uid="uid://bwvc2sbsv2q0m" path="res://asset/audio/sound/humanoid/step/step_snow_2.ogg" id="24_eqkfo"]
 [ext_resource type="AudioStream" uid="uid://dmdf5w6j05p5d" path="res://asset/audio/sound/humanoid/step/step_water_3.wav" id="24_sx8l2"]
 [ext_resource type="AudioStream" uid="uid://6rek1w0hrr0i" path="res://asset/audio/sound/humanoid/step/step_water_4.wav" id="25_5xxdh"]
+[ext_resource type="AudioStream" uid="uid://d4i27dygi7q0d" path="res://asset/audio/sound/humanoid/step/step_snow_3.ogg" id="25_qb4io"]
 [ext_resource type="AudioStream" uid="uid://b57bhrq4sddu2" path="res://asset/audio/sound/humanoid/step/step_water_5.wav" id="26_lwq65"]
+[ext_resource type="AudioStream" uid="uid://dq4mqxpqfitmy" path="res://asset/audio/sound/humanoid/step/step_snow_4.ogg" id="26_tdnpm"]
 [ext_resource type="AudioStream" uid="uid://t7cy54r4c3bk" path="res://asset/audio/sound/humanoid/swim/swim_stroke_1.wav" id="28_yperl"]
 [ext_resource type="AudioStream" uid="uid://cigxoiga70cve" path="res://asset/audio/sound/humanoid/swim/swim_stroke_2.wav" id="29_awoik"]
 [ext_resource type="AudioStream" uid="uid://5kkyr43q4ddw" path="res://asset/audio/sound/humanoid/swim/swim_stroke_3.wav" id="30_6ph4g"]
@@ -205,6 +209,10 @@ volume_db = -20.0
 script = ExtResource("4_jj7mt")
 audio_streams = Array[AudioStream]([ExtResource("5_ackd8"), ExtResource("6_rk8nh"), ExtResource("7_gng2d"), ExtResource("8_o3ppd"), ExtResource("9_jvvhs"), ExtResource("10_qiiqy"), ExtResource("11_gfyes")])
 
+[node name="StepSnowSoundPool" type="Node3D" parent="SoundPlayer3D"]
+script = ExtResource("4_jj7mt")
+audio_streams = Array[AudioStream]([ExtResource("23_jmbba"), ExtResource("24_eqkfo"), ExtResource("25_qb4io"), ExtResource("26_tdnpm")])
+
 [node name="StepWaterSoundPool" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("4_jj7mt")
 audio_streams = Array[AudioStream]([ExtResource("22_dma5t"), ExtResource("23_ekktu"), ExtResource("24_sx8l2"), ExtResource("25_5xxdh"), ExtResource("26_lwq65")])
@@ -244,7 +252,7 @@ max_distance = 20.0
 
 [node name="HealPotionQueue" type="Node3D" parent="SoundPlayer3D"]
 script = ExtResource("5_yq0dp")
-metadata/_custom_type_script = ExtResource("5_yq0dp")
+metadata/_custom_type_script = "uid://d1ot2cmga4wof"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundPlayer3D/HealPotionQueue"]
 stream = ExtResource("49_2gk1d")

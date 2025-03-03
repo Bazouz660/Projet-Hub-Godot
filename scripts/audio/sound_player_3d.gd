@@ -8,6 +8,7 @@ func _ready():
 	_add_sound("step_grass", "StepGrassSoundPool")
 	_add_sound("step_rock", "StepRockSoundPool")
 	_add_sound("step_sand", "StepSandSoundPool")
+	_add_sound("step_snow", "StepSnowSoundPool")
 	_add_sound("step_water", "StepWaterSoundPool")
 	_add_sound("swim", "SwimSoundPool")
 	_add_sound("swim_thread", "SwimThreadingSoundPool")
