@@ -33,11 +33,11 @@ size = Vector3(0.429047, 9.48193, 0.283447)
 
 [node name="BirchTree" type="StaticBody3D"]
 
-[node name="trunk" type="MeshInstance3D" parent="."]
+[node name="Trunk" type="MeshInstance3D" parent="."]
 lod_bias = 128.0
 mesh = ExtResource("1_fsr78")
 
-[node name="foliage" type="MeshInstance3D" parent="."]
+[node name="Foliage" type="MeshInstance3D" parent="."]
 cast_shadow = 3
 lod_bias = 128.0
 mesh = ExtResource("2_1xtsg")
