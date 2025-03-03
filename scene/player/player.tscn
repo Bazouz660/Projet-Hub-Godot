@@ -66,3 +66,8 @@ script = ExtResource("8_hfhxk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780433, 0)
 shape = SubResource("SphereShape3D_732fb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.247721, 1.24265, 0.0952194)
+light_color = Color(0.96, 0.89088, 0.4992, 1)
+shadow_enabled = true

@@ -8,4 +8,4 @@ var id: int
 @export var temperature_range: Vector2 = Vector2(0, 1.0)
 @export var humidity_range: Vector2 = Vector2(0, 1.0)
 @export var difficulty_range: Vector2 = Vector2(0, 1.0)
-@export var features: Array[FeatureGenParams] = []
+@export var feature_layers: Array[FeatureLayer] = []

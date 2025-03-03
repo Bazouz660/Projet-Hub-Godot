@@ -8,6 +8,7 @@ script = ExtResource("1_ljd3v")
 label = "Spruce"
 type = 0
 scenes = Array[PackedScene]([ExtResource("1_576yf")])
+min_radius = 1.0
 cast_shadow = 0
 receive_biome_color = false
 shader_parameter_color_name = "albedo"

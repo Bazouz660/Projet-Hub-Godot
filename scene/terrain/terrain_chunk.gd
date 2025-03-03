@@ -345,7 +345,7 @@ func _generate() -> void:
 	var collision_shape := TerrainChunkMesh.create_heightmap_collision(self)
 	#var occluder_shape := TerrainChunkMesh.create_occluder_shape(mesh)
 	var water_mesh := TerrainChunkMesh._generate_water_mesh(self)
-	var feature_positions: Dictionary[Vector2i, Array] = TerrainChunkFeatures._generate_features_positions(self)
+	var feature_positions := TerrainChunkFeatures._generate_features_positions(self)
 	var data = {
 		"mesh": mesh,
 		"collision_shape": collision_shape,

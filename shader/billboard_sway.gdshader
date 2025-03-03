@@ -22,28 +22,28 @@ void vertex() {
     vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float grass_height = length(VERTEX);
     vec3 base_pos = world_pos - VERTEX;
-    
+
     float wind_time = TIME * wind_speed;
     vec2 noise_uv = base_pos.xz * wind_noise_scale * 0.01;
     float noise_value = texture(wind_noise, noise_uv + wind_time * 0.1).r * 2.0 - 1.0;
     float position_variation = sin(base_pos.x * 0.1) * cos(base_pos.z * 0.1) * 2.0;
     float wind_horizontal = sin(wind_time + base_pos.x * wind_scale + base_pos.z * wind_scale + position_variation + noise_value) * wind_strength;
     float wind_depth = cos(wind_time * 0.7 + base_pos.x * wind_scale * 1.2 + base_pos.z * wind_scale + position_variation + noise_value) * wind_strength * 0.5;
-    
+
     vec3 to_player = player_position - base_pos;
     float distance_to_player = length(to_player);
     float player_influence = 1.0 - smoothstep(0.0, player_influence_radius, distance_to_player);
     vec3 player_deformation = normalize(to_player) * player_influence * player_influence_strength;
-    
+
     float vertex_height = VERTEX.y;
     float max_height = grass_height;
     float height_fraction = vertex_height / max_height;
     float bend_influence = height_fraction * height_fraction;
     vec3 wind_displacement = vec3(wind_horizontal, 0.0, wind_depth);
     vec3 total_displacement = (wind_displacement - player_deformation) * bend_influence;
-    
+
     VERTEX += total_displacement * max_height;
-    
+
     MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
         MAIN_CAM_INV_VIEW_MATRIX[0],
         MAIN_CAM_INV_VIEW_MATRIX[1],

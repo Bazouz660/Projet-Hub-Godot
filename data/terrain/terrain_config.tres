@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="TerrainConfig" load_steps=75 format=3 uid="uid://th58pjy54nio"]
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=101 format=3 uid="uid://th58pjy54nio"]
 
 [ext_resource type="Script" uid="uid://djvm267dea2ne" path="res://scene/terrain/biome.gd" id="1_20jv2"]
 [ext_resource type="Script" uid="uid://coo0t5a7ochux" path="res://scene/terrain/terrain_config.gd" id="2_4iod4"]
 [ext_resource type="Material" uid="uid://cgcisn7qpmd63" path="res://data/terrain/materials/chunk_borders_material.tres" id="2_ctkyc"]
 [ext_resource type="Script" uid="uid://dswyytmpuapp1" path="res://scene/terrain/feature_gen_params.gd" id="2_pkeq4"]
 [ext_resource type="FastNoiseLite" uid="uid://c35p6yt5l8dyi" path="res://data/terrain/noise/continentalness.tres" id="2_qqxad"]
+[ext_resource type="Script" uid="uid://cjhbvqtx8rc1h" path="res://scene/terrain/feature_layer.gd" id="2_ujs85"]
 [ext_resource type="Resource" uid="uid://bdar2j7nxtoxo" path="res://data/terrain/features/grass.tres" id="3_ex04j"]
 [ext_resource type="Resource" uid="uid://djgcqin2qr81" path="res://data/terrain/features/rocks.tres" id="3_kfufk"]
 [ext_resource type="FastNoiseLite" uid="uid://b8hvxyg48atci" path="res://data/terrain/noise/difficulty.tres" id="3_yexoa"]
@@ -25,6 +26,7 @@
 [ext_resource type="Resource" uid="uid://7gfv3w6hpvs3" path="res://data/terrain/features/spruce.tres" id="11_xhsyr"]
 [ext_resource type="Material" uid="uid://2anu2urllpa0" path="res://data/materials/water.material" id="11_xy6xd"]
 [ext_resource type="Curve" uid="uid://dmba84eso01xp" path="res://data/terrain/noise/curves/peaks_and_valleys_curve.tres" id="12_ex04j"]
+[ext_resource type="Texture2D" uid="uid://74e1d14d4ih8" path="res://asset/texture/foliage/snow_ball.png" id="13_wdbo7"]
 
 [sub_resource type="Resource" id="Resource_ex04j"]
 script = ExtResource("1_20jv2")
@@ -34,7 +36,7 @@ height_range = Vector2(-30, 4)
 temperature_range = Vector2(0, 1)
 humidity_range = Vector2(0, 1)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+feature_layers = Array[ExtResource("2_ujs85")]([])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5juvr"]
@@ -48,6 +50,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_chkl1"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_vt247")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_pkeq4"]
 script = ExtResource("1_20jv2")
 label = "Beach"
@@ -56,7 +63,7 @@ height_range = Vector2(4, 6)
 temperature_range = Vector2(0.5, 1)
 humidity_range = Vector2(0, 1)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_vt247")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_chkl1")])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_nylur"]
@@ -68,6 +75,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_1klug"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_nylur")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_0evw7"]
 script = ExtResource("1_20jv2")
 label = "Gravel Beach"
@@ -76,7 +88,7 @@ height_range = Vector2(4, 6)
 temperature_range = Vector2(0, 0.5)
 humidity_range = Vector2(0, 1)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_nylur")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_1klug")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_6by17"]
@@ -87,7 +99,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.85, 1)
 humidity_range = Vector2(0, 0.2)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+feature_layers = Array[ExtResource("2_ujs85")]([])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_jqrxn"]
@@ -98,6 +110,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_fyk7h"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_jqrxn")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_kfufk"]
 script = ExtResource("1_20jv2")
 label = "Savanna"
@@ -106,7 +123,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.7, 0.85)
 humidity_range = Vector2(0.2, 0.4)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_jqrxn")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_fyk7h")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_rri76"]
@@ -117,6 +134,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_co277"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_rri76")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_n5dfa"]
 script = ExtResource("1_20jv2")
 label = "Tropical Rainforest"
@@ -125,19 +147,8 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.7, 1)
 humidity_range = Vector2(0.7, 1)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_rri76")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_co277")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_q8k6g"]
-
-[sub_resource type="Resource" id="Resource_q1707"]
-script = ExtResource("2_pkeq4")
-feature = ExtResource("5_t8xjf")
-density = 1.0
-spawn_noise = SubResource("FastNoiseLite_q8k6g")
-spawn_noise_threshold = 0.3
-patch_mask_threshold = 0.7
-metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
 [sub_resource type="Resource" id="Resource_76r5u"]
 script = ExtResource("2_pkeq4")
@@ -147,6 +158,24 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_q1707"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_76r5u")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
+[sub_resource type="Resource" id="Resource_nd25p"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("5_t8xjf")
+density = 0.8
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_nj2tm"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_nd25p")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_xhsyr"]
 script = ExtResource("1_20jv2")
 label = "Temperate Forest"
@@ -155,36 +184,13 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.45, 0.65)
 humidity_range = Vector2(0.45, 0.7)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_q1707"), SubResource("Resource_76r5u")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_q1707"), SubResource("Resource_nj2tm")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_foxm2"]
 script = ExtResource("2_pkeq4")
 feature = ExtResource("3_ex04j")
 density = 100.0
-spawn_noise_threshold = 0.5
-patch_mask_threshold = 0.7
-metadata/_custom_type_script = "uid://dswyytmpuapp1"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6by17"]
-
-[sub_resource type="Resource" id="Resource_q4rbw"]
-script = ExtResource("2_pkeq4")
-feature = ExtResource("4_nfl70")
-density = 0.08
-spawn_noise = SubResource("FastNoiseLite_6by17")
-spawn_noise_threshold = 0.5
-patch_mask_threshold = 0.7
-metadata/_custom_type_script = "uid://dswyytmpuapp1"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_kfufk"]
-seed = 150
-
-[sub_resource type="Resource" id="Resource_441kt"]
-script = ExtResource("2_pkeq4")
-feature = ExtResource("5_t8xjf")
-density = 0.08
-spawn_noise = SubResource("FastNoiseLite_kfufk")
 spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
@@ -211,6 +217,7 @@ script = ExtResource("5_nfl70")
 label = "Flowers"
 type = 1
 scenes = Array[PackedScene]([])
+min_radius = 0.0
 mesh = ExtResource("7_6by17")
 cast_shadow = 0
 receive_biome_color = false
@@ -235,6 +242,39 @@ patch_mask_noise = SubResource("FastNoiseLite_xhsyr")
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_ewrla"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_foxm2"), SubResource("Resource_24v01"), SubResource("Resource_ldaqy")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6by17"]
+
+[sub_resource type="Resource" id="Resource_q4rbw"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("4_nfl70")
+density = 0.08
+spawn_noise = SubResource("FastNoiseLite_6by17")
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kfufk"]
+seed = 150
+
+[sub_resource type="Resource" id="Resource_441kt"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("5_t8xjf")
+density = 0.08
+spawn_noise = SubResource("FastNoiseLite_kfufk")
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_6fdyo"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_q4rbw"), SubResource("Resource_441kt")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_akk4h"]
 script = ExtResource("1_20jv2")
 label = "Temperate Grasslands"
@@ -243,7 +283,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.45, 0.65)
 humidity_range = Vector2(0.3, 0.45)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_foxm2"), SubResource("Resource_q4rbw"), SubResource("Resource_441kt"), SubResource("Resource_24v01"), SubResource("Resource_ldaqy")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_ewrla"), SubResource("Resource_6fdyo")])
 metadata/_custom_type_script = ExtResource("1_20jv2")
 
 [sub_resource type="Resource" id="Resource_j8wnv"]
@@ -255,6 +295,11 @@ spawn_noise_threshold = 0.2
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_24cw0"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_j8wnv")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_q8k6g"]
 script = ExtResource("1_20jv2")
 label = "Mediterranean Scrub"
@@ -263,8 +308,162 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.55, 0.7)
 humidity_range = Vector2(0.3, 0.45)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_j8wnv")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_24cw0")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
+
+[sub_resource type="Shader" id="Shader_5juvr"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, specular_disabled, diffuse_toon;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+uniform vec4 backlight : source_color;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform float wind_strength : hint_range(0.0, 1.0) = 0.1;
+uniform float wind_speed : hint_range(0.0, 10.0) = 1.0;
+uniform float wind_scale : hint_range(0.1, 10.0) = 1.0;
+uniform sampler2D noise_texture : hint_default_white;
+uniform float noise_scale : hint_range(0.1, 10.0) = 1.0;
+global uniform vec3 player_position;
+uniform float player_influence_radius : hint_range(0.0, 10.0) = 2.0;
+uniform float player_influence_strength : hint_range(0.0, 1.0) = 0.5;
+
+void vertex() {
+    UV = UV * uv1_scale.xy + uv1_offset.xy;
+    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+
+    // Find the base position (bottom of the grass blade)
+    float grass_height = length(VERTEX);
+    vec3 base_pos = world_pos - VERTEX;
+
+    // Calculate wind and noise
+    float wind_time = TIME * wind_speed;
+    vec2 noise_uv = base_pos.xz * noise_scale * 0.01;
+    float noise_value = texture(noise_texture, noise_uv + wind_time * 0.1).r * 2.0 - 1.0;
+
+    float position_variation = sin(base_pos.x * 0.1) * cos(base_pos.z * 0.1) * 2.0;
+    float wind_horizontal = sin(wind_time + base_pos.x * wind_scale + base_pos.z * wind_scale + position_variation + noise_value) * wind_strength;
+    float wind_depth = cos(wind_time * 0.7 + base_pos.x * wind_scale * 1.2 + base_pos.z * wind_scale + position_variation + noise_value) * wind_strength * 0.5;
+
+    // Calculate player influence
+    vec3 to_player = player_position - base_pos;
+    float distance_to_player = length(to_player);
+    float player_influence = 1.0 - smoothstep(0.0, player_influence_radius, distance_to_player);
+    vec3 player_deformation = normalize(to_player) * player_influence * player_influence_strength;
+
+    // Calculate the bend influence based on height
+    float vertex_height = VERTEX.y;
+    float max_height = grass_height;
+    float height_fraction = vertex_height / max_height;
+
+    // The deformation increases as we go up the blade
+    float bend_influence = height_fraction * height_fraction; // Square it for more natural bending
+
+    // Calculate the total displacement
+    vec3 wind_displacement = vec3(wind_horizontal, 0.0, wind_depth);
+    vec3 total_displacement = (wind_displacement - player_deformation) * bend_influence;
+
+    // Apply the displacement
+    vec3 new_pos = VERTEX;
+    new_pos += total_displacement * max_height;
+
+    // Update vertex position
+    VERTEX = new_pos;
+
+    // Billboard matrix setup
+    MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+        MAIN_CAM_INV_VIEW_MATRIX[0],
+        MAIN_CAM_INV_VIEW_MATRIX[1],
+        MAIN_CAM_INV_VIEW_MATRIX[2],
+        MODEL_MATRIX[3]
+    );
+    MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+vec3 brighten(vec3 color, float factor) {
+  return vec3(
+    min(color.r + factor, 1.0),
+    min(color.g + factor, 1.0),
+    min(color.b + factor, 1.0)
+  );
+}
+
+void fragment() {
+    vec2 base_uv = UV;
+    vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+    // Make the color lighter as we go up the blade
+    float height = 1.0 - UV.y;
+    vec3 color = albedo.rgb;
+	vec3 color2 = brighten(color, 0.05);
+    color = mix(color, color2, height);
+
+    ALBEDO = color * albedo_tex.rgb;
+    ALPHA *= albedo.a * albedo_tex.a;
+    ALPHA_SCISSOR_THRESHOLD = 0.5;
+    BACKLIGHT = backlight.rgb;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wdbo7"]
+noise_type = 4
+frequency = 0.0054
+fractal_octaves = 3
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_foxm2"]
+seamless = true
+noise = SubResource("FastNoiseLite_wdbo7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sj1ts"]
+render_priority = 0
+shader = SubResource("Shader_5juvr")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("13_wdbo7")
+shader_parameter/backlight = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/wind_strength = 0.0
+shader_parameter/wind_speed = 0.0
+shader_parameter/wind_scale = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_foxm2")
+shader_parameter/noise_scale = 10.0
+shader_parameter/player_influence_radius = 3.0
+shader_parameter/player_influence_strength = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_vhdja"]
+material = SubResource("ShaderMaterial_sj1ts")
+size = Vector2(0.3, 0.2)
+center_offset = Vector3(0, 0.05, 0)
+
+[sub_resource type="Resource" id="Resource_qefg5"]
+script = ExtResource("5_nfl70")
+label = "Snow"
+type = 1
+scenes = Array[PackedScene]([])
+min_radius = 0.0
+mesh = SubResource("QuadMesh_vhdja")
+cast_shadow = 0
+receive_biome_color = true
+shader_parameter_color_name = "albedo"
+random_scale = Vector2(0.9, 1.1)
+random_rotation = Vector2(0, 360)
+random_offset = Vector3(0.5, 0, 0.5)
+follow_normals = false
+metadata/_custom_type_script = "uid://b17kgm5mvh88b"
+
+[sub_resource type="Resource" id="Resource_cy5u0"]
+script = ExtResource("2_pkeq4")
+feature = SubResource("Resource_qefg5")
+density = 300.0
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_47id2"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_cy5u0")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
 [sub_resource type="Resource" id="Resource_mqrcm"]
 script = ExtResource("2_pkeq4")
@@ -274,6 +473,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_f2bdx"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_mqrcm")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_ujs85"]
 script = ExtResource("1_20jv2")
 label = "Tundra"
@@ -282,7 +486,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0, 0.25)
 humidity_range = Vector2(0.1, 0.3)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_mqrcm")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_47id2"), SubResource("Resource_f2bdx")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_83rfk"]
@@ -293,6 +497,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_78odh"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_83rfk")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_kg38a"]
 script = ExtResource("2_pkeq4")
 feature = ExtResource("11_xhsyr")
@@ -300,6 +509,11 @@ density = 0.8
 spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_mcjpd"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_kg38a")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
 [sub_resource type="Resource" id="Resource_5juvr"]
 script = ExtResource("1_20jv2")
@@ -309,7 +523,7 @@ height_range = Vector2(6, 30)
 temperature_range = Vector2(0.2, 0.4)
 humidity_range = Vector2(0.4, 0.7)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_83rfk"), SubResource("Resource_kg38a")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_78odh"), SubResource("Resource_mcjpd")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_wdbo7"]
@@ -320,7 +534,7 @@ height_range = Vector2(30, 80)
 temperature_range = Vector2(0.2, 0.4)
 humidity_range = Vector2(0.3, 0.5)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+feature_layers = Array[ExtResource("2_ujs85")]([])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_08rn7"]
@@ -331,6 +545,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_pp01p"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_08rn7")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_1n2x8"]
 script = ExtResource("1_20jv2")
 label = "Wetlands"
@@ -339,7 +558,7 @@ height_range = Vector2(4, 10)
 temperature_range = Vector2(0.4, 0.7)
 humidity_range = Vector2(0.7, 0.9)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_08rn7")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_pp01p")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_t2oj8"]
@@ -353,6 +572,11 @@ spawn_noise_threshold = 0.2
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_bas7v"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_hf6bp")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_sj1ts"]
 script = ExtResource("1_20jv2")
 label = "Arid Shrubland"
@@ -361,7 +585,7 @@ height_range = Vector2(6, 10)
 temperature_range = Vector2(0.5, 0.7)
 humidity_range = Vector2(0.2, 0.3)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_hf6bp")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_bas7v")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_t2oj8"]
@@ -372,6 +596,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_p4nso"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_t2oj8")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_w65by"]
 script = ExtResource("1_20jv2")
 label = "Temperate Rainforest"
@@ -380,7 +609,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.4, 0.55)
 humidity_range = Vector2(0.8, 1)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_t2oj8")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_p4nso")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_sy3o8"]
@@ -391,7 +620,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0, 0.15)
 humidity_range = Vector2(0, 0.2)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+feature_layers = Array[ExtResource("2_ujs85")]([])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ujs85"]
@@ -405,6 +634,11 @@ spawn_noise_threshold = 0.7
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_73d6u"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_dwmqa")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_egfuv"]
 script = ExtResource("1_20jv2")
 label = "Cold Desert"
@@ -413,7 +647,7 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0.15, 0.35)
 humidity_range = Vector2(0, 0.15)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_dwmqa")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_73d6u")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_6vlfj"]
@@ -424,6 +658,11 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_704my"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_6vlfj")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_yr5s8"]
 script = ExtResource("1_20jv2")
 label = "Swamp"
@@ -432,14 +671,14 @@ height_range = Vector2(3, 10)
 temperature_range = Vector2(0.55, 0.75)
 humidity_range = Vector2(0.8, 1)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_6vlfj")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_704my")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [resource]
 script = ExtResource("2_4iod4")
 chunk_size = 16
 vertex_per_meter = 1
-view_distance = 3
+view_distance = 10
 update_rate = 0.5
 world_seed = 94414
 max_threads = 4

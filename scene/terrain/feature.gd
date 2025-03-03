@@ -13,6 +13,7 @@ enum FeatureType {
 
 @export_subgroup("Instance")
 @export var scenes: Array[PackedScene]
+@export var min_radius: float = 0.0
 
 @export_subgroup("Multimesh")
 @export var mesh: Mesh

@@ -9,6 +9,7 @@ script = ExtResource("1_j7gu0")
 label = "Snowy Spruce Tree"
 type = 0
 scenes = Array[PackedScene]([ExtResource("1_w1ng0"), ExtResource("2_xhxeq")])
+min_radius = 1.0
 cast_shadow = 0
 receive_biome_color = false
 shader_parameter_color_name = "albedo"
