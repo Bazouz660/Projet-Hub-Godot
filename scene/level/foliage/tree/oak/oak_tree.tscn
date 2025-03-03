@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctyk3a6odu2gc"]
+[gd_scene load_steps=9 format=3 uid="uid://ctyk3a6odu2gc"]
 
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="4_inqre"]
-[ext_resource type="ArrayMesh" uid="uid://cd0lvw4yps3oh" path="res://asset/mesh/foliage/tree/oak/oak_trunk.res" id="4_n4ctf"]
+[ext_resource type="ArrayMesh" uid="uid://ccf2jkdesbej4" path="res://asset/mesh/foliage/tree/oak/oak_trunk.res" id="4_n4ctf"]
 [ext_resource type="ArrayMesh" uid="uid://df82y5tfi7xqf" path="res://asset/mesh/foliage/tree/oak/oak_foliage.res" id="5_inqre"]
 [ext_resource type="Texture2D" uid="uid://jywlavb5jbvx" path="res://asset/texture/foliage/leaves.png" id="5_ofnl6"]
 
@@ -33,11 +33,10 @@ size = Vector3(0.847961, 5.44067, 0.65979)
 
 [node name="OakTree" type="StaticBody3D"]
 
-[node name="trunk" type="MeshInstance3D" parent="."]
-lod_bias = 128.0
+[node name="Trunk" type="MeshInstance3D" parent="."]
 mesh = ExtResource("4_n4ctf")
 
-[node name="foliage" type="MeshInstance3D" parent="."]
+[node name="Fooliage" type="MeshInstance3D" parent="."]
 cast_shadow = 3
 lod_bias = 128.0
 mesh = ExtResource("5_inqre")
