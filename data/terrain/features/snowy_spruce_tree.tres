@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Feature" load_steps=4 format=3 uid="uid://bp1sdrmgwylo5"]
+
+[ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="1_j7gu0"]
+[ext_resource type="PackedScene" uid="uid://tqd0wa8xavt1" path="res://scene/level/foliage/tree/spruce/snowy_spruce_tree.tscn" id="1_w1ng0"]
+[ext_resource type="PackedScene" uid="uid://cbra6jb5ruycp" path="res://scene/level/foliage/tree/spruce/half_snowy_spruce_tree.tscn" id="2_xhxeq"]
+
+[resource]
+script = ExtResource("1_j7gu0")
+label = "Snowy Spruce Tree"
+type = 0
+scenes = Array[PackedScene]([ExtResource("1_w1ng0"), ExtResource("2_xhxeq")])
+cast_shadow = 0
+receive_biome_color = false
+shader_parameter_color_name = "albedo"
+random_scale = Vector2(0.9, 1.1)
+random_rotation = Vector2(0, 360)
+random_offset = Vector3(0.5, 0, 0.5)
+follow_normals = false
+metadata/_custom_type_script = "uid://b17kgm5mvh88b"

@@ -181,6 +181,7 @@ structure_manager = NodePath("../StructureManager")
 metadata/_custom_type_script = "uid://b85wwc428gk3r"
 
 [node name="PanelContainer" type="PanelContainer" parent="ProceduralWorld"]
+visible = false
 offset_right = 1.0
 offset_bottom = 23.0
 

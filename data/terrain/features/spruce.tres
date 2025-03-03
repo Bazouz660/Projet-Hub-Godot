@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Feature" load_steps=3 format=3 uid="uid://7gfv3w6hpvs3"]
+
+[ext_resource type="PackedScene" uid="uid://be8nwke2gm1xq" path="res://scene/level/foliage/tree/spruce/spruce_tree.tscn" id="1_576yf"]
+[ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="1_ljd3v"]
+
+[resource]
+script = ExtResource("1_ljd3v")
+label = "Spruce"
+type = 0
+scenes = Array[PackedScene]([ExtResource("1_576yf")])
+cast_shadow = 0
+receive_biome_color = false
+shader_parameter_color_name = "albedo"
+random_scale = Vector2(0.9, 1.1)
+random_rotation = Vector2(0, 360)
+random_offset = Vector3(0.5, 0, 0.5)
+follow_normals = false
+metadata/_custom_type_script = "uid://b17kgm5mvh88b"

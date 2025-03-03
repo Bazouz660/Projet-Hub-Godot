@@ -185,6 +185,8 @@ drink={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/decals/filter=0
+textures/light_projectors/filter=0
 environment/volumetric_fog/use_filter=0
 
 [shader_globals]

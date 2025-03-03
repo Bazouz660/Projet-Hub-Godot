@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwhl5jkqy46hf"]
+[gd_scene load_steps=9 format=3 uid="uid://dwhl5jkqy46hf"]
 
 [ext_resource type="ArrayMesh" uid="uid://behvsy67mhqdd" path="res://asset/mesh/foliage/tree/birch/birch_tree.res" id="1_fsr78"]
 [ext_resource type="ArrayMesh" uid="uid://rv0hagpgabyn" path="res://asset/mesh/foliage/tree/birch/birch_foliage.res" id="2_1xtsg"]

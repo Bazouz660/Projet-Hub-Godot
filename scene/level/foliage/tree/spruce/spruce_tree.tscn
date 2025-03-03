@@ -20,6 +20,7 @@ shader_parameter/player_influence_strength = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_xui7k"]
 material = SubResource("ShaderMaterial_oyba1")
+size = Vector2(0.6, 0.6)
 center_offset = Vector3(0, 0.25, 0)
 
 [sub_resource type="MultiMesh" id="MultiMesh_oyba1"]
@@ -34,20 +35,24 @@ size = Vector3(1, 16.8926, 1)
 [node name="SpruceTree" type="StaticBody3D"]
 
 [node name="Trunk" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.156627, 0)
 mesh = ExtResource("1_mml4t")
 
 [node name="Foliage" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109729, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.109729, 0)
 cast_shadow = 3
 mesh = ExtResource("2_xj7tj")
 
 [node name="leaves" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+visible = false
 mesh = SubResource("QuadMesh_xui7k")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_oyba1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.3418, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 8.3418, 0)
 shape = SubResource("BoxShape3D_oyba1")

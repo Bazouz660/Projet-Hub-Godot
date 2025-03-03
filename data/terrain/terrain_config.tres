@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TerrainConfig" load_steps=71 format=3 uid="uid://th58pjy54nio"]
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=75 format=3 uid="uid://th58pjy54nio"]
 
 [ext_resource type="Script" uid="uid://djvm267dea2ne" path="res://scene/terrain/biome.gd" id="1_20jv2"]
 [ext_resource type="Script" uid="uid://coo0t5a7ochux" path="res://scene/terrain/terrain_config.gd" id="2_4iod4"]
@@ -21,6 +21,8 @@
 [ext_resource type="Curve" uid="uid://ra7w6eywa350" path="res://data/terrain/noise/curves/erosion_curve.tres" id="7_pkeq4"]
 [ext_resource type="FastNoiseLite" uid="uid://j6gpi4ikn3pl" path="res://data/terrain/noise/peaks_and_valleys.tres" id="7_sc5gb"]
 [ext_resource type="FastNoiseLite" uid="uid://neh0047ipvn2" path="res://data/terrain/noise/temperature.tres" id="8_p42iu"]
+[ext_resource type="Resource" uid="uid://bp1sdrmgwylo5" path="res://data/terrain/features/snowy_spruce_tree.tres" id="11_ujs85"]
+[ext_resource type="Resource" uid="uid://7gfv3w6hpvs3" path="res://data/terrain/features/spruce.tres" id="11_xhsyr"]
 [ext_resource type="Material" uid="uid://2anu2urllpa0" path="res://data/materials/water.material" id="11_xy6xd"]
 [ext_resource type="Curve" uid="uid://dmba84eso01xp" path="res://data/terrain/noise/curves/peaks_and_valleys_curve.tres" id="12_ex04j"]
 
@@ -264,6 +266,14 @@ difficulty_range = Vector2(0, 1)
 features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_j8wnv")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
+[sub_resource type="Resource" id="Resource_mqrcm"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("11_ujs85")
+density = 0.8
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_ujs85"]
 script = ExtResource("1_20jv2")
 label = "Tundra"
@@ -272,13 +282,21 @@ height_range = Vector2(6, 25)
 temperature_range = Vector2(0, 0.25)
 humidity_range = Vector2(0.1, 0.3)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_mqrcm")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_83rfk"]
 script = ExtResource("2_pkeq4")
 feature = ExtResource("3_ex04j")
 density = 70.0
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_kg38a"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("11_xhsyr")
+density = 0.8
 spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
@@ -291,7 +309,7 @@ height_range = Vector2(6, 30)
 temperature_range = Vector2(0.2, 0.4)
 humidity_range = Vector2(0.4, 0.7)
 difficulty_range = Vector2(0, 1)
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_83rfk")])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_83rfk"), SubResource("Resource_kg38a")])
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
 [sub_resource type="Resource" id="Resource_wdbo7"]
@@ -421,7 +439,7 @@ metadata/_custom_type_script = "uid://djvm267dea2ne"
 script = ExtResource("2_4iod4")
 chunk_size = 16
 vertex_per_meter = 1
-view_distance = 15
+view_distance = 3
 update_rate = 0.5
 world_seed = 94414
 max_threads = 4
