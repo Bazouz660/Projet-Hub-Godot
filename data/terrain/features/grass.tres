@@ -8,6 +8,7 @@ script = ExtResource("2_o8fp1")
 label = "Grass"
 type = 1
 scenes = Array[PackedScene]([])
+min_radius = 0.0
 mesh = ExtResource("1_i1u0k")
 cast_shadow = 0
 receive_biome_color = true
