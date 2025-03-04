@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwhl5jkqy46hf"]
+[gd_scene load_steps=13 format=3 uid="uid://dwhl5jkqy46hf"]
 
-[ext_resource type="ArrayMesh" uid="uid://behvsy67mhqdd" path="res://asset/mesh/foliage/tree/birch/birch_tree.res" id="1_fsr78"]
-[ext_resource type="ArrayMesh" uid="uid://rv0hagpgabyn" path="res://asset/mesh/foliage/tree/birch/birch_foliage.res" id="2_1xtsg"]
+[ext_resource type="ArrayMesh" uid="uid://behvsy67mhqdd" path="res://asset/mesh/feature/tree/birch/birch_tree.res" id="1_fsr78"]
+[ext_resource type="ArrayMesh" uid="uid://rv0hagpgabyn" path="res://asset/mesh/feature/tree/birch/birch_foliage.res" id="2_1xtsg"]
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="3_xs5cw"]
 [ext_resource type="Texture2D" uid="uid://jywlavb5jbvx" path="res://asset/texture/foliage/leaves.png" id="4_xfnrm"]
+[ext_resource type="Texture2D" uid="uid://c13rtn1oha6ql" path="res://asset/texture/foliage/leaf.png" id="5_6qmmw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ofnl6"]
 render_priority = 0
@@ -31,6 +32,34 @@ buffer = PackedFloat32Array(0.572565, 0.561756, -0.598832, 1.81324, -0.375832, 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_c0nh8"]
 size = Vector3(0.429047, 9.48193, 0.283447)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6qmmw"]
+emission_shape_scale = Vector3(2.1, 2.23, 2.065)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -176.17
+angular_velocity_max = 145.53
+gravity = Vector3(0, -1, 0)
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32ndl"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 0.764706, 0, 1)
+albedo_texture = ExtResource("5_6qmmw")
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_os4bt"]
+material = SubResource("StandardMaterial3D_32ndl")
+size = Vector2(1, 1)
+orientation = 2
+
 [node name="BirchTree" type="StaticBody3D"]
 
 [node name="Trunk" type="MeshInstance3D" parent="."]
@@ -49,3 +78,11 @@ multimesh = SubResource("MultiMesh_xs5cw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164948, 4.55298, -0.00939941)
 shape = SubResource("BoxShape3D_c0nh8")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0477742, 6.60541, 0)
+cast_shadow = 0
+amount = 5
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_6qmmw")
+draw_pass_1 = SubResource("PlaneMesh_os4bt")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctyk3a6odu2gc"]
+[gd_scene load_steps=13 format=3 uid="uid://ctyk3a6odu2gc"]
 
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="4_inqre"]
-[ext_resource type="ArrayMesh" uid="uid://ccf2jkdesbej4" path="res://asset/mesh/foliage/tree/oak/oak_trunk.res" id="4_n4ctf"]
-[ext_resource type="ArrayMesh" uid="uid://df82y5tfi7xqf" path="res://asset/mesh/foliage/tree/oak/oak_foliage.res" id="5_inqre"]
+[ext_resource type="ArrayMesh" uid="uid://ccf2jkdesbej4" path="res://asset/mesh/feature/tree/oak/oak_trunk.res" id="4_n4ctf"]
+[ext_resource type="ArrayMesh" uid="uid://df82y5tfi7xqf" path="res://asset/mesh/feature/tree/oak/oak_foliage.res" id="5_inqre"]
+[ext_resource type="Texture2D" uid="uid://c13rtn1oha6ql" path="res://asset/texture/foliage/leaf.png" id="5_jr886"]
 [ext_resource type="Texture2D" uid="uid://jywlavb5jbvx" path="res://asset/texture/foliage/leaves.png" id="5_ofnl6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_inqre"]
@@ -31,6 +32,34 @@ buffer = PackedFloat32Array(-0.642075, -0.545654, 0.540372, 0.807198, 0.280681, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6p1uy"]
 size = Vector3(0.847961, 5.44067, 0.65979)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jr886"]
+emission_shape_scale = Vector3(3.48, 2.775, 2.805)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -176.17
+angular_velocity_max = 145.53
+gravity = Vector3(0, -1, 0)
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2tf4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.258824, 0.670588, 0.286275, 1)
+albedo_texture = ExtResource("5_jr886")
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7lerj"]
+material = SubResource("StandardMaterial3D_j2tf4")
+size = Vector2(1, 1)
+orientation = 2
+
 [node name="OakTree" type="StaticBody3D"]
 
 [node name="Trunk" type="MeshInstance3D" parent="."]
@@ -48,3 +77,11 @@ multimesh = SubResource("MultiMesh_n4ctf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0614929, 2.51697, 0.0720825)
 shape = SubResource("BoxShape3D_6p1uy")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.544976, 4.78975, 0)
+cast_shadow = 0
+amount = 5
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_jr886")
+draw_pass_1 = SubResource("PlaneMesh_7lerj")
