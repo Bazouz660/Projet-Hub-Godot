@@ -1,12 +1,19 @@
 extends Node
 class_name TerrainChunkMesh
 
-static func _generate_water_mesh(chunk: TerrainChunk) -> PlaneMesh:
-	var mesh = PlaneMesh.new()
+static func _generate_water_mesh(chunk: TerrainChunk) -> Dictionary:
+	var data: Dictionary = {}
+	var mesh := PlaneMesh.new()
 	mesh.size = Vector2(TerrainChunk.config.chunk_size, TerrainChunk.config.chunk_size)
 	mesh.subdivide_depth = chunk.vertex_count * 2
 	mesh.subdivide_width = chunk.vertex_count * 2
-	return mesh
+
+	var shape := BoxShape3D.new()
+	shape.size = Vector3(TerrainChunk.config.chunk_size, 3, TerrainChunk.config.chunk_size)
+
+	data["mesh"] = mesh
+	data["collision_shape"] = shape
+	return data
 
 static func _generate_mesh(chunk: TerrainChunk) -> ArrayMesh:
 	var config = TerrainChunk.config

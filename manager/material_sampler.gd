@@ -20,6 +20,7 @@ signal surface_detected(info: Dictionary)
 func _ready() -> void:
 	# Create internal RayCast3D
 	_ray_cast = RayCast3D.new()
+	_ray_cast.collide_with_areas = true
 	_ray_cast.target_position = Vector3(0, - detection_distance, 0)
 	add_child(_ray_cast)
 
@@ -61,13 +62,14 @@ func check_material() -> Dictionary:
 
 func _get_surface_info(material: Material, mesh_instance: MeshInstance3D, collision_point: Vector3, collider: Node) -> Dictionary:
 	var type: String
-	#print("Material found: ", material.resource_path.get_file())
+	print("Material found: ", material.resource_path.get_file())
 	if material and material.has_meta("type"):
 		type = material.get_meta("type")
-		#print("Material type: ", type)
+		print("Material type: ", type)
 		if type == "terrain":
-			type = "Unknown"
-			#type = TerrainSystem.get_biome_material()
+			print("Terrain material detected")
+			type = TerrainChunkBiome.determine_biome(collision_point.x, collision_point.z).material_type
+			print("Type: ", type)
 	else:
 		type = "Unknown"
 		#print("Material type: Unknown")

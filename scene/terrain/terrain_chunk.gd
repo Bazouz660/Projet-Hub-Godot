@@ -24,6 +24,8 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 # --- Private Instance Variables ---
 var collision_object: CollisionShape3D
 var mesh_instance: MeshInstance3D
+var water_area: Area3D
+var water_collision_shape: CollisionShape3D
 var water_mesh_instance: MeshInstance3D
 #var occluder_instance: OccluderInstance3D
 var grid_position: Vector2i
@@ -128,8 +130,11 @@ func _ready():
 	_generated.connect(_on_chunk_generated)
 	mesh_instance = MeshInstance3D.new()
 	water_mesh_instance = MeshInstance3D.new()
-	water_mesh_instance.position.x += size * 0.5
-	water_mesh_instance.position.z += size * 0.5
+	#water_mesh_instance.visible = false
+	water_area = Area3D.new()
+	water_collision_shape = CollisionShape3D.new()
+	water_area.position.x += size * 0.5
+	water_area.position.z += size * 0.5
 
 	collision_object = CollisionShape3D.new()
 	collision_object.position.x += size * 0.5
@@ -144,12 +149,14 @@ func _ready():
 
 	#occluder_instance = OccluderInstance3D.new()
 
+	add_child(mesh_instance)
 	add_child(debug_mesh)
 	add_child(collision_object)
+	water_area.add_child(water_collision_shape)
+	water_area.add_child(water_mesh_instance)
+	add_child(water_area)
+	water_area.global_position.y = config.sea_level
 	#add_child(occluder_instance)
-
-	add_child(water_mesh_instance)
-	add_child(mesh_instance)
 
 func generate():
 	time_to_generate = Time.get_ticks_msec()
@@ -344,13 +351,16 @@ func _generate() -> void:
 	var mesh := TerrainChunkMesh._generate_mesh(self)
 	var collision_shape := TerrainChunkMesh.create_heightmap_collision(self)
 	#var occluder_shape := TerrainChunkMesh.create_occluder_shape(mesh)
-	var water_mesh := TerrainChunkMesh._generate_water_mesh(self)
+	var water_data := TerrainChunkMesh._generate_water_mesh(self)
+	var water_mesh: PlaneMesh = water_data["mesh"]
+	var water_collision_mesh: BoxShape3D = water_data["collision_shape"]
 	var feature_positions := TerrainChunkFeatures._generate_features_positions(self)
 	var data = {
 		"mesh": mesh,
 		"collision_shape": collision_shape,
 		#"occluder_shape": occluder_shape,
 		"water_mesh": water_mesh,
+		"water_collision_mesh": water_collision_mesh,
 		"feature_positions": feature_positions
 	}
 	_generated.emit.call_deferred(data)
@@ -368,10 +378,11 @@ func _on_chunk_generated(data: Dictionary) -> void:
 	mesh_instance.mesh = data["mesh"]
 	collision_object.shape = data["collision_shape"]
 	water_mesh_instance.mesh = data["water_mesh"]
+	water_collision_shape.shape = data["water_collision_mesh"]
+	water_collision_shape.position.y -= (water_collision_shape.shape.size.y * 0.5) + 0.1
 	#occluder_instance.occluder = data["occluder_shape"]
 	mesh_instance.material_override = config.material
 	water_mesh_instance.material_override = config.water_material
-	water_mesh_instance.position.y = config.sea_level
 	TerrainChunkFeatures._instantiate_features(self, data["feature_positions"])
 
 func _instantiate_feature(feature: Feature, p_position: Vector3) -> void:
