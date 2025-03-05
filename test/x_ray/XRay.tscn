@@ -1,0 +1,230 @@
+[gd_scene load_steps=20 format=3 uid="uid://cliubvu4fbms7"]
+
+[ext_resource type="Shader" uid="uid://85al3ofv2jwx" path="res://test/x_ray/XRay.gdshader" id="1_04rst"]
+[ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="2_a7wwe"]
+[ext_resource type="PackedScene" uid="uid://ctyk3a6odu2gc" path="res://scene/level/foliage/tree/oak/oak_tree.tscn" id="3_04rst"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_04rst"]
+frequency = 0.009
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_04rst"]
+noise = SubResource("FastNoiseLite_04rst")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2hl6"]
+render_priority = 0
+shader = ExtResource("1_04rst")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_04rst")
+shader_parameter/speed = 0.05
+shader_parameter/noise_scale = 0.605
+shader_parameter/distortion = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_wkokw"]
+radius = 1.5
+height = 3.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a7wwe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7wwe"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a7wwe"]
+
+[sub_resource type="Environment" id="Environment_a7wwe"]
+tonemap_mode = 4
+glow_strength = 2.0
+glow_blend_mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_04rst"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkokw"]
+albedo_color = Color(0.1988, 0.51404, 0.71, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n2hl6"]
+
+[sub_resource type="Shader" id="Shader_04rst"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.rc's StandardMaterial3D.
+
+shader_type spatial;
+render_mode depth_draw_always;
+stencil_mode read, compare_not_equal, 1;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = vec3(1.0, 0.0, 0.0);
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wkokw"]
+render_priority = 0
+shader = SubResource("Shader_04rst")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_a7wwe"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.rc's StandardMaterial3D.
+
+shader_type spatial;
+render_mode depth_draw_always;
+stencil_mode read, compare_not_equal, 1;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04rst"]
+render_priority = 0
+shader = SubResource("Shader_a7wwe")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7wwe"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="XRay" type="Node3D"]
+
+[node name="GameWorld" type="Node3D" parent="."]
+
+[node name="XRaySphere" type="MeshInstance3D" parent="GameWorld"]
+transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 0.2, -0.000516891, 0.421875, 0.0272641)
+material_override = SubResource("ShaderMaterial_n2hl6")
+mesh = SubResource("SphereMesh_wkokw")
+
+[node name="Player" type="CharacterBody3D" parent="GameWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03276, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameWorld/Player"]
+shape = SubResource("CapsuleShape3D_a7wwe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GameWorld/Player"]
+material_override = SubResource("StandardMaterial3D_a7wwe")
+mesh = SubResource("CapsuleMesh_a7wwe")
+
+[node name="FreeCam" parent="GameWorld" instance=ExtResource("2_a7wwe")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.04948, 6.25252)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GameWorld"]
+environment = SubResource("Environment_a7wwe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="GameWorld"]
+transform = Transform3D(0.891932, -0.0910142, -0.442916, 0.45217, 0.179531, 0.873677, 0, -0.979533, 0.201283, 0, 3.18987, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GameWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144199, 0, 0)
+mesh = SubResource("PlaneMesh_04rst")
+surface_material_override/0 = SubResource("StandardMaterial3D_wkokw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="GameWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456328, 3.50829)
+mesh = SubResource("BoxMesh_n2hl6")
+
+[node name="Obstacles" type="Node3D" parent="GameWorld"]
+
+[node name="Area3D" type="Area3D" parent="GameWorld/Obstacles"]
+transform = Transform3D(2.08008, 0, 1.54317, 0, 2.59, 0, -1.54317, 0, 2.08008, -2.5026, 1.10252, 1.35217)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="GameWorld/Obstacles/Area3D"]
+material_override = SubResource("ShaderMaterial_wkokw")
+mesh = SubResource("BoxMesh_n2hl6")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="GameWorld/Obstacles/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.831006, 0, -1.12013)
+material_override = SubResource("ShaderMaterial_04rst")
+mesh = SubResource("BoxMesh_n2hl6")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GameWorld/Obstacles/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_a7wwe")
+
+[node name="OakTree" parent="." instance=ExtResource("3_04rst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52764, 0, 5.79408)
+
+[editable path="GameWorld/FreeCam"]

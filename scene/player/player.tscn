@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gkai57dhq3qb"]
+[gd_scene load_steps=18 format=3 uid="uid://gkai57dhq3qb"]
 
 [ext_resource type="Script" uid="uid://cc62qw8vsnai1" path="res://scene/player/player.gd" id="1_k72xi"]
 [ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="2_15wi1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
 [ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/inventory_component.tscn" id="5_gwy6j"]
 [ext_resource type="Script" uid="uid://btr6ce7y2582k" path="res://scene/player/interact_area.gd" id="8_hfhxk"]
+[ext_resource type="Shader" uid="uid://85al3ofv2jwx" path="res://test/x_ray/XRay.gdshader" id="9_pisg7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
 
@@ -27,6 +28,24 @@ properties/2/replication_mode = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_732fb"]
 radius = 1.42241
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pisg7"]
+frequency = 0.009
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_04rst"]
+noise = SubResource("FastNoiseLite_pisg7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oypl4"]
+render_priority = 0
+shader = ExtResource("9_pisg7")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_04rst")
+shader_parameter/speed = 0.05
+shader_parameter/noise_scale = 0.605
+shader_parameter/distortion = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_qjg4s"]
+radius = 1.5
+height = 3.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_k72xi")
@@ -70,3 +89,8 @@ shape = SubResource("SphereShape3D_732fb")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.247721, 1.24265, 0.0952194)
 light_color = Color(0.96, 0.89088, 0.4992, 1)
+
+[node name="XRaySphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 0.2, -0.000516891, 0.728072, 0.0272641)
+material_override = SubResource("ShaderMaterial_oypl4")
+mesh = SubResource("SphereMesh_qjg4s")

@@ -1,5 +1,6 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, specular_disabled, diffuse_toon;
+render_mode blend_mix, depth_draw_always, cull_back, specular_disabled, diffuse_toon;
+stencil_mode read, compare_not_equal, 1;
 
 group_uniforms Base;
 uniform vec4 albedo : source_color;
@@ -56,7 +57,11 @@ void vertex() {
 void fragment() {
     vec4 albedo_tex = texture(texture_albedo, UV);
     ALBEDO = albedo.rgb * albedo_tex.rgb;
-    ALPHA *= albedo.a * albedo_tex.a;
-    ALPHA_SCISSOR_THRESHOLD = 0.5;
+    // Instead of alpha scissor, use a discard statement but keep the alpha value high
+    if (albedo_tex.a * albedo.a < 0.5) {
+        discard;
+    } else {
+        ALPHA = 1.0; // Force transparency for render ordering
+    }
     BACKLIGHT = backlight.rgb;
 }
