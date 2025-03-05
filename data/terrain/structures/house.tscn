@@ -6,9 +6,14 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ny1e"]
 resource_name = "Material.001"
-cull_mode = 2
+transparency = 4
+depth_draw_mode = 1
 albedo_texture = ExtResource("2_i4y2m")
 texture_filter = 0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 4
+stencil_reference = 1
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i3vyd"]
 _surfaces = [{

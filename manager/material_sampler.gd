@@ -62,14 +62,10 @@ func check_material() -> Dictionary:
 
 func _get_surface_info(material: Material, mesh_instance: MeshInstance3D, collision_point: Vector3, collider: Node) -> Dictionary:
 	var type: String
-	print("Material found: ", material.resource_path.get_file())
 	if material and material.has_meta("type"):
 		type = material.get_meta("type")
-		print("Material type: ", type)
 		if type == "terrain":
-			print("Terrain material detected")
 			type = TerrainChunkBiome.determine_biome(collision_point.x, collision_point.z).material_type
-			print("Type: ", type)
 	else:
 		type = "Unknown"
 		#print("Material type: Unknown")

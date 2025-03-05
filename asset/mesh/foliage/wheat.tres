@@ -1,11 +1,11 @@
 [gd_resource type="QuadMesh" load_steps=4 format=3 uid="uid://dqsfghpuwto8"]
 
-[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="1_xerpp"]
+[ext_resource type="Shader" uid="uid://dpd1ncy4kcbsq" path="res://shader/billboard_sway_no_stencil.gdshader" id="1_thawk"]
 [ext_resource type="Texture2D" uid="uid://3dyh8f0patqm" path="res://asset/texture/foliage/wheat.png" id="2_h8hs1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_txn6h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_thawk"]
 render_priority = 0
-shader = ExtResource("1_xerpp")
+shader = ExtResource("1_thawk")
 shader_parameter/albedo = Color(0.995416, 0.935356, 0.585679, 1)
 shader_parameter/texture_albedo = ExtResource("2_h8hs1")
 shader_parameter/backlight = Color(1, 1, 1, 1)
@@ -17,6 +17,6 @@ shader_parameter/player_influence_radius = 1.5
 shader_parameter/player_influence_strength = 0.7
 
 [resource]
-material = SubResource("ShaderMaterial_txn6h")
+material = SubResource("ShaderMaterial_thawk")
 size = Vector2(1, 1.5)
 center_offset = Vector3(0, 0.75, 0)

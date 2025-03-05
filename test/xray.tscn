@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://002flmprh5ne"]
+
+[ext_resource type="Script" uid="uid://4sfbc2kshpp4" path="res://test/x_ray/x_ray.gd" id="1_p3tqa"]
+[ext_resource type="Material" uid="uid://dux2yq5lora85" path="res://test/x_ray/XRay.tres" id="2_p3tqa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n2hl6"]
+radius = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wkokw"]
+radius = 1.5
+height = 3.0
+
+[node name="Xray" type="Node3D"]
+script = ExtResource("1_p3tqa")
+
+[node name="XraySphereArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781071, 0)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XraySphereArea"]
+shape = SubResource("SphereShape3D_n2hl6")
+metadata/xray = true
+
+[node name="XRaySphere" type="MeshInstance3D" parent="XraySphereArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+material_override = ExtResource("2_p3tqa")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_wkokw")
+skeleton = NodePath("../../..")

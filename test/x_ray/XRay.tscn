@@ -1,33 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cliubvu4fbms7"]
+[gd_scene load_steps=17 format=3 uid="uid://cliubvu4fbms7"]
 
-[ext_resource type="Shader" uid="uid://85al3ofv2jwx" path="res://test/x_ray/XRay.gdshader" id="1_04rst"]
-[ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="2_a7wwe"]
 [ext_resource type="PackedScene" uid="uid://ctyk3a6odu2gc" path="res://scene/level/foliage/tree/oak/oak_tree.tscn" id="3_04rst"]
+[ext_resource type="PackedScene" uid="uid://gkai57dhq3qb" path="res://scene/player/player.tscn" id="3_n2hl6"]
+[ext_resource type="Script" uid="uid://d1h53rhqi551o" path="res://scene/camera/free_cam.gd" id="3_wkokw"]
+[ext_resource type="Material" uid="uid://dux2yq5lora85" path="res://test/x_ray/XRay.tres" id="4_wkokw"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_04rst"]
-frequency = 0.009
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_04rst"]
-noise = SubResource("FastNoiseLite_04rst")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2hl6"]
-render_priority = 0
-shader = ExtResource("1_04rst")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_04rst")
-shader_parameter/speed = 0.05
-shader_parameter/noise_scale = 0.605
-shader_parameter/distortion = 0.5
-
-[sub_resource type="SphereMesh" id="SphereMesh_wkokw"]
-radius = 1.5
-height = 3.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a7wwe"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7wwe"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a7wwe"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_mmlyg"]
 
 [sub_resource type="Environment" id="Environment_a7wwe"]
 tonemap_mode = 4
@@ -39,6 +17,9 @@ size = Vector2(50, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkokw"]
 albedo_color = Color(0.1988, 0.51404, 0.71, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wkokw"]
+points = PackedVector3Array(-25, 0, -25, -25, 0, 25, 25, 0, -25, 25, 0, 25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_n2hl6"]
 
@@ -167,27 +148,24 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7wwe"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="SphereMesh" id="SphereMesh_kvcey"]
+
 [node name="XRay" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.2648, 0)
 
 [node name="GameWorld" type="Node3D" parent="."]
 
-[node name="XRaySphere" type="MeshInstance3D" parent="GameWorld"]
-transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 0.2, -0.000516891, 0.421875, 0.0272641)
-material_override = SubResource("ShaderMaterial_n2hl6")
-mesh = SubResource("SphereMesh_wkokw")
+[node name="1" parent="GameWorld" instance=ExtResource("3_n2hl6")]
 
-[node name="Player" type="CharacterBody3D" parent="GameWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03276, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameWorld/Player"]
-shape = SubResource("CapsuleShape3D_a7wwe")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GameWorld/Player"]
-material_override = SubResource("StandardMaterial3D_a7wwe")
-mesh = SubResource("CapsuleMesh_a7wwe")
-
-[node name="FreeCam" parent="GameWorld" instance=ExtResource("2_a7wwe")]
+[node name="FreeCam" type="CharacterBody3D" parent="GameWorld"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.04948, 6.25252)
+script = ExtResource("3_wkokw")
+
+[node name="CameraCollisionShape" type="CollisionShape3D" parent="GameWorld/FreeCam"]
+shape = SubResource("SphereShape3D_mmlyg")
+disabled = true
+
+[node name="Camera3D" type="Camera3D" parent="GameWorld/FreeCam"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameWorld"]
 environment = SubResource("Environment_a7wwe")
@@ -200,6 +178,11 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144199, 0, 0)
 mesh = SubResource("PlaneMesh_04rst")
 surface_material_override/0 = SubResource("StandardMaterial3D_wkokw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameWorld/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameWorld/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_wkokw")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="GameWorld"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456328, 3.50829)
@@ -227,4 +210,7 @@ shape = SubResource("ConvexPolygonShape3D_a7wwe")
 [node name="OakTree" parent="." instance=ExtResource("3_04rst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52764, 0, 5.79408)
 
-[editable path="GameWorld/FreeCam"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5737, 3.81621, 0)
+material_override = ExtResource("4_wkokw")
+mesh = SubResource("SphereMesh_kvcey")

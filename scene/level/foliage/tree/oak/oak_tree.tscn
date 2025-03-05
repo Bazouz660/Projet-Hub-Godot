@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctyk3a6odu2gc"]
+[gd_scene load_steps=10 format=3 uid="uid://ctyk3a6odu2gc"]
 
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="4_inqre"]
 [ext_resource type="ArrayMesh" uid="uid://ccf2jkdesbej4" path="res://asset/mesh/foliage/tree/oak/oak_trunk.res" id="4_n4ctf"]
@@ -31,6 +31,10 @@ buffer = PackedFloat32Array(-0.642075, -0.545654, 0.540372, 0.807198, 0.280681, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6p1uy"]
 size = Vector3(0.847961, 5.44067, 0.65979)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6p1uy"]
+radius = 3.17656
+height = 7.87361
+
 [node name="OakTree" type="StaticBody3D"]
 
 [node name="Trunk" type="MeshInstance3D" parent="."]
@@ -48,3 +52,11 @@ multimesh = SubResource("MultiMesh_n4ctf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0614929, 2.51697, 0.0720825)
 shape = SubResource("BoxShape3D_6p1uy")
+
+[node name="Area3D" type="Area3D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-0.299274, 0.954167, 0, -0.954167, -0.299274, 0, 0, 0, 1, -0.52842, 4.48699, 0.0854702)
+shape = SubResource("CapsuleShape3D_6p1uy")

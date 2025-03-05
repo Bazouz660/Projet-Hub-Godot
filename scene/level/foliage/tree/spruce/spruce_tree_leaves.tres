@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://6nu11ysql4gi"]
+
+[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="1_38rg1"]
+[ext_resource type="Texture2D" uid="uid://ccyotu5d0mbao" path="res://asset/texture/foliage/leaves_pine.png" id="2_tpjtt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_38rg1")
+shader_parameter/albedo = Color(0.254902, 0.392157, 0.290196, 1)
+shader_parameter/texture_albedo = ExtResource("2_tpjtt")
+shader_parameter/backlight = Color(1, 1, 1, 1)
+shader_parameter/wind_strength = 0.3
+shader_parameter/wind_speed = 1.0
+shader_parameter/wind_scale = 1.0
+shader_parameter/wind_noise_scale = 1.0
+shader_parameter/player_influence_radius = 0.0
+shader_parameter/player_influence_strength = 0.0
