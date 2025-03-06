@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Feature" load_steps=4 format=3 uid="uid://bp1sdrmgwylo5"]
 
 [ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="1_j7gu0"]
-[ext_resource type="PackedScene" uid="uid://tqd0wa8xavt1" path="res://scene/level/foliage/tree/spruce/snowy_spruce_tree.tscn" id="1_w1ng0"]
-[ext_resource type="PackedScene" uid="uid://cbra6jb5ruycp" path="res://scene/level/foliage/tree/spruce/half_snowy_spruce_tree.tscn" id="2_xhxeq"]
+[ext_resource type="PackedScene" uid="uid://tqd0wa8xavt1" path="res://scene/level/feature/tree/spruce/snowy_spruce_tree.tscn" id="1_w1ng0"]
+[ext_resource type="PackedScene" uid="uid://cbra6jb5ruycp" path="res://scene/level/feature/tree/spruce/half_snowy_spruce_tree.tscn" id="2_xhxeq"]
 
 [resource]
 script = ExtResource("1_j7gu0")

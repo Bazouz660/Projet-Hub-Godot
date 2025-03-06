@@ -27,7 +27,7 @@ func _ready():
 	StructureGenerationManager.initialize(structure_params)
 
 func _update_structures():
-	return
+	#return
 	# This causes lag spikes, will need to be optimized
 	# Get player position from the terrain generator
 	var player_pos = Vector2(TerrainGenerator.player_grid_position.x, TerrainGenerator.player_grid_position.y)

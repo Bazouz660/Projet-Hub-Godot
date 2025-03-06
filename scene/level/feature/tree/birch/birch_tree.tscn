@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwhl5jkqy46hf"]
+[gd_scene load_steps=14 format=3 uid="uid://dwhl5jkqy46hf"]
 
 [ext_resource type="ArrayMesh" uid="uid://behvsy67mhqdd" path="res://asset/mesh/feature/tree/birch/birch_tree.res" id="1_fsr78"]
 [ext_resource type="ArrayMesh" uid="uid://rv0hagpgabyn" path="res://asset/mesh/feature/tree/birch/birch_foliage.res" id="2_1xtsg"]
@@ -35,16 +35,16 @@ size = Vector3(0.429047, 8.06329, 0.283447)
 [sub_resource type="SphereShape3D" id="SphereShape3D_c0nh8"]
 radius = 2.4057
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6qmmw"]
-emission_shape_scale = Vector3(2.1, 2.23, 2.065)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bw8s"]
+emission_shape_scale = Vector3(0.51, 0.46, 0.43)
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 5.0
 angular_velocity_min = -176.17
 angular_velocity_max = 145.53
 gravity = Vector3(0, -1, 0)
 turbulence_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32ndl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qmmw"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -59,7 +59,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_os4bt"]
-material = SubResource("StandardMaterial3D_32ndl")
+material = SubResource("StandardMaterial3D_6qmmw")
 size = Vector2(1, 1)
 orientation = 2
 
@@ -90,3 +90,11 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248817, -0.263311, 0.094239)
 shape = SubResource("SphereShape3D_c0nh8")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.230747, 6.30816, 0)
+cast_shadow = 0
+amount = 5
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_1bw8s")
+draw_pass_1 = SubResource("PlaneMesh_os4bt")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctpjj1btn02uw"]
+[gd_scene load_steps=23 format=3 uid="uid://ctpjj1btn02uw"]
 
 [ext_resource type="Script" uid="uid://cwbwd3qhklfgl" path="res://scene/terrain/terrain_generator.gd" id="1_0pd6d"]
 [ext_resource type="Script" uid="uid://c5od6saer5dg2" path="res://test/world_manager.gd" id="1_ui6ee"]
@@ -7,13 +7,13 @@
 [ext_resource type="Script" uid="uid://c3qd3w3gel8pu" path="res://scene/terrain/structure_gen_params.gd" id="4_ajdhx"]
 [ext_resource type="Script" uid="uid://b85wwc428gk3r" path="res://scene/terrain/debug_region_visualiser.gd" id="4_yorsh"]
 [ext_resource type="PackedScene" uid="uid://dqd6qql3fwmmx" path="res://data/terrain/structures/house.tscn" id="5_5s2im"]
-[ext_resource type="PackedScene" uid="uid://bisb4lyly214g" path="res://scene/camera/free_cam.tscn" id="5_yorsh"]
 [ext_resource type="Resource" uid="uid://cqna6lm3n1qcj" path="res://data/terrain/structures/house_data.tres" id="6_falob"]
 [ext_resource type="Shader" uid="uid://dsb07av81lkcp" path="res://shader/cloud_shadows.gdshader" id="9_falob"]
 [ext_resource type="Script" uid="uid://ctlc6hr60mcec" path="res://scene/level/lighting/sky_light.gd" id="9_la2k0"]
 [ext_resource type="Environment" uid="uid://bjkb0dd7nowhb" path="res://data/materials/world_env.tres" id="10_r2dwa"]
 [ext_resource type="Script" uid="uid://btawd0vcqvrnt" path="res://scripts/follow_active_player.gd" id="10_ui6ee"]
 [ext_resource type="Animation" uid="uid://bn04smwqyuqdy" path="res://scene/level/lighting/day_night_cycle.res" id="11_iu3qb"]
+[ext_resource type="Script" uid="uid://d1h53rhqi551o" path="res://scene/camera/free_cam.gd" id="14_la2k0"]
 
 [sub_resource type="Resource" id="Resource_ui6ee"]
 script = ExtResource("4_ajdhx")
@@ -161,6 +161,8 @@ shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
 material = SubResource("ShaderMaterial_j36wm")
 size = Vector2(300, 300)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mmlyg"]
+
 [node name="WorldManager" type="Node3D"]
 script = ExtResource("1_ui6ee")
 
@@ -219,8 +221,18 @@ cast_shadow = 3
 mesh = SubResource("PlaneMesh_tkc0p")
 script = ExtResource("10_ui6ee")
 
-[node name="FreeCam" parent="ProceduralWorld" instance=ExtResource("5_yorsh")]
+[node name="FreeCam" type="CharacterBody3D" parent="ProceduralWorld"]
 unique_name_in_owner = true
+script = ExtResource("14_la2k0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProceduralWorld/FreeCam"]
+shape = SubResource("SphereShape3D_mmlyg")
+disabled = true
+
+[node name="Camera3D" type="Camera3D" parent="ProceduralWorld/FreeCam"]
+size = 15.0
+near = 0.001
+far = 100.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ProceduralWorld"]
 _spawnable_scenes = PackedStringArray("uid://dvcl7vca8lawk")

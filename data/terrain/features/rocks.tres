@@ -12,6 +12,7 @@ script = ExtResource("6_f6f3b")
 label = "Rocks"
 type = 0
 scenes = Array[PackedScene]([ExtResource("1_h7dwi"), ExtResource("2_r52sa"), ExtResource("3_q3n2w"), ExtResource("3_q3n2w"), ExtResource("4_l1ooj"), ExtResource("5_enn6v")])
+min_radius = 0.5
 cast_shadow = 0
 receive_biome_color = false
 shader_parameter_color_name = "albedo"

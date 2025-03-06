@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TerrainConfig" load_steps=99 format=3 uid="uid://th58pjy54nio"]
+[gd_resource type="Resource" script_class="TerrainConfig" load_steps=109 format=3 uid="uid://th58pjy54nio"]
 
 [ext_resource type="Script" uid="uid://djvm267dea2ne" path="res://scene/terrain/biome.gd" id="1_20jv2"]
 [ext_resource type="Script" uid="uid://coo0t5a7ochux" path="res://scene/terrain/terrain_config.gd" id="2_4iod4"]
@@ -22,12 +22,13 @@
 [ext_resource type="Curve" uid="uid://ra7w6eywa350" path="res://data/terrain/noise/curves/erosion_curve.tres" id="7_pkeq4"]
 [ext_resource type="FastNoiseLite" uid="uid://j6gpi4ikn3pl" path="res://data/terrain/noise/peaks_and_valleys.tres" id="7_sc5gb"]
 [ext_resource type="FastNoiseLite" uid="uid://neh0047ipvn2" path="res://data/terrain/noise/temperature.tres" id="8_p42iu"]
+[ext_resource type="PackedScene" uid="uid://bg7jl7nq5s1ji" path="res://scene/level/feature/tree/oak/oak_bush.tscn" id="11_foxm2"]
 [ext_resource type="Resource" uid="uid://bp1sdrmgwylo5" path="res://data/terrain/features/snowy_spruce_tree.tres" id="11_ujs85"]
 [ext_resource type="Resource" uid="uid://7gfv3w6hpvs3" path="res://data/terrain/features/spruce.tres" id="11_xhsyr"]
 [ext_resource type="Material" uid="uid://2anu2urllpa0" path="res://data/materials/water.material" id="11_xy6xd"]
 [ext_resource type="Curve" uid="uid://dmba84eso01xp" path="res://data/terrain/noise/curves/peaks_and_valleys_curve.tres" id="12_ex04j"]
-[ext_resource type="PackedScene" uid="uid://bg7jl7nq5s1ji" path="res://scene/level/foliage/tree/oak/oak_bush.tscn" id="12_wdbo7"]
 [ext_resource type="Resource" uid="uid://dwvxa6i0ewvw2" path="res://data/terrain/features/snow.tres" id="13_wdbo7"]
+[ext_resource type="Resource" uid="uid://drf1u7vwv7idc" path="res://data/terrain/features/willow.tres" id="16_foxm2"]
 
 [sub_resource type="Resource" id="Resource_ex04j"]
 script = ExtResource("1_20jv2")
@@ -178,9 +179,17 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_smx2w"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_kfufk")
+density = 0.2
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_nj2tm"]
 script = ExtResource("2_ujs85")
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_nd25p")])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_nd25p"), SubResource("Resource_smx2w")])
 metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
 [sub_resource type="Resource" id="Resource_xhsyr"]
@@ -254,7 +263,7 @@ metadata/_custom_type_script = "uid://dswyytmpuapp1"
 script = ExtResource("5_nfl70")
 label = "Oak Bush"
 type = 0
-scenes = Array[PackedScene]([ExtResource("12_wdbo7")])
+scenes = Array[PackedScene]([ExtResource("11_foxm2")])
 min_radius = 0.0
 cast_shadow = 0
 receive_biome_color = false
@@ -288,7 +297,7 @@ script = ExtResource("2_pkeq4")
 feature = ExtResource("4_nfl70")
 density = 0.08
 spawn_noise = SubResource("FastNoiseLite_6by17")
-spawn_noise_threshold = 0.5
+spawn_noise_threshold = 0.0
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
@@ -304,15 +313,23 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_2og4k"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_kfufk")
+density = 0.2
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_6fdyo"]
 script = ExtResource("2_ujs85")
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_q4rbw"), SubResource("Resource_441kt")])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_q4rbw"), SubResource("Resource_441kt"), SubResource("Resource_2og4k")])
 metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
 [sub_resource type="Resource" id="Resource_akk4h"]
 script = ExtResource("1_20jv2")
 label = "Temperate Grasslands"
-color = Color(0.558975, 0.87, 0.3915, 1)
+color = Color(0.43285, 0.690324, 0.292222, 1)
 height_range = Vector2(6, 25)
 temperature_range = Vector2(0.45, 0.65)
 humidity_range = Vector2(0.3, 0.45)
@@ -368,9 +385,17 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_q7bje"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_kfufk")
+density = 0.2
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_f2bdx"]
 script = ExtResource("2_ujs85")
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_mqrcm")])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_mqrcm"), SubResource("Resource_q7bje")])
 metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
 [sub_resource type="Resource" id="Resource_ujs85"]
@@ -406,9 +431,17 @@ spawn_noise_threshold = 0.5
 patch_mask_threshold = 0.7
 metadata/_custom_type_script = "uid://dswyytmpuapp1"
 
+[sub_resource type="Resource" id="Resource_dqata"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("3_kfufk")
+density = 0.2
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
 [sub_resource type="Resource" id="Resource_mcjpd"]
 script = ExtResource("2_ujs85")
-features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_kg38a")])
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_kg38a"), SubResource("Resource_dqata")])
 metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
 [sub_resource type="Resource" id="Resource_5juvr"]
@@ -448,6 +481,19 @@ script = ExtResource("2_ujs85")
 features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_08rn7")])
 metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
+[sub_resource type="Resource" id="Resource_qefg5"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("16_foxm2")
+density = 0.3
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_0vrdc"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_qefg5")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_1n2x8"]
 script = ExtResource("1_20jv2")
 label = "Wetlands"
@@ -456,7 +502,7 @@ height_range = Vector2(4, 10)
 temperature_range = Vector2(0.4, 0.7)
 humidity_range = Vector2(0.7, 0.9)
 difficulty_range = Vector2(0, 1)
-feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_pp01p")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_pp01p"), SubResource("Resource_0vrdc")])
 material_type = "water"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
@@ -566,6 +612,22 @@ script = ExtResource("2_ujs85")
 features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_6vlfj")])
 metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1n2x8"]
+
+[sub_resource type="Resource" id="Resource_pysv4"]
+script = ExtResource("2_pkeq4")
+feature = ExtResource("16_foxm2")
+density = 0.3
+spawn_noise = SubResource("FastNoiseLite_1n2x8")
+spawn_noise_threshold = 0.5
+patch_mask_threshold = 0.7
+metadata/_custom_type_script = "uid://dswyytmpuapp1"
+
+[sub_resource type="Resource" id="Resource_7ncel"]
+script = ExtResource("2_ujs85")
+features = Array[ExtResource("2_pkeq4")]([SubResource("Resource_pysv4")])
+metadata/_custom_type_script = "uid://cjhbvqtx8rc1h"
+
 [sub_resource type="Resource" id="Resource_yr5s8"]
 script = ExtResource("1_20jv2")
 label = "Swamp"
@@ -574,7 +636,7 @@ height_range = Vector2(3, 10)
 temperature_range = Vector2(0.55, 0.75)
 humidity_range = Vector2(0.8, 1)
 difficulty_range = Vector2(0, 1)
-feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_704my")])
+feature_layers = Array[ExtResource("2_ujs85")]([SubResource("Resource_704my"), SubResource("Resource_7ncel")])
 material_type = "water"
 metadata/_custom_type_script = "uid://djvm267dea2ne"
 
@@ -582,9 +644,9 @@ metadata/_custom_type_script = "uid://djvm267dea2ne"
 script = ExtResource("2_4iod4")
 chunk_size = 16
 vertex_per_meter = 1
-view_distance = 3
+view_distance = 15
 update_rate = 0.5
-world_seed = 92764
+world_seed = 95514
 max_threads = 4
 height_scale = 1.0
 continentalness = ExtResource("2_qqxad")

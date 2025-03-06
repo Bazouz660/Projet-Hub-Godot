@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://deprbd8tdp787"]
+
+[sub_resource type="Shader" id="Shader_d1r4v"]
+code = "shader_type spatial;
+render_mode cull_back, shadows_disabled, depth_draw_always;
+
+// Water Color
+uniform vec4 color : source_color;
+
+void fragment() {
+	ALBEDO = color.rgb;
+	ALPHA = color.a;
+}"
+
+[resource]
+render_priority = 1
+shader = SubResource("Shader_d1r4v")
+shader_parameter/color = Color(0, 0.403333, 0.55, 0.580392)
+metadata/type = "water"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cbra6jb5ruycp"]
 
-[ext_resource type="ArrayMesh" uid="uid://cecfdim8fqj7m" path="res://asset/mesh/foliage/tree/spruce/spruce_trunk.res" id="1_fa4fh"]
-[ext_resource type="ArrayMesh" uid="uid://cxug3rfe0es1j" path="res://asset/mesh/foliage/tree/spruce/spruce_foliage.res" id="2_pwtxw"]
+[ext_resource type="ArrayMesh" uid="uid://cecfdim8fqj7m" path="res://asset/mesh/feature/tree/spruce/spruce_trunk.res" id="1_fa4fh"]
+[ext_resource type="ArrayMesh" uid="uid://cxug3rfe0es1j" path="res://asset/mesh/feature/tree/spruce/spruce_foliage.res" id="2_pwtxw"]
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="3_7s0b1"]
 [ext_resource type="Texture2D" uid="uid://ccyotu5d0mbao" path="res://asset/texture/foliage/leaves_pine.png" id="4_mgj4q"]
 

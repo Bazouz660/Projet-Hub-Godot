@@ -53,7 +53,7 @@ func _process(delta):
 func _show():
 	# Tween the mesh scale to 1.0
 	var tween = create_tween()
-	tween.tween_property(xray_mesh, "scale", Vector3(1.0, 1.0, 1.0), 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(xray_mesh, "scale", Vector3(1.5, 1.5, 1.5), 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 func _hide():
 	# Tween the mesh scale to 0.0
