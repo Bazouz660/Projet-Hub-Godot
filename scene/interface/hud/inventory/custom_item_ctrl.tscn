@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0afjgyq8h8ev"]
 
-[ext_resource type="Script" path="res://custom_item_ctrl.gd" id="1_ehksi"]
+[ext_resource type="Script" path="res://scene/interface/hud/inventory/custom_item_ctrl.gd" id="1_ehksi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehksi"]
 bg_color = Color(0.169245, 0.169245, 0.169245, 1)
