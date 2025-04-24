@@ -22,7 +22,7 @@ func register_commands():
 	Console.add_command("players_list", list_players, [], 0, "Lists all players.")
 	Console.add_command("tp", tp, ["player_to", "player_from"], 1, "Teleports to a player.")
 	Console.add_command("tp_position", tp_to_position, ["x", "y", "z"], 3, "Teleports to a position.")
-	Console.add_command("give", give, ["player_id", "item_id", "amount"], 2, "Gives an item to a player.")
+	# Console.add_command("give", give, ["player_id", "item_id", "amount"], 2, "Gives an item to a player.")
 	Console.add_command("kick", kick, ["player_id"], 1, "Kicks a player.")
 	Console.add_command("set_health", _set_health, ["player_id", "health"], 2, "Sets the health of a player.")
 
@@ -79,31 +79,31 @@ func tp(player_to: String, player_from: String = "") -> void:
 	player_from_node.rpc_set_position.rpc(player_to_node.global_position + Vector3(0.5, 0, 0))
 	Console.print_line("Teleported player " + player_from + " to player " + player_to + ".")
 
-func give(player_id: String, item_id: String, amount: String = "1") -> void:
-	var player = MultiplayerManager.players.get(player_id)
-	if player == null:
-		Console.print_error("Player: " + player_id + " not found.")
-		return
-	if not amount.is_valid_int() or amount.to_int() <= 0:
-		Console.print_error("Invalid amount. It must be a positive integer.")
-		return
-	if not ItemRegistry.items.has(item_id):
-		Console.print_error("Item: " + item_id + " not found.")
-		return
+# func give(player_id: String, item_id: String, amount: String = "1") -> void:
+# 	var player = MultiplayerManager.players.get(player_id)
+# 	if player == null:
+# 		Console.print_error("Player: " + player_id + " not found.")
+# 		return
+# 	if not amount.is_valid_int() or amount.to_int() <= 0:
+# 		Console.print_error("Invalid amount. It must be a positive integer.")
+# 		return
+# 	if not ItemRegistry.items.has(item_id):
+# 		Console.print_error("Item: " + item_id + " not found.")
+# 		return
 
-	var amount_int = amount.to_int()
+# 	var amount_int = amount.to_int()
 
-	if player_id != str(MultiplayerManager.active_player_id):
-		_give.rpc(player_id, item_id, amount_int)
-	else:
-		_give(player_id, item_id, amount_int)
+# 	if player_id != str(MultiplayerManager.active_player_id):
+# 		_give.rpc(player_id, item_id, amount_int)
+# 	else:
+# 		_give(player_id, item_id, amount_int)
 
-	Console.print_line("Gave " + player_id + " " + amount + " of " + item_id + ".")
+# 	Console.print_line("Gave " + player_id + " " + amount + " of " + item_id + ".")
 
-@rpc("any_peer", "call_remote", "reliable")
-func _give(player_id: String, item_id: String, amount: int) -> void:
-	var player = MultiplayerManager.players.get(player_id)
-	player.inventory.add_item_by_id(item_id, amount)
+# @rpc("any_peer", "call_remote", "reliable")
+# func _give(player_id: String, item_id: String, amount: int) -> void:
+# 	var player = MultiplayerManager.players.get(player_id)
+# 	player.inventory.add_item_by_id(item_id, amount)
 
 func kick(player_id: String) -> void:
 	if not MultiplayerManager.is_host:

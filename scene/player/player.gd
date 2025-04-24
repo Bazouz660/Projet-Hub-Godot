@@ -7,7 +7,6 @@ class_name Player
 @onready var camera := $Camera/PreventRotationCopy/CameraPivot/Camera3D
 @onready var camera_mount := $Camera/PreventRotationCopy/CameraPivot
 @onready var step_cast := $StepCast as ShapeCast3D
-@onready var inventory := $InventoryComponent as InventoryComponent
 @onready var collision_shape := $CollisionShape3D as CollisionShape3D
 @onready var material_detector := $MaterialDetector as MaterialDetector
 @onready var resources := $Model/Resources as HumanoidResources
@@ -36,7 +35,6 @@ func _ready():
 	if is_multiplayer_authority():
 		multiplayer_authority = 1
 		interact_area.add_to_group("player")
-		inventory.load_inventory()
 
 func _physics_process(delta):
 	if not multiplayer_authority:
@@ -51,10 +49,6 @@ func is_grounded() -> bool:
 
 func is_in_water() -> bool:
 	return global_position.y + height <= WATER_LEVEL
-
-func _exit_tree():
-	if multiplayer_authority == 1:
-		inventory.save_inventory()
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_set_position(pos: Vector3):

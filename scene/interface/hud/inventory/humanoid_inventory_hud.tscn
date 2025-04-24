@@ -1,0 +1,327 @@
+[gd_scene load_steps=23 format=3 uid="uid://cfwh654if7hjb"]
+
+[ext_resource type="Script" uid="uid://byqljt463nwot" path="res://scene/interface/hud/inventory/humanoid_inventory_hud.gd" id="1_3wl6k"]
+[ext_resource type="Script" uid="uid://bps08ub6q6prw" path="res://addons/gloot/ui/ctrl_inventory_grid.gd" id="1_ove75"]
+[ext_resource type="Texture2D" uid="uid://b17gbl44ri457" path="res://asset/texture/interface/inventory/silhouette.png" id="2_csg78"]
+[ext_resource type="Script" uid="uid://ehj3yrf2j3un" path="res://addons/gloot/core/inventory.gd" id="2_hhqjj"]
+[ext_resource type="JSON" path="res://data/protoset/protoset.json" id="3_cjvbf"]
+[ext_resource type="PackedScene" uid="uid://baoa6f4lb3i3d" path="res://scene/interface/hud/inventory/equipment_panel.tscn" id="3_gf5s4"]
+[ext_resource type="PackedScene" uid="uid://b0afjgyq8h8ev" path="res://scene/interface/hud/inventory/custom_item_ctrl.tscn" id="3_xpcti"]
+[ext_resource type="Texture2D" uid="uid://21st8sba7to1" path="res://asset/texture/interface/inventory/helmet_icon.png" id="4_3iljh"]
+[ext_resource type="Script" uid="uid://cgs3xeaw0w82u" path="res://addons/gloot/core/constraints/grid_constraint.gd" id="4_csg78"]
+[ext_resource type="Texture2D" uid="uid://cith1m3l0nova" path="res://asset/texture/item/sword.png" id="4_jc86r"]
+[ext_resource type="Texture2D" uid="uid://cw51kbi8ctgqi" path="res://asset/texture/interface/inventory/chest_icon.png" id="5_gf5s4"]
+[ext_resource type="Script" uid="uid://bei1jnky5ips4" path="res://addons/gloot/core/item_slot.gd" id="6_csg78"]
+[ext_resource type="Texture2D" uid="uid://be4r75q7rlf6w" path="res://asset/texture/interface/inventory/shirt_icon.png" id="6_l0jbt"]
+[ext_resource type="Texture2D" uid="uid://en0824e5p0kh" path="res://asset/texture/interface/inventory/legs_icon.png" id="7_b0kaf"]
+[ext_resource type="Texture2D" uid="uid://btsnhuhioyu7e" path="res://asset/texture/interface/inventory/feet_icon.png" id="7_l0jbt"]
+[ext_resource type="Texture2D" uid="uid://brrpg3op5kwpt" path="res://asset/texture/interface/inventory/hands_icon.png" id="7_vlau7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ld871"]
+bg_color = Color(0.47, 0.380073, 0.2773, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.94902, 0.713726, 0.501961, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgo66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3iljh"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.8, 0.583467, 0.336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w74ha"]
+bg_color = Color(0.47, 0.380073, 0.2773, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.94902, 0.713726, 0.501961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jgo66"]
+noise_type = 0
+frequency = 0.0443
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xpcti"]
+width = 64
+height = 64
+seamless = true
+noise = SubResource("FastNoiseLite_jgo66")
+
+[node name="Inventory" type="Control" node_paths=PackedStringArray("inventory", "head_slot", "chest_slot", "shirt_slot", "legs_slot", "feet_slot", "hands_slot", "weapon_slot")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3wl6k")
+inventory = NodePath("Inventory")
+head_slot = NodePath("HeadSlot")
+chest_slot = NodePath("ChestSlot")
+shirt_slot = NodePath("ShirtSlot")
+legs_slot = NodePath("LegsSlot")
+feet_slot = NodePath("FeetSlot")
+hands_slot = NodePath("HandsSlot")
+weapon_slot = NodePath("WeaponSlot")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 906.0
+offset_bottom = 590.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+dragging_enabled = false
+
+[node name="WeightLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Weight:"
+
+[node name="WeightValue" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 2
+
+[node name="CtrlInventoryGrid" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("inventory")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(347, 522)
+layout_mode = 2
+script = ExtResource("1_ove75")
+inventory = NodePath("../../../../../Inventory")
+item_spacing = 3
+custom_item_control_scene = ExtResource("3_xpcti")
+field_style = SubResource("StyleBoxFlat_ld871")
+background_style = SubResource("StyleBoxEmpty_jgo66")
+metadata/_custom_type_script = "uid://bps08ub6q6prw"
+
+[node name="SortButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Arrange"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_3iljh")
+
+[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_w74ha")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0.113725)
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_xpcti")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="CtrlWeaponSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 2
+size_flags_vertical = 0
+icon_texture = ExtResource("4_jc86r")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_csg78")
+stretch_mode = 5
+
+[node name="Container" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -19.0
+offset_right = 72.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CtrlHeadSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+offset_left = 109.0
+offset_top = 17.0
+offset_right = 184.0
+offset_bottom = 88.0
+size_flags_horizontal = 4
+icon_texture = ExtResource("4_3iljh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container"]
+layout_mode = 2
+offset_left = 44.0
+offset_top = 106.0
+offset_right = 248.0
+offset_bottom = 238.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+metadata/_edit_group_ = true
+
+[node name="CtrlChestSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container/HBoxContainer" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+icon_texture = ExtResource("5_gf5s4")
+
+[node name="CtrlShirtSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container/HBoxContainer" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+icon_texture = ExtResource("6_l0jbt")
+
+[node name="CtrlHandsSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+offset_left = -28.0
+offset_top = 260.0
+offset_right = 44.0
+offset_bottom = 331.0
+size_flags_horizontal = 0
+size_flags_vertical = 6
+icon_texture = ExtResource("7_vlau7")
+
+[node name="CtrlLegsSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 100)
+layout_mode = 2
+offset_left = 81.0
+offset_top = 301.0
+offset_right = 212.0
+offset_bottom = 433.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+icon_texture = ExtResource("7_b0kaf")
+
+[node name="CtrlFeetSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+offset_left = 95.0
+offset_top = 472.0
+offset_right = 197.0
+offset_bottom = 564.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+icon_texture = ExtResource("7_l0jbt")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("2_hhqjj")
+protoset = ExtResource("3_cjvbf")
+_serialized_format = {
+"constraints": {
+"res://addons/gloot/core/constraints/grid_constraint.gd": {
+"data": {
+"insertion_priority": 0,
+"item_positions": {
+"1": "Vector2i(0, 2)"
+},
+"size": "Vector2i(10, 15)"
+},
+"name": &"GridConstraint"
+}
+},
+"items": [{
+"protoset": "res://data/protoset/protoset.json",
+"prototype_id": "item_test"
+}, {
+"protoset": "res://data/protoset/protoset.json",
+"prototype_id": "item_test"
+}],
+"node_name": "Inventory",
+"protoset": "res://data/protoset/protoset.json"
+}
+metadata/_custom_type_script = "uid://ehj3yrf2j3un"
+
+[node name="GridConstraint" type="Node" parent="Inventory"]
+script = ExtResource("4_csg78")
+size = Vector2i(10, 15)
+insertion_priority = 0
+
+[node name="HeadSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="ChestSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="ShirtSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="HandsSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="LegsSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="WeaponSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="FeetSlot" type="Node" parent="."]
+script = ExtResource("6_csg78")
+protoset = ExtResource("3_cjvbf")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"

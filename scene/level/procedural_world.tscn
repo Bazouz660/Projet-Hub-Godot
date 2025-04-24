@@ -235,5 +235,4 @@ near = 0.001
 far = 100.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ProceduralWorld"]
-_spawnable_scenes = PackedStringArray("uid://dvcl7vca8lawk")
 spawn_path = NodePath("..")

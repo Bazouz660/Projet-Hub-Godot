@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://co1h0wmsp5oye" path="res://scene/player/model/humanoid_model.gd" id="1_dfp2c"]
 [ext_resource type="Script" uid="uid://7o8migntf3vc" path="res://scene/player/model/resources.gd" id="2_3b786"]
 [ext_resource type="Script" uid="uid://c6apxt83lp7g1" path="res://scene/player/model/humanoid_sound_manager.gd" id="2_hhekq"]
-[ext_resource type="PackedScene" uid="uid://wbrv6lo1jv4e" path="res://scene/item/held_item/weapon/sword/sword_collision.tscn" id="3_47lqg"]
 [ext_resource type="Script" uid="uid://btxd3eudh64p4" path="res://scene/player/model/humanoid_hitbox.gd" id="3_jhxj8"]
 [ext_resource type="Script" uid="uid://boo7nrqgcemsv" path="res://scene/player/model/skeleton.gd" id="4_jwgxg"]
+[ext_resource type="PackedScene" uid="uid://wc2d4hm56myr" path="res://scene/held_item/sword_collision.tscn" id="6_cfkae"]
 [ext_resource type="Script" uid="uid://kavqt3i38r0u" path="res://scene/player/model/split_animator.gd" id="6_vny0r"]
 [ext_resource type="Script" uid="uid://bedev4smphtwt" path="res://scripts/animation/animation_player.gd" id="7_1ussp"]
 [ext_resource type="Script" uid="uid://c2iqw0vscuxc0" path="res://scripts/animation/animation_layer.gd" id="7_cfkae"]
@@ -35,7 +35,6 @@
 [ext_resource type="Script" uid="uid://0wwmvuku1ci1" path="res://scene/player/move/walk.gd" id="39_d6oi3"]
 [ext_resource type="Script" uid="uid://bjt0nntnq5o4b" path="res://scene/player/move/block.gd" id="43_jwgxg"]
 [ext_resource type="Script" uid="uid://c0gv5ax84wcov" path="res://scene/player/move/drink.gd" id="47_emppj"]
-[ext_resource type="PackedScene" uid="uid://m27dp7q8x80h" path="res://scene/item/held_item/consumable/health_potion/health_potion_visuals.tscn" id="49_38a35"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ier8"]
 
@@ -110,6 +109,9 @@ delay = 0.45
 play_once = false
 material_based = true
 metadata/_custom_type_script = ExtResource("26_d6oi3")
+
+[sub_resource type="Resource" id="Resource_grkx0"]
+metadata/__load_path__ = "res://scene/item/held_item/consumable/health_potion/health_potion_visuals.tscn"
 
 [sub_resource type="Resource" id="Resource_cfkae"]
 script = ExtResource("26_d6oi3")
@@ -2200,7 +2202,6 @@ script = ExtResource("1_dfp2c")
 
 [node name="Resources" type="Node" parent="."]
 script = ExtResource("2_3b786")
-item_in_use = "health_potion"
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource("2_hhekq")
@@ -2426,9 +2427,8 @@ bone_idx = 17
 [node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/RightHand"]
 transform = Transform3D(0.955677, -0.0468568, 0.290664, -0.00936727, 0.981915, 0.18909, -0.294267, -0.183432, 0.937955, 0, 0, 0)
 
-[node name="Sword" parent="GeneralSkeleton/RightHand/WeaponSocket" node_paths=PackedStringArray("holder") instance=ExtResource("3_47lqg")]
+[node name="Sword" parent="GeneralSkeleton/RightHand/WeaponSocket" instance=ExtResource("6_cfkae")]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
-holder = NodePath("../../../..")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
 transform = Transform3D(0.794306, -0.465092, 0.390856, -0.116189, -0.747787, -0.653694, 0.596304, 0.473819, -0.64801, -7.24472, 62.3291, 57.6277)
@@ -2464,7 +2464,7 @@ script = ExtResource("7_cfkae")
 animation_player = NodePath("../../Animator/AnimationPlayer")
 blend_time = 0.2
 affected_bones = Array[String](["mixamorigHips", "mixamorigLeftUpLeg", "mixamorigLeftLeg", "mixamorigLeftFoot", "mixamorigLeftToeBase", "mixamorigRightUpLeg", "mixamorigRightLeg", "mixamorigRightFoot", "mixamorigRightToeBase"])
-metadata/_custom_type_script = ExtResource("7_cfkae")
+metadata/_custom_type_script = "uid://c2iqw0vscuxc0"
 
 [node name="LookAtModifier3D" type="LookAtModifier3D" parent="GeneralSkeleton"]
 active = false
@@ -2672,7 +2672,7 @@ backend_animation = "block_params"
 [node name="Drink" type="Node" parent="States" node_paths=PackedStringArray("left_hand", "legs_behaviour")]
 script = ExtResource("47_emppj")
 left_hand = NodePath("../../GeneralSkeleton/LeftHand/WeaponSocket")
-hand_attachement = ExtResource("49_38a35")
+hand_attachement = SubResource("Resource_grkx0")
 drink_time = 2.0
 legs_behaviour = NodePath("../../Legs/WalkableGesture")
 move_name = "drink"

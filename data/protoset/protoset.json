@@ -1,0 +1,7 @@
+{
+	"item_test": {
+		"image": "res://asset/texture/item/potion_health.png",
+		"size": "Vector2i(2, 2)",
+		"name": "Test"
+	}
+}

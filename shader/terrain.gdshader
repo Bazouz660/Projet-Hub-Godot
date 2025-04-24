@@ -51,9 +51,9 @@ float calculate_biome_distance(int biome_index, float height, float humidity, fl
     float difficulty_diff = (difficulty - difficulty_center) / safe_difficulty_range;
 
     // Weighted squared distance
-    float distance = (4.0 * height_diff * height_diff + 
-                      humidity_diff * humidity_diff + 
-                      temperature_diff * temperature_diff + 
+    float distance = (4.0 * height_diff * height_diff +
+                      humidity_diff * humidity_diff +
+                      temperature_diff * temperature_diff +
                       0.5 * difficulty_diff * difficulty_diff);
     return distance;
 }

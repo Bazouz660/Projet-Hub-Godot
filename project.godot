@@ -18,6 +18,7 @@ config/name="Projet-Hub-Godot"
 config/version="0.1.6"
 run/main_scene="res://scene/root.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [audio]
@@ -32,7 +33,6 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TimeManager="*res://manager/time_manager.gd"
 Console="*res://addons/console/console.gd"
 CommandsManager="*res://manager/commands_manager.gd"
-ItemRegistry="*res://manager/item_registry.gd"
 
 [debug]
 
@@ -44,7 +44,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gloot/plugin.cfg")
 
 [filesystem]
 

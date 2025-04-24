@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://baoa6f4lb3i3d"]
+
+[ext_resource type="Script" uid="uid://do7djaggr30ns" path="res://scene/interface/hud/inventory/equipment_panel.gd" id="1_1qprt"]
+[ext_resource type="Script" uid="uid://droo6ojeiftr7" path="res://addons/gloot/ui/ctrl_item_slot.gd" id="2_1qprt"]
+[ext_resource type="StyleBox" uid="uid://d3hhlw2148geq" path="res://data/interface/theme/equip_slot.tres" id="3_o3f5p"]
+[ext_resource type="StyleBox" uid="uid://dh5lr73kkyodh" path="res://data/interface/theme/equip_slot_highlighted.tres" id="4_cued7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf5s4"]
+bg_color = Color(0, 0, 0, 0.631373)
+corner_radius_top_left = 4
+corner_radius_bottom_right = 4
+anti_aliasing = false
+
+[node name="EquipmentPanel" type="Panel"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gf5s4")
+script = ExtResource("1_1qprt")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.419608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="CtrlItemSlot" type="Control" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1qprt")
+icon_stretch_mode = 5
+slot_style = ExtResource("3_o3f5p")
+slot_highlighted_style = ExtResource("4_cued7")
+metadata/_custom_type_script = "uid://droo6ojeiftr7"

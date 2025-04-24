@@ -12,4 +12,5 @@ func on_contact(area: Node3D):
 		model.current_move.react_on_hit(area.get_hit_data())
 
 func is_eligible_attacking_weapon(area: Node3D) -> bool:
-	return (area is Weapon and area != model.active_weapon and not area.hitbox_ignore_list.has(self) and area.is_attacking)
+	# return (area is Weapon and area != model.active_weapon and not area.hitbox_ignore_list.has(self) and area.is_attacking)
+	return false

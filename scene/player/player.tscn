@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://gkai57dhq3qb"]
+[gd_scene load_steps=13 format=3 uid="uid://gkai57dhq3qb"]
 
 [ext_resource type="Script" uid="uid://cc62qw8vsnai1" path="res://scene/player/player.gd" id="1_k72xi"]
 [ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="2_15wi1"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://b6plbv6c14msu" path="res://manager/material_sampler.gd" id="2_nvjhd"]
 [ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="2_q7odf"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
-[ext_resource type="PackedScene" uid="uid://cxgvq61mqer0a" path="res://scene/component/inventory/inventory_component.tscn" id="5_gwy6j"]
 [ext_resource type="Script" uid="uid://btr6ce7y2582k" path="res://scene/player/interact_area.gd" id="8_hfhxk"]
 [ext_resource type="PackedScene" uid="uid://002flmprh5ne" path="res://test/xray.tscn" id="9_pisg7"]
 
@@ -51,9 +50,6 @@ debug_shape_custom_color = Color(0.716294, 0.000120231, 0.617637, 1)
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_q7odf")
-
-[node name="InventoryComponent" parent="." instance=ExtResource("5_gwy6j")]
-is_dropping_enabled = true
 
 [node name="Model" parent="." instance=ExtResource("3_xohdc")]
 

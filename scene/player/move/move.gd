@@ -185,7 +185,7 @@ func assign_combos():
 			child.move = self
 
 
-func form_hit_data(_weapon: Weapon) -> HitData:
+func form_hit_data(_weapon: ) -> HitData:
 	print("someone tries to get hit by default Move")
 	return HitData.blank()
 

@@ -20,7 +20,7 @@ func translate_inputs(input: InputPackage):
 	if not input.combat_actions.is_empty():
 		input.combat_actions.sort_custom(combat_action_priority_sort)
 		var best_input_action: String = input.combat_actions[0]
-		var weapon_component = model.resources.right_hand_slot.get_component("weapon")
+		var weapon_component = null # = model.resources.right_hand_slot.get_component("weapon")
 		if weapon_component == null:
 			push_error("No weapon equipped.")
 			return
