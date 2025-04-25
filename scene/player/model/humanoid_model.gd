@@ -1,7 +1,7 @@
 extends Node3D
 class_name HumanoidModel
 
-@onready var active_weapon: Weapon = null
+@export var active_weapon: Weapon = null
 
 @onready var DEFAULT_GRAVITY: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -55,7 +55,36 @@ func _ready():
 	resources.weapon_slot.item_equipped.connect(_on_weapon_equipped)
 	resources.weapon_slot.cleared.connect(_on_weapon_cleared)
 
+
+@rpc("any_peer", "call_remote", "reliable")
+func _equip_weapon(prototype_id: String):
+	var item = resources.inventory.create_and_add_item(prototype_id)
+	if item == null:
+		push_error("Item not found: ", prototype_id)
+		return
+
+	print("item name: ", item.get_title())
+	for property_name in item.get_properties():
+		print("property: ", property_name, " value: ", item.get_property(property_name))
+
+	resources.weapon_slot.equip(item)
+	print("called equip weapon on peer ", get_tree().get_multiplayer().get_unique_id())
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func _unequip_weapon():
+	resources.weapon_slot.clear()
+	print("called unequip weapon on peer ", get_tree().get_multiplayer().get_unique_id())
+
+
 func _on_weapon_cleared():
+	print("cleared weapon on peer ", get_tree().get_multiplayer().get_unique_id())
+
+	# If the node has authority, we need to notify other clients
+	# that the item has been unequipped
+	if is_multiplayer_authority():
+		_unequip_weapon.rpc()
+
 	if active_weapon:
 		active_weapon.queue_free()
 		active_weapon = null
@@ -68,10 +97,17 @@ func _on_weapon_cleared():
 
 
 func _on_weapon_equipped():
+	print("equipped weapon on peer ", get_tree().get_multiplayer().get_unique_id())
 	for child in right_weapon_socket.get_children():
 		child.queue_free()
 
-	var item = resources.weapon_slot.get_item()
+	var item := resources.weapon_slot.get_item()
+
+	# If the node has authority, we need to notify other clients
+	# that the item has been equipped
+	if is_multiplayer_authority():
+		_equip_weapon.rpc(item.get_prototype()._id)
+
 	var weapon_collision_scene_path = item.get_property("model")["collision_path"]
 	print("weapon collisions: ", weapon_collision_scene_path)
 	var weapon_collision_scene = load(weapon_collision_scene_path)
@@ -80,7 +116,10 @@ func _on_weapon_equipped():
 		return
 
 	active_weapon = weapon_collision_scene.instantiate()
+	active_weapon.damage = item.get_property("damage")
+	active_weapon.holder = self
 	right_weapon_socket.add_child(active_weapon)
+	active_weapon.scale = Vector3(30, 30, 30) # Fix de con pour la scale de l'arme psk le skeleton a une scale de 0.15
 
 	var weapon_visuals_scene_path = item.get_property("model")["visuals_path"]
 	print("weapon visuals: ", weapon_visuals_scene_path)
@@ -91,6 +130,7 @@ func _on_weapon_equipped():
 	weapon_equipped.emit(weapon_visuals_scene)
 
 ###########################################################################
+
 
 func update(input: InputPackage, delta: float):
 	input = combat.contextualize(input)

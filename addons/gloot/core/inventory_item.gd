@@ -30,7 +30,7 @@ var protoset: JSON:
         _prototree = _ProtoTreeCache.get_cached(protoset)
         _on_prototree_changed()
         _connect_protoset_signals()
-        
+
 var _prototree: ProtoTree = _ProtoTreeCache.get_empty()
 var _prototype: Prototype = null
 var _properties: Dictionary

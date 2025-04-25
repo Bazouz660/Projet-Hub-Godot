@@ -33,6 +33,7 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TimeManager="*res://manager/time_manager.gd"
 Console="*res://addons/console/console.gd"
 CommandsManager="*res://manager/commands_manager.gd"
+Serializer="*res://manager/serializer_manager.gd"
 
 [debug]
 
@@ -44,7 +45,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/TweenAnimator/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gloot/plugin.cfg")
+enabled=PackedStringArray("res://addons/TweenAnimator/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gloot/plugin.cfg", "res://addons/picklegd/plugin.cfg")
 
 [filesystem]
 

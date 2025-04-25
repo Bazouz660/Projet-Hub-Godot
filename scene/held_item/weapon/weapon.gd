@@ -4,7 +4,7 @@ class_name Weapon
 var hitbox_ignore_list: Array[Area3D]
 var is_attacking: bool = false
 
-@export var item_id: String
+var item: InventoryItem
 @export var holder: HumanoidModel
 
 var damage: float = 0.0

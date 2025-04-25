@@ -22,7 +22,7 @@ func update(_input: InputPackage, _delta: float):
 
 func form_hit_data(weapon: Weapon) -> HitData:
 	var hit = HitData.new()
-	hit.damage = 10
+	hit.damage = weapon.damage
 	hit.hit_move_animation = animation
 	hit.is_parryable = is_parryable()
 	hit.weapon = humanoid.model.active_weapon

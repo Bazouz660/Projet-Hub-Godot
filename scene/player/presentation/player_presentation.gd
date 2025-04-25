@@ -30,6 +30,7 @@ func adjust_weapon_visuals():
 	weapon_visuals.global_rotation = model.active_weapon.global_rotation
 
 func on_weapon_equipped(scene: PackedScene):
+	print("on_weapon_equipped")
 	if weapon_visuals != null:
 		weapon_visuals.queue_free()
 

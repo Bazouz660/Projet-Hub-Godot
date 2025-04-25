@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://b6i3ktwxchyr8"]
+[gd_scene load_steps=73 format=3 uid="uid://b6i3ktwxchyr8"]
 
 [ext_resource type="Script" uid="uid://co1h0wmsp5oye" path="res://scene/player/model/humanoid_model.gd" id="1_dfp2c"]
 [ext_resource type="Script" uid="uid://7o8migntf3vc" path="res://scene/player/model/resources.gd" id="2_3b786"]
@@ -2198,6 +2198,8 @@ _data = {
 &"walk_params": SubResource("Animation_emppj")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qpjtq"]
+
 [node name="Model" type="Node3D"]
 script = ExtResource("1_dfp2c")
 
@@ -2774,3 +2776,6 @@ unique_name_in_owner = true
 script = ExtResource("39_iyeqv")
 protoset = ExtResource("37_eg8aa")
 metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qpjtq")
