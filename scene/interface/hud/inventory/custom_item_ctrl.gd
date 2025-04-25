@@ -48,6 +48,7 @@ func _ready() -> void:
 	_stack_size_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_stack_size_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_stack_size_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	_stack_size_label.add_theme_color_override("font_color", Color(1, 1, 1))
 
 	add_child(_stack_size_label)
 
@@ -82,6 +83,10 @@ func _update_texture() -> void:
 		return
 
 	if is_instance_valid(item) && GridConstraint.is_item_rotated(item):
+		var item_size: Vector2i = item.get_property("size")
+		if item_size.x == item_size.y:
+			return # No rotation needed for square items
+
 		$PanelContainer.size = Vector2(size.y, size.x)
 		if GridConstraint.is_item_rotation_positive(item):
 			$PanelContainer.position = Vector2($PanelContainer.size.y, 0)
@@ -91,7 +96,7 @@ func _update_texture() -> void:
 			$PanelContainer.rotation = - PI / 2
 
 	else:
-		$PanelContainer.size = size
+		$PanelContainer.set_deferred("size", Vector2(size.x, size.y))
 		$PanelContainer.position = Vector2.ZERO
 		$PanelContainer.rotation = 0
 

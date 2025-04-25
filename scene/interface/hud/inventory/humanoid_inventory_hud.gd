@@ -1,4 +1,5 @@
 extends Control
+class_name HumanoidInventoryHUD
 
 @export var inventory: Inventory
 @export var head_slot: ItemSlot
@@ -25,8 +26,7 @@ var grid_constraint: GridConstraint = null
 
 var hide_tooltip_timer: Timer = null
 
-func _ready():
-	# Set the inventory for the CtrlInventory
+func init():
 	ctrl_inventory_grid.inventory = inventory
 	grid_constraint = inventory.get_constraint(GridConstraint)
 	if grid_constraint == null:
@@ -60,8 +60,8 @@ func _ready():
 			TweenAnimator.fade_out(tooltip, 0.1)
 			hide_tooltip_timer.queue_free()
 		)
-		add_child(hide_tooltip_timer)
-		hide_tooltip_timer.start()
+		add_child.call_deferred(hide_tooltip_timer)
+		hide_tooltip_timer.start.call_deferred()
 	)
 
 

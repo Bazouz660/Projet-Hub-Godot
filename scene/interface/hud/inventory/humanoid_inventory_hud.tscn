@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cfwh654if7hjb"]
+[gd_scene load_steps=23 format=3 uid="uid://cfwh654if7hjb"]
 
 [ext_resource type="Script" uid="uid://byqljt463nwot" path="res://scene/interface/hud/inventory/humanoid_inventory_hud.gd" id="1_3wl6k"]
 [ext_resource type="Script" uid="uid://bps08ub6q6prw" path="res://addons/gloot/ui/ctrl_inventory_grid.gd" id="1_ove75"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://cgs3xeaw0w82u" path="res://addons/gloot/core/constraints/grid_constraint.gd" id="4_csg78"]
 [ext_resource type="Texture2D" uid="uid://cw51kbi8ctgqi" path="res://asset/texture/interface/inventory/chest_icon.png" id="5_gf5s4"]
 [ext_resource type="Texture2D" uid="uid://dfybdrsl0tpnm" path="res://asset/texture/interface/inventory/weapon_icon.png" id="5_xpcti"]
-[ext_resource type="Script" uid="uid://bei1jnky5ips4" path="res://addons/gloot/core/item_slot.gd" id="6_csg78"]
 [ext_resource type="Texture2D" uid="uid://be4r75q7rlf6w" path="res://asset/texture/interface/inventory/shirt_icon.png" id="6_l0jbt"]
 [ext_resource type="Texture2D" uid="uid://en0824e5p0kh" path="res://asset/texture/interface/inventory/legs_icon.png" id="7_b0kaf"]
 [ext_resource type="Texture2D" uid="uid://btsnhuhioyu7e" path="res://asset/texture/interface/inventory/feet_icon.png" id="7_l0jbt"]
@@ -53,24 +52,31 @@ height = 64
 seamless = true
 noise = SubResource("FastNoiseLite_jgo66")
 
-[node name="Inventory" type="Control" node_paths=PackedStringArray("inventory", "head_slot", "chest_slot", "shirt_slot", "legs_slot", "feet_slot", "hands_slot", "weapon_slot", "tooltip")]
+[node name="Inventory" type="Control" node_paths=PackedStringArray("tooltip")]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3wl6k")
-inventory = NodePath("Inventory")
-head_slot = NodePath("HeadSlot")
-chest_slot = NodePath("ChestSlot")
-shirt_slot = NodePath("ShirtSlot")
-legs_slot = NodePath("LegsSlot")
-feet_slot = NodePath("FeetSlot")
-hands_slot = NodePath("HandsSlot")
-weapon_slot = NodePath("WeaponSlot")
 tooltip = NodePath("ItemToolTip")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 854.0
-offset_bottom = 604.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.5
+offset_top = -214.5
+offset_right = 333.5
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -104,7 +110,7 @@ horizontal_alignment = 2
 
 [node name="CtrlInventoryGrid" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("inventory")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(347, 522)
+custom_minimum_size = Vector2(277, 347)
 layout_mode = 2
 script = ExtResource("1_ove75")
 inventory = NodePath("../../../../../Inventory")
@@ -165,7 +171,7 @@ layout_mode = 2
 
 [node name="CtrlWeaponSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 256)
+custom_minimum_size = Vector2(32, 128)
 layout_mode = 2
 size_flags_vertical = 0
 icon_texture = ExtResource("5_xpcti")
@@ -195,11 +201,12 @@ grow_vertical = 2
 
 [node name="CtrlHeadSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
-offset_left = 105.0
-offset_top = 15.0
-offset_right = 175.0
-offset_bottom = 85.0
+offset_left = 82.5
+offset_top = 24.5
+offset_right = 114.5
+offset_bottom = 56.5
 size_flags_horizontal = 4
 icon_texture = ExtResource("4_3iljh")
 
@@ -210,10 +217,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.5
-offset_top = -173.0
-offset_right = 69.5
-offset_bottom = -41.0
+offset_left = -64.5
+offset_top = -95.0
+offset_right = -0.5
+offset_bottom = -63.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -222,50 +229,50 @@ metadata/_edit_group_ = true
 
 [node name="CtrlChestSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container/HBoxContainer" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 100)
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 icon_texture = ExtResource("5_gf5s4")
 
 [node name="CtrlShirtSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container/HBoxContainer" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 100)
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 icon_texture = ExtResource("6_l0jbt")
 
 [node name="CtrlHandsSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
-offset_left = -33.0
-offset_top = 257.0
-offset_right = 39.0
-offset_bottom = 328.0
+offset_left = -17.5
+offset_top = 196.5
+offset_right = 14.5
+offset_bottom = 228.5
 size_flags_horizontal = 0
 size_flags_vertical = 6
 icon_texture = ExtResource("7_vlau7")
 
 [node name="CtrlLegsSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(75, 100)
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
-offset_left = 75.0
-offset_top = 301.0
-offset_right = 206.0
-offset_bottom = 433.0
+offset_left = 82.5
+offset_top = 231.5
+offset_right = 114.5
+offset_bottom = 263.5
 size_flags_horizontal = 4
 size_flags_vertical = 2
 icon_texture = ExtResource("7_b0kaf")
 
 [node name="CtrlFeetSlot" parent="PanelContainer/MarginContainer/HBoxContainer/Panel/MarginContainer/TextureRect/MarginContainer/HBoxContainer/TextureRect/Container" instance=ExtResource("3_gf5s4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 75)
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
-offset_left = 89.0
-offset_top = 472.0
-offset_right = 191.0
-offset_bottom = 564.0
+offset_left = 81.5
+offset_top = 360.5
+offset_right = 113.5
+offset_bottom = 392.5
 size_flags_horizontal = 4
 size_flags_vertical = 2
 icon_texture = ExtResource("7_l0jbt")
@@ -285,71 +292,10 @@ grow_vertical = 1
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_hhqjj")
 protoset = ExtResource("3_cjvbf")
-_serialized_format = {
-"constraints": {
-"res://addons/gloot/core/constraints/grid_constraint.gd": {
-"data": {
-"insertion_priority": 0,
-"item_positions": {
-"1": "Vector2i(1, 0)",
-"2": "Vector2i(2, 0)"
-},
-"size": "Vector2i(10, 15)"
-},
-"name": &"GridConstraint"
-}
-},
-"items": [{
-"protoset": "res://data/protoset/protoset.json",
-"prototype_id": "item_test"
-}, {
-"protoset": "res://data/protoset/protoset.json",
-"prototype_id": "item_test"
-}, {
-"protoset": "res://data/protoset/protoset.json",
-"prototype_id": "steel_longsword"
-}],
-"node_name": "Inventory",
-"protoset": "res://data/protoset/protoset.json"
-}
+_serialized_format = {}
 metadata/_custom_type_script = "uid://ehj3yrf2j3un"
 
 [node name="GridConstraint" type="Node" parent="Inventory"]
 script = ExtResource("4_csg78")
-size = Vector2i(10, 15)
-insertion_priority = 0
-
-[node name="HeadSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
-
-[node name="ChestSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
-
-[node name="ShirtSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
-
-[node name="HandsSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
-
-[node name="LegsSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
-
-[node name="WeaponSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
-
-[node name="FeetSlot" type="Node" parent="."]
-script = ExtResource("6_csg78")
-protoset = ExtResource("3_cjvbf")
-metadata/_custom_type_script = "uid://bei1jnky5ips4"
+size = Vector2i(8, 10)
+metadata/_custom_type_script = "uid://cgs3xeaw0w82u"

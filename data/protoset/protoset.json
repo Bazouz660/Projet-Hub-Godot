@@ -1,14 +1,22 @@
 {
   "item_test": {
-	"image": "res://asset/texture/item/potion_health.png",
-	"size": "Vector2i(1, 1)",
-	"name": "Test"
+    "image": "res://asset/texture/item/potion_health.png",
+    "size": "Vector2i(1, 1)",
+    "name": "Test",
+    "max_stack_size": 4
   },
   "steel_longsword": {
-	"image": "res://asset/texture/item/steel_longsword.png",
-	"size": "Vector2i(1, 4)",
-	"name": "Steel Longsword",
-	"damage": 10,
-	"attack_speed": 1.5
+    "image": "res://asset/texture/item/steel_longsword.png",
+    "model": {
+      "visuals_path": "res://scene/held_item/weapon/sword_visuals.tscn",
+      "collision_path": "res://scene/held_item/weapon/sword_collision.tscn"
+    },
+    "size": "Vector2i(1, 4)",
+    "name": "Steel Longsword",
+    "damage": 10,
+    "attack_speed": 1.5,
+    "basic_attacks": {
+      "light_attack_pressed": "slash_1"
+    }
   }
 }

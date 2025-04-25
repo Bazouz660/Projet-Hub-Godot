@@ -48,7 +48,11 @@ func go_to_menu(menu_name: String, save_in_history: bool = true):
 	current_menu_name = menu_name
 	_set_focus_on_first_button.call_deferred(current_menu)
 
+# intented for use with a controller, disabled when using mouse
 func _set_focus_on_first_button(parent: Control) -> bool:
+	if Input.get_connected_joypads().is_empty():
+		return false
+
 	if is_instance_valid(current_menu) and current_menu.has_meta("first_focus"):
 		(current_menu.get_meta("first_focus") as Control).grab_focus()
 		return true

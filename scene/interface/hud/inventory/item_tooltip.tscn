@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://cm7ow1wmgy5td" path="res://scene/interface/hud/inventory/item_tooltip.gd" id="1_vn8rj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxy6x"]
-bg_color = Color(0.122252, 0.122252, 0.122252, 1)
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
+border_color = Color(0.808998, 0.808999, 0.808998, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -47,6 +48,7 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Item Title"
 horizontal_alignment = 1
 
@@ -59,6 +61,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +72,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

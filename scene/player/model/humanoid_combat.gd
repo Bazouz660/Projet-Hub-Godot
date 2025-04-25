@@ -20,11 +20,15 @@ func translate_inputs(input: InputPackage):
 	if not input.combat_actions.is_empty():
 		input.combat_actions.sort_custom(combat_action_priority_sort)
 		var best_input_action: String = input.combat_actions[0]
-		var weapon_component = null # = model.resources.right_hand_slot.get_component("weapon")
-		if weapon_component == null:
-			push_error("No weapon equipped.")
+		var weapon = model.resources.weapon_slot.get_item()
+		if weapon == null:
+			print("No weapon equipped.")
 			return
-		var translated_into_move_name: String = weapon_component.basic_attacks[best_input_action]
+		var basic_attacks = weapon.get_property("basic_attacks")
+		if basic_attacks == null:
+			push_error("No basic attacks found in weapon.")
+			return
+		var translated_into_move_name: String = basic_attacks[best_input_action]
 		input.actions.append(translated_into_move_name)
 
 

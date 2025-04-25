@@ -7,5 +7,7 @@ var is_attacking: bool = false
 @export var item_id: String
 @export var holder: HumanoidModel
 
+var damage: float = 0.0
+
 func get_hit_data() -> HitData:
 	return holder.current_move.form_hit_data(self)

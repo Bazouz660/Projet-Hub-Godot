@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://lhp0pmmfdk2h" path="res://scene/interface/pause_menu/pause_menu.tscn" id="4_cby67"]
 [ext_resource type="PackedScene" uid="uid://cw1ds6oixy5ht" path="res://scene/interface/hud/health/health_bar.tscn" id="4_tmfjb"]
 [ext_resource type="PackedScene" uid="uid://clte1kr3xnnoi" path="res://scene/interface/settings_menu/settings_menu.tscn" id="5_m4bv2"]
-[ext_resource type="PackedScene" uid="uid://b08qn0p04cg0d" path="res://scene/interface/inventory/character_inventory.tscn" id="9_f3bk7"]
+[ext_resource type="PackedScene" uid="uid://cfwh654if7hjb" path="res://scene/interface/hud/inventory/humanoid_inventory_hud.tscn" id="10_tmfjb"]
 
 [sub_resource type="Resource" id="Resource_5jgix"]
 script = ExtResource("3_e2hu5")
@@ -99,7 +99,9 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="Inventory" parent="MenuManager" instance=ExtResource("9_f3bk7")]
+[node name="Inventory" parent="MenuManager" instance=ExtResource("10_tmfjb")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+tooltip_text = "
+"

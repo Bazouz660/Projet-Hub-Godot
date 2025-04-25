@@ -1,11 +1,10 @@
-[gd_scene load_steps=69 format=3 uid="uid://b6i3ktwxchyr8"]
+[gd_scene load_steps=72 format=3 uid="uid://b6i3ktwxchyr8"]
 
 [ext_resource type="Script" uid="uid://co1h0wmsp5oye" path="res://scene/player/model/humanoid_model.gd" id="1_dfp2c"]
 [ext_resource type="Script" uid="uid://7o8migntf3vc" path="res://scene/player/model/resources.gd" id="2_3b786"]
 [ext_resource type="Script" uid="uid://c6apxt83lp7g1" path="res://scene/player/model/humanoid_sound_manager.gd" id="2_hhekq"]
 [ext_resource type="Script" uid="uid://btxd3eudh64p4" path="res://scene/player/model/humanoid_hitbox.gd" id="3_jhxj8"]
 [ext_resource type="Script" uid="uid://boo7nrqgcemsv" path="res://scene/player/model/skeleton.gd" id="4_jwgxg"]
-[ext_resource type="PackedScene" uid="uid://wc2d4hm56myr" path="res://scene/held_item/sword_collision.tscn" id="6_cfkae"]
 [ext_resource type="Script" uid="uid://kavqt3i38r0u" path="res://scene/player/model/split_animator.gd" id="6_vny0r"]
 [ext_resource type="Script" uid="uid://bedev4smphtwt" path="res://scripts/animation/animation_player.gd" id="7_1ussp"]
 [ext_resource type="Script" uid="uid://c2iqw0vscuxc0" path="res://scripts/animation/animation_layer.gd" id="7_cfkae"]
@@ -26,13 +25,18 @@
 [ext_resource type="Script" uid="uid://d0mvec84gtg31" path="res://scene/player/move/attack.gd" id="29_humdn"]
 [ext_resource type="Script" uid="uid://c2nibhrjs05ps" path="res://scene/player/move/swim.gd" id="31_8ffxp"]
 [ext_resource type="Script" uid="uid://c13fx1roxgr2c" path="res://scene/player/move/idle_swim.gd" id="32_nhgla"]
+[ext_resource type="PackedScene" uid="uid://c1mtxht5th22f" path="res://scene/held_item/consumable/health_potion.tscn" id="33_eg8aa"]
 [ext_resource type="Script" uid="uid://b7ajatt7dleoh" path="res://scene/player/model/moves_data_repository.gd" id="33_u5qca"]
 [ext_resource type="Script" uid="uid://drfk3jisy54t0" path="res://scene/player/model/moves_data_storage.gd" id="34_4ubtw"]
 [ext_resource type="Script" uid="uid://bmswb10s1aoyq" path="res://scene/player/move/emote.gd" id="34_ik1el"]
 [ext_resource type="Script" uid="uid://dgmcxpehlums1" path="res://scene/player/move/staggered.gd" id="35_ewwt7"]
 [ext_resource type="Script" uid="uid://d2bh0wnqpv7ug" path="res://scene/player/model/look_at_target.gd" id="36_cfkae"]
+[ext_resource type="Script" uid="uid://ehj3yrf2j3un" path="res://addons/gloot/core/inventory.gd" id="36_qpjtq"]
+[ext_resource type="JSON" path="res://data/protoset/protoset.json" id="37_eg8aa"]
+[ext_resource type="Script" uid="uid://cgs3xeaw0w82u" path="res://addons/gloot/core/constraints/grid_constraint.gd" id="38_d6oi3"]
 [ext_resource type="Script" uid="uid://l5pg4yp3tnmm" path="res://scene/player/move/death.gd" id="38_eg8aa"]
 [ext_resource type="Script" uid="uid://0wwmvuku1ci1" path="res://scene/player/move/walk.gd" id="39_d6oi3"]
+[ext_resource type="Script" uid="uid://bei1jnky5ips4" path="res://addons/gloot/core/item_slot.gd" id="39_iyeqv"]
 [ext_resource type="Script" uid="uid://bjt0nntnq5o4b" path="res://scene/player/move/block.gd" id="43_jwgxg"]
 [ext_resource type="Script" uid="uid://c0gv5ax84wcov" path="res://scene/player/move/drink.gd" id="47_emppj"]
 
@@ -109,9 +113,6 @@ delay = 0.45
 play_once = false
 material_based = true
 metadata/_custom_type_script = ExtResource("26_d6oi3")
-
-[sub_resource type="Resource" id="Resource_grkx0"]
-metadata/__load_path__ = "res://scene/item/held_item/consumable/health_potion/health_potion_visuals.tscn"
 
 [sub_resource type="Resource" id="Resource_cfkae"]
 script = ExtResource("26_d6oi3")
@@ -2424,18 +2425,17 @@ transform = Transform3D(-0.609094, -0.489154, 0.624287, -0.075317, -0.747916, -0
 bone_name = "mixamorigRightHand"
 bone_idx = 17
 
-[node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/RightHand"]
+[node name="RightWeaponSocket" type="Marker3D" parent="GeneralSkeleton/RightHand"]
+unique_name_in_owner = true
 transform = Transform3D(0.955677, -0.0468568, 0.290664, -0.00936727, 0.981915, 0.18909, -0.294267, -0.183432, 0.937955, 0, 0, 0)
-
-[node name="Sword" parent="GeneralSkeleton/RightHand/WeaponSocket" instance=ExtResource("6_cfkae")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 
 [node name="LeftHand" type="BoneAttachment3D" parent="GeneralSkeleton"]
 transform = Transform3D(0.794306, -0.465092, 0.390856, -0.116189, -0.747787, -0.653694, 0.596304, 0.473819, -0.64801, -7.24472, 62.3291, 57.6277)
 bone_name = "mixamorigLeftHand"
 bone_idx = 13
 
-[node name="WeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
+[node name="LeftWeaponSocket" type="Marker3D" parent="GeneralSkeleton/LeftHand"]
+unique_name_in_owner = true
 
 [node name="Head" type="BoneAttachment3D" parent="GeneralSkeleton"]
 transform = Transform3D(0.949148, -0.0904518, -0.301558, 0.0122721, 0.967741, -0.251647, 0.314592, 0.235149, 0.91964, -14.4597, 126.85, 15.6418)
@@ -2671,8 +2671,8 @@ backend_animation = "block_params"
 
 [node name="Drink" type="Node" parent="States" node_paths=PackedStringArray("left_hand", "legs_behaviour")]
 script = ExtResource("47_emppj")
-left_hand = NodePath("../../GeneralSkeleton/LeftHand/WeaponSocket")
-hand_attachement = SubResource("Resource_grkx0")
+left_hand = NodePath("../../GeneralSkeleton/LeftHand/LeftWeaponSocket")
+hand_attachement = ExtResource("33_eg8aa")
 drink_time = 2.0
 legs_behaviour = NodePath("../../Legs/WalkableGesture")
 move_name = "drink"
@@ -2692,3 +2692,85 @@ script = ExtResource("34_4ubtw")
 
 [node name="LookAtTarget" type="Marker3D" parent="."]
 script = ExtResource("36_cfkae")
+
+[node name="Inventories" type="Node" parent="."]
+
+[node name="Inventory" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("36_qpjtq")
+protoset = ExtResource("37_eg8aa")
+_serialized_format = {
+"constraints": {
+"res://addons/gloot/core/constraints/grid_constraint.gd": {
+"data": {
+"insertion_priority": 0,
+"item_positions": {
+"1": "Vector2i(1, 0)",
+"2": "Vector2i(2, 0)"
+},
+"size": "Vector2i(8, 10)"
+},
+"name": &"GridConstraint"
+}
+},
+"items": [{
+"protoset": "res://data/protoset/protoset.json",
+"prototype_id": "item_test"
+}, {
+"protoset": "res://data/protoset/protoset.json",
+"prototype_id": "item_test"
+}, {
+"protoset": "res://data/protoset/protoset.json",
+"prototype_id": "steel_longsword"
+}],
+"node_name": "Inventory",
+"protoset": "res://data/protoset/protoset.json"
+}
+metadata/_custom_type_script = "uid://ehj3yrf2j3un"
+
+[node name="GridConstraint" type="Node" parent="Inventories/Inventory"]
+script = ExtResource("38_d6oi3")
+size = Vector2i(8, 10)
+insertion_priority = 0
+
+[node name="HeadSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="ChestSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="ShirtSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="HandsSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="LegsSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="WeaponSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"
+
+[node name="FeetSlot" type="Node" parent="Inventories"]
+unique_name_in_owner = true
+script = ExtResource("39_iyeqv")
+protoset = ExtResource("37_eg8aa")
+metadata/_custom_type_script = "uid://bei1jnky5ips4"

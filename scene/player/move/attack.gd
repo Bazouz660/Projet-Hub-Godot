@@ -20,7 +20,7 @@ func default_lifecycle(input: InputPackage):
 func update(_input: InputPackage, _delta: float):
 	humanoid.model.active_weapon.is_attacking = right_weapon_hurts()
 
-func form_hit_data(weapon) -> HitData:
+func form_hit_data(weapon: Weapon) -> HitData:
 	var hit = HitData.new()
 	hit.damage = 10
 	hit.hit_move_animation = animation

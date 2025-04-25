@@ -43,18 +43,21 @@ signal health_full
 @export var regeneration_enabled: bool = true
 
 @onready var model = $".." as HumanoidModel
+@onready var inventory := %Inventory as Inventory
+@onready var head_slot := %HeadSlot as ItemSlot
+@onready var chest_slot := %ChestSlot as ItemSlot
+@onready var shirt_slot := %ShirtSlot as ItemSlot
+@onready var legs_slot := %LegsSlot as ItemSlot
+@onready var feet_slot := %FeetSlot as ItemSlot
+@onready var hands_slot := %HandsSlot as ItemSlot
+@onready var weapon_slot := %WeaponSlot as ItemSlot
 
 var stamina_regeneration_timer: float = 0.0
 var is_stamina_regenerating: bool = true
 
-var left_hand_slot # : Item
-var right_hand_slot # : Item
-@export var item_in_use: String
-
 func _ready():
 	stamina = max_stamina
 	health = max_health
-
 
 func lose_health(amount: float):
 	if not god_mode:

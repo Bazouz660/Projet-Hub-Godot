@@ -1,7 +1,7 @@
 extends Node3D
 class_name HumanoidModel
 
-@onready var active_weapon = $GeneralSkeleton/RightHand/WeaponSocket/Sword
+@onready var active_weapon: Weapon = null
 
 @onready var DEFAULT_GRAVITY: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -15,6 +15,12 @@ class_name HumanoidModel
 @onready var resources := $Resources as HumanoidResources
 @onready var moves_container := $States as HumanoidStates
 @onready var legs := $Legs as Legs
+
+@onready var left_weapon_socket := %LeftWeaponSocket
+@onready var right_weapon_socket := %RightWeaponSocket
+
+signal weapon_equipped(scene: PackedScene)
+signal weapon_cleared()
 
 const STEP_INTERPOLATION_SPEED = 30.0
 
@@ -41,6 +47,50 @@ func _ready():
 	legs.accept_behaviours()
 
 	init_first_move("idle")
+
+
+##### Consider moving this to a separate file #############################
+
+	# connect inventory signals
+	resources.weapon_slot.item_equipped.connect(_on_weapon_equipped)
+	resources.weapon_slot.cleared.connect(_on_weapon_cleared)
+
+func _on_weapon_cleared():
+	if active_weapon:
+		active_weapon.queue_free()
+		active_weapon = null
+
+	if right_weapon_socket.get_children().size() > 0:
+		for child in right_weapon_socket.get_children():
+			child.queue_free()
+
+	weapon_cleared.emit()
+
+
+func _on_weapon_equipped():
+	for child in right_weapon_socket.get_children():
+		child.queue_free()
+
+	var item = resources.weapon_slot.get_item()
+	var weapon_collision_scene_path = item.get_property("model")["collision_path"]
+	print("weapon collisions: ", weapon_collision_scene_path)
+	var weapon_collision_scene = load(weapon_collision_scene_path)
+	if !weapon_collision_scene:
+		push_error("Weapon collision scene not found: ", weapon_collision_scene_path)
+		return
+
+	active_weapon = weapon_collision_scene.instantiate()
+	right_weapon_socket.add_child(active_weapon)
+
+	var weapon_visuals_scene_path = item.get_property("model")["visuals_path"]
+	print("weapon visuals: ", weapon_visuals_scene_path)
+	var weapon_visuals_scene = load(weapon_visuals_scene_path)
+	if !weapon_visuals_scene:
+		push_error("Weapon visuals scene not found: ", weapon_visuals_scene_path)
+		return
+	weapon_equipped.emit(weapon_visuals_scene)
+
+###########################################################################
 
 func update(input: InputPackage, delta: float):
 	input = combat.contextualize(input)
