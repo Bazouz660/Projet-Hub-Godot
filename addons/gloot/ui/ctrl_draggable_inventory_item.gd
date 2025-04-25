@@ -50,7 +50,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
     if sub_preview == null:
         return null
     var preview = Control.new()
-    sub_preview.position = -_grab_offset
+    sub_preview.position = - _grab_offset
     preview.add_child(sub_preview)
     set_drag_preview(preview)
 
