@@ -1,6 +1,5 @@
 extends Node3D
 
-		
 func _ready():
 	TimeManager.start()
 

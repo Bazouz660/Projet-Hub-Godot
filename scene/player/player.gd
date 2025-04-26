@@ -10,7 +10,7 @@ class_name Player
 @onready var collision_shape := $CollisionShape3D as CollisionShape3D
 @onready var material_detector := $MaterialDetector as MaterialDetector
 @onready var resources := $Model/Resources as HumanoidResources
-@onready var interact_area := $InteractArea as Area3D
+@onready var interact_area := $InteractArea as PlayerInteractArea
 
 var sensitivity = 0.003;
 var yaw = 0.0;

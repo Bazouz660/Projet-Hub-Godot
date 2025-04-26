@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://d0mvec84gtg31" path="res://scene/player/move/attack.gd" id="29_humdn"]
 [ext_resource type="Script" uid="uid://c2nibhrjs05ps" path="res://scene/player/move/swim.gd" id="31_8ffxp"]
 [ext_resource type="Script" uid="uid://c13fx1roxgr2c" path="res://scene/player/move/idle_swim.gd" id="32_nhgla"]
-[ext_resource type="PackedScene" uid="uid://c1mtxht5th22f" path="res://scene/held_item/consumable/health_potion.tscn" id="33_eg8aa"]
+[ext_resource type="PackedScene" uid="uid://c1mtxht5th22f" path="res://scene/item/held/consumable/health_potion.tscn" id="33_eg8aa"]
 [ext_resource type="Script" uid="uid://b7ajatt7dleoh" path="res://scene/player/model/moves_data_repository.gd" id="33_u5qca"]
 [ext_resource type="Script" uid="uid://drfk3jisy54t0" path="res://scene/player/model/moves_data_storage.gd" id="34_4ubtw"]
 [ext_resource type="Script" uid="uid://bmswb10s1aoyq" path="res://scene/player/move/emote.gd" id="34_ik1el"]

@@ -188,3 +188,6 @@ func client_disconnecting(client_id: int):
 		print("Client ", client_id, " is disconnecting")
 		# Handle any server-side cleanup for the disconnecting client
 		# This method will be called by clients before they disconnect
+
+func get_level_node() -> Node3D:
+	return root.world.get_node(level_node_path)

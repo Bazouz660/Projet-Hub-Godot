@@ -1,4 +1,5 @@
 extends Control
+class_name ItemTooltip
 
 var item: InventoryItem:
 	set(value):
@@ -32,10 +33,8 @@ func _on_item_changed() -> void:
 	item_description.text = item.get_property("description", "No description")
 	item_icon.texture = item.get_texture()
 
-	var properties_text: String = ""
-	for property in item.get_properties():
-		properties_text += property + ": " + str(item.get_property(property)) + "\n"
-	item_properties.text = properties_text.strip_edges()
+	var properties_text := get_item_properties_text(item)
+	item_properties.text = properties_text
 
 	# Resize the container to fit the content
 	var minimum_size: Vector2 = Vector2(0, 0)
@@ -43,6 +42,19 @@ func _on_item_changed() -> void:
 		if child is Control:
 			minimum_size = minimum_size.max(child.get_combined_minimum_size())
 	size = minimum_size
+
+static func get_item_properties_text(p_item: InventoryItem) -> String:
+	var properties_text: String = ""
+
+	var meta = p_item.get_property("meta")
+	if meta == null or meta.has("visible_properties") == false:
+		return properties_text
+
+	var visible_properties: Array = meta["visible_properties"]
+
+	for property in visible_properties:
+		properties_text += property + ": " + str(p_item.get_property(property)) + "\n"
+	return properties_text.strip_edges()
 
 func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position() + Vector2(10, 10)

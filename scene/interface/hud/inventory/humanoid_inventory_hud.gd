@@ -33,38 +33,6 @@ func init():
 		push_error("GridConstraint not found in inventory")
 		return
 
-	# Listen for when an item is right-clicked
-	ctrl_inventory_grid.inventory_item_clicked.connect(_on_item_clicked)
-
-	ctrl_inventory_grid.item_mouse_entered.connect(func(item: InventoryItem):
-		tooltip.item = item
-		tooltip.show()
-		TweenAnimator.fade_in(tooltip, 0.1)
-
-		if hide_tooltip_timer != null:
-			hide_tooltip_timer.stop()
-			hide_tooltip_timer.queue_free()
-	)
-
-	ctrl_inventory_grid.item_mouse_exited.connect(func(item: InventoryItem):
-		tooltip.item = null
-
-		if hide_tooltip_timer != null:
-			hide_tooltip_timer.start()
-			return
-
-		hide_tooltip_timer = Timer.new()
-		hide_tooltip_timer.wait_time = 0.1
-		hide_tooltip_timer.one_shot = true
-		hide_tooltip_timer.timeout.connect(func():
-			TweenAnimator.fade_out(tooltip, 0.1)
-			hide_tooltip_timer.queue_free()
-		)
-		add_child.call_deferred(hide_tooltip_timer)
-		hide_tooltip_timer.start.call_deferred()
-	)
-
-
 	# Initialize the CtrlItemSlots
 	ctrl_head_slot.init(head_slot)
 	ctrl_body_slot.init(chest_slot)
@@ -74,8 +42,46 @@ func init():
 	ctrl_hands_slot.init(hands_slot)
 	ctrl_weapon_slot.init(weapon_slot)
 
+	# Connect signals
+	_connect_signals()
+
+
+func _connect_signals():
+	# Listen for when an item is right-clicked
+	ctrl_inventory_grid.inventory_item_clicked.connect(_on_item_clicked)
+	ctrl_inventory_grid.item_mouse_entered.connect(_show_tooltip)
+	ctrl_inventory_grid.item_mouse_exited.connect(_hide_tooltip)
 	# Connect the button's pressed signal to the _on_pressed function
 	sort_button.pressed.connect(_on_pressed)
+
+
+func _show_tooltip(item: InventoryItem):
+	tooltip.item = item
+	tooltip.show()
+	TweenAnimator.fade_in(tooltip, 0.1)
+
+	if hide_tooltip_timer != null:
+		hide_tooltip_timer.stop()
+		hide_tooltip_timer.queue_free()
+
+
+func _hide_tooltip(item: InventoryItem):
+	tooltip.item = null
+
+	if hide_tooltip_timer != null:
+		hide_tooltip_timer.start()
+		return
+
+	hide_tooltip_timer = Timer.new()
+	hide_tooltip_timer.wait_time = 0.1
+	hide_tooltip_timer.one_shot = true
+	hide_tooltip_timer.timeout.connect(func():
+		TweenAnimator.fade_out(tooltip, 0.1)
+		hide_tooltip_timer.queue_free()
+	)
+	add_child.call_deferred(hide_tooltip_timer)
+	hide_tooltip_timer.start.call_deferred()
+
 
 func _on_pressed():
 	if grid_constraint == null:
@@ -90,3 +96,12 @@ func _on_item_clicked(item: InventoryItem, _position: Vector2, button: int):
 		return
 	grid_constraint.rotate_item(item)
 	# Update the CtrlInventoryGrid to reflect the changes
+
+func _can_drop_data(_at_position, data):
+	return data is InventoryItem
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	print("Dropped item: ", data)
+	inventory.remove_item(data)
+	var player_position = MultiplayerManager.active_player.global_position
+	DroppedItem.create(data, player_position)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb8dftf70nb4f"]
+[gd_scene load_steps=5 format=3 uid="uid://bb8dftf70nb4f"]
 
 [ext_resource type="Script" uid="uid://cm7ow1wmgy5td" path="res://scene/interface/hud/inventory/item_tooltip.gd" id="1_vn8rj"]
+[ext_resource type="FontFile" uid="uid://b3ibjetxkblh2" path="res://asset/font/Alkhemikal.ttf" id="2_vn8rj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxy6x"]
 bg_color = Color(0.151276, 0.151276, 0.151276, 1)
@@ -13,6 +14,10 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_iil0r"]
+font = ExtResource("2_vn8rj")
+font_size = 32
 
 [node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 4
@@ -50,6 +55,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Item Title"
+label_settings = SubResource("LabelSettings_iil0r")
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]

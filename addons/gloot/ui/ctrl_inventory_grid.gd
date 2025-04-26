@@ -207,11 +207,11 @@ func _get_configuration_warnings() -> PackedStringArray:
     if !is_instance_valid(inventory):
         return PackedStringArray([
                 "This CtrlInventoryGrid node has no inventory set. Set the 'inventory' field to be able to " \
-                + "display its contents."])
+                +"display its contents."])
     if inventory.get_constraint(GridConstraint) == null:
         return PackedStringArray([
                 "The inventory has no GridConstraint child node. Add a GridConstraint to the inventory to be able" \
-                + " to display its contents on a grid."])
+                +" to display its contents on a grid."])
     return PackedStringArray()
 
 
