@@ -127,6 +127,10 @@ func _peer_connected(id):
 	print(players)
 	player_connected.emit(id)
 
+	# Sync stuff with the new player
+	_sync_items(id)
+
+
 func _peer_disconnected(id):
 	print("Peer disconnected: ", id)
 	# Remove the player node
@@ -191,3 +195,40 @@ func client_disconnecting(client_id: int):
 
 func get_level_node() -> Node3D:
 	return root.world.get_node(level_node_path)
+
+func _sync_items(peer_id: int):
+	var dropped_items_node = get_level_node().get_node_or_null("DroppedItems")
+	if dropped_items_node == null:
+		return
+
+	var dropped_items = dropped_items_node.get_children()
+
+	for entry in dropped_items:
+		var dropped_item = entry as DroppedItem
+		var item = dropped_item._item
+		var time_dropped = dropped_item._time_dropped
+		if item != null:
+			# Serialize the item data
+			var item_data := Seriously.pack_to_bytes(item.serialize())
+			if item_data == null:
+				push_error("Failed to serialize item data")
+				return
+			# Send the item data to the new player
+			_rpc_create_item.rpc_id(peer_id, item_data, dropped_item.global_position, time_dropped)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_create_item(item_data: PackedByteArray, item_position: Vector3, time_dropped: int) -> void:
+	# Unpack the item data
+	var unpacked_item_dict := Seriously.unpack_from_bytes(item_data) as Dictionary
+	if unpacked_item_dict == null:
+		push_error("Failed to unpack item data")
+		return
+
+	# Create a new InventoryItem instance
+	var item := InventoryItem.new()
+	item.deserialize(unpacked_item_dict)
+	if item == null:
+		push_error("Failed to deserialize item data")
+		return
+
+	DroppedItem.create(item, item_position, time_dropped)

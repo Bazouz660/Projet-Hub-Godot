@@ -104,4 +104,27 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	print("Dropped item: ", data)
 	inventory.remove_item(data)
 	var player_position = MultiplayerManager.active_player.global_position
-	DroppedItem.create(data, player_position)
+	var item_data := Seriously.pack_to_bytes(data.serialize())
+	if item_data == null:
+		push_error("Failed to serialize item data")
+		return
+	# send the item data to all peers
+	_rpc_drop_item.rpc(item_data, player_position, Time.get_ticks_msec())
+
+
+@rpc("any_peer", "call_local", "reliable")
+func _rpc_drop_item(item_data: PackedByteArray, item_position: Vector3, time_dropped: int) -> void:
+	# unpack the item data
+	var unpacked_item_dict := Seriously.unpack_from_bytes(item_data) as Dictionary
+	if unpacked_item_dict == null:
+		push_error("Failed to unpack item data")
+		return
+
+	# create a new InventoryItem instance
+	var item := InventoryItem.new()
+	item.deserialize(unpacked_item_dict)
+	if item == null:
+		push_error("Failed to deserialize item data")
+		return
+
+	DroppedItem.create(item, item_position, time_dropped)

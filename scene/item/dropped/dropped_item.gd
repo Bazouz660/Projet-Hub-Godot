@@ -3,6 +3,7 @@ class_name DroppedItem
 
 var _item: InventoryItem
 var _item_visuals: Node3D = null
+var _time_dropped: int = 0
 
 @onready var _interact_area: Area3D = $InteractArea
 
@@ -16,10 +17,11 @@ func _ready():
 	_interact_area.area_entered.connect(_on_interact_area_entered)
 	_interact_area.area_exited.connect(_on_interact_area_exited)
 
-static func create(item: InventoryItem, at: Vector3) -> DroppedItem:
+static func create(item: InventoryItem, at: Vector3, time_dropped: int) -> DroppedItem:
 	var dropped_item = load("res://scene/item/dropped/dropped_item.tscn").instantiate()
-	dropped_item.name = item._prototype._id + "_" + str(Time.get_ticks_msec())
+	dropped_item.name = item._prototype._id + "_" + str(time_dropped)
 	dropped_item._item = item
+	dropped_item._time_dropped = time_dropped
 
 	var visuals_loaded = dropped_item._load_item_visuals(item)
 
@@ -94,5 +96,20 @@ func _on_interact_area_interacted(player: Player) -> void:
 		print("Inventory is full, cannot pick up item: ", _item._prototype._id)
 		return
 
-	player.resources.inventory.add_item_autosplitmerge(_item)
-	queue_free()
+	# Add item locally first to ensure it's possible
+	var added_item = player.resources.inventory.add_item_autosplitmerge(_item)
+	if not added_item:
+		# This case might happen if can_add_item check passed but adding failed due to race condition or other logic
+		print("Failed to add item to inventory, despite check passing: ", _item._prototype._id)
+		return
+
+	# If item was successfully added locally, notify all peers to destroy the dropped item
+	_rpc_destroy_item.rpc()
+
+
+@rpc("any_peer", "call_local", "reliable")
+func _rpc_destroy_item():
+	# Ensure the node still exists before trying to free it,
+	# as RPC calls might arrive slightly delayed.
+	if is_instance_valid(self):
+		queue_free()
