@@ -119,7 +119,7 @@ func _rpc_drop_item(item_data: PackedByteArray, item_position: Vector3, time_dro
 	if unpacked_item_dict == null:
 		push_error("Failed to unpack item data")
 		return
-
+	
 	# create a new InventoryItem instance
 	var item := InventoryItem.new()
 	item.deserialize(unpacked_item_dict)

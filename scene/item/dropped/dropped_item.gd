@@ -47,8 +47,10 @@ func _load_item_visuals(item: InventoryItem) -> bool:
 		return false
 
 	var visuals_propety := ""
-	if item.get_property("model")["dropped_visuals_path"] == null:
-		if item.get_property("model")["visuals_path"] == null:
+	var model_data: Dictionary = item.get_property("model")
+
+	if !model_data.has("dropped_visuals_path"):
+		if !model_data.has("visuals_path"):
 			push_warning("Item has no visuals path: ", item._prototype._id)
 			return false
 		else:
