@@ -159,6 +159,9 @@ func close_connection():
 	# Common cleanup for both host and client
 	_safe_disconnect(multiplayer.peer_connected, _peer_connected)
 	_safe_disconnect(multiplayer.peer_disconnected, _peer_disconnected)
+	_safe_disconnect(multiplayer.connected_to_server, _connected_to_server)
+	_safe_disconnect(multiplayer.connection_failed, _connection_failed)
+	_safe_disconnect(multiplayer.server_disconnected, _server_disconnected)
 
 	# Clear the multiplayer peer
 	multiplayer.multiplayer_peer = null

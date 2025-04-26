@@ -85,6 +85,8 @@ func _on_interact_area_entered(area: Area3D) -> void:
 func _on_interact_area_exited(area: Area3D) -> void:
 	if area.is_in_group("player"):
 		# Disconnect the signal when the player exits the area
+		if MultiplayerManager.active_player == null:
+			return
 		MultiplayerManager.active_player.interact_area.interacted.disconnect(_on_interact_area_interacted)
 
 func _on_interact_area_interacted(player: Player) -> void:
