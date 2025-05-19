@@ -17,8 +17,9 @@ func default_lifecycle(input: InputPackage):
 		return "ok"
 
 
-func update(_input: InputPackage, _delta: float):
+func update(_input: InputPackage, delta: float):
 	humanoid.model.active_weapon.is_attacking = right_weapon_hurts()
+	process_root_motion_movement(delta)
 
 func form_hit_data(weapon: Weapon) -> HitData:
 	var hit = HitData.new()

@@ -1,12 +1,12 @@
 [gd_resource type="QuadMesh" load_steps=5 format=3 uid="uid://d0f4k5yctdlyq"]
 
-[ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="1_wtya5"]
+[ext_resource type="Shader" uid="uid://dpd1ncy4kcbsq" path="res://shader/billboard_sway_no_stencil.gdshader" id="1_7fmsf"]
 [ext_resource type="Texture2D" uid="uid://nyskrh0qqxxr" path="res://asset/texture/foliage/poppy.png" id="2_u88jh"]
 [ext_resource type="Texture2D" uid="uid://ctxe476mf5dj2" path="res://data/noise/wind_noise_texture.tres" id="3_2nod0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k7ec6"]
 render_priority = 0
-shader = ExtResource("1_wtya5")
+shader = ExtResource("1_7fmsf")
 shader_parameter/albedo = Color(1, 0.417, 0.34, 1)
 shader_parameter/texture_albedo = ExtResource("2_u88jh")
 shader_parameter/backlight = Color(1, 1, 1, 1)

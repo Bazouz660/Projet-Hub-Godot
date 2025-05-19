@@ -24,7 +24,7 @@ enable_vertical_rotation = false
 [node name="Camera3D" type="Camera3D" parent="PreventRotationCopy/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.53674e-07, 30)
 projection = 1
-size = 15.0
+size = 8.0
 near = 0.001
 far = 150.0
 

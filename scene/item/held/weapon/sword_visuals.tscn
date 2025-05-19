@@ -68,8 +68,9 @@ texture_filter = 0
 [node name="Sword" type="Node3D"]
 
 [node name="mesh" type="Node3D" parent="."]
-transform = Transform3D(0.07627, 0.104889, 0.00901196, -0.0965914, 0.0652959, 0.0575026, 0.0418688, -0.0404323, 0.116242, -0.359625, -0.0166321, 0.151546)
+transform = Transform3D(0.000140654, 0.13, 0, -0.13, 0.000140686, 0, 0, 0, 0.13, 0, 0.112, 0)
 
 [node name="cuboid" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(0.497574, -0.273176, 0.194411, 0.25454, 0.534205, 0.0991687, -0.218244, 0.000236133, 0.558902, 1.01849, -1.66308, 0.440936)
 mesh = SubResource("ArrayMesh_3a8fn")
 surface_material_override/0 = SubResource("StandardMaterial3D_v5iei")

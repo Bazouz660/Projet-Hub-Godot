@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bg7jl7nq5s1ji"]
 
-[ext_resource type="ArrayMesh" uid="uid://d3alpuvu3e0tn" path="res://asset/mesh/foliage/tree/oak/oak_sapling_foliage.res" id="1_yfoa3"]
+[ext_resource type="ArrayMesh" uid="uid://d3alpuvu3e0tn" path="res://asset/mesh/feature/tree/oak/oak_sapling_foliage.res" id="1_yfoa3"]
 [ext_resource type="Shader" uid="uid://bick5v6bhi0ft" path="res://shader/billboard_sway.gdshader" id="2_lfh11"]
 [ext_resource type="Texture2D" uid="uid://jywlavb5jbvx" path="res://asset/texture/foliage/leaves.png" id="3_4jfox"]
 

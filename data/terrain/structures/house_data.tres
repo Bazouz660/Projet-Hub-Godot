@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_puk5b")
-size = Vector3(11.4806, 13.5743, 13.6543)
-position = Vector3(-5.40341, -1.03174, -6.9092)
-local_pos = Vector3(-5.40341, -1.03174, -6.9092)
+size = Vector3(8.42717, 10.2883, 10.3594)
+position = Vector3(-3.91414, -0.0337415, -5.25262)
+local_pos = Vector3(-3.91414, -0.0337415, -5.25262)
 rotation_degrees = Vector3(0, 0, 0)

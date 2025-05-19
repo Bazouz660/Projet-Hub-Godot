@@ -58,13 +58,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6vfha")
 
-[node name="Sword" type="Node3D"]
+[node name="AxeVisuals" type="Node3D"]
 
 [node name="mesh" type="Node3D" parent="."]
 transform = Transform3D(0.07627, 0.104889, 0.00901196, -0.0965914, 0.0652959, 0.0575026, 0.0418688, -0.0404323, 0.116242, -0.359625, -0.0166321, 0.151546)
 
 [node name="Axe" type="MeshInstance3D" parent="mesh"]
-transform = Transform3D(-1519.67, 1188.31, 527.754, 221.972, -562.764, 1906.31, 1281.14, 1507.06, 295.722, 0.229231, 3.75392, 0.0882773)
+transform = Transform3D(-835.82, 653.569, 290.264, 122.085, -309.52, 1048.47, 704.628, 828.882, 162.647, 0.786189, 3.34959, 0.0805477)
 material_override = SubResource("StandardMaterial3D_y28og")
 mesh = SubResource("ArrayMesh_knrw8")
 skeleton = NodePath("")

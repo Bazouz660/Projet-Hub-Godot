@@ -4,15 +4,26 @@ class_name AnimationLayerModifier3D
 @export var animation_player: AnimationPlayer = null
 @export var blend_time: float = 0.3
 @export var affected_bones: Array[String] = []
+@export var root_bone: String = "%Skeleton:Root"
 
 var skeleton: Skeleton3D = null
 var original_poses: Array[Transform3D] = []
 var bone_mask: Array[bool] = []
 var anim_progess: float = 0.0
 var anim_accumulator: float = 0.0
-var override_animation_name: String = ""
+
+var override_animation_name: String = "":
+	set(value):
+		if value != override_animation_name:
+			anim_progess = 0.0
+			anim_accumulator = 0.0
+			override_animation_name = value
+
 var previous_override_transforms = {}
 var is_first_override = true
+
+var previous_anim_progress: float = 0.0
+var previous_root_position: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	# Get the skeleton reference
@@ -149,3 +160,65 @@ func play_override(p_animation_name: String) -> void:
 	anim_progess = 0.0
 	anim_accumulator = 0.0
 	override_animation_name = p_animation_name
+
+	# Initialize root motion tracking for smooth transitions
+	if animation_player and not p_animation_name.is_empty():
+		var override_animation = animation_player.get_animation(p_animation_name)
+		if override_animation:
+			var root_motion_track = override_animation.find_track(root_bone, Animation.TrackType.TYPE_POSITION_3D)
+			if root_motion_track != -1:
+				# Initialize with the starting position of the new animation
+				previous_root_position = override_animation.position_track_interpolate(root_motion_track, 0)
+				previous_anim_progress = 0.0
+
+func get_root_motion_position() -> Vector3:
+	if not animation_player or override_animation_name.is_empty():
+		return Vector3.ZERO
+
+	var override_animation = animation_player.get_animation(override_animation_name)
+	if not override_animation:
+		return Vector3.ZERO
+
+	var anim_length = override_animation.length
+	var loop_mode = override_animation.loop_mode
+
+	# Store current progress before adjusting
+	var current_progress = anim_progess
+
+	# Handle animation looping
+	if current_progress > anim_length:
+		if loop_mode == Animation.LOOP_NONE:
+			current_progress = anim_length
+		else:
+			current_progress = fmod(current_progress, anim_length)
+
+	# Get the root motion track
+	var root_motion_track = override_animation.find_track(root_bone, Animation.TrackType.TYPE_POSITION_3D)
+
+	if root_motion_track == -1:
+		return Vector3.ZERO
+
+	# Get the current position
+	var current_root_position = override_animation.position_track_interpolate(root_motion_track, current_progress)
+
+	# Calculate previous position
+	var prev_progress = previous_anim_progress
+	if prev_progress > anim_length and loop_mode != Animation.LOOP_NONE:
+		prev_progress = fmod(prev_progress, anim_length)
+
+	# Check if we've looped
+	var delta_position = Vector3.ZERO
+	if loop_mode != Animation.LOOP_NONE and previous_anim_progress > current_progress:
+		# We looped - get position at end of animation
+		var end_position = override_animation.position_track_interpolate(root_motion_track, anim_length)
+		delta_position = end_position - previous_root_position + current_root_position - override_animation.position_track_interpolate(root_motion_track, 0)
+	else:
+		# Normal case - get delta between current and previous positions
+		delta_position = current_root_position - previous_root_position
+
+	# Store values for next frame
+	previous_anim_progress = current_progress
+	previous_root_position = current_root_position
+
+
+	return delta_position

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Feature" load_steps=3 format=3 uid="uid://bjvvdtkb5xnja"]
 
-[ext_resource type="PackedScene" uid="uid://cbra6jb5ruycp" path="res://scene/level/foliage/tree/spruce/half_snowy_spruce_tree.tscn" id="1_ddc56"]
+[ext_resource type="PackedScene" uid="uid://cbra6jb5ruycp" path="res://scene/level/feature/tree/spruce/half_snowy_spruce_tree.tscn" id="1_ddc56"]
 [ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="1_okg48"]
 
 [resource]
@@ -8,10 +8,11 @@ script = ExtResource("1_okg48")
 label = "Half Snowy Spruce"
 type = 0
 scenes = Array[PackedScene]([ExtResource("1_ddc56")])
+min_radius = 0.0
 cast_shadow = 0
 receive_biome_color = false
 shader_parameter_color_name = "albedo"
-random_scale = Vector2(0.9, 1.1)
+random_scale = Vector2(0.7, 1)
 random_rotation = Vector2(0, 360)
 random_offset = Vector3(0.5, 0, 0.5)
 follow_normals = false

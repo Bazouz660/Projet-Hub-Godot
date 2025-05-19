@@ -13,8 +13,7 @@ func default_lifecycle(input: InputPackage) -> String:
 		return "ok"
 	return input.actions[0]
 
-func update(input: InputPackage, _delta: float):
-
+func update(input: InputPackage, delta: float):
 	if not _roll_direction_defined:
 		_roll_direction = Vector3(input.direction.x, 0, input.direction.y).rotated(Vector3.UP, input.camera_rotation.y)
 		_roll_direction_defined = true
@@ -27,10 +26,4 @@ func update(input: InputPackage, _delta: float):
 	#humanoid.set_quaternion(humanoid.get_quaternion() * root_rotation)
 	#humanoid.velocity = root_velocity
 
-	humanoid.velocity = velocity_by_input(input)
-
-func velocity_by_input(_input: InputPackage) -> Vector3:
-	var y = humanoid.velocity.y
-	var velocity = lerp(humanoid.velocity, _roll_direction * speed, 0.1)
-	velocity.y = y
-	return velocity
+	process_root_motion_movement(delta)

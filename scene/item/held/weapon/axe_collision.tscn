@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://dwusf55vojq4i" path="res://scene/item/held/weapon/weapon.gd" id="1_mshpa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lat11"]
-radius = 0.363661
-height = 3.03445
+radius = 0.308373
+height = 2.50102
 
 [node name="SwordCollision" type="Area3D"]
 script = ExtResource("1_mshpa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53365, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30933, 0)
 shape = SubResource("CapsuleShape3D_lat11")

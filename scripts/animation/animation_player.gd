@@ -9,9 +9,11 @@ var counter: float = 0
 @export_tool_button("Set interpolation to nearest")
 var toolbutton_set_anims_interpolation_nearest = _set_anims_interpolation_nearest.bind()
 
+@export var anim_library_name: String = "" # empty string means the global animation library
+
 @export var anim_to_update: String = "@All"
 
-@export var skeleton_path: String = "GeneralSkeleton"
+@export var skeleton_path: String = "Skeleton"
 @export_tool_button("Change skeleton path")
 var toolbutton_set_skeleton_path = _set_skeleton_path.bind()
 
@@ -38,11 +40,11 @@ var toolbutton_save_all_animations = _save_all_animations.bind()
 
 func _set_skeleton_path():
 	if anim_to_update == "@All":
-		var anim_library = get_animation_library("")
+		var anim_library = get_animation_library(anim_library_name)
 		for anim_name in get_animation_list():
 			_set_skeleton_path_single(anim_library, anim_name)
 	else:
-		_set_skeleton_path_single(get_animation_library(""), anim_to_update)
+		_set_skeleton_path_single(get_animation_library(anim_library_name), anim_to_update)
 
 func _set_skeleton_path_single(anim_library, anim_name):
 	var anim = anim_library.get_animation(anim_name)
@@ -55,11 +57,11 @@ func _set_skeleton_path_single(anim_library, anim_name):
 
 func _set_track_prefix():
 	if anim_to_update == "@All":
-		var anim_library = get_animation_library("")
+		var anim_library = get_animation_library(anim_library_name)
 		for anim_name in get_animation_list():
 			_set_track_prefix_single(anim_library, anim_name)
 	else:
-		_set_track_prefix_single(get_animation_library(""), anim_to_update)
+		_set_track_prefix_single(get_animation_library(anim_library_name), anim_to_update)
 
 
 func _set_track_prefix_single(anim_library, anim_name):
@@ -101,7 +103,7 @@ func _set_track_prefix_single(anim_library, anim_name):
 # 			anim.track_set_path(i, path)
 
 func _set_anims_interpolation_nearest() -> void:
-	var anim_library = get_animation_library("")
+	var anim_library = get_animation_library(anim_library_name)
 	for anim_name in get_animation_list():
 		var anim = anim_library.get_animation(anim_name)
 		for i in anim.get_track_count():
@@ -136,7 +138,7 @@ func _set_default_blend_times(blend_time: float):
 # DEVELOPMENT LAYER FUNCTIONAL, IT DOES MODIFY ASSETS, UNCOMMENT IF YOU KNOW WHAT YOU ARE DOING
 func _extract_root_motion():
 	var animation = get_animation(animation_to_extract_root_motion) as Animation
-	var hips_track = animation.find_track("GeneralSkeleton: mixamorigHips", Animation.TYPE_POSITION_3D)
+	var hips_track = animation.find_track("Skeleton: mixamorigHips", Animation.TYPE_POSITION_3D)
 	var backend_animation = move_database.get_animation(animation_to_extract_root_motion + "_params")
 	var backend_track_path = "MoveDatabase: root_position"
 	var backend_track = backend_animation.find_track(backend_track_path, Animation.TYPE_VALUE)
@@ -158,11 +160,11 @@ func _extract_root_motion():
 # scales all the animations positions by a factor
 func _scale_animations_positions():
 	if anim_to_update == "@All":
-		var anim_library = get_animation_library("")
+		var anim_library = get_animation_library(anim_library_name)
 		for anim_name in get_animation_list():
 			_scale_animation_position(anim_library, anim_name)
 	else:
-		_scale_animation_position(get_animation_library(""), anim_to_update)
+		_scale_animation_position(get_animation_library(anim_library_name), anim_to_update)
 
 func _scale_animation_position(anim_library, anim_name):
 	var anim = anim_library.get_animation(anim_name)
@@ -178,7 +180,7 @@ func _scale_animation_position(anim_library, anim_name):
 			anim.track_set_key_value(i, j, position)
 
 func _save_all_animations():
-	var anim_library = get_animation_library("")
+	var anim_library = get_animation_library(anim_library_name)
 	for anim_name in get_animation_list():
 		var anim = anim_library.get_animation(anim_name)
 		if save_folder.ends_with(" / ") == false:

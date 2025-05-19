@@ -34,7 +34,6 @@ func _get_velocity(direction: Vector3):
 	return new_velocity
 
 func _physics_process(delta):
-
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

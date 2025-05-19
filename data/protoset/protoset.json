@@ -1,43 +1,49 @@
 {
-  "item_test": {
-    "image": "res://asset/texture/item/potion_health.png",
-    "size": "Vector2i(1, 1)",
-    "name": "Test",
-    "max_stack_size": 4.0
-  },
-  "steel_longsword": {
-    "image": "res://asset/texture/item/steel_longsword.png",
-    "model": {
-      "dropped_visuals_path": "res://scene/item/dropped/weapon/sword_dropped_visuals.tscn",
-      "visuals_path": "res://scene/item/held/weapon/sword_visuals.tscn",
-      "collision_path": "res://scene/item/held/weapon/sword_collision.tscn"
-    },
-    "size": "Vector2i(1, 4)",
-    "name": "Steel Longsword",
-    "damage": 20.0,
-    "attack_speed": 1.5,
-    "basic_attacks": {
-      "light_attack_pressed": "slash_1"
-    },
-    "meta": {
-      "visible_properties": ["damage", "attack_speed"]
-    }
-  },
-  "iron_axe": {
-    "image": "res://asset/texture/item/iron_axe.png",
-    "model": {
-      "visuals_path": "res://scene/item/held/weapon/axe_visuals.tscn",
-      "collision_path": "res://scene/item/held/weapon/axe_collision.tscn"
-    },
-    "size": "Vector2i(1, 3)",
-    "name": "Iron Axe",
-    "damage": 15.0,
-    "attack_speed": 1.2,
-    "basic_attacks": {
-      "light_attack_pressed": "slash_2"
-    },
-    "meta": {
-      "visible_properties": ["damage", "attack_speed"]
-    }
-  }
+	"item_test": {
+		"image": "res://asset/texture/item/potion_health.png",
+		"size": "Vector2i(1, 1)",
+		"name": "Test",
+		"max_stack_size": 4.0
+	},
+	"steel_longsword": {
+		"image": "res://asset/texture/item/steel_longsword.png",
+		"model": {
+			"dropped_visuals_path": "res://scene/item/dropped/weapon/sword_dropped_visuals.tscn",
+			"visuals_path": "res://scene/item/held/weapon/sword_visuals.tscn",
+			"collision_path": "res://scene/item/held/weapon/sword_collision.tscn"
+		},
+		"size": "Vector2i(1, 4)",
+		"name": "Steel Longsword",
+		"damage": 20.0,
+		"attack_speed": 1.5,
+		"basic_attacks": {
+			"light_attack_pressed": "slash_1"
+		},
+		"meta": {
+			"visible_properties": [
+				"damage",
+				"attack_speed"
+			]
+		}
+	},
+	"iron_axe": {
+		"image": "res://asset/texture/item/iron_axe.png",
+		"model": {
+			"visuals_path": "res://scene/item/held/weapon/axe_visuals.tscn",
+			"collision_path": "res://scene/item/held/weapon/axe_collision.tscn"
+		},
+		"size": "Vector2i(1, 3)",
+		"name": "Iron Axe",
+		"damage": 15.0,
+		"attack_speed": 1.2,
+		"basic_attacks": {
+			"light_attack_pressed": "slash_2"
+		},
+		"meta": {
+			"visible_properties": [
+				"damage",
+				"attack_speed"
+			]
+		}
+	}
 }

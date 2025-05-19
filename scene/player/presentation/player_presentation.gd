@@ -3,8 +3,8 @@ class_name PlayerPresentation
 
 @onready var model: HumanoidModel
 
-@onready var body = %body
-@onready var head = %head
+@onready var body = %Body
+# @onready var head = %head
 @onready var sound_player = $SoundPlayer3D
 var weapon_visuals: Node3D
 
@@ -12,7 +12,7 @@ var weapon_visuals: Node3D
 func accept_model(p_model: HumanoidModel):
 	model = p_model
 	body.skeleton = model.skeleton.get_path()
-	head.skeleton = model.skeleton.get_path()
+	# head.skeleton = model.skeleton.get_path()
 
 	model.weapon_equipped.connect(on_weapon_equipped)
 	model.weapon_cleared.connect(on_weapon_cleared)
@@ -36,7 +36,6 @@ func on_weapon_equipped(scene: PackedScene):
 
 	weapon_visuals = scene.instantiate()
 	body.add_child(weapon_visuals)
-	weapon_visuals.scale = Vector3(60, 60, 60)
 
 func on_weapon_cleared():
 	if weapon_visuals != null:

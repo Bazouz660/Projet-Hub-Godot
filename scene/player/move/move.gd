@@ -19,7 +19,7 @@ var moves_data_repo: MovesDataRepository:
 @export var affected_by_gravity: bool = true
 @export var enter_stamina_cost: float = 0.0
 @export var speed: float = 0.0
-@export var angular_velocity: float = 0.1
+@export var angular_velocity: float = 10.0
 @export_group("Animation")
 @export var animation: String
 @export var backend_animation: String
@@ -38,6 +38,9 @@ var queued_move: String = "none, drop error please"
 
 var has_forced_move: bool = false
 var forced_move: String = "none, drop error please"
+
+var last_root_motion_velocity: Vector3 = Vector3.ZERO
+var animation_looped: bool = false
 
 func check_relevance(input: InputPackage) -> String:
 	if accepts_queueing():
@@ -149,13 +152,13 @@ func default_lifecycle(input: InputPackage):
 		return best_input_that_can_be_paid(input)
 	return "ok"
 
-func process_input_vector(input: InputPackage, _delta: float):
+func process_input_vector(input: InputPackage, delta: float):
 	var direction = Vector3(input.direction.x, 0, input.direction.y).rotated(Vector3.UP, input.camera_rotation.y)
 	var rotation
 	if direction.length() < 0.1:
 		rotation = humanoid.rotation.y
 	else:
-		rotation = lerp_angle(humanoid.rotation.y, atan2(direction.x, direction.z), angular_velocity)
+		rotation = lerp_angle(humanoid.rotation.y, atan2(direction.x, direction.z), angular_velocity * delta)
 
 	humanoid.rotation.y = rotation
 
@@ -165,6 +168,24 @@ func process_default_movement(input: InputPackage, _delta: float):
 	var velocity = lerp(humanoid.velocity, direction * speed, 0.1)
 	velocity.y = y
 	humanoid.velocity = velocity
+
+
+func process_root_motion_movement(delta: float):
+	# Apply rotation from root motion
+	# humanoid.set_quaternion(humanoid.get_quaternion() * animator.animation_player.get_root_motion_rotation())
+	# Calculate root motion velocity with smoothing
+	var target_root_velocity = (humanoid.get_quaternion()) * animator.get_root_motion_position() / delta
+
+	# Smooth the velocity transition
+	var smooth_factor = clamp(15.0 * delta, 0.0, 1.0)
+	last_root_motion_velocity = last_root_motion_velocity.lerp(target_root_velocity, smooth_factor)
+
+	# Apply smoothed velocity
+	var new_velocity: Vector3 = humanoid.velocity
+	new_velocity.x = last_root_motion_velocity.x
+	new_velocity.z = last_root_motion_velocity.z
+
+	humanoid.velocity = new_velocity
 
 func update(_input: InputPackage, _delta: float):
 	pass

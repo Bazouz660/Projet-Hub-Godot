@@ -18,5 +18,5 @@ shader_parameter/player_influence_strength = 0.7
 
 [resource]
 material = SubResource("ShaderMaterial_thawk")
-size = Vector2(1, 1.5)
-center_offset = Vector3(0, 0.75, 0)
+size = Vector2(0.8, 1)
+center_offset = Vector3(0, 0.5, 0)

@@ -36,13 +36,21 @@ func _ready():
 		multiplayer_authority = 1
 		interact_area.add_to_group("player")
 
-func _physics_process(delta):
+
+func _process(delta: float):
 	if not multiplayer_authority:
 		return
 	var input = input_gatherer.gather_input()
 	model.update(input, delta)
 	input.queue_free()
 	RenderingServer.global_shader_parameter_set("player_position", global_position)
+
+func _physics_process(delta: float):
+	if not multiplayer_authority:
+		return
+
+	model.update_physics(delta)
+
 
 func is_grounded() -> bool:
 	return grounded or is_on_floor()
@@ -53,4 +61,5 @@ func is_in_water() -> bool:
 @rpc("any_peer", "call_local", "reliable")
 func rpc_set_position(pos: Vector3):
 	global_position = pos
+	print("RPC set position: ", global_position)
 	velocity = Vector3.ZERO

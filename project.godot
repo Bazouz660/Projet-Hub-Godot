@@ -45,7 +45,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/TweenAnimator/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gloot/plugin.cfg")
+enabled=PackedStringArray("res://addons/TweenAnimator/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gloot/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg")
 
 [filesystem]
 
@@ -183,9 +183,16 @@ drink={
 ]
 }
 
+[physics]
+
+common/physics_jitter_fix=0.0
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+lights_and_shadows/directional_shadow/size=8128
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 textures/decals/filter=0
 textures/light_projectors/filter=0
 environment/volumetric_fog/use_filter=0

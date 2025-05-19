@@ -11,4 +11,4 @@ func update(input: InputPackage, delta: float):
 	if resources.stamina < continuous_stamina_cost * delta:
 		try_force_move("run")
 
-	process_default_movement(input, delta)
+	process_root_motion_movement(delta)

@@ -14,6 +14,6 @@ func on_exit_state():
 	humanoid.collision_shape.global_rotation.x = deg_to_rad(0.0)
 
 func update(input: InputPackage, delta: float):
-	process_default_movement(input, delta)
+	process_root_motion_movement(delta)
 	humanoid.position.y = humanoid.WATER_LEVEL - humanoid.height
 	humanoid.velocity.y = 0

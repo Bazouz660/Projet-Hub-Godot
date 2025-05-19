@@ -66,33 +66,36 @@ orientation = 2
 [node name="BirchTree" type="StaticBody3D"]
 
 [node name="Trunk" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 lod_bias = 128.0
 mesh = ExtResource("1_fsr78")
 
 [node name="Foliage" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 cast_shadow = 3
 lod_bias = 128.0
 mesh = ExtResource("2_1xtsg")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_xs5cw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164948, 3.84366, -0.00939941)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0164948, 3.84366, -0.00939941)
 shape = SubResource("BoxShape3D_c0nh8")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.45362, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 6.45362, 0)
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248817, -0.263311, 0.094239)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0248817, -0.263311, 0.094239)
 shape = SubResource("SphereShape3D_c0nh8")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.230747, 6.30816, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.230747, 6.30816, 0)
 cast_shadow = 0
 amount = 5
 lifetime = 10.0

@@ -54,6 +54,7 @@ script = ExtResource("2_q7odf")
 [node name="Model" parent="." instance=ExtResource("3_xohdc")]
 
 [node name="Camera" parent="." instance=ExtResource("2_15wi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00813, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_iviky")

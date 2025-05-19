@@ -15,7 +15,6 @@ func on_enter_state():
 		left_hand.remove_child(hand_history)
 
 	var instance = hand_attachement.instantiate()
-	instance.scale = Vector3(1.0, 1.0, 1.0) / (humanoid.model as HumanoidModel).skeleton.scale
 	left_hand.add_child(instance)
 
 func update(_input: InputPackage, _delta: float):

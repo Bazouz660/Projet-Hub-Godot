@@ -7,7 +7,7 @@ class_name HumanoidModel
 
 @onready var humanoid := $".." as CharacterBody3D
 @onready var sound_manager := $SoundManager as HumanoidSoundManager
-@onready var skeleton := %GeneralSkeleton as Skeleton3D
+@onready var skeleton := %Skeleton as Skeleton3D
 @onready var animator := $Animator as SplitAnimator
 @onready var combat := $Combat as HumanoidCombat
 @onready var moves_node = $States
@@ -119,7 +119,6 @@ func _on_weapon_equipped():
 	active_weapon.damage = item.get_property("damage")
 	active_weapon.holder = self
 	right_weapon_socket.add_child(active_weapon)
-	active_weapon.scale = Vector3(30, 30, 30) # Fix de con pour la scale de l'arme psk le skeleton a une scale de 0.15
 
 	var weapon_visuals_scene_path = item.get_property("model")["visuals_path"]
 	print("weapon visuals: ", weapon_visuals_scene_path)
@@ -139,11 +138,11 @@ func update(input: InputPackage, delta: float):
 	if relevance != "ok" and resources.can_be_paid(moves[relevance]):
 		switch_to(relevance)
 
-	if current_move.affected_by_gravity:
-		apply_gravity(delta)
-
 	current_move._update(input, delta)
 
+func update_physics(delta: float):
+	if current_move.affected_by_gravity:
+		apply_gravity(delta)
 	raycast(delta)
 	humanoid.move_and_slide()
 
