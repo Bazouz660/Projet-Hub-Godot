@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gkai57dhq3qb"]
+[gd_scene load_steps=12 format=3 uid="uid://gkai57dhq3qb"]
 
 [ext_resource type="Script" uid="uid://cc62qw8vsnai1" path="res://scene/player/player.gd" id="1_k72xi"]
 [ext_resource type="PackedScene" uid="uid://dpd2ff7ro8nmi" path="res://scene/player/camera/player_camera.tscn" id="2_15wi1"]
@@ -7,12 +7,13 @@
 [ext_resource type="Script" uid="uid://cimyjwgbx8vbt" path="res://scene/player/input/input.gd" id="2_q7odf"]
 [ext_resource type="PackedScene" uid="uid://b6i3ktwxchyr8" path="res://scene/player/model/player_model.tscn" id="3_xohdc"]
 [ext_resource type="Script" uid="uid://btr6ce7y2582k" path="res://scene/player/interact_area.gd" id="8_hfhxk"]
-[ext_resource type="PackedScene" uid="uid://002flmprh5ne" path="res://test/xray.tscn" id="9_pisg7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02uxe"]
+radius = 0.0164019
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j4sn8"]
 height = 0.1
+radius = 0.1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iviky"]
 properties/0/path = NodePath(".:position")
@@ -30,8 +31,6 @@ radius = 1.42241
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_k72xi")
-
-[node name="Xray" parent="." instance=ExtResource("9_pisg7")]
 
 [node name="MaterialDetector" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340646, 0)

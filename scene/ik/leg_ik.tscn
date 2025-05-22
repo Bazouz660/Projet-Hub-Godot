@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5oyltkirq3bd"]
+
+[ext_resource type="Script" uid="uid://h4kc5o6db78t" path="res://scene/ik/leg_ik.gd" id="1_pggaq"]
+[ext_resource type="Script" uid="uid://df7j0ab7lmhoy" path="res://addons/libik/script/pole_bone_constraint.gd" id="2_26rnu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xq3di"]
+no_depth_test = true
+albedo_color = Color(0.940362, 5.34251e-06, 3.85046e-07, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xq3di"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26rnu"]
+no_depth_test = true
+albedo_color = Color(0.897259, 0, 0.507827, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vmou"]
+no_depth_test = true
+albedo_color = Color(1.15514e-06, 0.591752, 0.432869, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yib65"]
+no_depth_test = true
+albedo_color = Color(1, 0.483333, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ogri"]
+no_depth_test = true
+albedo_color = Color(0.382158, 1, 0.976433, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_26rnu"]
+top_radius = 0.0
+bottom_radius = 0.05
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7v2i"]
+no_depth_test = true
+albedo_color = Color(0, 0.505434, 0.900718, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvj3f"]
+resource_local_to_scene = true
+no_depth_test = true
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="LegIK" type="GodotIK"]
+script = ExtResource("1_pggaq")
+
+[node name="BonePositionMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_xq3di")
+mesh = SubResource("SphereMesh_xq3di")
+
+[node name="ThighBonePositionMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_26rnu")
+mesh = SubResource("SphereMesh_xq3di")
+
+[node name="KneeBonePositionMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_3vmou")
+mesh = SubResource("SphereMesh_xq3di")
+
+[node name="FootBonePositionMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_yib65")
+mesh = SubResource("SphereMesh_xq3di")
+
+[node name="KneeDirectionMesh" type="Node3D" parent="."]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="KneeDirectionMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_8ogri")
+mesh = SubResource("CylinderMesh_26rnu")
+skeleton = NodePath("../..")
+
+[node name="AnkleRaycast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.999997, 2.45156e-13, -4.50015e-06, 0, 1, 2.08616e-07, 4.50015e-06, -2.08614e-07, 0.999997, 0, 0.429142, 0)
+enabled = false
+
+[node name="AnkleCollisionPointMesh" type="MeshInstance3D" parent="AnkleRaycast"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 2.43945e-19, -1.38522e-09, 0, 0.0999999, -4.47035e-08, 0, 4.47035e-08, 0.0999999, 0, -0.867989, 0)
+material_override = SubResource("StandardMaterial3D_b7v2i")
+mesh = SubResource("SphereMesh_xq3di")
+
+[node name="Effector" type="GodotIKEffector" parent="."]
+bone_idx = 4
+chain_length = 3
+transform_mode = 1
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131293, 0.47135, -0.122847)
+
+[node name="PoleBoneConstraint" type="GodotIKConstraint" parent="Effector"]
+bone_idx = 3
+unique_name_in_owner = true
+script = ExtResource("2_26rnu")
+pole_direction = Vector3(0, 0, 50)
+metadata/_custom_type_script = "uid://df7j0ab7lmhoy"
+
+[node name="TargetMesh" type="MeshInstance3D" parent="Effector"]
+unique_name_in_owner = true
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vvj3f")
+mesh = SubResource("SphereMesh_xq3di")
+skeleton = NodePath("../..")

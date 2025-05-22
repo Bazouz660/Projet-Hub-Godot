@@ -60,6 +60,12 @@ func _set_player_on_ground():
 
 func _register_commands():
 	Console.add_command("locate_biome", locate_biome, ["biome", "teleport"], 1, "Finds the nearest biome of given label. Optionally teleports the player to it.")
+	Console.add_command("list_biomes", list_biomes, [], 0, "Lists all available biomes.")
+
+func list_biomes():
+	Console.print_line("Available biomes:")
+	for biome in config.biomes_label_index.keys():
+		Console.print_line("- " + biome)
 
 func locate_biome(biome_label: String, teleport: String = "false"):
 	if teleport != "" and not Utils.is_valid_bool(teleport):
@@ -196,11 +202,11 @@ func _unload_chunks():
 func _load_chunks():
 	var view_distance = config.view_distance
 	var view_distance_sq = view_distance * view_distance
-	for x in range(- view_distance, view_distance + 1):
+	for x in range(-view_distance, view_distance + 1):
 		var x_sq = x * x
 		if x_sq > view_distance_sq:
 			continue
-		for z in range(- view_distance, view_distance + 1):
+		for z in range(-view_distance, view_distance + 1):
 			if x_sq + z * z > view_distance_sq:
 				continue
 			var check_position = Vector2i(x, z) + player_grid_position

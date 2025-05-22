@@ -1,19 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://dqd6qql3fwmmx"]
+[gd_scene load_steps=9 format=4 uid="uid://dqd6qql3fwmmx"]
 
 [ext_resource type="Script" uid="uid://bb0nwmnvavlcq" path="res://scene/terrain/structure.gd" id="1_8k276"]
 [ext_resource type="Resource" uid="uid://cqna6lm3n1qcj" path="res://data/terrain/structures/house_data.tres" id="2_4cjvi"]
 [ext_resource type="Texture2D" uid="uid://bmamexhmy5pea" path="res://asset/model/building/house_Image_0.png" id="2_i4y2m"]
+[ext_resource type="Material" uid="uid://cugshe8fon5yk" path="res://data/materials/outline.tres" id="3_f2m7a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ny1e"]
 resource_name = "Material.001"
-transparency = 4
-depth_draw_mode = 1
+next_pass = ExtResource("3_f2m7a")
 albedo_texture = ExtResource("2_i4y2m")
 texture_filter = 0
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 4
-stencil_reference = 1
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i3vyd"]
 _surfaces = [{

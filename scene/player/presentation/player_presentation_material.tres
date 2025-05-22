@@ -1,0 +1,24 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://lsn3p3de1eoy"]
+
+[ext_resource type="Texture2D" uid="uid://din6uq1ggne8j" path="res://asset/model/male_base_mesh_rigged_2_albedo.png" id="1_63w3b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmbba"]
+render_priority = -1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.521885, 0.778964, 0.895803, 1)
+stencil_mode = 3
+stencil_flags = 3
+stencil_compare = 4
+stencil_reference = 1
+metadata/_stencil_owned = true
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_jmbba")
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_63w3b")
+stencil_mode = 2
+stencil_reference = 1
+stencil_color = Color(0.521885, 0.778964, 0.895803, 1)
