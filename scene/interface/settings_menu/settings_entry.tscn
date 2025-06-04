@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://da0sjiyydyfd6"]
+
+[ext_resource type="Script" uid="uid://b5jbxk3bnteqk" path="res://scene/interface/settings_menu/settings_entry.gd" id="1_ek1lx"]
+
+[node name="SettingsEntry" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -614.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ek1lx")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+dragging_enabled = false
+dragger_visibility = 1

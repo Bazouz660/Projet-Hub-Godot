@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, specular_disabled, diffuse_toon;
+stencil_mode read, compare_always, 0;
 
 group_uniforms Base;
 uniform vec4 albedo : source_color;

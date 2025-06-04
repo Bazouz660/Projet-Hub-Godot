@@ -1,8 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://u57tqs5c6205"]
+[gd_scene load_steps=7 format=3 uid="uid://u57tqs5c6205"]
 
 [ext_resource type="Script" uid="uid://ctlc6hr60mcec" path="res://scene/level/lighting/sky_light.gd" id="1_8f5dq"]
 [ext_resource type="Environment" uid="uid://bjkb0dd7nowhb" path="res://data/materials/world_env.tres" id="1_vrw0p"]
 [ext_resource type="Animation" uid="uid://bn04smwqyuqdy" path="res://scene/level/lighting/day_night_cycle.res" id="3_v7ted"]
+
+[sub_resource type="GDScript" id="GDScript_v7ted"]
+script/source = "extends DirectionalLight3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	ProjectSettings.settings_changed.connect(_on_project_settings_changed)
+	shadow_enabled = ProjectSettings.get_setting(\"global/shadows_enabled\", true)
+	
+func _on_project_settings_changed() -> void:
+	shadow_enabled = ProjectSettings.get_setting(\"global/shadows_enabled\", true)
+"
 
 [sub_resource type="Animation" id="Animation_unpkv"]
 length = 0.001
@@ -127,6 +139,7 @@ shadow_enabled = true
 shadow_bias = 0.05
 directional_shadow_blend_splits = true
 directional_shadow_pancake_size = 100.0
+script = SubResource("GDScript_v7ted")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

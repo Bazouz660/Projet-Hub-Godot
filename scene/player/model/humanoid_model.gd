@@ -157,6 +157,7 @@ func switch_to(state: String):
 	resources.pay_resource_cost(current_move)
 
 	print('<<<<< player [', humanoid.name, '] playing: ', current_move.move_name, ' >>>>>')
+	# Use root motion safe animation playing
 	animator.play(current_move)
 
 

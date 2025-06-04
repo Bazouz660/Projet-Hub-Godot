@@ -19,17 +19,17 @@ class_name LegIK
 @export var align_foot_modifier: AlignSkeletonModifier3D
 # @export var max_foot_align_distance: float = 0.2 # The maximum distance from the foot to the ground for the influence
 # @export var foot_align_lerp_speed: float = 10.0 # Rate constant for exponential smoothing. Higher is faster.
-@export var animation_player: AnimationPlayer:
+@export var animator: AnimationMixer:
 	set(value):
 		if value:
-			value.current_animation_changed.connect(func(name: String):
+			value.current_animation_changed.connect(func(_name: String):
 				# Reset the lowest foot position when the animation changes
 				lowest_foot_position_y = INF
 				lowest_toe_position_y = INF
 				highest_foot_position_y = - INF
 				print("Animation changed: ", name)
 		)
-		animation_player = value
+		animator = value
 
 @export var LOWER_LEG_BONE_INDEX := 3
 @export var FOOT_BONE_INDEX := 4
@@ -98,7 +98,7 @@ func is_anim_grounded(delta: float) -> bool:
 
 	# interpolate the on ground check
 	# print("Last ground check: ", last_ground_check)
-	var lerp_alpha = clamp(60.0 * delta * animation_player.speed_scale, 0.0, 1.0)
+	var lerp_alpha = clamp(60.0 * delta * animator.speed_scale, 0.0, 1.0)
 	on_ground = lerp(last_ground_check, on_ground, lerp_alpha)
 	on_ground = clamp(on_ground, 0.0, 1.0)
 	last_ground_check = on_ground
@@ -122,7 +122,7 @@ func check_foot_flatness() -> float:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not effector or not skeleton or not animation_player or not active:
+	if not effector or not skeleton or not animator or not active:
 		return
 
 	# Clamp delta to avoid issues with very low/unstable FPS

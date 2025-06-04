@@ -171,13 +171,28 @@ func process_default_movement(input: InputPackage, _delta: float):
 
 
 func process_root_motion_movement(delta: float):
+	# Get root motion from animation tree
+	var root_motion_position = animator.get_root_motion_position()
+
+	# If the root motion position is too large (indicating animation just started),
+	# we skip this frame to prevent impulses
+	if root_motion_position.length() > 2.0:
+		print("Skipping root motion frame - large position detected: ", root_motion_position)
+		return
+
 	# Apply rotation from root motion
-	# humanoid.set_quaternion(humanoid.get_quaternion() * animator.animation_player.get_root_motion_rotation())
-	# Calculate root motion velocity with smoothing
-	var target_root_velocity = (humanoid.get_quaternion()) * animator.get_root_motion_position() / delta
+	# humanoid.set_quaternion(humanoid.get_quaternion() * animator.get_root_motion_rotation_accumulator())
+
+	# Calculate target velocity from root motion, ensuring delta is not too small
+	var safe_delta = max(delta, 0.001) # Prevent division by very small numbers
+	var target_root_velocity = (humanoid.get_quaternion()) * root_motion_position / safe_delta
+
+	# Clamp velocity to reasonable values to prevent impulses
+	target_root_velocity.x = clamp(target_root_velocity.x, -50.0, 50.0)
+	target_root_velocity.z = clamp(target_root_velocity.z, -50.0, 50.0)
 
 	# Smooth the velocity transition
-	var smooth_factor = clamp(15.0 * delta, 0.0, 1.0)
+	var smooth_factor = clamp(10.0 * delta, 0.0, 1.0)
 	last_root_motion_velocity = last_root_motion_velocity.lerp(target_root_velocity, smooth_factor)
 
 	# Apply smoothed velocity
@@ -187,11 +202,25 @@ func process_root_motion_movement(delta: float):
 
 	humanoid.velocity = new_velocity
 
+# Helper method to reset root motion state when transitioning between moves
+func reset_root_motion_state():
+	"""Reset root motion state to prevent velocity impulses during state transitions"""
+	last_root_motion_velocity = Vector3.ZERO
+
+	# Also preserve the current velocity Y component to avoid affecting gravity/jumping
+	var current_y_velocity = humanoid.velocity.y
+	humanoid.velocity = Vector3(0, current_y_velocity, 0)
+
 func update(_input: InputPackage, _delta: float):
 	pass
 
 func _on_enter_state():
+	# Reset root motion state to prevent velocity impulses
+	reset_root_motion_state()
 	sound_manager.update_once(sound)
+
+	# Wait one frame to let the animation system settle
+	await get_tree().process_frame
 
 func on_enter_state():
 	pass

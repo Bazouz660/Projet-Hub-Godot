@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Feature" load_steps=8 format=3 uid="uid://dwvxa6i0ewvw2"]
+[gd_resource type="Resource" script_class="Feature" load_steps=6 format=3 uid="uid://dwvxa6i0ewvw2"]
 
 [ext_resource type="Texture2D" uid="uid://74e1d14d4ih8" path="res://asset/texture/foliage/snow_ball.png" id="1_18vdn"]
 [ext_resource type="Script" uid="uid://b17kgm5mvh88b" path="res://scene/terrain/feature.gd" id="2_8fowt"]
@@ -98,16 +98,6 @@ void fragment() {
     BACKLIGHT = backlight.rgb;
 }"
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wdbo7"]
-noise_type = 4
-frequency = 0.0054
-fractal_octaves = 3
-domain_warp_fractal_octaves = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_foxm2"]
-seamless = true
-noise = SubResource("FastNoiseLite_wdbo7")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sj1ts"]
 render_priority = 0
 shader = SubResource("Shader_5juvr")
@@ -118,11 +108,10 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/wind_strength = 0.0
 shader_parameter/wind_speed = 0.0
-shader_parameter/wind_scale = 10.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_foxm2")
-shader_parameter/noise_scale = 10.0
-shader_parameter/player_influence_radius = 3.0
-shader_parameter/player_influence_strength = 1.0
+shader_parameter/wind_scale = 0.1
+shader_parameter/noise_scale = 1.0
+shader_parameter/player_influence_radius = 2.0
+shader_parameter/player_influence_strength = 0.5
 
 [sub_resource type="QuadMesh" id="QuadMesh_vhdja"]
 material = SubResource("ShaderMaterial_sj1ts")

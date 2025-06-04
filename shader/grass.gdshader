@@ -3,7 +3,7 @@ render_mode blend_mix, depth_draw_opaque, cull_back, specular_disabled, diffuse_
 stencil_mode read, compare_always, 0;
 
 uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_disable;
 uniform vec4 backlight : source_color;
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
